@@ -20,7 +20,6 @@
 
   <ItemGroup>
     <PackageReference Include="RockwellAutomation.LogixDesigner.CSClient" version="1.1.*" />
-	  <ProjectReference Include="C:\Users\ASYost\source\repos\CICD_Test3\dotnet\Examples\GetTagValue\GetTagValue.csproj" />
   </ItemGroup>
 
 </Project>

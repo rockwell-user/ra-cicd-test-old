@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "LkhNJOIRsnEPj6LUvDSLHQHujr6j5RwBbOCw2bc5iUtXv7NEY0ZnB800Ma8T1pT/7tJWh47G9MN3lVjrmGqnLw==",
+  "dgSpecHash": "xn4uER4CRmBzpyurymdcMrrn637jr7IaHMDr6e4GhN6Y8YTkZCyEftxL4TqiDpkdDEg1+WQnst9UJfUdTGWCMw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\ASYost\\source\\repos\\CICD_Test3\\dotnet\\Examples\\LogixSDKDemoApp\\LogixSDKStarterApp.csproj",
+  "projectFilePath": "C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\cicd-config\\stage-test\\LogixSDKDemoApp\\LogixSDKStarterApp.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ASYost\\.nuget\\packages\\google.protobuf\\3.24.3\\google.protobuf.3.24.3.nupkg.sha512",
     "C:\\Users\\ASYost\\.nuget\\packages\\grpc.core.api\\2.57.0\\grpc.core.api.2.57.0.nupkg.sha512",

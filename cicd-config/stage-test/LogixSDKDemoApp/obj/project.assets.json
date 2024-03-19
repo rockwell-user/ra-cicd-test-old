@@ -110,19 +110,6 @@
         "build": {
           "build/RockwellAutomation.LogixDesigner.CSClient.props": {}
         }
-      },
-      "GetTagValue/1.1.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v6.0",
-        "dependencies": {
-          "RockwellAutomation.LogixDesigner.CSClient": "1.1.0"
-        },
-        "compile": {
-          "bin/placeholder/GetTagValue.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/GetTagValue.dll": {}
-        }
       }
     }
   },
@@ -328,16 +315,10 @@
         "rockwellautomation.logixdesigner.csclient.1.1.599.nupkg.sha512",
         "rockwellautomation.logixdesigner.csclient.nuspec"
       ]
-    },
-    "GetTagValue/1.1.0": {
-      "type": "project",
-      "path": "../GetTagValue/GetTagValue.csproj",
-      "msbuildProject": "../GetTagValue/GetTagValue.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net6.0": [
-      "GetTagValue >= 1.1.0",
       "RockwellAutomation.LogixDesigner.CSClient >= 1.1.*"
     ]
   },
@@ -347,14 +328,14 @@
   "project": {
     "version": "1.1.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\ASYost\\source\\repos\\CICD_Test3\\dotnet\\Examples\\LogixSDKDemoApp\\LogixSDKStarterApp.csproj",
+      "projectUniqueName": "C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\cicd-config\\stage-test\\LogixSDKDemoApp\\LogixSDKStarterApp.csproj",
       "projectName": "RockwellAutomation.LogixDesigner.LogixSDKStarterApp-Debug",
-      "projectPath": "C:\\Users\\ASYost\\source\\repos\\CICD_Test3\\dotnet\\Examples\\LogixSDKDemoApp\\LogixSDKStarterApp.csproj",
+      "projectPath": "C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\cicd-config\\stage-test\\LogixSDKDemoApp\\LogixSDKStarterApp.csproj",
       "packagesPath": "C:\\Users\\ASYost\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\ASYost\\source\\repos\\CICD_Test3\\dotnet\\Examples\\LogixSDKDemoApp\\obj\\",
+      "outputPath": "C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\cicd-config\\stage-test\\LogixSDKDemoApp\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\ASYost\\source\\repos\\CICD_Test3\\dotnet\\Examples\\NuGet.Config",
+        "C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\cicd-config\\stage-test\\NuGet.Config",
         "C:\\Users\\ASYost\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -363,17 +344,13 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Users\\ASYost\\source\\repos\\CICD_Test3\\dotnet\\": {},
+        "C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\cicd-config\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
-          "projectReferences": {
-            "C:\\Users\\ASYost\\source\\repos\\CICD_Test3\\dotnet\\Examples\\GetTagValue\\GetTagValue.csproj": {
-              "projectPath": "C:\\Users\\ASYost\\source\\repos\\CICD_Test3\\dotnet\\Examples\\GetTagValue\\GetTagValue.csproj"
-            }
-          }
+          "projectReferences": {}
         }
       },
       "warningProperties": {
