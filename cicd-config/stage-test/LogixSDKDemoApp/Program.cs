@@ -1,9 +1,9 @@
 ﻿using RockwellAutomation.LogixDesigner;
 using System.Threading.Tasks;
-using System.Diagnostics;
-using System;
 using System.IO;
-using static RockwellAutomation.LogixDesigner.LogixProject;
+using System;
+using static System.Net.Mime.MediaTypeNames;
+using System.Security.Cryptography;
 
 namespace LogixSDKDemoApp
 {
@@ -11,12 +11,43 @@ namespace LogixSDKDemoApp
     {
         static async Task Main(string[] args)
         {
+            DateTime currentTime = DateTime.Now;
+
             // MODIFY THE TWO STRINGS BELOW BASED ON PROJECT APPLICATION
             string filePath = @"C:\Users\ASYost\Desktop\s5k_cicd_testfiles\CICD_test.ACD";
             string commPath = @"EmulateEthernet\127.0.0.1";
+            //string textFileName = @"C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\testfile.txt";
+            string textFileName = Path.Combine(@"C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\", 
+                DateTime.Now.ToString("yyyyMMddHHmmss") + "_testfile.txt");
+            
+            // Create new text file
+
+            
+            // Check if file already exists. If yes, delete it.
+            if (File.Exists(textFileName))
+            {
+                File.Delete(textFileName);
+            }
+            using (StreamWriter sw = File.CreateText(textFileName)) ;
+
+            // Start process of sending console printouts to a text file 
+            FileStream ostrm;
+            StreamWriter writer;
+            TextWriter oldOut = Console.Out;
+            try
+                {
+                    ostrm = new FileStream(textFileName, FileMode.OpenOrCreate, FileAccess.Write);
+                    writer = new StreamWriter(ostrm);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("Cannot open Redirect.txt for writing");
+                    Console.WriteLine(e.Message);
+                    return;
+                }
+            Console.SetOut(writer);
 
             // Title Banner 
-            DateTime currentTime = DateTime.Now;
             Console.WriteLine("  =========================================================================================  ");
             Console.WriteLine("=============================================================================================\n");
             Console.WriteLine("                             CI/CD TEST STAGE | " + currentTime);
@@ -31,25 +62,18 @@ namespace LogixSDKDemoApp
             Console.WriteLine("Common language runtime version:  " + typeof(string).Assembly.ImageRuntimeVersion);
             Console.WriteLine("---------------------------------------------------------------------------------------------\n\n");
 
-            // Begin Test Banner
-            Console.WriteLine("BEGIN TESTING:");
-            Console.WriteLine("-----------------");
+            // Staging Test Banner
+            Console.WriteLine("----------------------------------------STAGING TEST-----------------------------------------");
 
             // Open the ACD project file and store the reference as myProject.
             Console.WriteLine("Opening ACD file...");
             LogixProject myProject = await LogixProject.OpenLogixProjectAsync(filePath);
             Console.WriteLine("Opening ACD file... SUCCESS\n---");
 
-            // Download project
-            Console.WriteLine("Downloading ACD file...");
-            DP(commPath, myProject).GetAwaiter().GetResult();
-            Console.SetCursorPosition(0, Console.CursorTop - 1);
-            Console.WriteLine("Downloading ACD file...  SUCCESS\n---");
-
             // Change controller mode to program & verify
             Console.WriteLine("Changing controller to PROGRAM...");
-            CCM(commPath, 0, myProject).GetAwaiter().GetResult();
-            if (RCM(commPath, myProject).GetAwaiter().GetResult() == "PROGRAM")
+            ChangeControllerModeAsync(commPath, 0, myProject).GetAwaiter().GetResult();
+            if (ReadControllerModeAsync(commPath, myProject).GetAwaiter().GetResult() == "PROGRAM")
             {
                 Console.WriteLine("Changing controller to PROGRAM...  SUCCESS\n---");
             }
@@ -58,43 +82,61 @@ namespace LogixSDKDemoApp
                 Console.WriteLine("Changing controller to PROGRAM...  FAILURE\n---");
             }
 
+            // Download project
+            Console.WriteLine("Downloading ACD file...");
+            DownloadProjectAsync(commPath, myProject).GetAwaiter().GetResult();
+            Console.WriteLine("Downloading ACD file...  SUCCESS\n---");
+
             // Change controller mode to run
             Console.WriteLine("Changing controller to RUN...");
-            CCM(commPath, 1, myProject).GetAwaiter().GetResult();
-            if (RCM(commPath, myProject).GetAwaiter().GetResult() == "RUN")
+            ChangeControllerModeAsync(commPath, 1, myProject).GetAwaiter().GetResult();
+            if (ReadControllerModeAsync(commPath, myProject).GetAwaiter().GetResult() == "RUN")
             {
 
                 Console.WriteLine("Changing controller to RUN...  SUCCESS\n---");
             }
             else
             {
-                Console.WriteLine("Changing controller to RUN...  FAILURE\n---");
+                Console.WriteLine("Changing controller to RUN...  FAILURE\n\n");
             }
 
+            // Begin Test Banner
+            Console.WriteLine("-----------------------------------------BEGIN TEST------------------------------------------");
 
-            //// Get tag value
-            //Console.WriteLine("Getting Tag Values...");
-            //string test_DINT_1 = GTV("test_DINT_1", myProject).GetAwaiter().GetResult();
-            //Console.WriteLine(test_DINT_1);
-            //string test_DINT_2 = GTV("test_DINT_2", myProject).GetAwaiter().GetResult();
-            //Console.WriteLine(test_DINT_2);
-            //string test_DINT_3 = GTV("test_DINT_3", myProject).GetAwaiter().GetResult();
-            //Console.WriteLine(test_DINT_3);
-            //Console.Write("Getting Tag Values...  COMPLETE\n\n");
+            // Get offline tag values
+            Console.WriteLine("Getting Tag Values...");
+            string test_DINT_1 = CallGetTagValueAsyncAndWaitOnResult("test_DINT_1", "offline", myProject);
+            Console.WriteLine(test_DINT_1);
+            string test_DINT_2 = CallGetTagValueAsyncAndWaitOnResult("test_DINT_2", "offline", myProject);
+            Console.WriteLine(test_DINT_2);
+            string test_DINT_3 = CallGetTagValueAsyncAndWaitOnResult("test_DINT_3", "offline", myProject);
+            Console.WriteLine(test_DINT_3);
+            Console.WriteLine("Getting Tag Values...  COMPLETE\n---");
 
-            //// Set tag value
-            //Console.WriteLine("Setting Tag Values...");
-            //STV(test_DINT_1, 111, myProject).GetAwaiter().GetResult();
-            //STV(test_DINT_2, 222, myProject).GetAwaiter().GetResult();
-            //STV(test_DINT_1, 333, myProject).GetAwaiter().GetResult();
-            //Console.Write("Setting Tag Values...  COMPLETE\n\n");
+            // Set tag values
+            Console.WriteLine("Setting Tag Values...");
+            CallSetTagValueAsyncAndWaitOnResult("test_DINT_1", 111, "online", myProject);
+            CallSetTagValueAsyncAndWaitOnResult("test_DINT_2", 222, "online", myProject);
+            CallSetTagValueAsyncAndWaitOnResult("test_DINT_3", 333, "online",  myProject);
+            Console.WriteLine("Setting Tag Values...  COMPLETE\n---");
 
-            //// Get tag value
-            //Console.WriteLine("Getting Tag Values...");
-            //Console.WriteLine(GTV("test_DINT_1", myProject).GetAwaiter().GetResult());
-            //Console.WriteLine(GTV("test_DINT_2", myProject).GetAwaiter().GetResult());
-            //Console.WriteLine(GTV("test_DINT_3", myProject).GetAwaiter().GetResult());
-            //Console.Write("Getting Tag Values...  COMPLETE\n\n");
+            // Get online tag values
+            Console.WriteLine("Getting Tag Values...");
+            Console.WriteLine(CallGetTagValueAsyncAndWaitOnResult("test_DINT_1", "online", myProject));
+            Console.WriteLine(CallGetTagValueAsyncAndWaitOnResult("test_DINT_2", "online", myProject));
+            Console.WriteLine(CallGetTagValueAsyncAndWaitOnResult("test_DINT_3", "online", myProject));
+            Console.WriteLine(CallGetTagValueAsyncAndWaitOnResult("test_DINT_1", "offline", myProject));
+            Console.WriteLine(CallGetTagValueAsyncAndWaitOnResult("test_DINT_2", "offline", myProject));
+            Console.WriteLine(CallGetTagValueAsyncAndWaitOnResult("test_DINT_3", "offline", myProject));
+            Console.WriteLine("Getting Tag Values...  COMPLETE");
+
+            // Test Complete Banner
+            Console.WriteLine("----------------------------------------TEST COMPLETE----------------------------------------");
+
+            // Finish process of sending console printouts to a text file
+            Console.SetOut(oldOut);
+            writer.Close();
+            ostrm.Close();
         }
 
 
@@ -102,15 +144,22 @@ namespace LogixSDKDemoApp
         //        METHODS
         // ======================
 
-        // (GTV) Get Tag Value Method
-        static public async Task<string> GTV(string tag_name, LogixProject project)
+        // Get Tag Value Method
+        static async Task<string> GetTagValueAsync(string tag_name, string online_or_offline, LogixProject project)
         {
             var tagPath = $"Controller/Tags/Tag[@Name='{tag_name}']";
             try
             {
-                //int tagValue_online = await project.GetTagValueDINTAsync(tagPath, LogixProject.TagOperationMode.Online);
-                int tagValue_offline = await project.GetTagValueDINTAsync(tagPath, LogixProject.TagOperationMode.Offline);
-                return $"{tag_name} value: {tagValue_offline}";
+                if (online_or_offline == "online")
+                {
+                    int tagValue_offline = await project.GetTagValueDINTAsync(tagPath, LogixProject.TagOperationMode.Online);
+                    return $"{tag_name} {online_or_offline} value: {tagValue_offline}";
+                }
+                else if (online_or_offline == "offline")
+                {
+                    int tagValue_offline = await project.GetTagValueDINTAsync(tagPath, LogixProject.TagOperationMode.Offline);
+                    return $"{tag_name} {online_or_offline} value: {tagValue_offline}";
+                }                
             }
             catch (LogixSdkException ex)
             {
@@ -120,8 +169,60 @@ namespace LogixSDKDemoApp
             return "";
         }
 
-        // (DP) Download Project Method
-        static public async Task DP(string comm_path, LogixProject project)
+        // Get Tag Value Wait On Result Method
+        public static string CallGetTagValueAsyncAndWaitOnResult(string tag_name, string online_or_offline, LogixProject project)
+        {
+            var task = GetTagValueAsync(tag_name, online_or_offline, project);
+            task.Wait();
+            var result = task.Result;
+            return result;
+        }
+
+        // Set Tag Value Method
+        static async Task SetTagValueAsync(string tag_name, int tag_value_in, string online_or_offline, LogixProject project)
+        {
+            //int tagValue = int.Parse(tag_value_in);
+            var tagPath = $"Controller/Tags/Tag[@Name='{tag_name}']";
+            try
+            {
+                if (online_or_offline == "online")
+                {
+                    await project.SetTagValueDINTAsync(tagPath, LogixProject.TagOperationMode.Online, tag_value_in);
+                    Console.WriteLine($"{tag_name} {online_or_offline} new value: {tag_value_in}");
+                }
+                else if (online_or_offline == "offline")
+                {
+                    await project.SetTagValueDINTAsync(tagPath, LogixProject.TagOperationMode.Offline, tag_value_in);
+                    Console.WriteLine($"{tag_name} {online_or_offline} new value: {tag_value_in}");
+                }
+
+            }
+            catch (LogixSdkException ex)
+            {
+                Console.WriteLine("Unable to set tag value DINT");
+                Console.WriteLine(ex.Message);
+            }
+
+            try
+            {
+                await project.SaveAsync();
+            }
+            catch (LogixSdkException ex)
+            {
+                Console.WriteLine("Unable to save project");
+                Console.WriteLine(ex.Message);
+            }
+        }
+
+        // Set Tag Value Wait On Result Method
+        public static void CallSetTagValueAsyncAndWaitOnResult(string tag_name, int tag_value_in, string online_or_offline, LogixProject project)
+        {
+            var task = SetTagValueAsync(tag_name, tag_value_in, online_or_offline, project);
+            task.Wait();
+        }
+
+        // Download Project Method
+        static async Task DownloadProjectAsync(string comm_path, LogixProject project)
         {
             try
             {
@@ -172,8 +273,8 @@ namespace LogixSDKDemoApp
             }
         }
 
-        // (CCM) Change Controller Mode Method
-        static public async Task CCM(string comm_path, int mode_in, LogixProject project)
+        // Change Controller Mode Method
+        static async Task ChangeControllerModeAsync(string comm_path, int mode_in, LogixProject project)
         {
             uint mode = Convert.ToUInt32(mode_in);
 
@@ -226,8 +327,8 @@ namespace LogixSDKDemoApp
             }
         }
 
-        // (RCM) Read Controller Mode Method
-        static public async Task<string> RCM(string comm_path, LogixProject project)
+        // Read Controller Mode Method
+        static async Task<string> ReadControllerModeAsync(string comm_path, LogixProject project)
         {
             try
             {
@@ -264,32 +365,6 @@ namespace LogixSDKDemoApp
 
             return "";
         }
-
-        // (STV) Set Tag Value Method
-        static public async Task STV(string tag_name, int tag_value_in, LogixProject project)
-        {
-            string tagPath = $"Controller/Tags/Tag[@Name='{tag_name}']";
-            try
-            {
-                await project.SetTagValueDINTAsync(tagPath, LogixProject.TagOperationMode.Online, tag_value_in);
-                Console.WriteLine("Tag value was set.");
-            }
-            catch (LogixSdkException ex)
-            {
-                Console.WriteLine("Unable to set tag value DINT");
-                Console.WriteLine(ex.Message);
-            }
-
-            try
-            {
-                await project.SaveAsync();
-            }
-            catch (LogixSdkException ex)
-            {
-                Console.WriteLine("Unable to save project");
-                Console.WriteLine(ex.Message);
-            }
-        }
     }
 }
 
@@ -304,7 +379,7 @@ namespace LogixSDKDemoApp
 // CODE GRAVEYARD
 
 //Console.SetCursorPosition(0, Console.CursorTop - 1);
-
+// Thread.Sleep(2000);
 
 //.ConfigureAwait(false) for awaits - not what i wanted
 

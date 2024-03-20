@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "9f23ZtTPehDFObdsQ03cuYte9qrMzrIgRNhaib9vJmdobO+v7Rju2Diq9PHV+a00G44LQvpNWD2Jp2IvBpMZ6A==",
+  "dgSpecHash": "NIzFnRhFiUp6vJAuVyPZ+xhRwQIxZ/c78/PUE/yH16rrqPd/1Zg3et8+mJTJ7bWA9E5/CRKF9FDJKApAmDG6yw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\cicd-config\\stage-test\\StoreImageOnSDCard\\StoreImageOnSDCard.csproj",
+  "projectFilePath": "C:\\Users\\ASYost\\Source\\Repos\\ra-cicd-test-old\\cicd-config\\stage-test\\StoreImageOnSDCard\\StoreImageOnSDCard.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ASYost\\.nuget\\packages\\google.protobuf\\3.24.3\\google.protobuf.3.24.3.nupkg.sha512",
     "C:\\Users\\ASYost\\.nuget\\packages\\grpc.core.api\\2.57.0\\grpc.core.api.2.57.0.nupkg.sha512",

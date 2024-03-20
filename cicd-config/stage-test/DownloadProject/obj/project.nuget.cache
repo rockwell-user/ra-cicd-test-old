@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "VYMoMHGlhQVrIvskTb4UfvWxAH/mz9hPHmwEZUnJKWhNzFrz76UChB+vINChO/KmPFySv9j39C2MLVCVdy6d6Q==",
+  "dgSpecHash": "DThPinSwN9ei0ree8NWRsHMQIKSPS1g4EiJ1TWQRe68GsUAlh8TRbOoLI1jH7zyLmq41oHwdEqakKT1ECj/QiQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\cicd-config\\stage-test\\DownloadProject\\DownloadProject.csproj",
+  "projectFilePath": "C:\\Users\\ASYost\\Source\\Repos\\ra-cicd-test-old\\cicd-config\\stage-test\\DownloadProject\\DownloadProject.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ASYost\\.nuget\\packages\\google.protobuf\\3.24.3\\google.protobuf.3.24.3.nupkg.sha512",
     "C:\\Users\\ASYost\\.nuget\\packages\\grpc.core.api\\2.57.0\\grpc.core.api.2.57.0.nupkg.sha512",

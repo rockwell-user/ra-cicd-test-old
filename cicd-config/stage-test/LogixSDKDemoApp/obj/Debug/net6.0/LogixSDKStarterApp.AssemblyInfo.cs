@@ -16,7 +16,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCopyrightAttribute("Copyright © 2024 Rockwell Automation Technologies, Inc. All Rights Reserved.")]
 [assembly: System.Reflection.AssemblyDescriptionAttribute("C# client for the FactoryTalk Logix SDK")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.1.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.01+a6c8abe79797dbf84f9c36f71de4b249b1fc85fa")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.01+a0c370fa79a2f32b47f4ac88fa9983673a5e06d9")]
 [assembly: System.Reflection.AssemblyProductAttribute("FactoryTalk Logix SDK Demo")]
 [assembly: System.Reflection.AssemblyTitleAttribute("LogixSDKStarterApp")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.1.0.0")]

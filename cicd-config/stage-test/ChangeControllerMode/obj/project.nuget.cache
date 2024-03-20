@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "BzAdzBRy8NSmXvH5vy9jvS1mvLhgxkotKVEoY1rP3CV2u0G5UcX52t9Z6E0/xk0Zp4vCZXMcSnqhYmAaznmZYg==",
+  "dgSpecHash": "vkxLBr2wy+mtmKPWQCl49uqsP4X2EJywO2iV107M2zUEk5mttoUCPnVn4RpSerNfOr2wFu1H7Y6WFm7I0Iunyw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\cicd-config\\stage-test\\ChangeControllerMode\\ChangeControllerMode.csproj",
+  "projectFilePath": "C:\\Users\\ASYost\\Source\\Repos\\ra-cicd-test-old\\cicd-config\\stage-test\\ChangeControllerMode\\ChangeControllerMode.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ASYost\\.nuget\\packages\\google.protobuf\\3.24.3\\google.protobuf.3.24.3.nupkg.sha512",
     "C:\\Users\\ASYost\\.nuget\\packages\\grpc.core.api\\2.57.0\\grpc.core.api.2.57.0.nupkg.sha512",

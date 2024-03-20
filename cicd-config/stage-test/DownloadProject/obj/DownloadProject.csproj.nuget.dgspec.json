@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\cicd-config\\stage-test\\DownloadProject\\DownloadProject.csproj": {}
+    "C:\\Users\\ASYost\\Source\\Repos\\ra-cicd-test-old\\cicd-config\\stage-test\\DownloadProject\\DownloadProject.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\cicd-config\\stage-test\\DownloadProject\\DownloadProject.csproj": {
+    "C:\\Users\\ASYost\\Source\\Repos\\ra-cicd-test-old\\cicd-config\\stage-test\\DownloadProject\\DownloadProject.csproj": {
       "version": "1.1.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\cicd-config\\stage-test\\DownloadProject\\DownloadProject.csproj",
+        "projectUniqueName": "C:\\Users\\ASYost\\Source\\Repos\\ra-cicd-test-old\\cicd-config\\stage-test\\DownloadProject\\DownloadProject.csproj",
         "projectName": "DownloadProject",
-        "projectPath": "C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\cicd-config\\stage-test\\DownloadProject\\DownloadProject.csproj",
+        "projectPath": "C:\\Users\\ASYost\\Source\\Repos\\ra-cicd-test-old\\cicd-config\\stage-test\\DownloadProject\\DownloadProject.csproj",
         "packagesPath": "C:\\Users\\ASYost\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\cicd-config\\stage-test\\DownloadProject\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\cicd-config\\stage-test\\NuGet.Config",
+          "C:\\Users\\ASYost\\Source\\Repos\\ra-cicd-test-old\\cicd-config\\stage-test\\NuGet.Config",
           "C:\\Users\\ASYost\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -23,7 +23,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\cicd-config\\": {},
+          "C:\\Users\\ASYost\\Source\\Repos\\ra-cicd-test-old\\cicd-config\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {

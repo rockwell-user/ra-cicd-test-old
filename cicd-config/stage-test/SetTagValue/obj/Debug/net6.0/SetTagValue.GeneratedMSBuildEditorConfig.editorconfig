@@ -8,6 +8,6 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = SetTagValue
-build_property.ProjectDir = C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\SetTagValue\
+build_property.ProjectDir = C:\Users\ASYost\Source\Repos\ra-cicd-test-old\cicd-config\stage-test\SetTagValue\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 

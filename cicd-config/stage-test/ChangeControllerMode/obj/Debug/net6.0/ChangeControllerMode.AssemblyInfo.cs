@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ChangeControllerMode")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.1.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.01.0+a9dc4cace2ceb02988a2204ebeba2f6371154550")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.01.0+a0c370fa79a2f32b47f4ac88fa9983673a5e06d9")]
 [assembly: System.Reflection.AssemblyProductAttribute("ChangeControllerMode")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ChangeControllerMode")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.1.0.0")]
