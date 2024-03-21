@@ -49,3 +49,16 @@ C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\code-LDSDK\
 C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\code-LDSDK\ManyAcdManyControllerDownload\obj\Debug\net6.0\refint\ManyAcdManyControllerDownload.dll
 C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\code-LDSDK\ManyAcdManyControllerDownload\obj\Debug\net6.0\ManyAcdManyControllerDownload.pdb
 C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\code-LDSDK\ManyAcdManyControllerDownload\obj\Debug\net6.0\ref\ManyAcdManyControllerDownload.dll
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\stage-test-configuration\ManyAcdManyControllerDownload\bin\Debug\net6.0\ManyAcdManyControllerDownload.deps.json
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\stage-test-configuration\ManyAcdManyControllerDownload\bin\Debug\net6.0\ManyAcdManyControllerDownload.dll
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\stage-test-configuration\ManyAcdManyControllerDownload\bin\Debug\net6.0\ManyAcdManyControllerDownload.pdb
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\stage-test-configuration\ManyAcdManyControllerDownload\obj\Debug\net6.0\ManyAcdManyControllerDownload.csproj.AssemblyReference.cache
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\stage-test-configuration\ManyAcdManyControllerDownload\obj\Debug\net6.0\ManyAcdManyControllerDownload.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\stage-test-configuration\ManyAcdManyControllerDownload\obj\Debug\net6.0\ManyAcdManyControllerDownload.AssemblyInfoInputs.cache
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\stage-test-configuration\ManyAcdManyControllerDownload\obj\Debug\net6.0\ManyAcdManyControllerDownload.AssemblyInfo.cs
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\stage-test-configuration\ManyAcdManyControllerDownload\obj\Debug\net6.0\ManyAcdManyControllerDownload.csproj.CoreCompileInputs.cache
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\stage-test-configuration\ManyAcdManyControllerDownload\obj\Debug\net6.0\ManyAcdManyControllerDownload.sourcelink.json
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\stage-test-configuration\ManyAcdManyControllerDownload\obj\Debug\net6.0\ManyAcdManyControllerDownload.dll
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\stage-test-configuration\ManyAcdManyControllerDownload\obj\Debug\net6.0\refint\ManyAcdManyControllerDownload.dll
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\stage-test-configuration\ManyAcdManyControllerDownload\obj\Debug\net6.0\ManyAcdManyControllerDownload.pdb
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\stage-test-configuration\ManyAcdManyControllerDownload\obj\Debug\net6.0\ref\ManyAcdManyControllerDownload.dll

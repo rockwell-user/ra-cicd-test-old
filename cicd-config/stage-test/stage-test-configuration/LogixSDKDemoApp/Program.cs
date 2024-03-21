@@ -22,7 +22,7 @@ namespace LogixSDKDemoApp
             }
             //string filePath = args[0];                                                                                // comment out this string if TESTING cicd pipeline
             //string commPath = args[1];                                                                                // comment out this string if TESTING cicd pipeline
-            string filePath = @"C:\Users\ASYost\source\repos\ra-cicd-test-old\in-development-acd-files\CICD_test.ACD";  // comment out this string if RUNNING cicd pipeline
+            string filePath = @"C:\Users\ASYost\source\repos\ra-cicd-test-old\DEVELOPMENT-files\CICD_test.ACD";         // comment out this string if RUNNING cicd pipeline
             string commPath = @"EmulateEthernet\127.0.0.1";                                                             // comment out this string if RUNNING cicd pipeline
 
             // Create new report name. Check if file name already exists and if yes, delete it. Then create the new report text file.
@@ -32,7 +32,7 @@ namespace LogixSDKDemoApp
             {
                 File.Delete(textFileReportName);
             }
-            using (StreamWriter sw = File.CreateText(textFileReportName)) ;
+            using (StreamWriter sw = File.CreateText(textFileReportName));
 
             // Start process of sending console printouts to a text file 
             FileStream ostrm;
@@ -109,29 +109,29 @@ namespace LogixSDKDemoApp
 
             // Get offline tag values
             Console.WriteLine("Getting Tag Values...");
-            string test_DINT_1 = CallGetTagValueAsyncAndWaitOnResult("test_DINT_1", "offline", myProject);
+            string test_DINT_1 = CallGetTagValueAsyncAndWaitOnResult("test_DINT_1", "offline", "DINT", myProject);
             Console.WriteLine(test_DINT_1);
-            string test_DINT_2 = CallGetTagValueAsyncAndWaitOnResult("test_DINT_2", "offline", myProject);
+            string test_DINT_2 = CallGetTagValueAsyncAndWaitOnResult("test_DINT_2", "offline", "DINT", myProject);
             Console.WriteLine(test_DINT_2);
-            string test_DINT_3 = CallGetTagValueAsyncAndWaitOnResult("test_DINT_3", "offline", myProject);
+            string test_DINT_3 = CallGetTagValueAsyncAndWaitOnResult("test_DINT_3", "offline", "DINT", myProject);
             Console.WriteLine(test_DINT_3);
             Console.WriteLine("Getting Tag Values...  COMPLETE\n---");
 
             // Set tag values
             Console.WriteLine("Setting Tag Values...");
-            CallSetTagValueAsyncAndWaitOnResult("test_DINT_1", 111, "online", myProject);
-            CallSetTagValueAsyncAndWaitOnResult("test_DINT_2", 222, "online", myProject);
-            CallSetTagValueAsyncAndWaitOnResult("test_DINT_3", 333, "online",  myProject);
+            CallSetTagValueAsyncAndWaitOnResult("test_DINT_1", 111, "online", "DINT", myProject);
+            CallSetTagValueAsyncAndWaitOnResult("test_DINT_2", 222, "online", "DINT", myProject);
+            CallSetTagValueAsyncAndWaitOnResult("test_DINT_3", 333, "online", "DINT", myProject);
             Console.WriteLine("Setting Tag Values...  COMPLETE\n---");
 
             // Get online tag values
             Console.WriteLine("Getting Tag Values...");
-            Console.WriteLine(CallGetTagValueAsyncAndWaitOnResult("test_DINT_1", "online", myProject));
-            Console.WriteLine(CallGetTagValueAsyncAndWaitOnResult("test_DINT_2", "online", myProject));
-            Console.WriteLine(CallGetTagValueAsyncAndWaitOnResult("test_DINT_3", "online", myProject));
-            Console.WriteLine(CallGetTagValueAsyncAndWaitOnResult("test_DINT_1", "offline", myProject));
-            Console.WriteLine(CallGetTagValueAsyncAndWaitOnResult("test_DINT_2", "offline", myProject));
-            Console.WriteLine(CallGetTagValueAsyncAndWaitOnResult("test_DINT_3", "offline", myProject));
+            Console.WriteLine(CallGetTagValueAsyncAndWaitOnResult("test_DINT_1", "online", "DINT", myProject));
+            Console.WriteLine(CallGetTagValueAsyncAndWaitOnResult("test_DINT_2", "online", "DINT", myProject));
+            Console.WriteLine(CallGetTagValueAsyncAndWaitOnResult("test_DINT_3", "online", "DINT", myProject));
+            Console.WriteLine(CallGetTagValueAsyncAndWaitOnResult("test_DINT_1", "offline", "DINT", myProject));
+            Console.WriteLine(CallGetTagValueAsyncAndWaitOnResult("test_DINT_2", "offline", "DINT", myProject));
+            Console.WriteLine(CallGetTagValueAsyncAndWaitOnResult("test_DINT_3", "offline", "DINT", myProject));
             Console.WriteLine("Getting Tag Values...  COMPLETE");
 
             // Test Complete Banner
@@ -149,20 +149,55 @@ namespace LogixSDKDemoApp
         // ======================
 
         // Get Tag Value Method
-        static async Task<string> GetTagValueAsync(string tag_name, string online_or_offline, LogixProject project)
+        static async Task<string> GetTagValueAsync(string tag_name, string online_or_offline, string data_type, LogixProject project)
         {
             var tagPath = $"Controller/Tags/Tag[@Name='{tag_name}']";
             try
             {
                 if (online_or_offline == "online")
                 {
-                    int tagValue_offline = await project.GetTagValueDINTAsync(tagPath, LogixProject.TagOperationMode.Online);
-                    return $"{tag_name} {online_or_offline} value: {tagValue_offline}";
+                    
+                    if (data_type == "DINT")
+                    {
+                        int tagValue_online = await project.GetTagValueDINTAsync(tagPath, LogixProject.TagOperationMode.Online);
+                        return $"{tag_name} {online_or_offline} value: {tagValue_online}";
+                    }
+                    else if (data_type == "BOOL")
+                    {
+                        bool tagValue_online = await project.GetTagValueBOOLAsync(tagPath, LogixProject.TagOperationMode.Online);
+                        return $"{tag_name} {online_or_offline} value: {tagValue_online}";
+                    }
+                    else if (data_type == "REAL")
+                    {
+                        float tagValue_online = await project.GetTagValueREALAsync(tagPath, LogixProject.TagOperationMode.Online);
+                        return $"{tag_name} {online_or_offline} value: {tagValue_online}";
+                    }
+                    else
+                    {
+                        Console.WriteLine($"ERROR executing command: The data type {data_type} cannot be handled. Select either DINT, BOOL, or REAL.");
+                    }
                 }
                 else if (online_or_offline == "offline")
                 {
-                    int tagValue_offline = await project.GetTagValueDINTAsync(tagPath, LogixProject.TagOperationMode.Offline);
-                    return $"{tag_name} {online_or_offline} value: {tagValue_offline}";
+                    if (data_type == "DINT")
+                    {
+                        int tagValue_offline = await project.GetTagValueDINTAsync(tagPath, LogixProject.TagOperationMode.Offline);
+                        return $"{tag_name} {online_or_offline} value: {tagValue_offline}";
+                    }
+                    else if (data_type == "BOOL")
+                    {
+                        bool tagValue_offline = await project.GetTagValueBOOLAsync(tagPath, LogixProject.TagOperationMode.Offline);
+                        return $"{tag_name} {online_or_offline} value: {tagValue_offline}";
+                    }
+                    else if (data_type == "REAL")
+                    {
+                        float tagValue_offline = await project.GetTagValueREALAsync(tagPath, LogixProject.TagOperationMode.Offline);
+                        return $"{tag_name} {online_or_offline} value: {tagValue_offline}";
+                    }
+                    else
+                    {
+                        Console.WriteLine($"ERROR executing command: The data type {data_type} cannot be handled. Select either DINT, BOOL, or REAL.");
+                    }
                 }                
             }
             catch (LogixSdkException ex)
@@ -174,16 +209,16 @@ namespace LogixSDKDemoApp
         }
 
         // Get Tag Value Wait On Result Method
-        public static string CallGetTagValueAsyncAndWaitOnResult(string tag_name, string online_or_offline, LogixProject project)
+        public static string CallGetTagValueAsyncAndWaitOnResult(string tag_name, string online_or_offline, string data_type, LogixProject project)
         {
-            var task = GetTagValueAsync(tag_name, online_or_offline, project);
+            var task = GetTagValueAsync(tag_name, online_or_offline, data_type, project);
             task.Wait();
             var result = task.Result;
             return result;
         }
 
         // Set Tag Value Method
-        static async Task SetTagValueAsync(string tag_name, int tag_value_in, string online_or_offline, LogixProject project)
+        static async Task SetTagValueAsync(string tag_name, int tag_value_in, string online_or_offline, string data_type, LogixProject project)
         {
             //int tagValue = int.Parse(tag_value_in);
             var tagPath = $"Controller/Tags/Tag[@Name='{tag_name}']";
@@ -191,15 +226,48 @@ namespace LogixSDKDemoApp
             {
                 if (online_or_offline == "online")
                 {
-                    await project.SetTagValueDINTAsync(tagPath, LogixProject.TagOperationMode.Online, tag_value_in);
-                    Console.WriteLine($"{tag_name} {online_or_offline} new value: {tag_value_in}");
+                    if (data_type == "DINT")
+                    {
+                        await project.SetTagValueDINTAsync(tagPath, LogixProject.TagOperationMode.Online, tag_value_in);
+                        Console.WriteLine($"{tag_name} {online_or_offline} new value: {tag_value_in}");
+                    }
+                    else if (data_type == "BOOL")
+                    {
+                        await project.SetTagValueBOOLAsync(tagPath, LogixProject.TagOperationMode.Online, Convert.ToBoolean(tag_value_in));
+                        Console.WriteLine($"{tag_name} {online_or_offline} new value: {tag_value_in}");
+                    }
+                    else if (data_type == "REAL")
+                    {
+                        await project.SetTagValueREALAsync(tagPath, LogixProject.TagOperationMode.Online, tag_value_in);
+                        Console.WriteLine($"{tag_name} {online_or_offline} new value: {tag_value_in}");
+                    }
+                    else
+                    {
+                        Console.WriteLine($"ERROR executing command: The data type {data_type} cannot be handled. Select either DINT, BOOL, or REAL.");
+                    }
                 }
                 else if (online_or_offline == "offline")
                 {
-                    await project.SetTagValueDINTAsync(tagPath, LogixProject.TagOperationMode.Offline, tag_value_in);
-                    Console.WriteLine($"{tag_name} {online_or_offline} new value: {tag_value_in}");
+                    if (data_type == "DINT")
+                    {
+                        await project.SetTagValueDINTAsync(tagPath, LogixProject.TagOperationMode.Offline, tag_value_in);
+                        Console.WriteLine($"{tag_name} {online_or_offline} new value: {tag_value_in}");
+                    }
+                    else if (data_type == "BOOL")
+                    {
+                        await project.SetTagValueBOOLAsync(tagPath, LogixProject.TagOperationMode.Offline, Convert.ToBoolean(tag_value_in));
+                        Console.WriteLine($"{tag_name} {online_or_offline} new value: {tag_value_in}");
+                    }
+                    else if (data_type == "REAL")
+                    {
+                        await project.SetTagValueREALAsync(tagPath, LogixProject.TagOperationMode.Offline, tag_value_in);
+                        Console.WriteLine($"{tag_name} {online_or_offline} new value: {tag_value_in}");
+                    }
+                    else
+                    {
+                        Console.WriteLine($"ERROR executing command: The data type {data_type} cannot be handled. Select either DINT, BOOL, or REAL.");
+                    }
                 }
-
             }
             catch (LogixSdkException ex)
             {
@@ -219,9 +287,9 @@ namespace LogixSDKDemoApp
         }
 
         // Set Tag Value Wait On Result Method
-        public static void CallSetTagValueAsyncAndWaitOnResult(string tag_name, int tag_value_in, string online_or_offline, LogixProject project)
+        public static void CallSetTagValueAsyncAndWaitOnResult(string tag_name, int tag_value_in, string online_or_offline, string data_type, LogixProject project)
         {
-            var task = SetTagValueAsync(tag_name, tag_value_in, online_or_offline, project);
+            var task = SetTagValueAsync(tag_name, tag_value_in, online_or_offline, data_type, project);
             task.Wait();
         }
 

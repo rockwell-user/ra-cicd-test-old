@@ -9,8 +9,8 @@
       "GetTagValue/1.01.0": {
         "dependencies": {
           "RockwellAutomation.LogixDesigner.CSClient": "1.1.599",
-          "RockwellAutomation.LogixDesigner.LogixSDKStarterApp-Debug": "1.1.0",
-          "LogixSDKStarterApp": "1.1.0.0"
+          "RockwellAutomation.LogixDesigner.TestStage_CICDExample-Debug": "1.1.0",
+          "TestStage_CICDExample": "1.1.0.0"
         },
         "runtime": {
           "GetTagValue.dll": {}
@@ -84,17 +84,17 @@
           }
         }
       },
-      "RockwellAutomation.LogixDesigner.LogixSDKStarterApp-Debug/1.1.0": {
+      "RockwellAutomation.LogixDesigner.TestStage_CICDExample-Debug/1.1.0": {
         "dependencies": {
           "RockwellAutomation.LogixDesigner.CSClient": "1.1.599"
         },
         "runtime": {
-          "LogixSDKStarterApp.dll": {}
+          "TestStage_CICDExample.dll": {}
         }
       },
-      "LogixSDKStarterApp/1.1.0.0": {
+      "TestStage_CICDExample/1.1.0.0": {
         "runtime": {
-          "LogixSDKStarterApp.dll": {
+          "TestStage_CICDExample.dll": {
             "assemblyVersion": "1.1.0.0",
             "fileVersion": "1.1.0.0"
           }
@@ -157,12 +157,12 @@
       "path": "rockwellautomation.logixdesigner.csclient/1.1.599",
       "hashPath": "rockwellautomation.logixdesigner.csclient.1.1.599.nupkg.sha512"
     },
-    "RockwellAutomation.LogixDesigner.LogixSDKStarterApp-Debug/1.1.0": {
+    "RockwellAutomation.LogixDesigner.TestStage_CICDExample-Debug/1.1.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
     },
-    "LogixSDKStarterApp/1.1.0.0": {
+    "TestStage_CICDExample/1.1.0.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""
