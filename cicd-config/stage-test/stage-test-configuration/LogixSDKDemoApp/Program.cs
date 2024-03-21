@@ -1,9 +1,7 @@
 ﻿using RockwellAutomation.LogixDesigner;
-using System.Threading.Tasks;
-using System.IO;
 using System;
-using static System.Net.Mime.MediaTypeNames;
-using System.Security.Cryptography;
+using System.IO;
+using System.Threading.Tasks;
 //using RockwellAutomation.FactoryTalkLogixEcho.Api.Client;
 //using RockwellAutomation.FactoryTalkLogixEcho.Api.Interfaces;
 
@@ -20,41 +18,41 @@ namespace LogixSDKDemoApp
             {
                 Console.WriteLine("Correct Command Example: .\\TestStage_CICDExample filePath commPath");
             }
-            //string filePath = args[0];                                                                                // comment out this string if TESTING cicd pipeline
-            //string commPath = args[1];                                                                                // comment out this string if TESTING cicd pipeline
-            string filePath = @"C:\Users\ASYost\source\repos\ra-cicd-test-old\DEVELOPMENT-files\CICD_test.ACD";         // comment out this string if RUNNING cicd pipeline
-            string commPath = @"EmulateEthernet\127.0.0.1";                                                             // comment out this string if RUNNING cicd pipeline
+            //string filePath = args[0];                                                                            // comment out this string if TESTING cicd pipeline
+            //string commPath = args[1];                                                                            // comment out this string if TESTING cicd pipeline
+            string filePath = @"C:\Users\ASYost\source\repos\ra-cicd-test-old\DEVELOPMENT-files\CICD_test.ACD";     // comment out this string if RUNNING cicd pipeline
+            string commPath = @"EmulateEthernet\127.0.0.1";                                                         // comment out this string if RUNNING cicd pipeline
 
             // Create new report name. Check if file name already exists and if yes, delete it. Then create the new report text file.
-            string textFileReportName = Path.Combine(@"C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\test-reports\", 
+            string textFileReportName = Path.Combine(@"C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\test-reports\",
                 DateTime.Now.ToString("yyyyMMddHHmmss") + "_testfile.txt");
             if (File.Exists(textFileReportName))
             {
                 File.Delete(textFileReportName);
             }
-            using (StreamWriter sw = File.CreateText(textFileReportName));
+            using (StreamWriter sw = File.CreateText(textFileReportName)) ;
 
             // Start process of sending console printouts to a text file 
             FileStream ostrm;
             StreamWriter writer;
             TextWriter oldOut = Console.Out;
             try
-                {
-                    ostrm = new FileStream(textFileReportName, FileMode.OpenOrCreate, FileAccess.Write);
-                    writer = new StreamWriter(ostrm);
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine("Cannot open Redirect.txt for writing");
-                    Console.WriteLine(e.Message);
-                    return;
-                }
+            {
+                ostrm = new FileStream(textFileReportName, FileMode.OpenOrCreate, FileAccess.Write);
+                writer = new StreamWriter(ostrm);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Cannot open Redirect.txt for writing");
+                Console.WriteLine(e.Message);
+                return;
+            }
             Console.SetOut(writer);
 
             // Title Banner 
             Console.WriteLine("  =========================================================================================  ");
             Console.WriteLine("=============================================================================================\n");
-            Console.WriteLine("                             CI/CD TEST STAGE | " + DateTime.Now);
+            Console.WriteLine("         CI/CD TEST STAGE | " + DateTime.Now + " " + TimeZoneInfo.Local);
             Console.WriteLine("\n=============================================================================================");
             Console.WriteLine("  =========================================================================================  \n\n");
 
@@ -70,80 +68,116 @@ namespace LogixSDKDemoApp
             Console.WriteLine("----------------------------------------STAGING TEST-----------------------------------------");
 
             // Open the ACD project file and store the reference as myProject.
-            Console.WriteLine("Opening ACD file...");
+            Console.WriteLine($"[{DateTime.Now.ToString("T")}] START opening ACD file...");
             LogixProject myProject = await LogixProject.OpenLogixProjectAsync(filePath);
-            Console.WriteLine("Opening ACD file... SUCCESS\n---");
+            Console.WriteLine($"[{DateTime.Now.ToString("T")}] SUCCESS opening ACD file\n---");
 
             // Change controller mode to program & verify
-            Console.WriteLine("Changing controller to PROGRAM...");
+            Console.WriteLine($"[{DateTime.Now.ToString("T")}] START changing controller to PROGRAM...");
             ChangeControllerModeAsync(commPath, 0, myProject).GetAwaiter().GetResult();
             if (ReadControllerModeAsync(commPath, myProject).GetAwaiter().GetResult() == "PROGRAM")
             {
-                Console.WriteLine("Changing controller to PROGRAM...  SUCCESS\n---");
+                Console.WriteLine($"[{DateTime.Now.ToString("T")}] SUCCESS changing controller to PROGRAM\n---");
             }
             else
             {
-                Console.WriteLine("Changing controller to PROGRAM...  FAILURE\n---");
+                Console.WriteLine($"[{DateTime.Now.ToString("T")}] FAILURE changing controller to PROGRAM\n---");
             }
 
             // Download project
-            Console.WriteLine("Downloading ACD file...");
+            Console.WriteLine($"[{DateTime.Now.ToString("T")}] START downloading ACD file...");
             DownloadProjectAsync(commPath, myProject).GetAwaiter().GetResult();
-            Console.WriteLine("Downloading ACD file...  SUCCESS\n---");
+            Console.WriteLine($"[{DateTime.Now.ToString("T")}] SUCCESS downloading ACD file\n---");
 
             // Change controller mode to run
-            Console.WriteLine("Changing controller to RUN...");
+            Console.WriteLine($"[{DateTime.Now.ToString("T")}] START Changing controller to RUN...");
             ChangeControllerModeAsync(commPath, 1, myProject).GetAwaiter().GetResult();
             if (ReadControllerModeAsync(commPath, myProject).GetAwaiter().GetResult() == "RUN")
             {
 
-                Console.WriteLine("Changing controller to RUN...  SUCCESS\n\n");
+                Console.WriteLine($"[{DateTime.Now.ToString("T")}] SUCCESS changing controller to RUN");
             }
             else
             {
-                Console.WriteLine("Changing controller to RUN...  FAILURE\n\n");
+                Console.WriteLine($"[{DateTime.Now.ToString("T")}] FAILURE changing controller to RUN");
             }
 
             // Begin Test Banner
             Console.WriteLine("-----------------------------------------BEGIN TEST------------------------------------------");
 
-            // Get offline tag values
-            Console.WriteLine("Getting Tag Values...");
-            string test_DINT_1 = CallGetTagValueAsyncAndWaitOnResult("test_DINT_1", "offline", "DINT", myProject);
-            Console.WriteLine(test_DINT_1);
-            string test_DINT_2 = CallGetTagValueAsyncAndWaitOnResult("test_DINT_2", "offline", "DINT", myProject);
-            Console.WriteLine(test_DINT_2);
-            string test_DINT_3 = CallGetTagValueAsyncAndWaitOnResult("test_DINT_3", "offline", "DINT", myProject);
-            Console.WriteLine(test_DINT_3);
-            Console.WriteLine("Getting Tag Values...  COMPLETE\n---");
+            // Initialize variables to be tested
+            string test_DINT_1_offline;
+            string test_DINT_1_online;
+            string TOGGLE_WetBulbTempCalc_online;
+            string TOGGLE_WetBulbTempCalc_offline;
+            string TEST_AOI_WetBulbTemp_isFahrenheit_online;
+            string TEST_AOI_WetBulbTemp_isFahrenheit_offline;
+            string TEST_AOI_WetBulbTemp_RelativeHumidity_online;
+            string TEST_AOI_WetBulbTemp_RelativeHumidity_offline;
+            string TEST_AOI_WetBulbTemp_Temperature_online;
+            string TEST_AOI_WetBulbTemp_Temperature_offline;
+
+            // Get initial tag values
+            Console.WriteLine($"[{DateTime.Now.ToString("T")}] START getting initial project start-up tag values...");
+            test_DINT_1_offline = CallGetTagValueAsyncAndWaitOnResult("test_DINT_1", "offline", "DINT", myProject);
+            Console.WriteLine(test_DINT_1_offline);
+            test_DINT_1_online = CallGetTagValueAsyncAndWaitOnResult("test_DINT_1", "online", "DINT", myProject);
+            Console.WriteLine(test_DINT_1_online);
+
+            TOGGLE_WetBulbTempCalc_online = CallGetTagValueAsyncAndWaitOnResult("TOGGLE_WetBulbTempCalc", "online", "BOOL", myProject);
+            Console.WriteLine(TOGGLE_WetBulbTempCalc_online);
+            TOGGLE_WetBulbTempCalc_offline = CallGetTagValueAsyncAndWaitOnResult("TOGGLE_WetBulbTempCalc", "offline", "BOOL", myProject);
+            Console.WriteLine(TOGGLE_WetBulbTempCalc_offline);
+
+            TEST_AOI_WetBulbTemp_isFahrenheit_online = CallGetTagValueAsyncAndWaitOnResult("TEST_AOI_WetBulbTemp_isFahrenheit", "online", "BOOL", myProject);
+            Console.WriteLine(TEST_AOI_WetBulbTemp_isFahrenheit_online);
+            TEST_AOI_WetBulbTemp_isFahrenheit_offline = CallGetTagValueAsyncAndWaitOnResult("TEST_AOI_WetBulbTemp_isFahrenheit", "offline", "BOOL", myProject);
+            Console.WriteLine(TEST_AOI_WetBulbTemp_isFahrenheit_offline);
+
+            TEST_AOI_WetBulbTemp_RelativeHumidity_online = CallGetTagValueAsyncAndWaitOnResult("TEST_AOI_WetBulbTemp_RelativeHumidity", "online", "REAL", myProject);
+            Console.WriteLine(TEST_AOI_WetBulbTemp_RelativeHumidity_online);
+            TEST_AOI_WetBulbTemp_RelativeHumidity_offline = CallGetTagValueAsyncAndWaitOnResult("TEST_AOI_WetBulbTemp_RelativeHumidity", "offline", "REAL", myProject);
+            Console.WriteLine(TEST_AOI_WetBulbTemp_RelativeHumidity_offline);
+
+            TEST_AOI_WetBulbTemp_Temperature_online = CallGetTagValueAsyncAndWaitOnResult("TEST_AOI_WetBulbTemp_Temperature", "online", "REAL", myProject);
+            Console.WriteLine(TEST_AOI_WetBulbTemp_Temperature_online);
+            TEST_AOI_WetBulbTemp_Temperature_offline = CallGetTagValueAsyncAndWaitOnResult("TEST_AOI_WetBulbTemp_Temperature", "offline", "REAL", myProject);
+            Console.WriteLine(TEST_AOI_WetBulbTemp_Temperature_offline);
+            Console.WriteLine($"[{DateTime.Now.ToString("T")}] SUCCESS getting initial project start-up tag values\n---");
+
+            // Verify that offline and online values are the same
+            Console.WriteLine($"[{DateTime.Now.ToString("T")}] START verifying whether offline and online values are the same...");
+            int failure_condition = 0;
+            CompareTwoTags(test_DINT_1_online, test_DINT_1_offline);
+            CompareTwoTags(TOGGLE_WetBulbTempCalc_online, TOGGLE_WetBulbTempCalc_offline);
+            CompareTwoTags(TEST_AOI_WetBulbTemp_isFahrenheit_online, TEST_AOI_WetBulbTemp_isFahrenheit_offline);
+            CompareTwoTags(TEST_AOI_WetBulbTemp_RelativeHumidity_online, TEST_AOI_WetBulbTemp_RelativeHumidity_offline);
+            CompareTwoTags(TEST_AOI_WetBulbTemp_Temperature_online, TEST_AOI_WetBulbTemp_Temperature_offline);
+            Console.WriteLine($"[{DateTime.Now.ToString("T")}] DONE verifying whether offline and online values are the same\n---");
 
             // Set tag values
-            Console.WriteLine("Setting Tag Values...");
+            Console.WriteLine($"[{DateTime.Now.ToString("T")}] START setting tag values...");
             CallSetTagValueAsyncAndWaitOnResult("test_DINT_1", 111, "online", "DINT", myProject);
-            CallSetTagValueAsyncAndWaitOnResult("test_DINT_2", 222, "online", "DINT", myProject);
-            CallSetTagValueAsyncAndWaitOnResult("test_DINT_3", 333, "online", "DINT", myProject);
-            Console.WriteLine("Setting Tag Values...  COMPLETE\n---");
+            Console.WriteLine($"[{DateTime.Now.ToString("T")}] SUCCESS setting tag values\n---");
 
             // Get online tag values
-            Console.WriteLine("Getting Tag Values...");
+            Console.WriteLine($"[{DateTime.Now.ToString("T")}] START getting tag values...");
             Console.WriteLine(CallGetTagValueAsyncAndWaitOnResult("test_DINT_1", "online", "DINT", myProject));
             Console.WriteLine(CallGetTagValueAsyncAndWaitOnResult("test_DINT_2", "online", "DINT", myProject));
             Console.WriteLine(CallGetTagValueAsyncAndWaitOnResult("test_DINT_3", "online", "DINT", myProject));
             Console.WriteLine(CallGetTagValueAsyncAndWaitOnResult("test_DINT_1", "offline", "DINT", myProject));
             Console.WriteLine(CallGetTagValueAsyncAndWaitOnResult("test_DINT_2", "offline", "DINT", myProject));
             Console.WriteLine(CallGetTagValueAsyncAndWaitOnResult("test_DINT_3", "offline", "DINT", myProject));
-            Console.WriteLine("Getting Tag Values...  COMPLETE");
+            Console.WriteLine($"[{DateTime.Now.ToString("T")}] SUCCESS getting tag values");
 
             // Test Complete Banner
-            Console.WriteLine("----------------------------------------TEST COMPLETE----------------------------------------");
+            Console.WriteLine("---------------------------------------TEST COMPLETE-----------------------------------------");
 
-            // Finish process of sending console printouts to a text file
+            // Finish process of sending console printouts to the text file specified earlier
             Console.SetOut(oldOut);
             writer.Close();
             ostrm.Close();
         }
-
-
         // ======================
         //        METHODS
         // ======================
@@ -156,7 +190,7 @@ namespace LogixSDKDemoApp
             {
                 if (online_or_offline == "online")
                 {
-                    
+
                     if (data_type == "DINT")
                     {
                         int tagValue_online = await project.GetTagValueDINTAsync(tagPath, LogixProject.TagOperationMode.Online);
@@ -196,13 +230,14 @@ namespace LogixSDKDemoApp
                     }
                     else
                     {
-                        Console.WriteLine($"ERROR executing command: The data type {data_type} cannot be handled. Select either DINT, BOOL, or REAL.");
+                        Console.WriteLine($"ERROR executing command: The tag {tag_name} of data type {data_type} cannot be handled. \n" +
+                            $"Select either DINT, BOOL, or REAL.");
                     }
-                }                
+                }
             }
             catch (LogixSdkException ex)
             {
-                Console.WriteLine("Unable to get tag value DINT");
+                Console.WriteLine($"ERROR getting {online_or_offline} tag {tag_name} of data type {data_type}");
                 Console.WriteLine(ex.Message);
             }
             return "";
@@ -436,6 +471,19 @@ namespace LogixSDKDemoApp
             }
 
             return "";
+        }
+
+        // Compare Two Tags Method
+        private static void CompareTwoTags(string input1, string input2)
+        {
+            if (input1 != input2)
+            {
+                Console.WriteLine($"FAILURE: {input1} and {input2} NOT equal.");
+            }
+            else
+            {
+                Console.WriteLine($"SUCCESS: {input1} and {input2} are EQUAL.");
+            }
         }
     }
 }

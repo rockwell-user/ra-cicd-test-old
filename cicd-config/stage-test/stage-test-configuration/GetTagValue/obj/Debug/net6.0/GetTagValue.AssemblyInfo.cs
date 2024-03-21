@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("GetTagValue")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.1.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.01.0+245fb5f25fe3f06cb09f1452ebf1a0c8e74696a7")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.01.0+4b84e35ae666316e8a1f12572756ae8dde4aa29c")]
 [assembly: System.Reflection.AssemblyProductAttribute("GetTagValue")]
 [assembly: System.Reflection.AssemblyTitleAttribute("GetTagValue")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.1.0.0")]

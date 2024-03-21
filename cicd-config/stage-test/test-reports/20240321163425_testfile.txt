@@ -1,0 +1,59 @@
+  =========================================================================================  
+=============================================================================================
+
+                             CI/CD TEST STAGE | 3/21/2024 4:34:25 PM
+
+=============================================================================================
+  =========================================================================================  
+
+
+Project dependencies:
+---------------------------------------------------------------------------------------------
+ACD file path specified:          C:\Users\ASYost\source\repos\ra-cicd-test-old\DEVELOPMENT-files\CICD_test.ACD
+Communication path specified:     EmulateEthernet\127.0.0.1
+Common language runtime version:  v4.0.30319
+---------------------------------------------------------------------------------------------
+
+
+----------------------------------------STAGING TEST-----------------------------------------
+[4:34:25 PM] START opening ACD file...
+[4:34:53 PM] SUCCESS opening ACD file
+---
+[4:34:53 PM] START changing controller to PROGRAM...
+[4:34:54 PM] SUCCESS changing controller to PROGRAM
+---
+[4:34:54 PM] START downloading ACD file...
+[4:35:03 PM] SUCCESS downloading ACD file
+---
+[4:35:03 PM] START Changing controller to RUN...
+[4:35:04 PM] SUCCESS changing controller to RUN
+-----------------------------------------BEGIN TEST------------------------------------------
+[4:35:04 PM] START getting initial project start-up tag values...
+test_DINT_1 offline value: 1
+test_DINT_1 online value: 1
+TOGGLE_WetBulbTempCalc online value: False
+TOGGLE_WetBulbTempCalc offline value: False
+TEST_AOI_WetBulbTemp_isFahrenheit online value: False
+TEST_AOI_WetBulbTemp_isFahrenheit offline value: False
+TEST_AOI_WetBulbTemp_RelativeHumidity online value: 0
+TEST_AOI_WetBulbTemp_RelativeHumidity offline value: 0
+TEST_AOI_WetBulbTemp_Temperature online value: 0
+TEST_AOI_WetBulbTemp_Temperature offline value: 0
+[4:35:06 PM] SUCCESS getting initial project start-up tag values
+---
+[4:35:06 PM] START verifying whether offline and online values are the same...
+[4:35:06 PM] DONE verifying whether offline and online values are the same
+---
+[4:35:06 PM] START setting tag values...
+test_DINT_1 online new value: 111
+$"[{DateTime.Now.ToString("T")}] SUCCESS setting tag values
+---
+[4:35:07 PM] START getting tag values...
+test_DINT_1 online value: 111
+test_DINT_2 online value: 20
+test_DINT_3 online value: 30
+test_DINT_1 offline value: 1
+test_DINT_2 offline value: 20
+test_DINT_3 offline value: 30
+[4:35:09 PM] SUCCESS getting tag values
+---------------------------------------TEST COMPLETE-----------------------------------------

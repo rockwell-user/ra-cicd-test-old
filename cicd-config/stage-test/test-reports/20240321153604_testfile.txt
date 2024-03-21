@@ -1,0 +1,57 @@
+  =========================================================================================  
+=============================================================================================
+
+                             CI/CD TEST STAGE | 3/21/2024 3:36:04 PM
+
+=============================================================================================
+  =========================================================================================  
+
+
+Project dependencies:
+---------------------------------------------------------------------------------------------
+ACD file path specified:          C:\Users\ASYost\source\repos\ra-cicd-test-old\DEVELOPMENT-files\CICD_test.ACD
+Communication path specified:     EmulateEthernet\127.0.0.1
+Common language runtime version:  v4.0.30319
+---------------------------------------------------------------------------------------------
+
+
+----------------------------------------STAGING TEST-----------------------------------------
+Opening ACD file...
+Opening ACD file... SUCCESS
+---
+Changing controller to PROGRAM...
+Changing controller to PROGRAM...  SUCCESS
+---
+Downloading ACD file...
+Downloading ACD file...  SUCCESS
+---
+Changing controller to RUN...
+Changing controller to RUN...  SUCCESS
+
+
+-----------------------------------------BEGIN TEST------------------------------------------
+Getting Initial Project Start-Up Tag Values...
+test_DINT_1 offline value: 2
+test_DINT_1 online value: 2
+TOGGLE_WetBulbTempCalc online value: False
+TEST_AOI_WetBulbTemp_isFahrenheit online value: False
+TEST_AOI_WetBulbTemp_RelativeHumidity online value: 0
+TEST_AOI_WetBulbTemp_Temperature online value: 0
+Getting Initial Project Start-Up Tag Values...  COMPLETE
+---
+Setting Tag Values...
+test_DINT_1 online new value: 111
+test_DINT_2 online new value: 222
+test_DINT_3 online new value: 333
+test_DINT_1 offline new value: 1
+Setting Tag Values...  COMPLETE
+---
+Getting Tag Values...
+test_DINT_1 online value: 111
+test_DINT_2 online value: 222
+test_DINT_3 online value: 333
+test_DINT_1 offline value: 1
+test_DINT_2 offline value: 20
+test_DINT_3 offline value: 30
+Getting Tag Values...  COMPLETE
+---------------------------------------TEST COMPLETE-----------------------------------------
