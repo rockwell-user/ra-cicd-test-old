@@ -16,12 +16,12 @@ namespace LogixSDKDemoApp
 
             if (args.Length != 2)
             {
-                Console.WriteLine("Current Usage: TestStage_CICDExample filePath commPath");
+                Console.WriteLine("Correct Command Example: .\\TestStage_CICDExample filePath commPath");
             }
-            //string filePath = args[0];                                                    // comment out this string if TESTING cicd pipeline
-            //string commPath = args[1];                                                    // comment out this string if TESTING cicd pipeline
-            string filePath = @"C:\Users\ASYost\Desktop\s5k_cicd_testfiles\CICD_test.ACD";  // comment out this string if RUNNING cicd pipeline
-            string commPath = @"EmulateEthernet\127.0.0.1";                                 // comment out this string if RUNNING cicd pipeline
+            //string filePath = args[0];                                                                                // comment out this string if TESTING cicd pipeline
+            //string commPath = args[1];                                                                                // comment out this string if TESTING cicd pipeline
+            string filePath = @"C:\Users\ASYost\source\repos\ra-cicd-test-old\in-development-acd-files\CICD_test.ACD";  // comment out this string if RUNNING cicd pipeline
+            string commPath = @"EmulateEthernet\127.0.0.1";                                                             // comment out this string if RUNNING cicd pipeline
 
             // Create new report name. Check if file name already exists and if yes, delete it. Then create the new report text file.
             string textFileReportName = Path.Combine(@"C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\test-reports\", 

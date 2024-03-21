@@ -1,0 +1,69 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\cicd-config\\stage-test\\code-LDSDK\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{209BD886-8F2C-466E-BF19-DF44716F00AE}|LogixSDKDemoApp\\TestStage_CICDExample.csproj|c:\\users\\asyost\\source\\repos\\ra-cicd-test-old\\cicd-config\\stage-test\\code-ldsdk\\logixsdkdemoapp\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{209BD886-8F2C-466E-BF19-DF44716F00AE}|LogixSDKDemoApp\\TestStage_CICDExample.csproj|solutionrelative:logixsdkdemoapp\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{80BD3CD4-CB0B-43C5-A0AC-280552F45422}|SetTagValue\\SetTagValue.csproj|c:\\users\\asyost\\source\\repos\\ra-cicd-test-old\\cicd-config\\stage-test\\code-ldsdk\\settagvalue\\settagvalue.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{80BD3CD4-CB0B-43C5-A0AC-280552F45422}|SetTagValue\\SetTagValue.csproj|solutionrelative:settagvalue\\settagvalue.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{292C8502-710B-41F4-89F0-D1E81BB5E0BE}|ReadControllerMode\\ReadControllerMode.csproj|c:\\users\\asyost\\source\\repos\\ra-cicd-test-old\\cicd-config\\stage-test\\code-ldsdk\\readcontrollermode\\readcontrollermode.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{292C8502-710B-41F4-89F0-D1E81BB5E0BE}|ReadControllerMode\\ReadControllerMode.csproj|solutionrelative:readcontrollermode\\readcontrollermode.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ReadControllerMode.cs",
+              "DocumentMoniker": "C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\cicd-config\\stage-test\\code-LDSDK\\ReadControllerMode\\ReadControllerMode.cs",
+              "RelativeDocumentMoniker": "ReadControllerMode\\ReadControllerMode.cs",
+              "ToolTip": "C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\cicd-config\\stage-test\\code-LDSDK\\ReadControllerMode\\ReadControllerMode.cs",
+              "RelativeToolTip": "ReadControllerMode\\ReadControllerMode.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAACEAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-19T19:25:35.232Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "SetTagValue.cs",
+              "DocumentMoniker": "C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\cicd-config\\stage-test\\code-LDSDK\\SetTagValue\\SetTagValue.cs",
+              "RelativeDocumentMoniker": "SetTagValue\\SetTagValue.cs",
+              "ToolTip": "C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\cicd-config\\stage-test\\code-LDSDK\\SetTagValue\\SetTagValue.cs",
+              "RelativeToolTip": "SetTagValue\\SetTagValue.cs",
+              "ViewState": "AQIAAAkAAAAAAAAAAAAAABQAAAAvAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-19T19:25:06.576Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\cicd-config\\stage-test\\code-LDSDK\\LogixSDKDemoApp\\Program.cs",
+              "RelativeDocumentMoniker": "LogixSDKDemoApp\\Program.cs",
+              "ToolTip": "C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\cicd-config\\stage-test\\code-LDSDK\\LogixSDKDemoApp\\Program.cs",
+              "RelativeToolTip": "LogixSDKDemoApp\\Program.cs",
+              "ViewState": "AQIAABQAAAAAAAAAAIAwwB0AAAANAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-19T12:48:28.052Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
