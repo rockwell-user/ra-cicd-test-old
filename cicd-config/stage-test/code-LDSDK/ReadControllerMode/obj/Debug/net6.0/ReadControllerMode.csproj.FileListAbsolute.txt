@@ -1,0 +1,95 @@
+C:\Users\Public\Documents\Studio 5000\Logix Designer SDK\dotnet\Examples\ReadControllerMode\bin\Debug\net6.0\ReadControllerMode.exe
+C:\Users\Public\Documents\Studio 5000\Logix Designer SDK\dotnet\Examples\ReadControllerMode\bin\Debug\net6.0\ReadControllerMode.deps.json
+C:\Users\Public\Documents\Studio 5000\Logix Designer SDK\dotnet\Examples\ReadControllerMode\bin\Debug\net6.0\ReadControllerMode.runtimeconfig.json
+C:\Users\Public\Documents\Studio 5000\Logix Designer SDK\dotnet\Examples\ReadControllerMode\bin\Debug\net6.0\ReadControllerMode.dll
+C:\Users\Public\Documents\Studio 5000\Logix Designer SDK\dotnet\Examples\ReadControllerMode\bin\Debug\net6.0\ReadControllerMode.pdb
+C:\Users\Public\Documents\Studio 5000\Logix Designer SDK\dotnet\Examples\ReadControllerMode\bin\Debug\net6.0\Google.Protobuf.dll
+C:\Users\Public\Documents\Studio 5000\Logix Designer SDK\dotnet\Examples\ReadControllerMode\bin\Debug\net6.0\Grpc.Core.Api.dll
+C:\Users\Public\Documents\Studio 5000\Logix Designer SDK\dotnet\Examples\ReadControllerMode\bin\Debug\net6.0\Grpc.Net.Client.dll
+C:\Users\Public\Documents\Studio 5000\Logix Designer SDK\dotnet\Examples\ReadControllerMode\bin\Debug\net6.0\Grpc.Net.Common.dll
+C:\Users\Public\Documents\Studio 5000\Logix Designer SDK\dotnet\Examples\ReadControllerMode\bin\Debug\net6.0\Microsoft.Extensions.Logging.Abstractions.dll
+C:\Users\Public\Documents\Studio 5000\Logix Designer SDK\dotnet\Examples\ReadControllerMode\bin\Debug\net6.0\Newtonsoft.Json.dll
+C:\Users\Public\Documents\Studio 5000\Logix Designer SDK\dotnet\Examples\ReadControllerMode\bin\Debug\net6.0\RockwellAutomation.LogixDesigner.LogixProject.CSClient.dll
+C:\Users\Public\Documents\Studio 5000\Logix Designer SDK\dotnet\Examples\ReadControllerMode\obj\Debug\net6.0\ReadControllerMode.csproj.AssemblyReference.cache
+C:\Users\Public\Documents\Studio 5000\Logix Designer SDK\dotnet\Examples\ReadControllerMode\obj\Debug\net6.0\ReadControllerMode.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Public\Documents\Studio 5000\Logix Designer SDK\dotnet\Examples\ReadControllerMode\obj\Debug\net6.0\ReadControllerMode.AssemblyInfoInputs.cache
+C:\Users\Public\Documents\Studio 5000\Logix Designer SDK\dotnet\Examples\ReadControllerMode\obj\Debug\net6.0\ReadControllerMode.AssemblyInfo.cs
+C:\Users\Public\Documents\Studio 5000\Logix Designer SDK\dotnet\Examples\ReadControllerMode\obj\Debug\net6.0\ReadControllerMode.csproj.CoreCompileInputs.cache
+C:\Users\Public\Documents\Studio 5000\Logix Designer SDK\dotnet\Examples\ReadControllerMode\obj\Debug\net6.0\ReadCont.B405BDC7.Up2Date
+C:\Users\Public\Documents\Studio 5000\Logix Designer SDK\dotnet\Examples\ReadControllerMode\obj\Debug\net6.0\ReadControllerMode.dll
+C:\Users\Public\Documents\Studio 5000\Logix Designer SDK\dotnet\Examples\ReadControllerMode\obj\Debug\net6.0\refint\ReadControllerMode.dll
+C:\Users\Public\Documents\Studio 5000\Logix Designer SDK\dotnet\Examples\ReadControllerMode\obj\Debug\net6.0\ReadControllerMode.pdb
+C:\Users\Public\Documents\Studio 5000\Logix Designer SDK\dotnet\Examples\ReadControllerMode\obj\Debug\net6.0\ReadControllerMode.genruntimeconfig.cache
+C:\Users\Public\Documents\Studio 5000\Logix Designer SDK\dotnet\Examples\ReadControllerMode\obj\Debug\net6.0\ref\ReadControllerMode.dll
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\ReadControllerMode\bin\Debug\net6.0\ReadControllerMode.exe
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\ReadControllerMode\bin\Debug\net6.0\ReadControllerMode.deps.json
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\ReadControllerMode\bin\Debug\net6.0\ReadControllerMode.runtimeconfig.json
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\ReadControllerMode\bin\Debug\net6.0\ReadControllerMode.dll
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\ReadControllerMode\bin\Debug\net6.0\ReadControllerMode.pdb
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\ReadControllerMode\bin\Debug\net6.0\Google.Protobuf.dll
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\ReadControllerMode\bin\Debug\net6.0\Grpc.Core.Api.dll
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\ReadControllerMode\bin\Debug\net6.0\Grpc.Net.Client.dll
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\ReadControllerMode\bin\Debug\net6.0\Grpc.Net.Common.dll
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\ReadControllerMode\bin\Debug\net6.0\Microsoft.Extensions.Logging.Abstractions.dll
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\ReadControllerMode\bin\Debug\net6.0\Newtonsoft.Json.dll
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\ReadControllerMode\bin\Debug\net6.0\RockwellAutomation.LogixDesigner.LogixProject.CSClient.dll
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\ReadControllerMode\obj\Debug\net6.0\ReadControllerMode.csproj.AssemblyReference.cache
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\ReadControllerMode\obj\Debug\net6.0\ReadControllerMode.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\ReadControllerMode\obj\Debug\net6.0\ReadControllerMode.AssemblyInfoInputs.cache
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\ReadControllerMode\obj\Debug\net6.0\ReadControllerMode.AssemblyInfo.cs
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\ReadControllerMode\obj\Debug\net6.0\ReadControllerMode.csproj.CoreCompileInputs.cache
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\ReadControllerMode\obj\Debug\net6.0\ReadControllerMode.sourcelink.json
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\ReadControllerMode\obj\Debug\net6.0\ReadCont.B405BDC7.Up2Date
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\ReadControllerMode\obj\Debug\net6.0\ReadControllerMode.dll
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\ReadControllerMode\obj\Debug\net6.0\refint\ReadControllerMode.dll
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\ReadControllerMode\obj\Debug\net6.0\ReadControllerMode.pdb
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\ReadControllerMode\obj\Debug\net6.0\ReadControllerMode.genruntimeconfig.cache
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\ReadControllerMode\obj\Debug\net6.0\ref\ReadControllerMode.dll
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\LDSDK_Code\ReadControllerMode\bin\Debug\net6.0\ReadControllerMode.exe
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\LDSDK_Code\ReadControllerMode\bin\Debug\net6.0\ReadControllerMode.deps.json
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\LDSDK_Code\ReadControllerMode\bin\Debug\net6.0\ReadControllerMode.runtimeconfig.json
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\LDSDK_Code\ReadControllerMode\bin\Debug\net6.0\ReadControllerMode.dll
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\LDSDK_Code\ReadControllerMode\bin\Debug\net6.0\ReadControllerMode.pdb
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\LDSDK_Code\ReadControllerMode\bin\Debug\net6.0\Google.Protobuf.dll
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\LDSDK_Code\ReadControllerMode\bin\Debug\net6.0\Grpc.Core.Api.dll
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\LDSDK_Code\ReadControllerMode\bin\Debug\net6.0\Grpc.Net.Client.dll
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\LDSDK_Code\ReadControllerMode\bin\Debug\net6.0\Grpc.Net.Common.dll
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\LDSDK_Code\ReadControllerMode\bin\Debug\net6.0\Microsoft.Extensions.Logging.Abstractions.dll
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\LDSDK_Code\ReadControllerMode\bin\Debug\net6.0\Newtonsoft.Json.dll
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\LDSDK_Code\ReadControllerMode\bin\Debug\net6.0\RockwellAutomation.LogixDesigner.LogixProject.CSClient.dll
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\LDSDK_Code\ReadControllerMode\obj\Debug\net6.0\ReadControllerMode.csproj.AssemblyReference.cache
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\LDSDK_Code\ReadControllerMode\obj\Debug\net6.0\ReadControllerMode.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\LDSDK_Code\ReadControllerMode\obj\Debug\net6.0\ReadControllerMode.AssemblyInfoInputs.cache
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\LDSDK_Code\ReadControllerMode\obj\Debug\net6.0\ReadControllerMode.AssemblyInfo.cs
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\LDSDK_Code\ReadControllerMode\obj\Debug\net6.0\ReadControllerMode.csproj.CoreCompileInputs.cache
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\LDSDK_Code\ReadControllerMode\obj\Debug\net6.0\ReadControllerMode.sourcelink.json
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\LDSDK_Code\ReadControllerMode\obj\Debug\net6.0\ReadCont.B405BDC7.Up2Date
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\LDSDK_Code\ReadControllerMode\obj\Debug\net6.0\ReadControllerMode.dll
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\LDSDK_Code\ReadControllerMode\obj\Debug\net6.0\refint\ReadControllerMode.dll
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\LDSDK_Code\ReadControllerMode\obj\Debug\net6.0\ReadControllerMode.pdb
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\LDSDK_Code\ReadControllerMode\obj\Debug\net6.0\ReadControllerMode.genruntimeconfig.cache
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\LDSDK_Code\ReadControllerMode\obj\Debug\net6.0\ref\ReadControllerMode.dll
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\code-LDSDK\ReadControllerMode\bin\Debug\net6.0\ReadControllerMode.exe
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\code-LDSDK\ReadControllerMode\bin\Debug\net6.0\ReadControllerMode.deps.json
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\code-LDSDK\ReadControllerMode\bin\Debug\net6.0\ReadControllerMode.runtimeconfig.json
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\code-LDSDK\ReadControllerMode\bin\Debug\net6.0\ReadControllerMode.dll
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\code-LDSDK\ReadControllerMode\bin\Debug\net6.0\ReadControllerMode.pdb
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\code-LDSDK\ReadControllerMode\bin\Debug\net6.0\Google.Protobuf.dll
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\code-LDSDK\ReadControllerMode\bin\Debug\net6.0\Grpc.Core.Api.dll
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\code-LDSDK\ReadControllerMode\bin\Debug\net6.0\Grpc.Net.Client.dll
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\code-LDSDK\ReadControllerMode\bin\Debug\net6.0\Grpc.Net.Common.dll
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\code-LDSDK\ReadControllerMode\bin\Debug\net6.0\Microsoft.Extensions.Logging.Abstractions.dll
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\code-LDSDK\ReadControllerMode\bin\Debug\net6.0\Newtonsoft.Json.dll
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\code-LDSDK\ReadControllerMode\bin\Debug\net6.0\RockwellAutomation.LogixDesigner.LogixProject.CSClient.dll
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\code-LDSDK\ReadControllerMode\obj\Debug\net6.0\ReadControllerMode.csproj.AssemblyReference.cache
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\code-LDSDK\ReadControllerMode\obj\Debug\net6.0\ReadControllerMode.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\code-LDSDK\ReadControllerMode\obj\Debug\net6.0\ReadControllerMode.AssemblyInfoInputs.cache
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\code-LDSDK\ReadControllerMode\obj\Debug\net6.0\ReadControllerMode.AssemblyInfo.cs
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\code-LDSDK\ReadControllerMode\obj\Debug\net6.0\ReadControllerMode.csproj.CoreCompileInputs.cache
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\code-LDSDK\ReadControllerMode\obj\Debug\net6.0\ReadControllerMode.sourcelink.json
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\code-LDSDK\ReadControllerMode\obj\Debug\net6.0\ReadCont.B405BDC7.Up2Date
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\code-LDSDK\ReadControllerMode\obj\Debug\net6.0\ReadControllerMode.dll
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\code-LDSDK\ReadControllerMode\obj\Debug\net6.0\refint\ReadControllerMode.dll
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\code-LDSDK\ReadControllerMode\obj\Debug\net6.0\ReadControllerMode.pdb
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\code-LDSDK\ReadControllerMode\obj\Debug\net6.0\ReadControllerMode.genruntimeconfig.cache
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\code-LDSDK\ReadControllerMode\obj\Debug\net6.0\ref\ReadControllerMode.dll

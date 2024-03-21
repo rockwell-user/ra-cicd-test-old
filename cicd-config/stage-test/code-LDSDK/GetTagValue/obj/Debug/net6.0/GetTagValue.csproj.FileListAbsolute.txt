@@ -1,0 +1,110 @@
+C:\Users\Public\Documents\Studio 5000\Logix Designer SDK\dotnet\Examples\GetTagValue\bin\Debug\net6.0\GetTagValue.exe
+C:\Users\Public\Documents\Studio 5000\Logix Designer SDK\dotnet\Examples\GetTagValue\bin\Debug\net6.0\GetTagValue.deps.json
+C:\Users\Public\Documents\Studio 5000\Logix Designer SDK\dotnet\Examples\GetTagValue\bin\Debug\net6.0\GetTagValue.runtimeconfig.json
+C:\Users\Public\Documents\Studio 5000\Logix Designer SDK\dotnet\Examples\GetTagValue\bin\Debug\net6.0\GetTagValue.dll
+C:\Users\Public\Documents\Studio 5000\Logix Designer SDK\dotnet\Examples\GetTagValue\bin\Debug\net6.0\GetTagValue.pdb
+C:\Users\Public\Documents\Studio 5000\Logix Designer SDK\dotnet\Examples\GetTagValue\bin\Debug\net6.0\Google.Protobuf.dll
+C:\Users\Public\Documents\Studio 5000\Logix Designer SDK\dotnet\Examples\GetTagValue\bin\Debug\net6.0\Grpc.Core.Api.dll
+C:\Users\Public\Documents\Studio 5000\Logix Designer SDK\dotnet\Examples\GetTagValue\bin\Debug\net6.0\Grpc.Net.Client.dll
+C:\Users\Public\Documents\Studio 5000\Logix Designer SDK\dotnet\Examples\GetTagValue\bin\Debug\net6.0\Grpc.Net.Common.dll
+C:\Users\Public\Documents\Studio 5000\Logix Designer SDK\dotnet\Examples\GetTagValue\bin\Debug\net6.0\Microsoft.Extensions.Logging.Abstractions.dll
+C:\Users\Public\Documents\Studio 5000\Logix Designer SDK\dotnet\Examples\GetTagValue\bin\Debug\net6.0\Newtonsoft.Json.dll
+C:\Users\Public\Documents\Studio 5000\Logix Designer SDK\dotnet\Examples\GetTagValue\bin\Debug\net6.0\RockwellAutomation.LogixDesigner.LogixProject.CSClient.dll
+C:\Users\Public\Documents\Studio 5000\Logix Designer SDK\dotnet\Examples\GetTagValue\obj\Debug\net6.0\GetTagValue.csproj.AssemblyReference.cache
+C:\Users\Public\Documents\Studio 5000\Logix Designer SDK\dotnet\Examples\GetTagValue\obj\Debug\net6.0\GetTagValue.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Public\Documents\Studio 5000\Logix Designer SDK\dotnet\Examples\GetTagValue\obj\Debug\net6.0\GetTagValue.AssemblyInfoInputs.cache
+C:\Users\Public\Documents\Studio 5000\Logix Designer SDK\dotnet\Examples\GetTagValue\obj\Debug\net6.0\GetTagValue.AssemblyInfo.cs
+C:\Users\Public\Documents\Studio 5000\Logix Designer SDK\dotnet\Examples\GetTagValue\obj\Debug\net6.0\GetTagValue.csproj.CoreCompileInputs.cache
+C:\Users\Public\Documents\Studio 5000\Logix Designer SDK\dotnet\Examples\GetTagValue\obj\Debug\net6.0\GetTagVa.49B71CD1.Up2Date
+C:\Users\Public\Documents\Studio 5000\Logix Designer SDK\dotnet\Examples\GetTagValue\obj\Debug\net6.0\GetTagValue.dll
+C:\Users\Public\Documents\Studio 5000\Logix Designer SDK\dotnet\Examples\GetTagValue\obj\Debug\net6.0\refint\GetTagValue.dll
+C:\Users\Public\Documents\Studio 5000\Logix Designer SDK\dotnet\Examples\GetTagValue\obj\Debug\net6.0\GetTagValue.pdb
+C:\Users\Public\Documents\Studio 5000\Logix Designer SDK\dotnet\Examples\GetTagValue\obj\Debug\net6.0\GetTagValue.genruntimeconfig.cache
+C:\Users\Public\Documents\Studio 5000\Logix Designer SDK\dotnet\Examples\GetTagValue\obj\Debug\net6.0\ref\GetTagValue.dll
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\GetTagValue\bin\Debug\net6.0\GetTagValue.exe
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\GetTagValue\bin\Debug\net6.0\GetTagValue.deps.json
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\GetTagValue\bin\Debug\net6.0\GetTagValue.runtimeconfig.json
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\GetTagValue\bin\Debug\net6.0\GetTagValue.dll
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\GetTagValue\bin\Debug\net6.0\GetTagValue.pdb
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\GetTagValue\bin\Debug\net6.0\Google.Protobuf.dll
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\GetTagValue\bin\Debug\net6.0\Grpc.Core.Api.dll
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\GetTagValue\bin\Debug\net6.0\Grpc.Net.Client.dll
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\GetTagValue\bin\Debug\net6.0\Grpc.Net.Common.dll
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\GetTagValue\bin\Debug\net6.0\Microsoft.Extensions.Logging.Abstractions.dll
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\GetTagValue\bin\Debug\net6.0\Newtonsoft.Json.dll
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\GetTagValue\bin\Debug\net6.0\RockwellAutomation.LogixDesigner.LogixProject.CSClient.dll
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\GetTagValue\obj\Debug\net6.0\GetTagValue.csproj.AssemblyReference.cache
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\GetTagValue\obj\Debug\net6.0\GetTagValue.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\GetTagValue\obj\Debug\net6.0\GetTagValue.AssemblyInfoInputs.cache
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\GetTagValue\obj\Debug\net6.0\GetTagValue.AssemblyInfo.cs
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\GetTagValue\obj\Debug\net6.0\GetTagValue.csproj.CoreCompileInputs.cache
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\GetTagValue\obj\Debug\net6.0\GetTagValue.sourcelink.json
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\GetTagValue\obj\Debug\net6.0\GetTagVa.49B71CD1.Up2Date
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\GetTagValue\obj\Debug\net6.0\GetTagValue.dll
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\GetTagValue\obj\Debug\net6.0\refint\GetTagValue.dll
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\GetTagValue\obj\Debug\net6.0\GetTagValue.pdb
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\GetTagValue\obj\Debug\net6.0\GetTagValue.genruntimeconfig.cache
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\GetTagValue\obj\Debug\net6.0\ref\GetTagValue.dll
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\GetTagValue\bin\Debug\net6.0\LogixSDKStarterApp.deps.json
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\GetTagValue\bin\Debug\net6.0\LogixSDKStarterApp.runtimeconfig.json
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\GetTagValue\bin\Debug\net6.0\LogixSDKStarterApp.exe
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\GetTagValue\bin\Debug\net6.0\LogixSDKStarterApp.dll
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\GetTagValue\bin\Debug\net6.0\LogixSDKStarterApp.pdb
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\LDSDK_Code\GetTagValue\bin\Debug\net6.0\LogixSDKStarterApp.deps.json
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\LDSDK_Code\GetTagValue\bin\Debug\net6.0\LogixSDKStarterApp.runtimeconfig.json
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\LDSDK_Code\GetTagValue\bin\Debug\net6.0\LogixSDKStarterApp.exe
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\LDSDK_Code\GetTagValue\bin\Debug\net6.0\GetTagValue.exe
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\LDSDK_Code\GetTagValue\bin\Debug\net6.0\GetTagValue.deps.json
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\LDSDK_Code\GetTagValue\bin\Debug\net6.0\GetTagValue.runtimeconfig.json
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\LDSDK_Code\GetTagValue\bin\Debug\net6.0\GetTagValue.dll
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\LDSDK_Code\GetTagValue\bin\Debug\net6.0\GetTagValue.pdb
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\LDSDK_Code\GetTagValue\bin\Debug\net6.0\Google.Protobuf.dll
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\LDSDK_Code\GetTagValue\bin\Debug\net6.0\Grpc.Core.Api.dll
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\LDSDK_Code\GetTagValue\bin\Debug\net6.0\Grpc.Net.Client.dll
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\LDSDK_Code\GetTagValue\bin\Debug\net6.0\Grpc.Net.Common.dll
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\LDSDK_Code\GetTagValue\bin\Debug\net6.0\Microsoft.Extensions.Logging.Abstractions.dll
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\LDSDK_Code\GetTagValue\bin\Debug\net6.0\Newtonsoft.Json.dll
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\LDSDK_Code\GetTagValue\bin\Debug\net6.0\RockwellAutomation.LogixDesigner.LogixProject.CSClient.dll
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\LDSDK_Code\GetTagValue\bin\Debug\net6.0\LogixSDKStarterApp.dll
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\LDSDK_Code\GetTagValue\bin\Debug\net6.0\LogixSDKStarterApp.pdb
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\LDSDK_Code\GetTagValue\obj\Debug\net6.0\GetTagValue.csproj.AssemblyReference.cache
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\LDSDK_Code\GetTagValue\obj\Debug\net6.0\GetTagValue.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\LDSDK_Code\GetTagValue\obj\Debug\net6.0\GetTagValue.AssemblyInfoInputs.cache
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\LDSDK_Code\GetTagValue\obj\Debug\net6.0\GetTagValue.AssemblyInfo.cs
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\LDSDK_Code\GetTagValue\obj\Debug\net6.0\GetTagValue.csproj.CoreCompileInputs.cache
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\LDSDK_Code\GetTagValue\obj\Debug\net6.0\GetTagValue.sourcelink.json
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\LDSDK_Code\GetTagValue\obj\Debug\net6.0\GetTagVa.49B71CD1.Up2Date
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\LDSDK_Code\GetTagValue\obj\Debug\net6.0\GetTagValue.dll
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\LDSDK_Code\GetTagValue\obj\Debug\net6.0\refint\GetTagValue.dll
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\LDSDK_Code\GetTagValue\obj\Debug\net6.0\GetTagValue.pdb
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\LDSDK_Code\GetTagValue\obj\Debug\net6.0\GetTagValue.genruntimeconfig.cache
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\LDSDK_Code\GetTagValue\obj\Debug\net6.0\ref\GetTagValue.dll
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\code-LDSDK\GetTagValue\bin\Debug\net6.0\LogixSDKStarterApp.deps.json
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\code-LDSDK\GetTagValue\bin\Debug\net6.0\LogixSDKStarterApp.runtimeconfig.json
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\code-LDSDK\GetTagValue\bin\Debug\net6.0\LogixSDKStarterApp.exe
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\code-LDSDK\GetTagValue\bin\Debug\net6.0\GetTagValue.exe
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\code-LDSDK\GetTagValue\bin\Debug\net6.0\GetTagValue.deps.json
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\code-LDSDK\GetTagValue\bin\Debug\net6.0\GetTagValue.runtimeconfig.json
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\code-LDSDK\GetTagValue\bin\Debug\net6.0\GetTagValue.dll
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\code-LDSDK\GetTagValue\bin\Debug\net6.0\GetTagValue.pdb
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\code-LDSDK\GetTagValue\bin\Debug\net6.0\Google.Protobuf.dll
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\code-LDSDK\GetTagValue\bin\Debug\net6.0\Grpc.Core.Api.dll
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\code-LDSDK\GetTagValue\bin\Debug\net6.0\Grpc.Net.Client.dll
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\code-LDSDK\GetTagValue\bin\Debug\net6.0\Grpc.Net.Common.dll
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\code-LDSDK\GetTagValue\bin\Debug\net6.0\Microsoft.Extensions.Logging.Abstractions.dll
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\code-LDSDK\GetTagValue\bin\Debug\net6.0\Newtonsoft.Json.dll
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\code-LDSDK\GetTagValue\bin\Debug\net6.0\RockwellAutomation.LogixDesigner.LogixProject.CSClient.dll
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\code-LDSDK\GetTagValue\bin\Debug\net6.0\LogixSDKStarterApp.dll
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\code-LDSDK\GetTagValue\bin\Debug\net6.0\LogixSDKStarterApp.pdb
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\code-LDSDK\GetTagValue\obj\Debug\net6.0\GetTagValue.csproj.AssemblyReference.cache
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\code-LDSDK\GetTagValue\obj\Debug\net6.0\GetTagValue.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\code-LDSDK\GetTagValue\obj\Debug\net6.0\GetTagValue.AssemblyInfoInputs.cache
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\code-LDSDK\GetTagValue\obj\Debug\net6.0\GetTagValue.AssemblyInfo.cs
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\code-LDSDK\GetTagValue\obj\Debug\net6.0\GetTagValue.csproj.CoreCompileInputs.cache
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\code-LDSDK\GetTagValue\obj\Debug\net6.0\GetTagValue.sourcelink.json
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\code-LDSDK\GetTagValue\obj\Debug\net6.0\GetTagVa.49B71CD1.Up2Date
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\code-LDSDK\GetTagValue\obj\Debug\net6.0\GetTagValue.dll
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\code-LDSDK\GetTagValue\obj\Debug\net6.0\refint\GetTagValue.dll
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\code-LDSDK\GetTagValue\obj\Debug\net6.0\GetTagValue.pdb
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\code-LDSDK\GetTagValue\obj\Debug\net6.0\GetTagValue.genruntimeconfig.cache
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\code-LDSDK\GetTagValue\obj\Debug\net6.0\ref\GetTagValue.dll
