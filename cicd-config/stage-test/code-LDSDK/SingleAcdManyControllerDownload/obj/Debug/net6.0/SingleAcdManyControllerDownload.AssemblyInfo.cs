@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SingleAcdManyControllerDownload")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ed48826ebfed7c7a69ff234fb8879bbea76e9612")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+09a29bfdee0b5943cf1a87ef0cbde3a8bc3153af")]
 [assembly: System.Reflection.AssemblyProductAttribute("SingleAcdManyControllerDownload")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SingleAcdManyControllerDownload")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
