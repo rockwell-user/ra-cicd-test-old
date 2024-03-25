@@ -38,8 +38,7 @@
               "RelativeToolTip": "GetTagValue\\GetTagValue.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAABgAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-25T17:28:37.602Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-03-25T17:28:37.602Z"
             },
             {
               "$type": "Document",
@@ -51,8 +50,7 @@
               "RelativeToolTip": "ReadControllerMode\\ReadControllerMode.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAACEAAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-19T19:25:35.232Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-03-19T19:25:35.232Z"
             },
             {
               "$type": "Document",
@@ -64,8 +62,7 @@
               "RelativeToolTip": "SetTagValue\\SetTagValue.cs",
               "ViewState": "AQIAAAkAAAAAAAAAAAAAABQAAAAvAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-19T19:25:06.576Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-03-19T19:25:06.576Z"
             },
             {
               "$type": "Document",
@@ -75,7 +72,7 @@
               "RelativeDocumentMoniker": "LogixSDKDemoApp\\Program.cs",
               "ToolTip": "C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\cicd-config\\stage-test\\stage-test-configuration\\LogixSDKDemoApp\\Program.cs",
               "RelativeToolTip": "LogixSDKDemoApp\\Program.cs",
-              "ViewState": "AQIAAHkAAAAAAAAAAAAgwJYAAAA2AAAA",
+              "ViewState": "AQIAALIAAAAAAAAAAAAgwGMAAAANAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-03-19T12:48:28.052Z",
               "EditorCaption": ""

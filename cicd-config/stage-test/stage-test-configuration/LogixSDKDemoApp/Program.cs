@@ -16,10 +16,10 @@ namespace LogixSDKDemoApp
             {
                 Console.WriteLine("Correct Command Example: .\\TestStage_CICDExample filePath commPath");
             }
-            //string filePath = args[0];                                                                            // comment out this string if TESTING cicd pipeline
-            //string commPath = args[1];                                                                            // comment out this string if TESTING cicd pipeline
-            string filePath = @"C:\Users\ASYost\source\repos\ra-cicd-test-old\DEVELOPMENT-files\CICD_test.ACD";     // comment out this string if RUNNING cicd pipeline
-            string commPath = @"EmulateEthernet\127.0.0.1";                                                         // comment out this string if RUNNING cicd pipeline
+            //string filePath = args[0];                                                                         // comment out if TESTING
+            //string commPath = args[1];                                                                         // comment out if TESTING
+            string filePath = @"C:\Users\ASYost\source\repos\ra-cicd-test-old\DEVELOPMENT-files\CICD_test.ACD";  // comment out if RUNNING
+            string commPath = @"EmulateEthernet\127.0.0.1";                                                      // comment out if RUNNING
 
             // Create new report name. Check if file name already exists and if yes, delete it. Then create the new report text file.
             string textFileReportName = Path.Combine(@"C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\test-reports\",
@@ -146,19 +146,15 @@ namespace LogixSDKDemoApp
             // Verify expected output
             Console.WriteLine($"[{DateTime.Now.ToString("T")}] START verifying expected tag outputs...");
             TEST_AOI_WetBulbTemp_WetBulbTemp = CallGetTagValueAsyncAndWaitOnResult("TEST_AOI_WetBulbTemp_WetBulbTemp", "REAL", myProject);
-            TEST_AOI_WetBulbTemp_RelativeHumidity = CallGetTagValueAsyncAndWaitOnResult("TEST_AOI_WetBulbTemp_RelativeHumidity", "REAL", myProject);
-            Console.WriteLine("TEST WILL DELETE LATER: " + TEST_AOI_WetBulbTemp_WetBulbTemp[0]);
-            //Console.WriteLine($"{Int16.Parse(TEST_AOI_WetBulbTemp_WetBulbTemp[0])}");
-            //Console.WriteLine(Convert.ToInt64(TEST_AOI_WetBulbTemp_WetBulbTemp[0]));
-            //Console.WriteLine($"{Convert.ToInt16(TEST_AOI_WetBulbTemp_RelativeHumidity[0])}");
-            //if ((Int32.TryParse(TEST_AOI_WetBulbTemp_WetBulbTemp[0]) > 55) & (Int32.Parse(TEST_AOI_WetBulbTemp_WetBulbTemp[0]) < 56))
-            //{
-            //    Console.WriteLine("SUCCES");
-            //}
-            //else
-            //{
-            //    Console.WriteLine("FAILURE");
-            //}
+            if (TEST_AOI_WetBulbTemp_WetBulbTemp[0] == "52.997536")
+            {
+                Console.WriteLine($"SUCCESS: tag TEST_AOI_WetBulbTemp_WetBulbTemp returned expected result {TEST_AOI_WetBulbTemp_WetBulbTemp[0]}");
+            }
+            else
+            {
+                Console.WriteLine($"FAILURE: : tag TEST_AOI_WetBulbTemp_WetBulbTemp returned result {TEST_AOI_WetBulbTemp_WetBulbTemp[0]} when expected 52.997536");
+                ++failure_condition;
+            }
             Console.WriteLine($"[{DateTime.Now.ToString("T")}] DONE verifying expected tag outputs\n---");
 
 
