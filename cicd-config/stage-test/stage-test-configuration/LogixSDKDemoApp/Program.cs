@@ -2,8 +2,6 @@
 using System;
 using System.IO;
 using System.Threading.Tasks;
-//using RockwellAutomation.FactoryTalkLogixEcho.Api.Client;
-//using RockwellAutomation.FactoryTalkLogixEcho.Api.Interfaces;
 
 namespace LogixSDKDemoApp
 {
@@ -492,41 +490,3 @@ namespace LogixSDKDemoApp
         }
     }
 }
-
-
-
-
-
-
-
-
-
-// CODE GRAVEYARD
-
-//Console.SetCursorPosition(0, Console.CursorTop - 1);
-// Thread.Sleep(2000);
-
-//.ConfigureAwait(false) for awaits - not what i wanted
-
-//Console.WriteLine(GTVAsync(filePath, "test_DINT", myProject));
-//Directory.SetCurrentDirectory("C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\cicd-config\\stage-test\\GetTagValue\\bin\\Debug\\net6.0");
-//Process.Start(".\\GetTagValue", $"\"{acd_path}\" {tag_name}");
-
-
-
-
-//string gtv_dir = "C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\cicd-config\\stage-test\\GetTagValue\\bin\\Debug\\net6.0";
-//Console.WriteLine("\n\nGTV directory: " + gtv_dir + "\n");
-//try
-//{
-//    Directory.SetCurrentDirectory(gtv_dir);
-//}
-//catch (DirectoryNotFoundException e)
-//{
-//    Console.WriteLine("The specified directry does not exist. {0}", e);
-//}
-//Console.WriteLine("\nRoot directory: {0}", Directory.GetDirectoryRoot(gtv_dir));
-//Console.WriteLine("\nCurrent directory: {0}", Directory.GetCurrentDirectory());
-//Console.WriteLine(".\\GetTagValue \"" + filePath + "\" test_DINT");
-//Process.Start(".\\GetTagValue", $"\"{filePath}\" test_DINT");
-//Process.Start("GetTagValue" + );
