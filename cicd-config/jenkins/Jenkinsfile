@@ -16,6 +16,14 @@ pipeline {
             steps {
                 echo "Testing.."
                 // "${env.WORKSPACE}/JenkinsScripts/myScript.groovy"
+                script {
+                    def exitCode = bat(returnStatus: true, script: 'cicd-config\stage-test\stage-test-configuration\LogixSDKDemoApp\bin\Debug\net6.0\TestStage_CICDExample DEVELOPMENT-files\CICD_test.ACD EmulateEthernet\127.0.0.1')
+                    if (exitCode == 0) {
+                        echo 'Executable ran successfully'
+                    } else {
+                        error 'Executable failed to run'
+                    }
+                }
             }
         }
         stage('Publish') {
