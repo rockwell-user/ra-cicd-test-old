@@ -1,0 +1,64 @@
+  =========================================================================================  
+=============================================================================================
+
+         CI/CD TEST STAGE | 3/25/2024 10:41:25 AM (UTC-05:00) Eastern Time (US & Canada)
+
+=============================================================================================
+  =========================================================================================  
+
+
+Project dependencies:
+---------------------------------------------------------------------------------------------
+ACD file path specified:          C:\Users\ASYost\source\repos\ra-cicd-test-old\DEVELOPMENT-files\CICD_test.ACD
+Communication path specified:     EmulateEthernet\127.0.0.1
+Common language runtime version:  v4.0.30319
+---------------------------------------------------------------------------------------------
+
+
+----------------------------------------STAGING TEST-----------------------------------------
+[10:41:25 AM] START opening ACD file...
+[10:41:51 AM] SUCCESS opening ACD file
+---
+[10:41:51 AM] START changing controller to PROGRAM...
+[10:41:52 AM] SUCCESS changing controller to PROGRAM
+---
+[10:41:52 AM] START downloading ACD file...
+[10:42:00 AM] SUCCESS downloading ACD file
+---
+[10:42:00 AM] START Changing controller to RUN...
+[10:42:01 AM] SUCCESS changing controller to RUN
+-----------------------------------------BEGIN TEST------------------------------------------
+[10:42:01 AM] START getting initial project start-up tag values...
+test_DINT_1 offline value: 1
+test_DINT_1 online value: 1
+TOGGLE_WetBulbTempCalc online value: False
+TOGGLE_WetBulbTempCalc offline value: False
+TEST_AOI_WetBulbTemp_isFahrenheit online value: False
+TEST_AOI_WetBulbTemp_isFahrenheit offline value: False
+TEST_AOI_WetBulbTemp_RelativeHumidity online value: 0
+TEST_AOI_WetBulbTemp_RelativeHumidity offline value: 0
+TEST_AOI_WetBulbTemp_Temperature online value: 0
+TEST_AOI_WetBulbTemp_Temperature offline value: 0
+[10:42:06 AM] SUCCESS getting initial project start-up tag values
+---
+[10:42:06 AM] START verifying whether offline and online values are the same...
+SUCCESS: (input1) and (input2) are EQUAL.
+SUCCESS: (input1) and (input2) are EQUAL.
+SUCCESS: (input1) and (input2) are EQUAL.
+SUCCESS: (input1) and (input2) are EQUAL.
+SUCCESS: (input1) and (input2) are EQUAL.
+[10:42:06 AM] DONE verifying whether offline and online values are the same
+---
+[10:42:06 AM] START setting tag values...
+test_DINT_1 online new value: 111
+[10:42:07 AM] SUCCESS setting tag values
+---
+[10:42:07 AM] START getting tag values...
+test_DINT_1 online value: 111
+test_DINT_2 online value: 20
+test_DINT_3 online value: 30
+test_DINT_1 offline value: 1
+test_DINT_2 offline value: 20
+test_DINT_3 offline value: 30
+[10:42:09 AM] SUCCESS getting tag values
+---------------------------------------TEST COMPLETE-----------------------------------------

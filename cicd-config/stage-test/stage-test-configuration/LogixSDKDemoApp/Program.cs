@@ -106,53 +106,29 @@ namespace LogixSDKDemoApp
             Console.WriteLine("-----------------------------------------BEGIN TEST------------------------------------------");
 
             // Initialize variables to be tested
-            string test_DINT_1_offline;
-            string test_DINT_1_online;
-            string TOGGLE_WetBulbTempCalc_online;
-            string TOGGLE_WetBulbTempCalc_offline;
-            string TEST_AOI_WetBulbTemp_isFahrenheit_online;
-            string TEST_AOI_WetBulbTemp_isFahrenheit_offline;
-            string TEST_AOI_WetBulbTemp_RelativeHumidity_online;
-            string TEST_AOI_WetBulbTemp_RelativeHumidity_offline;
-            string TEST_AOI_WetBulbTemp_Temperature_online;
-            string TEST_AOI_WetBulbTemp_Temperature_offline;
+            string[] test_DINT_1;
+            string[] TOGGLE_WetBulbTempCalc;
+            string[] TEST_AOI_WetBulbTemp_isFahrenheit;
+            string[] TEST_AOI_WetBulbTemp_RelativeHumidity;
+            string[] TEST_AOI_WetBulbTemp_Temperature;
 
             // Get initial tag values
             Console.WriteLine($"[{DateTime.Now.ToString("T")}] START getting initial project start-up tag values...");
-            test_DINT_1_offline = CallGetTagValueAsyncAndWaitOnResult("test_DINT_1", "offline", "DINT", myProject);
-            Console.WriteLine(test_DINT_1_offline);
-            test_DINT_1_online = CallGetTagValueAsyncAndWaitOnResult("test_DINT_1", "online", "DINT", myProject);
-            Console.WriteLine(test_DINT_1_online);
-
-            TOGGLE_WetBulbTempCalc_online = CallGetTagValueAsyncAndWaitOnResult("TOGGLE_WetBulbTempCalc", "online", "BOOL", myProject);
-            Console.WriteLine(TOGGLE_WetBulbTempCalc_online);
-            TOGGLE_WetBulbTempCalc_offline = CallGetTagValueAsyncAndWaitOnResult("TOGGLE_WetBulbTempCalc", "offline", "BOOL", myProject);
-            Console.WriteLine(TOGGLE_WetBulbTempCalc_offline);
-
-            TEST_AOI_WetBulbTemp_isFahrenheit_online = CallGetTagValueAsyncAndWaitOnResult("TEST_AOI_WetBulbTemp_isFahrenheit", "online", "BOOL", myProject);
-            Console.WriteLine(TEST_AOI_WetBulbTemp_isFahrenheit_online);
-            TEST_AOI_WetBulbTemp_isFahrenheit_offline = CallGetTagValueAsyncAndWaitOnResult("TEST_AOI_WetBulbTemp_isFahrenheit", "offline", "BOOL", myProject);
-            Console.WriteLine(TEST_AOI_WetBulbTemp_isFahrenheit_offline);
-
-            TEST_AOI_WetBulbTemp_RelativeHumidity_online = CallGetTagValueAsyncAndWaitOnResult("TEST_AOI_WetBulbTemp_RelativeHumidity", "online", "REAL", myProject);
-            Console.WriteLine(TEST_AOI_WetBulbTemp_RelativeHumidity_online);
-            TEST_AOI_WetBulbTemp_RelativeHumidity_offline = CallGetTagValueAsyncAndWaitOnResult("TEST_AOI_WetBulbTemp_RelativeHumidity", "offline", "REAL", myProject);
-            Console.WriteLine(TEST_AOI_WetBulbTemp_RelativeHumidity_offline);
-
-            TEST_AOI_WetBulbTemp_Temperature_online = CallGetTagValueAsyncAndWaitOnResult("TEST_AOI_WetBulbTemp_Temperature", "online", "REAL", myProject);
-            Console.WriteLine(TEST_AOI_WetBulbTemp_Temperature_online);
-            TEST_AOI_WetBulbTemp_Temperature_offline = CallGetTagValueAsyncAndWaitOnResult("TEST_AOI_WetBulbTemp_Temperature", "offline", "REAL", myProject);
-            Console.WriteLine(TEST_AOI_WetBulbTemp_Temperature_offline);
+            test_DINT_1 = CallGetTagValueAsyncAndWaitOnResult("test_DINT_1", "DINT", myProject);
+            TOGGLE_WetBulbTempCalc = CallGetTagValueAsyncAndWaitOnResult("TOGGLE_WetBulbTempCalc", "BOOL", myProject);
+            TEST_AOI_WetBulbTemp_isFahrenheit = CallGetTagValueAsyncAndWaitOnResult("TEST_AOI_WetBulbTemp_isFahrenheit", "BOOL", myProject);
+            TEST_AOI_WetBulbTemp_RelativeHumidity = CallGetTagValueAsyncAndWaitOnResult("TEST_AOI_WetBulbTemp_RelativeHumidity", "REAL", myProject);
+            TEST_AOI_WetBulbTemp_Temperature = CallGetTagValueAsyncAndWaitOnResult("TEST_AOI_WetBulbTemp_Temperature", "REAL", myProject);
             Console.WriteLine($"[{DateTime.Now.ToString("T")}] SUCCESS getting initial project start-up tag values\n---");
 
             // Verify that offline and online values are the same
             Console.WriteLine($"[{DateTime.Now.ToString("T")}] START verifying whether offline and online values are the same...");
             int failure_condition = 0;
-            CompareTwoTags(test_DINT_1_online, test_DINT_1_offline);
-            CompareTwoTags(TOGGLE_WetBulbTempCalc_online, TOGGLE_WetBulbTempCalc_offline);
-            CompareTwoTags(TEST_AOI_WetBulbTemp_isFahrenheit_online, TEST_AOI_WetBulbTemp_isFahrenheit_offline);
-            CompareTwoTags(TEST_AOI_WetBulbTemp_RelativeHumidity_online, TEST_AOI_WetBulbTemp_RelativeHumidity_offline);
-            CompareTwoTags(TEST_AOI_WetBulbTemp_Temperature_online, TEST_AOI_WetBulbTemp_Temperature_offline);
+            failure_condition = failure_condition + CompareOnlineOffline(test_DINT_1);
+            failure_condition = failure_condition + CompareOnlineOffline(TOGGLE_WetBulbTempCalc);
+            failure_condition = failure_condition + CompareOnlineOffline(TEST_AOI_WetBulbTemp_isFahrenheit);
+            failure_condition = failure_condition + CompareOnlineOffline(TEST_AOI_WetBulbTemp_RelativeHumidity);
+            failure_condition = failure_condition + CompareOnlineOffline(TEST_AOI_WetBulbTemp_Temperature);
             Console.WriteLine($"[{DateTime.Now.ToString("T")}] DONE verifying whether offline and online values are the same\n---");
 
             // Set tag values
@@ -160,18 +136,32 @@ namespace LogixSDKDemoApp
             CallSetTagValueAsyncAndWaitOnResult("test_DINT_1", 111, "online", "DINT", myProject);
             Console.WriteLine($"[{DateTime.Now.ToString("T")}] SUCCESS setting tag values\n---");
 
-            // Get online tag values
+            // Get final tag values
             Console.WriteLine($"[{DateTime.Now.ToString("T")}] START getting tag values...");
-            Console.WriteLine(CallGetTagValueAsyncAndWaitOnResult("test_DINT_1", "online", "DINT", myProject));
-            Console.WriteLine(CallGetTagValueAsyncAndWaitOnResult("test_DINT_2", "online", "DINT", myProject));
-            Console.WriteLine(CallGetTagValueAsyncAndWaitOnResult("test_DINT_3", "online", "DINT", myProject));
-            Console.WriteLine(CallGetTagValueAsyncAndWaitOnResult("test_DINT_1", "offline", "DINT", myProject));
-            Console.WriteLine(CallGetTagValueAsyncAndWaitOnResult("test_DINT_2", "offline", "DINT", myProject));
-            Console.WriteLine(CallGetTagValueAsyncAndWaitOnResult("test_DINT_3", "offline", "DINT", myProject));
-            Console.WriteLine($"[{DateTime.Now.ToString("T")}] SUCCESS getting tag values");
+            test_DINT_1 = CallGetTagValueAsyncAndWaitOnResult("test_DINT_1", "DINT", myProject);
+            Console.WriteLine($"{test_DINT_1[2]}\n{test_DINT_1[5]}");
 
-            // Test Complete Banner
-            Console.WriteLine("---------------------------------------TEST COMPLETE-----------------------------------------");
+            TOGGLE_WetBulbTempCalc = CallGetTagValueAsyncAndWaitOnResult("TOGGLE_WetBulbTempCalc", "BOOL", myProject);
+            Console.WriteLine($"{TOGGLE_WetBulbTempCalc[2]}\n{TOGGLE_WetBulbTempCalc[5]}");
+
+            TEST_AOI_WetBulbTemp_isFahrenheit = CallGetTagValueAsyncAndWaitOnResult("TEST_AOI_WetBulbTemp_isFahrenheit", "BOOL", myProject);
+            Console.WriteLine($"{TEST_AOI_WetBulbTemp_isFahrenheit[2]}\n{TEST_AOI_WetBulbTemp_isFahrenheit[5]}");
+
+            TEST_AOI_WetBulbTemp_RelativeHumidity = CallGetTagValueAsyncAndWaitOnResult("TEST_AOI_WetBulbTemp_RelativeHumidity", "REAL", myProject);
+            Console.WriteLine($"{TEST_AOI_WetBulbTemp_RelativeHumidity[2]}\n{TEST_AOI_WetBulbTemp_RelativeHumidity[5]}");
+
+            TEST_AOI_WetBulbTemp_Temperature = CallGetTagValueAsyncAndWaitOnResult("TEST_AOI_WetBulbTemp_Temperature", "REAL", myProject);
+            Console.WriteLine($"{TEST_AOI_WetBulbTemp_Temperature[2]}\n{TEST_AOI_WetBulbTemp_Temperature[5]}"); Console.WriteLine($"[{DateTime.Now.ToString("T")}] SUCCESS getting tag values");
+
+            // Final Banner
+            if (failure_condition > 0)
+            {
+                Console.WriteLine("---------------------------------------TEST FAILURE------------------------------------------");
+            }
+            else
+            {
+                Console.WriteLine("---------------------------------------TEST SUCCESS------------------------------------------");
+            }
 
             // Finish process of sending console printouts to the text file specified earlier
             Console.SetOut(oldOut);
@@ -183,70 +173,82 @@ namespace LogixSDKDemoApp
         // ======================
 
         // Get Tag Value Method
-        static async Task<string> GetTagValueAsync(string tag_name, string online_or_offline, string data_type, LogixProject project)
+        // return_array[0] = $"{tagValue_online}";
+        // return_array[1] = $"{tag_name} online value";
+        // return_array[2] = $"{tag_name} online value: {tagValue_online}";
+        // return_array[3] = $"{tagValue_offline}";
+        // return_array[4] = $"{tag_name} offline value";
+        // return_array[5] = $"{tag_name} offline value: {tagValue_offline}";
+        static async Task<string[]> GetTagValueAsync(string tag_name, string data_type, LogixProject project)
         {
             var tagPath = $"Controller/Tags/Tag[@Name='{tag_name}']";
+            string[] return_array = new string[6];
             try
             {
-                if (online_or_offline == "online")
+                if (data_type == "DINT")
                 {
-
-                    if (data_type == "DINT")
-                    {
-                        int tagValue_online = await project.GetTagValueDINTAsync(tagPath, LogixProject.TagOperationMode.Online);
-                        return $"{tag_name} {online_or_offline} value: {tagValue_online}";
-                    }
-                    else if (data_type == "BOOL")
-                    {
-                        bool tagValue_online = await project.GetTagValueBOOLAsync(tagPath, LogixProject.TagOperationMode.Online);
-                        return $"{tag_name} {online_or_offline} value: {tagValue_online}";
-                    }
-                    else if (data_type == "REAL")
-                    {
-                        float tagValue_online = await project.GetTagValueREALAsync(tagPath, LogixProject.TagOperationMode.Online);
-                        return $"{tag_name} {online_or_offline} value: {tagValue_online}";
-                    }
-                    else
-                    {
-                        Console.WriteLine($"ERROR executing command: The data type {data_type} cannot be handled. Select either DINT, BOOL, or REAL.");
-                    }
+                    int tagValue_online = await project.GetTagValueDINTAsync(tagPath, LogixProject.TagOperationMode.Online);
+                    return_array[0] = $"{tagValue_online}";
+                    return_array[1] = $"{tag_name} online value";
+                    return_array[2] = $"{tag_name} online value: {tagValue_online}";
                 }
-                else if (online_or_offline == "offline")
+                else if (data_type == "BOOL")
                 {
-                    if (data_type == "DINT")
-                    {
-                        int tagValue_offline = await project.GetTagValueDINTAsync(tagPath, LogixProject.TagOperationMode.Offline);
-                        return $"{tag_name} {online_or_offline} value: {tagValue_offline}";
-                    }
-                    else if (data_type == "BOOL")
-                    {
-                        bool tagValue_offline = await project.GetTagValueBOOLAsync(tagPath, LogixProject.TagOperationMode.Offline);
-                        return $"{tag_name} {online_or_offline} value: {tagValue_offline}";
-                    }
-                    else if (data_type == "REAL")
-                    {
-                        float tagValue_offline = await project.GetTagValueREALAsync(tagPath, LogixProject.TagOperationMode.Offline);
-                        return $"{tag_name} {online_or_offline} value: {tagValue_offline}";
-                    }
-                    else
-                    {
-                        Console.WriteLine($"ERROR executing command: The tag {tag_name} of data type {data_type} cannot be handled. \n" +
-                            $"Select either DINT, BOOL, or REAL.");
-                    }
+                    bool tagValue_online = await project.GetTagValueBOOLAsync(tagPath, LogixProject.TagOperationMode.Online);
+                    return_array[0] = $"{tagValue_online}";
+                    return_array[1] = $"{tag_name} online value";
+                    return_array[2] = $"{tag_name} online value: {tagValue_online}";
+                }
+                else if (data_type == "REAL")
+                {
+                    float tagValue_online = await project.GetTagValueREALAsync(tagPath, LogixProject.TagOperationMode.Online);
+                    return_array[0] = $"{tagValue_online}";
+                    return_array[1] = $"{tag_name} online value";
+                    return_array[2] = $"{tag_name} online value: {tagValue_online}";
+                }
+                else
+                {
+                    Console.WriteLine($"ERROR executing command: The data type {data_type} cannot be handled. Select either DINT, BOOL, or REAL.");
+                }
+                if (data_type == "DINT")
+                {
+                    int tagValue_offline = await project.GetTagValueDINTAsync(tagPath, LogixProject.TagOperationMode.Offline);
+                    return_array[3] = $"{tagValue_offline}";
+                    return_array[4] = $"{tag_name} offline value";
+                    return_array[5] = $"{tag_name} offline value: {tagValue_offline}";
+                }
+                else if (data_type == "BOOL")
+                {
+                    bool tagValue_offline = await project.GetTagValueBOOLAsync(tagPath, LogixProject.TagOperationMode.Offline);
+                    return_array[3] = $"{tagValue_offline}";
+                    return_array[4] = $"{tag_name} offline value";
+                    return_array[5] = $"{tag_name} offline value: {tagValue_offline}";
+                }
+                else if (data_type == "REAL")
+                {
+                    float tagValue_offline = await project.GetTagValueREALAsync(tagPath, LogixProject.TagOperationMode.Offline);
+                    return_array[3] = $"{tagValue_offline}";
+                    return_array[4] = $"{tag_name} offline value";
+                    return_array[5] = $"{tag_name} offline value: {tagValue_offline}";
+                }
+                else
+                {
+                    Console.WriteLine($"ERROR executing command: The tag {tag_name} of data type {data_type} cannot be handled. \n" +
+                        $"Select either DINT, BOOL, or REAL.");
                 }
             }
             catch (LogixSdkException ex)
             {
-                Console.WriteLine($"ERROR getting {online_or_offline} tag {tag_name} of data type {data_type}");
+                Console.WriteLine($"ERROR getting tag {tag_name} of data type {data_type}");
                 Console.WriteLine(ex.Message);
             }
-            return "";
+            return return_array;
         }
 
         // Get Tag Value Wait On Result Method
-        public static string CallGetTagValueAsyncAndWaitOnResult(string tag_name, string online_or_offline, string data_type, LogixProject project)
+        public static string[] CallGetTagValueAsyncAndWaitOnResult(string tag_name, string data_type, LogixProject project)
         {
-            var task = GetTagValueAsync(tag_name, online_or_offline, data_type, project);
+            var task = GetTagValueAsync(tag_name, data_type, project);
             task.Wait();
             var result = task.Result;
             return result;
@@ -408,7 +410,7 @@ namespace LogixSDKDemoApp
             }
         }
 
-        // Return Logix Project Mode (supporting CCM method)
+        // Return Logix Project Mode (supporting Change Controller Mode Method)
         private static LogixProject.RequestedControllerMode ToRequestedMode(uint mode)
         {
             switch (mode)
@@ -474,15 +476,18 @@ namespace LogixSDKDemoApp
         }
 
         // Compare Two Tags Method
-        private static void CompareTwoTags(string input1, string input2)
+        private static int CompareOnlineOffline(string[] input_string)
         {
-            if (input1 != input2)
+            if (input_string[0] != input_string[3])
             {
-                Console.WriteLine($"FAILURE: {input1} and {input2} NOT equal.");
+                Console.WriteLine($"FAILURE: {input_string[1]} ({input_string[0]}) & {input_string[4]} ({input_string[3]}) NOT equal.");
+                return 1;
+
             }
             else
             {
-                Console.WriteLine($"SUCCESS: {input1} and {input2} are EQUAL.");
+                Console.WriteLine($"SUCCESS: {input_string[1]} ({input_string[0]}) & {input_string[4]} ({input_string[3]}) are EQUAL.");
+                return 0;
             }
         }
     }
