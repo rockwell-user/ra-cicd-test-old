@@ -7,17 +7,15 @@ pipeline {
     triggers {
         pollSCM '* * * * *'
     }
+    parameters {
+        string(name: 'NAME', description: 'Rockwell Automation')
+        text(name: 'DESC', description: 'This is an example CI/CD pipeline for Studio 5000 Logix Designer application development.')
+    }
     stages {
-        stage('Build') {
-            steps {
-                echo "Building.."
-                echo "BUILD TEST"
-                echo "heeeeey"
-            }
-        }
         stage('Test') {
             steps {
                 echo "Testing.."
+                // "${env.WORKSPACE}/JenkinsScripts/myScript.groovy"
             }
         }
         stage('Publish') {
