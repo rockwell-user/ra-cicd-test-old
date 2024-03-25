@@ -1,0 +1,81 @@
+  =========================================================================================  
+=============================================================================================
+
+         CI/CD TEST STAGE | 3/25/2024 1:36:36 PM (UTC-05:00) Eastern Time (US & Canada)
+
+=============================================================================================
+  =========================================================================================  
+
+
+Project dependencies:
+---------------------------------------------------------------------------------------------
+ACD file path specified:          C:\Users\ASYost\source\repos\ra-cicd-test-old\DEVELOPMENT-files\CICD_test.ACD
+Communication path specified:     EmulateEthernet\127.0.0.1
+Common language runtime version:  v4.0.30319
+---------------------------------------------------------------------------------------------
+
+
+----------------------------------------STAGING TEST-----------------------------------------
+[1:36:36 PM] START opening ACD file...
+[1:37:01 PM] SUCCESS opening ACD file
+---
+[1:37:01 PM] START changing controller to PROGRAM...
+[1:37:02 PM] SUCCESS changing controller to PROGRAM
+---
+[1:37:02 PM] START downloading ACD file...
+[1:37:10 PM] SUCCESS downloading ACD file
+---
+[1:37:10 PM] START Changing controller to RUN...
+[1:37:11 PM] SUCCESS changing controller to RUN
+-----------------------------------------BEGIN TEST------------------------------------------
+[1:37:11 PM] START getting initial project start-up tag values...
+ERROR getting tag test_DINT_1 of data type DINT
+Exception while calling Logix Services Controller COM object. Inner: XMLSrv_E_TARGET_NOT_FOUND - The object was not found that corresponds to the specified Context UId and XPath. (C:\Users\ASYost\source\repos\ra-cicd-test-old\DEVELOPMENT-files\CICD_test.ACD)
+ERROR getting tag TOGGLE_WetBulbTempCalc of data type BOOL
+Exception while calling Logix Services Controller COM object. Inner: XMLSrv_E_TARGET_NOT_FOUND - The object was not found that corresponds to the specified Context UId and XPath. (C:\Users\ASYost\source\repos\ra-cicd-test-old\DEVELOPMENT-files\CICD_test.ACD)
+ERROR getting tag isFahrenheit of data type BOOL
+Exception while calling Logix Services Controller COM object. Inner: XMLSrv_E_TARGET_NOT_FOUND - The object was not found that corresponds to the specified Context UId and XPath. (C:\Users\ASYost\source\repos\ra-cicd-test-old\DEVELOPMENT-files\CICD_test.ACD)
+ERROR getting tag AOI_WetBulbTemp.RelativeHumidity of data type REAL
+Exception while calling Logix Services Controller COM object. Inner: RxE_INVALID_NAME - Invalid name. (C:\Users\ASYost\source\repos\ra-cicd-test-old\DEVELOPMENT-files\CICD_test.ACD)
+ERROR getting tag AOI_WetBulbTemp.Temperature of data type REAL
+Exception while calling Logix Services Controller COM object. Inner: RxE_INVALID_NAME - Invalid name. (C:\Users\ASYost\source\repos\ra-cicd-test-old\DEVELOPMENT-files\CICD_test.ACD)
+ERROR getting tag 0 of data type BOOL
+Exception while calling Logix Services Controller COM object. Inner: XMLSrv_E_TARGET_NOT_FOUND - The object was not found that corresponds to the specified Context UId and XPath. (C:\Users\ASYost\source\repos\ra-cicd-test-old\DEVELOPMENT-files\CICD_test.ACD)
+
+[1:37:11 PM] DONE getting initial project start-up tag values
+---
+[1:37:11 PM] START verifying whether offline and online values are the same...
+SUCCESS:  () &  () are EQUAL.
+SUCCESS:  () &  () are EQUAL.
+SUCCESS:  () &  () are EQUAL.
+SUCCESS:  () &  () are EQUAL.
+SUCCESS:  () &  () are EQUAL.
+[1:37:11 PM] DONE verifying whether offline and online values are the same
+---
+[1:37:11 PM] START setting tag values...
+test_DINT_1 online new value: 111
+[1:37:12 PM] DONE setting tag values
+---
+[1:37:12 PM] START showing final test tag values...
+ERROR getting tag test_DINT_1 of data type DINT
+Exception while calling Logix Services Controller COM object. Inner: XMLSrv_E_TARGET_NOT_FOUND - The object was not found that corresponds to the specified Context UId and XPath. (C:\Users\ASYost\source\repos\ra-cicd-test-old\DEVELOPMENT-files\CICD_test.ACD)
+
+
+ERROR getting tag TOGGLE_WetBulbTempCalc of data type BOOL
+Exception while calling Logix Services Controller COM object. Inner: XMLSrv_E_TARGET_NOT_FOUND - The object was not found that corresponds to the specified Context UId and XPath. (C:\Users\ASYost\source\repos\ra-cicd-test-old\DEVELOPMENT-files\CICD_test.ACD)
+
+
+ERROR getting tag TEST_AOI_WetBulbTemp_isFahrenheit of data type BOOL
+Exception while calling Logix Services Controller COM object. Inner: RxE_INVALID_NAME - Invalid name. (C:\Users\ASYost\source\repos\ra-cicd-test-old\DEVELOPMENT-files\CICD_test.ACD)
+
+
+ERROR getting tag TEST_AOI_WetBulbTemp_RelativeHumidity of data type REAL
+Exception while calling Logix Services Controller COM object. Inner: RxE_INVALID_NAME - Invalid name. (C:\Users\ASYost\source\repos\ra-cicd-test-old\DEVELOPMENT-files\CICD_test.ACD)
+
+
+ERROR getting tag TEST_AOI_WetBulbTemp_Temperature of data type REAL
+Exception while calling Logix Services Controller COM object. Inner: RxE_INVALID_NAME - Invalid name. (C:\Users\ASYost\source\repos\ra-cicd-test-old\DEVELOPMENT-files\CICD_test.ACD)
+
+
+[1:37:12 PM] DONE showing final test tag values
+---------------------------------------TEST SUCCESS------------------------------------------

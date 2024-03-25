@@ -13,6 +13,10 @@
     {
       "AbsoluteMoniker": "D:0:0:{292C8502-710B-41F4-89F0-D1E81BB5E0BE}|ReadControllerMode\\ReadControllerMode.csproj|c:\\users\\asyost\\source\\repos\\ra-cicd-test-old\\cicd-config\\stage-test\\stage-test-configuration\\readcontrollermode\\readcontrollermode.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{292C8502-710B-41F4-89F0-D1E81BB5E0BE}|ReadControllerMode\\ReadControllerMode.csproj|solutionrelative:readcontrollermode\\readcontrollermode.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{62BE6386-7E32-4D9D-B48F-A4542FDF819B}|GetTagValue\\GetTagValue.csproj|c:\\users\\asyost\\source\\repos\\ra-cicd-test-old\\cicd-config\\stage-test\\stage-test-configuration\\gettagvalue\\gettagvalue.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{62BE6386-7E32-4D9D-B48F-A4542FDF819B}|GetTagValue\\GetTagValue.csproj|solutionrelative:gettagvalue\\gettagvalue.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,8 +26,21 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 3,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "GetTagValue.cs",
+              "DocumentMoniker": "C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\cicd-config\\stage-test\\stage-test-configuration\\GetTagValue\\GetTagValue.cs",
+              "RelativeDocumentMoniker": "GetTagValue\\GetTagValue.cs",
+              "ToolTip": "C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\cicd-config\\stage-test\\stage-test-configuration\\GetTagValue\\GetTagValue.cs",
+              "RelativeToolTip": "GetTagValue\\GetTagValue.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABgAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-25T17:28:37.602Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Document",
               "DocumentIndex": 2,
@@ -34,7 +51,8 @@
               "RelativeToolTip": "ReadControllerMode\\ReadControllerMode.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAACEAAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-19T19:25:35.232Z"
+              "WhenOpened": "2024-03-19T19:25:35.232Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -46,7 +64,8 @@
               "RelativeToolTip": "SetTagValue\\SetTagValue.cs",
               "ViewState": "AQIAAAkAAAAAAAAAAAAAABQAAAAvAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-19T19:25:06.576Z"
+              "WhenOpened": "2024-03-19T19:25:06.576Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -56,7 +75,7 @@
               "RelativeDocumentMoniker": "LogixSDKDemoApp\\Program.cs",
               "ToolTip": "C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\cicd-config\\stage-test\\stage-test-configuration\\LogixSDKDemoApp\\Program.cs",
               "RelativeToolTip": "LogixSDKDemoApp\\Program.cs",
-              "ViewState": "AQIAAEQAAAAAAAAAAAAuwFUAAABIAAAA",
+              "ViewState": "AQIAAHkAAAAAAAAAAAAgwJYAAAA2AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-03-19T12:48:28.052Z",
               "EditorCaption": ""

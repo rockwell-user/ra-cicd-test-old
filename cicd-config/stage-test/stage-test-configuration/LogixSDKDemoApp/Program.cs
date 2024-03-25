@@ -92,7 +92,6 @@ namespace LogixSDKDemoApp
             ChangeControllerModeAsync(commPath, 1, myProject).GetAwaiter().GetResult();
             if (ReadControllerModeAsync(commPath, myProject).GetAwaiter().GetResult() == "RUN")
             {
-
                 Console.WriteLine($"[{DateTime.Now.ToString("T")}] SUCCESS changing controller to RUN");
             }
             else
@@ -109,17 +108,22 @@ namespace LogixSDKDemoApp
             string[] TEST_AOI_WetBulbTemp_isFahrenheit;
             string[] TEST_AOI_WetBulbTemp_RelativeHumidity;
             string[] TEST_AOI_WetBulbTemp_Temperature;
+            string[] TEST_AOI_WetBulbTemp_WetBulbTemp;
 
-            // Get initial tag values
+            // Get initial project start-up tag values
             Console.WriteLine($"[{DateTime.Now.ToString("T")}] START getting initial project start-up tag values...");
             test_DINT_1 = CallGetTagValueAsyncAndWaitOnResult("test_DINT_1", "DINT", myProject);
             TOGGLE_WetBulbTempCalc = CallGetTagValueAsyncAndWaitOnResult("TOGGLE_WetBulbTempCalc", "BOOL", myProject);
+            //AOI_WetBulbTemp_isFahrenheit = CallGetTagValueAsyncAndWaitOnResult("AOI_WetBulbTemp/isFahrenheit", "BOOL", myProject);
+            //AOI_WetBulbTemp_RelativeHumidity = CallGetTagValueAsyncAndWaitOnResult("AOI_WetBulbTemp.RelativeHumidity", "REAL", myProject);
+            //AOI_WetBulbTemp_Temperature = CallGetTagValueAsyncAndWaitOnResult("AOI_WetBulbTemp\\Temperature", "REAL", myProject);
             TEST_AOI_WetBulbTemp_isFahrenheit = CallGetTagValueAsyncAndWaitOnResult("TEST_AOI_WetBulbTemp_isFahrenheit", "BOOL", myProject);
             TEST_AOI_WetBulbTemp_RelativeHumidity = CallGetTagValueAsyncAndWaitOnResult("TEST_AOI_WetBulbTemp_RelativeHumidity", "REAL", myProject);
             TEST_AOI_WetBulbTemp_Temperature = CallGetTagValueAsyncAndWaitOnResult("TEST_AOI_WetBulbTemp_Temperature", "REAL", myProject);
-            Console.WriteLine($"[{DateTime.Now.ToString("T")}] SUCCESS getting initial project start-up tag values\n---");
+            TEST_AOI_WetBulbTemp_WetBulbTemp = CallGetTagValueAsyncAndWaitOnResult("TEST_AOI_WetBulbTemp_WetBulbTemp", "REAL", myProject);
+            Console.WriteLine($"[{DateTime.Now.ToString("T")}] DONE getting initial project start-up tag values\n---");
 
-            // Verify that offline and online values are the same
+            // Verify whether offline and online values are the same
             Console.WriteLine($"[{DateTime.Now.ToString("T")}] START verifying whether offline and online values are the same...");
             int failure_condition = 0;
             failure_condition = failure_condition + CompareOnlineOffline(test_DINT_1);
@@ -127,29 +131,51 @@ namespace LogixSDKDemoApp
             failure_condition = failure_condition + CompareOnlineOffline(TEST_AOI_WetBulbTemp_isFahrenheit);
             failure_condition = failure_condition + CompareOnlineOffline(TEST_AOI_WetBulbTemp_RelativeHumidity);
             failure_condition = failure_condition + CompareOnlineOffline(TEST_AOI_WetBulbTemp_Temperature);
+            failure_condition = failure_condition + CompareOnlineOffline(TEST_AOI_WetBulbTemp_WetBulbTemp);
             Console.WriteLine($"[{DateTime.Now.ToString("T")}] DONE verifying whether offline and online values are the same\n---");
 
             // Set tag values
             Console.WriteLine($"[{DateTime.Now.ToString("T")}] START setting tag values...");
             CallSetTagValueAsyncAndWaitOnResult("test_DINT_1", 111, "online", "DINT", myProject);
-            Console.WriteLine($"[{DateTime.Now.ToString("T")}] SUCCESS setting tag values\n---");
+            CallSetTagValueAsyncAndWaitOnResult("TOGGLE_WetBulbTempCalc", 1, "online", "BOOL", myProject);
+            CallSetTagValueAsyncAndWaitOnResult("TEST_AOI_WetBulbTemp_isFahrenheit", 1, "online", "BOOL", myProject);
+            CallSetTagValueAsyncAndWaitOnResult("TEST_AOI_WetBulbTemp_RelativeHumidity", 30, "online", "REAL", myProject);
+            CallSetTagValueAsyncAndWaitOnResult("TEST_AOI_WetBulbTemp_Temperature", 70, "online", "REAL", myProject);
+            Console.WriteLine($"[{DateTime.Now.ToString("T")}] DONE setting tag values\n---");
 
-            // Get final tag values
-            Console.WriteLine($"[{DateTime.Now.ToString("T")}] START getting tag values...");
+            // Verify expected output
+            Console.WriteLine($"[{DateTime.Now.ToString("T")}] START verifying expected tag outputs...");
+            TEST_AOI_WetBulbTemp_WetBulbTemp = CallGetTagValueAsyncAndWaitOnResult("TEST_AOI_WetBulbTemp_WetBulbTemp", "REAL", myProject);
+            TEST_AOI_WetBulbTemp_RelativeHumidity = CallGetTagValueAsyncAndWaitOnResult("TEST_AOI_WetBulbTemp_RelativeHumidity", "REAL", myProject);
+            Console.WriteLine("TEST WILL DELETE LATER: " + TEST_AOI_WetBulbTemp_WetBulbTemp[0]);
+            //Console.WriteLine($"{Int16.Parse(TEST_AOI_WetBulbTemp_WetBulbTemp[0])}");
+            //Console.WriteLine(Convert.ToInt64(TEST_AOI_WetBulbTemp_WetBulbTemp[0]));
+            //Console.WriteLine($"{Convert.ToInt16(TEST_AOI_WetBulbTemp_RelativeHumidity[0])}");
+            //if ((Int32.TryParse(TEST_AOI_WetBulbTemp_WetBulbTemp[0]) > 55) & (Int32.Parse(TEST_AOI_WetBulbTemp_WetBulbTemp[0]) < 56))
+            //{
+            //    Console.WriteLine("SUCCES");
+            //}
+            //else
+            //{
+            //    Console.WriteLine("FAILURE");
+            //}
+            Console.WriteLine($"[{DateTime.Now.ToString("T")}] DONE verifying expected tag outputs\n---");
+
+
+            // Show final tag values
+            Console.WriteLine($"[{DateTime.Now.ToString("T")}] START showing final test tag values...");
             test_DINT_1 = CallGetTagValueAsyncAndWaitOnResult("test_DINT_1", "DINT", myProject);
             Console.WriteLine($"{test_DINT_1[2]}\n{test_DINT_1[5]}");
-
             TOGGLE_WetBulbTempCalc = CallGetTagValueAsyncAndWaitOnResult("TOGGLE_WetBulbTempCalc", "BOOL", myProject);
             Console.WriteLine($"{TOGGLE_WetBulbTempCalc[2]}\n{TOGGLE_WetBulbTempCalc[5]}");
-
             TEST_AOI_WetBulbTemp_isFahrenheit = CallGetTagValueAsyncAndWaitOnResult("TEST_AOI_WetBulbTemp_isFahrenheit", "BOOL", myProject);
             Console.WriteLine($"{TEST_AOI_WetBulbTemp_isFahrenheit[2]}\n{TEST_AOI_WetBulbTemp_isFahrenheit[5]}");
-
             TEST_AOI_WetBulbTemp_RelativeHumidity = CallGetTagValueAsyncAndWaitOnResult("TEST_AOI_WetBulbTemp_RelativeHumidity", "REAL", myProject);
             Console.WriteLine($"{TEST_AOI_WetBulbTemp_RelativeHumidity[2]}\n{TEST_AOI_WetBulbTemp_RelativeHumidity[5]}");
-
             TEST_AOI_WetBulbTemp_Temperature = CallGetTagValueAsyncAndWaitOnResult("TEST_AOI_WetBulbTemp_Temperature", "REAL", myProject);
-            Console.WriteLine($"{TEST_AOI_WetBulbTemp_Temperature[2]}\n{TEST_AOI_WetBulbTemp_Temperature[5]}"); Console.WriteLine($"[{DateTime.Now.ToString("T")}] SUCCESS getting tag values");
+            Console.WriteLine($"{TEST_AOI_WetBulbTemp_Temperature[2]}\n{TEST_AOI_WetBulbTemp_Temperature[5]}");
+            Console.WriteLine($"{TEST_AOI_WetBulbTemp_WetBulbTemp[2]}\n{TEST_AOI_WetBulbTemp_WetBulbTemp[5]}");
+            Console.WriteLine($"[{DateTime.Now.ToString("T")}] DONE showing final test tag values");
 
             // Final Banner
             if (failure_condition > 0)
@@ -180,6 +206,8 @@ namespace LogixSDKDemoApp
         static async Task<string[]> GetTagValueAsync(string tag_name, string data_type, LogixProject project)
         {
             var tagPath = $"Controller/Tags/Tag[@Name='{tag_name}']";
+            // $"Controller/Tags/AOI_TAG_VAL/Tag[@Name='{tag_name}']"
+            // $"Controller/Tags/AOI_TAG_VAL/'{tag_name}']"
             string[] return_array = new string[6];
             try
             {
@@ -237,7 +265,7 @@ namespace LogixSDKDemoApp
             }
             catch (LogixSdkException ex)
             {
-                Console.WriteLine($"ERROR getting tag {tag_name} of data type {data_type}");
+                Console.WriteLine($"ERROR getting tag {tag_name}.");
                 Console.WriteLine(ex.Message);
             }
             return return_array;
@@ -255,7 +283,6 @@ namespace LogixSDKDemoApp
         // Set Tag Value Method
         static async Task SetTagValueAsync(string tag_name, int tag_value_in, string online_or_offline, string data_type, LogixProject project)
         {
-            //int tagValue = int.Parse(tag_value_in);
             var tagPath = $"Controller/Tags/Tag[@Name='{tag_name}']";
             try
             {

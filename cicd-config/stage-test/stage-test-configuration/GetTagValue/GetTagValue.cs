@@ -8,7 +8,6 @@
 
 using RockwellAutomation.LogixDesigner;
 using System;
-using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 
 public class GetTagValue

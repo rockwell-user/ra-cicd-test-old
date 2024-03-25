@@ -1,0 +1,81 @@
+  =========================================================================================  
+=============================================================================================
+
+         CI/CD TEST STAGE | 3/25/2024 1:22:28 PM (UTC-05:00) Eastern Time (US & Canada)
+
+=============================================================================================
+  =========================================================================================  
+
+
+Project dependencies:
+---------------------------------------------------------------------------------------------
+ACD file path specified:          C:\Users\ASYost\source\repos\ra-cicd-test-old\DEVELOPMENT-files\CICD_test.ACD
+Communication path specified:     EmulateEthernet\127.0.0.1
+Common language runtime version:  v4.0.30319
+---------------------------------------------------------------------------------------------
+
+
+----------------------------------------STAGING TEST-----------------------------------------
+[1:22:28 PM] START opening ACD file...
+[1:22:51 PM] SUCCESS opening ACD file
+---
+[1:22:51 PM] START changing controller to PROGRAM...
+[1:22:52 PM] SUCCESS changing controller to PROGRAM
+---
+[1:22:52 PM] START downloading ACD file...
+[1:23:01 PM] SUCCESS downloading ACD file
+---
+[1:23:01 PM] START Changing controller to RUN...
+[1:23:02 PM] SUCCESS changing controller to RUN
+-----------------------------------------BEGIN TEST------------------------------------------
+[1:23:02 PM] START getting initial project start-up tag values...
+ERROR getting tag test_DINT_1 of data type DINT
+Exception while calling Logix Services Controller COM object. Inner: XMLSrv_E_INVALID_TOKEN - An invalid character or word was found while parsing the XPath. (C:\Users\ASYost\source\repos\ra-cicd-test-old\DEVELOPMENT-files\CICD_test.ACD)
+ERROR getting tag TOGGLE_WetBulbTempCalc of data type BOOL
+Exception while calling Logix Services Controller COM object. Inner: XMLSrv_E_INVALID_TOKEN - An invalid character or word was found while parsing the XPath. (C:\Users\ASYost\source\repos\ra-cicd-test-old\DEVELOPMENT-files\CICD_test.ACD)
+ERROR getting tag AOI_WetBulbTemp.isFahrenheit of data type BOOL
+Exception while calling Logix Services Controller COM object. Inner: XMLSrv_E_INVALID_TOKEN - An invalid character or word was found while parsing the XPath. (C:\Users\ASYost\source\repos\ra-cicd-test-old\DEVELOPMENT-files\CICD_test.ACD)
+ERROR getting tag AOI_WetBulbTemp.RelativeHumidity of data type REAL
+Exception while calling Logix Services Controller COM object. Inner: XMLSrv_E_INVALID_TOKEN - An invalid character or word was found while parsing the XPath. (C:\Users\ASYost\source\repos\ra-cicd-test-old\DEVELOPMENT-files\CICD_test.ACD)
+ERROR getting tag AOI_WetBulbTemp.Temperature of data type REAL
+Exception while calling Logix Services Controller COM object. Inner: XMLSrv_E_INVALID_TOKEN - An invalid character or word was found while parsing the XPath. (C:\Users\ASYost\source\repos\ra-cicd-test-old\DEVELOPMENT-files\CICD_test.ACD)
+ERROR getting tag 0 of data type BOOL
+Exception while calling Logix Services Controller COM object. Inner: XMLSrv_E_INVALID_TOKEN - An invalid character or word was found while parsing the XPath. (C:\Users\ASYost\source\repos\ra-cicd-test-old\DEVELOPMENT-files\CICD_test.ACD)
+
+[1:23:02 PM] DONE getting initial project start-up tag values
+---
+[1:23:02 PM] START verifying whether offline and online values are the same...
+SUCCESS:  () &  () are EQUAL.
+SUCCESS:  () &  () are EQUAL.
+SUCCESS:  () &  () are EQUAL.
+SUCCESS:  () &  () are EQUAL.
+SUCCESS:  () &  () are EQUAL.
+[1:23:02 PM] DONE verifying whether offline and online values are the same
+---
+[1:23:02 PM] START setting tag values...
+test_DINT_1 online new value: 111
+[1:23:02 PM] DONE setting tag values
+---
+[1:23:02 PM] START showing final test tag values...
+ERROR getting tag test_DINT_1 of data type DINT
+Exception while calling Logix Services Controller COM object. Inner: XMLSrv_E_INVALID_TOKEN - An invalid character or word was found while parsing the XPath. (C:\Users\ASYost\source\repos\ra-cicd-test-old\DEVELOPMENT-files\CICD_test.ACD)
+
+
+ERROR getting tag TOGGLE_WetBulbTempCalc of data type BOOL
+Exception while calling Logix Services Controller COM object. Inner: XMLSrv_E_INVALID_TOKEN - An invalid character or word was found while parsing the XPath. (C:\Users\ASYost\source\repos\ra-cicd-test-old\DEVELOPMENT-files\CICD_test.ACD)
+
+
+ERROR getting tag TEST_AOI_WetBulbTemp_isFahrenheit of data type BOOL
+Exception while calling Logix Services Controller COM object. Inner: XMLSrv_E_INVALID_TOKEN - An invalid character or word was found while parsing the XPath. (C:\Users\ASYost\source\repos\ra-cicd-test-old\DEVELOPMENT-files\CICD_test.ACD)
+
+
+ERROR getting tag TEST_AOI_WetBulbTemp_RelativeHumidity of data type REAL
+Exception while calling Logix Services Controller COM object. Inner: XMLSrv_E_INVALID_TOKEN - An invalid character or word was found while parsing the XPath. (C:\Users\ASYost\source\repos\ra-cicd-test-old\DEVELOPMENT-files\CICD_test.ACD)
+
+
+ERROR getting tag TEST_AOI_WetBulbTemp_Temperature of data type REAL
+Exception while calling Logix Services Controller COM object. Inner: XMLSrv_E_INVALID_TOKEN - An invalid character or word was found while parsing the XPath. (C:\Users\ASYost\source\repos\ra-cicd-test-old\DEVELOPMENT-files\CICD_test.ACD)
+
+
+[1:23:02 PM] DONE showing final test tag values
+---------------------------------------TEST SUCCESS------------------------------------------
