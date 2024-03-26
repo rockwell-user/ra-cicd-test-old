@@ -1,11 +1,5 @@
 pipeline {
-    agent {
-        dockerfile {
-            filename 'Dockerfile_TestStage'
-            dir 'cicd-config/docker'
-            label 'cicd-test-stage'
-        }
-    }
+    agent none
     // agent any
     // agent { 
     //     node {
@@ -21,8 +15,15 @@ pipeline {
     // }
     stages {
         stage ('Build') {
+            agent {
+                dockerfile {
+                    filename 'cicd-config/jenkins/Dockerfile_TestStage'
+                    label 'docker'
+                }
+            }
             steps {
                 echo "Starting Build..."
+
                 // sh '''
                 // git --version
                 // '''
