@@ -26,8 +26,8 @@ pipeline {
             //agent { dockerfile { dir './cicd-config/jenkins/Dockerfile_TestStage' } }
             agent {
                 dockerfile {
-                    filename 'Dockerfile_TestStage.build'
-                    dir './cicd-config/docker/'
+                    filename 'Dockerfile_TestStage'
+                    dir './cicd-config/docker'
                 }
             }
             // agent { docker 'mcr.microsoft.com/windows/servercore:ltsc2019' }
