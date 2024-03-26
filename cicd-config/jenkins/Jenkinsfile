@@ -26,7 +26,7 @@ pipeline {
             //agent { dockerfile { dir './cicd-config/jenkins/Dockerfile_TestStage' } }
             agent {
                 dockerfile {
-                    filename 'Dockerfile_TestStage'
+                    filename 'Dockerfile_TestStage.build'
                     dir './cicd-config/docker/'
                 }
             }
