@@ -36,17 +36,17 @@ pipeline {
                 script {
                     sh 'ls -d */'
                 }
-                // script {
-                //     dir('/cicd-config/jenkins/'){
-                //         script{
-                //             checkout scm
-                //             def dockerTestImage = docker.build("Dockerfile_TestStage:${env.BUILD_ID}")
-                //             dockerTestImage.inside {
-                //                 sh 'make test'
-                //             }
-                //         }
-                //     }
-                // }
+                script {
+                    dir('cicd-config/docker/'){
+                        script{
+                            checkout scm
+                            def dockerTestImage = docker.build("Dockerfile_TestStage:${env.BUILD_ID}")
+                            // dockerTestImage.inside {
+                            //     sh 'make test'
+                            // }
+                        }
+                    }
+                }
                 // sh '''
                 // git --version
                 // '''
