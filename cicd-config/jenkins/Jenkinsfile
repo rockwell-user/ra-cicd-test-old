@@ -13,7 +13,7 @@
 // }
 
 pipeline {
-    agent none
+    agent { dockerfile true }
     // triggers {
     //     pollSCM '* * * * *'
     // }
@@ -24,14 +24,14 @@ pipeline {
     stages {
         stage ('Build') {
             // agent { dockerfile { dir './cicd-config/jenkins/Dockerfile_TestStage' } }
-            agent {
-                dockerfile {
-                    filename 'Dockerfile_TestStage'
-                    dir 'cicd-config/docker'
-                    label 'docker-agent-windows'
-                    //args '-v /var/run/docker.sock:/var/run/docker.sock'
-                }
-            }
+            // agent {
+            //     dockerfile {
+            //         filename 'Dockerfile_TestStage'
+            //         dir 'cicd-config/docker'
+            //         label 'docker-agent-windows'
+            //         //args '-v /var/run/docker.sock:/var/run/docker.sock'
+            //     }
+            // }
             // agent { docker 'mcr.microsoft.com/windows/servercore:ltsc2019' }
             // agent { 
             //     node {
