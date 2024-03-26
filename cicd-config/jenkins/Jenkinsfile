@@ -1,5 +1,12 @@
 pipeline {
-    agent any
+    agent {
+        dockerfile {
+            filename 'Dockerfile_TestStage'
+            dir 'cicd-config/docker'
+            label 'cicd-test-stage'
+        }
+    }
+    // agent any
     // agent { 
     //     node {
     //         label 'docker-agent-alpine'
@@ -16,18 +23,20 @@ pipeline {
         stage ('Build') {
             steps {
                 echo "Starting Build..."
-
+                // sh '''
+                // git --version
+                // '''
+                
                 // git 'https://github.com/rockwell-user/ra-cicd-test-old.git'
 
-                script {
-                    def exitCode_1 = bat(returnStatus: true, script: 'dotnet build')
-                    if (exitCode_1 == 0) {
-                        echo 'Executable ran successfully'
-                    } else {
-                        error 'Executable failed to run'
-                    }
-                }
-                
+                // script {
+                //     def exitCode_1 = bat(returnStatus: true, script: 'dotnet build')
+                //     if (exitCode_1 == 0) {
+                //         echo 'Executable ran successfully'
+                //     } else {
+                //         error 'Executable failed to run'
+                //     }
+                // }
             }
         }
         stage('Test') {
@@ -35,14 +44,14 @@ pipeline {
                 echo "Starting Test.."
                 // "${env.WORKSPACE}/JenkinsScripts/myScript.groovy"
 
-                script {
-                    def exitCode_2 = bat(returnStatus: true, script: 'cicd-config/stage-test/stage-test-configuration/LogixSDKDemoApp/bin/Debug/net6.0/TestStage_CICDExample.exe')
-                    if (exitCode_2 == 0) {
-                        echo 'Executable ran successfully'
-                    } else {
-                        error 'Executable failed to run'
-                    }
-                }
+                // script {
+                //     def exitCode_2 = bat(returnStatus: true, script: 'cicd-config/stage-test/stage-test-configuration/LogixSDKDemoApp/bin/Debug/net6.0/TestStage_CICDExample.exe')
+                //     if (exitCode_2 == 0) {
+                //         echo 'Executable ran successfully'
+                //     } else {
+                //         error 'Executable failed to run'
+                //     }
+                // }
             }
         }
         stage('Publish') {
