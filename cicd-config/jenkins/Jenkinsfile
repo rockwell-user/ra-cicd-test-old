@@ -40,7 +40,7 @@ pipeline {
                     def dockerHome = tool 'myDocker'
                     env.PATH = "${dockerHome}/bin:${env.PATH}"
                     checkout scm
-                    def dockerTestImage = docker.build("Dockerfile_TestStage:${env.BUILD_ID}")
+                    def dockerTestImage = docker.build("dockerfile_teststage:${env.BUILD_ID}")
                 }
                 // script {
                 //     dir('cicd-config/docker/'){
