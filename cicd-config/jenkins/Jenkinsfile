@@ -13,7 +13,7 @@
 // }
 
 pipeline {
-    agent any
+    agent none
     // triggers {
     //     pollSCM '* * * * *'
     // }
@@ -29,7 +29,7 @@ pipeline {
                     filename 'Dockerfile_TestStage'
                     dir 'cicd-config/docker'
                     label 'docker-agent-windows'
-                    args '-v /var/run/docker.sock:/var/run/docker.sock'
+                    //args '-v /var/run/docker.sock:/var/run/docker.sock'
                 }
             }
             // agent { docker 'mcr.microsoft.com/windows/servercore:ltsc2019' }
@@ -46,6 +46,12 @@ pipeline {
             // }
             steps {
                 echo "Starting Build..."
+                node('docker&&windows') {
+                    bat 'echo NodeName = %COMPUTERNAME%'
+                    docker.image('microsoft/windowsservercore:10.0.14393.206').inside {
+                        bat 'echo %COMPUTERNAME% > container_computername.txt'
+                    }
+                }
                 script {
                     sh 'ls -d */'
                 }
