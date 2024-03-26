@@ -13,7 +13,7 @@
 // }
 
 pipeline {
-    agent none
+    // agent none
     // agent any
     // agent { 
     //     node {
@@ -29,13 +29,15 @@ pipeline {
     // }
     stages {
         stage ('Build') {
-            // agent {
-            //     dockerfile {
-            //         dir './cicd-config/jenkins/Dockerfile_TestStage'
-            //         label 'my-label'
-            //     }
-            // }
-            agent { docker 'mcr.microsoft.com/windows/servercore:ltsc2019' }
+            //agent { dockerfile { dir './cicd-config/jenkins/Dockerfile_TestStage' } }
+            agent {
+                dockerfile {
+                    filename 'Dockerfile_TestStage.build'
+                    dir './cicd-config/jenkins/'
+                    label 'my-label'
+                }
+            }
+            // agent { docker 'mcr.microsoft.com/windows/servercore:ltsc2019' }
             steps {
                 echo "Starting Build..."
 
