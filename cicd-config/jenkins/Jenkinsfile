@@ -27,7 +27,7 @@ pipeline {
             agent {
                 dockerfile {
                     filename 'Dockerfile_TestStage'
-                    dir './ra-cicd-test-old/cicd-config/docker/'
+                    dir './cicd-config/docker/'
                 }
             }
             // agent { docker 'mcr.microsoft.com/windows/servercore:ltsc2019' }
