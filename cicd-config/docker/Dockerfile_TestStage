@@ -1,33 +1,33 @@
 FROM mcr.microsoft.com/windows/servercore:ltsc2019
 
-# Install Git
-RUN powershell -Command \
-    $ErrorActionPreference = 'Stop'; \
-    Invoke-WebRequest -Uri https://github.com/git-for-windows/git/releases/download/v2.35.1.windows.1/MinGit-2.35.1-64-bit.zip -OutFile c:\git.zip; \
-    Expand-Archive c:\git.zip -DestinationPath c:\git; \
-    Remove-Item c:\git.zip -Force; \
-    Rename-Item c:\git\cmd\git.exe c:\git\cmd\git.exe -Force;
+# # Install Git
+# RUN powershell -Command \
+#     $ErrorActionPreference = 'Stop'; \
+#     Invoke-WebRequest -Uri https://github.com/git-for-windows/git/releases/download/v2.35.1.windows.1/MinGit-2.35.1-64-bit.zip -OutFile c:\git.zip; \
+#     Expand-Archive c:\git.zip -DestinationPath c:\git; \
+#     Remove-Item c:\git.zip -Force; \
+#     Rename-Item c:\git\cmd\git.exe c:\git\cmd\git.exe -Force;
 
-# Set Git path
-RUN setx /M PATH "%PATH%;C:\git\cmd"
+# # Set Git path
+# RUN setx /M PATH "%PATH%;C:\git\cmd"
 
-# Install JDK (adjust version as needed)
-RUN powershell -Command \
-    Invoke-WebRequest -Uri https://download.microsoft.com/download/6/6/D/66DDBBA7-D91D-4FF0-AE30-DA82F7949DAA/server-jre-8u311-windows-x64.tar.gz -OutFile c:\server-jre.tar.gz; \
-    Expand-Archive c:\server-jre.tar.gz -DestinationPath c:\java; \
-    Remove-Item c:\server-jre.tar.gz -Force; \
-    Move-Item c:\java\jdk1.8.0_311 c:\java\jdk1.8; \
-    Set-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Environment\' -Name JAVA_HOME -Value 'C:\java\jdk1.8'; \
-    Set-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Environment\' -Name Path -Value ('C:\java\jdk1.8\bin;' + $Env:Path);
+# # Install JDK (adjust version as needed)
+# RUN powershell -Command \
+#     Invoke-WebRequest -Uri https://download.microsoft.com/download/6/6/D/66DDBBA7-D91D-4FF0-AE30-DA82F7949DAA/server-jre-8u311-windows-x64.tar.gz -OutFile c:\server-jre.tar.gz; \
+#     Expand-Archive c:\server-jre.tar.gz -DestinationPath c:\java; \
+#     Remove-Item c:\server-jre.tar.gz -Force; \
+#     Move-Item c:\java\jdk1.8.0_311 c:\java\jdk1.8; \
+#     Set-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Environment\' -Name JAVA_HOME -Value 'C:\java\jdk1.8'; \
+#     Set-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Environment\' -Name Path -Value ('C:\java\jdk1.8\bin;' + $Env:Path);
 
-# Set JAVA_HOME
-ENV JAVA_HOME C:\\java\\jdk1.8
+# # Set JAVA_HOME
+# ENV JAVA_HOME C:\\java\\jdk1.8
 
-# Install Jenkins agent
-RUN powershell -Command \
-    Invoke-WebRequest -Uri https://repo.jenkins-ci.org/public/org/jenkins-ci/main/remoting/4.11/remoting-4.11.jar -OutFile c:\agent.jar;
+# # Install Jenkins agent
+# RUN powershell -Command \
+#     Invoke-WebRequest -Uri https://repo.jenkins-ci.org/public/org/jenkins-ci/main/remoting/4.11/remoting-4.11.jar -OutFile c:\agent.jar;
 
-WORKDIR /agent
+# WORKDIR /agent
 
-# Start Jenkins agent
-ENTRYPOINT ["java", "-jar", "c:/agent.jar"]
+# # Start Jenkins agent
+# ENTRYPOINT ["java", "-jar", "c:/agent.jar"]
