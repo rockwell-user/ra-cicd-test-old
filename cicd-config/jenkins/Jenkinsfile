@@ -13,13 +13,7 @@
 // }
 
 pipeline {
-    // agent none
     agent none
-    // agent { 
-    //     node {
-    //         label 'docker-agent-alpine'
-    //         }
-    //   }
     // triggers {
     //     pollSCM '* * * * *'
     // }
@@ -33,7 +27,7 @@ pipeline {
             agent {
                 dockerfile {
                     filename 'Dockerfile_TestStage'
-                    dir './ra-cicd-test-old/cicd-config/jenkins/'
+                    dir './ra-cicd-test-old/cicd-config/docker/'
                 }
             }
             // agent { docker 'mcr.microsoft.com/windows/servercore:ltsc2019' }
