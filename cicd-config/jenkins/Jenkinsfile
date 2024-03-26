@@ -23,7 +23,7 @@ pipeline {
     // }
     stages {
         stage ('Build') {
-            //agent { dockerfile { dir './cicd-config/jenkins/Dockerfile_TestStage' } }
+            // agent { dockerfile { dir './cicd-config/jenkins/Dockerfile_TestStage' } }
             // agent {
             //     dockerfile {
             //         filename 'Dockerfile_TestStage'
@@ -31,16 +31,17 @@ pipeline {
             //     }
             // }
             // agent { docker 'mcr.microsoft.com/windows/servercore:ltsc2019' }
-            agent { 
-                node {
-                    label 'docker-agent-windows'
-                } 
-            }
+            // agent { 
+            //     node {
+            //         label 'docker-agent-windows'
+            //     } 
+            // }
             steps {
                 echo "Starting Build..."
                 script {
                     sh 'ls -d */'
                 }
+                bat 'whoami'
                 // script {
                 //     def dockerHome = tool 'myDocker'
                 //     env.PATH = "${dockerHome}/bin:${env.PATH}"
