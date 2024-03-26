@@ -34,7 +34,6 @@ pipeline {
                 dockerfile {
                     filename 'Dockerfile_TestStage.build'
                     dir './cicd-config/jenkins/'
-                    label 'my-label'
                 }
             }
             // agent { docker 'mcr.microsoft.com/windows/servercore:ltsc2019' }
