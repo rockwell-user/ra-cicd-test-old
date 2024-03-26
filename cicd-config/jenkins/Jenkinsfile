@@ -31,17 +31,22 @@ pipeline {
             //     }
             // }
             // agent { docker 'mcr.microsoft.com/windows/servercore:ltsc2019' }
+            agent { 
+                node {
+                    label 'docker-agent-windows'
+                } 
+            }
             steps {
                 echo "Starting Build..."
                 script {
                     sh 'ls -d */'
                 }
-                script {
-                    def dockerHome = tool 'myDocker'
-                    env.PATH = "${dockerHome}/bin:${env.PATH}"
-                    checkout scm
-                    def dockerTestImage = docker.build("dockerfile_teststage:${env.BUILD_ID}")
-                }
+                // script {
+                //     def dockerHome = tool 'myDocker'
+                //     env.PATH = "${dockerHome}/bin:${env.PATH}"
+                //     checkout scm
+                //     def dockerTestImage = docker.build("dockerfile_teststage:${env.BUILD_ID}")
+                // }
                 // script {
                 //     dir('cicd-config/docker/'){
                 //         script{
