@@ -40,7 +40,7 @@ pipeline {
                     def dockerHome = tool 'myDocker'
                     env.PATH = "${dockerHome}/bin:${env.PATH}"
                     checkout scm
-                    sudo /etc/init.d/docker start
+                    sudo systemctl enable docker
                     def dockerTestImage = docker.build("dockerfile_teststage:${env.BUILD_ID}")
                 }
                 // script {
