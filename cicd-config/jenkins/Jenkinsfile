@@ -1,5 +1,19 @@
+def AGENT_LABEL = null
+
+node('main') {
+  stage('Checkout and set agent'){
+     checkout scm
+     ### Or just use any other approach to figure out agent label: read file, etc
+     if (env.BRANCH_NAME == 'main') {
+        AGENT_LABEL = "prod"
+     } else {
+        AGENT_LABEL = "dev"
+     }
+   }
+}
+
 pipeline {
-    agent any
+    agent none
     // agent any
     // agent { 
     //     node {
@@ -21,16 +35,21 @@ pipeline {
             //         label 'my-label'
             //     }
             // }
+            agent { docker 'mcr.microsoft.com/windows/servercore:ltsc2019' }
             steps {
                 echo "Starting Build..."
 
-                script {
-                    dir('/cicd-config/jenkins/'){
-                        script{
-                        dockerImage = docker.build("Dockerfile_TestStage")
-                        }
-                    }
-                }
+                // script {
+                //     dir('/cicd-config/jenkins/'){
+                //         script{
+                //             checkout scm
+                //             def dockerTestImage = docker.build("Dockerfile_TestStage:${env.BUILD_ID}")
+                //             dockerTestImage.inside {
+                //                 sh 'make test'
+                //             }
+                //         }
+                //     }
+                // }
                 // sh '''
                 // git --version
                 // '''
