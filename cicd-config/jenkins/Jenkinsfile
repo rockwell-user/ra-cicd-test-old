@@ -37,16 +37,20 @@ pipeline {
                     sh 'ls -d */'
                 }
                 script {
-                    dir('cicd-config/docker/'){
-                        script{
-                            checkout scm
-                            def dockerTestImage = docker.build("Dockerfile_TestStage:${env.BUILD_ID}")
-                            // dockerTestImage.inside {
-                            //     sh 'make test'
-                            // }
-                        }
-                    }
+                    def dockerHome = tool 'myDocker'
+                    env.PATH = "${dockerHome}/bin:${env.PATH}"
                 }
+                // script {
+                //     dir('cicd-config/docker/'){
+                //         script{
+                //             checkout scm
+                //             def dockerTestImage = docker.build("Dockerfile_TestStage:${env.BUILD_ID}")
+                //             // dockerTestImage.inside {
+                //             //     sh 'make test'
+                //             // }
+                //         }
+                //     }
+                // }
                 // sh '''
                 // git --version
                 // '''
