@@ -17,7 +17,7 @@ pipeline {
             steps {
                 echo "Starting Build..."
 
-                git 'https://github.com/rockwell-user/ra-cicd-test-old.git'
+                // git 'https://github.com/rockwell-user/ra-cicd-test-old.git'
 
                 script {
                     def exitCode_1 = bat(returnStatus: true, script: 'dotnet build')
