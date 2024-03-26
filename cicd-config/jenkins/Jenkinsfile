@@ -15,15 +15,22 @@ pipeline {
     // }
     stages {
         stage ('Build') {
-            agent {
-                dockerfile {
-                    dir './cicd-config/jenkins/Dockerfile_TestStage'
-                    label 'my-label'
-                }
-            }
+            // agent {
+            //     dockerfile {
+            //         dir './cicd-config/jenkins/Dockerfile_TestStage'
+            //         label 'my-label'
+            //     }
+            // }
             steps {
                 echo "Starting Build..."
 
+                script {
+                    dir('/cicd-config/jenkins/'){
+                        script{
+                        dockerImage = docker.build("Dockerfile_TestStage")
+                        }
+                    }
+                }
                 // sh '''
                 // git --version
                 // '''
