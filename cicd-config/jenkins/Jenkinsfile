@@ -14,7 +14,7 @@
 
 pipeline {
     // agent none
-    agent any
+    agent none
     // agent { 
     //     node {
     //         label 'docker-agent-alpine'
@@ -32,7 +32,7 @@ pipeline {
             //agent { dockerfile { dir './cicd-config/jenkins/Dockerfile_TestStage' } }
             agent {
                 dockerfile {
-                    filename 'Dockerfile_TestStage.build'
+                    filename 'Dockerfile_TestStage'
                     dir './ra-cicd-test-old/cicd-config/jenkins/'
                 }
             }
