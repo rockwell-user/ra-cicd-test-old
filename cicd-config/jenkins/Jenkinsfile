@@ -33,7 +33,7 @@ pipeline {
             agent {
                 dockerfile {
                     filename 'Dockerfile_TestStage.build'
-                    dir './cicd-config/jenkins/'
+                    dir './ra-cicd-test-old/cicd-config/jenkins/'
                 }
             }
             // agent { docker 'mcr.microsoft.com/windows/servercore:ltsc2019' }
