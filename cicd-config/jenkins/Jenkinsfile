@@ -28,6 +28,8 @@ pipeline {
                 dockerfile {
                     filename 'Dockerfile_TestStage'
                     dir 'cicd-config/docker'
+                    label 'docker-agent-windows'
+                    args '-v /var/run/docker.sock:/var/run/docker.sock'
                 }
             }
             // agent { docker 'mcr.microsoft.com/windows/servercore:ltsc2019' }
@@ -35,6 +37,12 @@ pipeline {
             //     node {
             //         label 'docker-agent-windows'
             //     } 
+            // }
+            // agent {
+            //     docker {
+            //         label 'docker-agent-windows'
+            //         args '-v /var/run/docker.sock:/var/run/docker.sock' 
+            //     }
             // }
             steps {
                 echo "Starting Build..."
