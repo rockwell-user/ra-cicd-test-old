@@ -17,8 +17,8 @@ pipeline {
         stage ('Build') {
             agent {
                 dockerfile {
-                    filename 'cicd-config/jenkins/Dockerfile_TestStage'
-                    label 'docker'
+                    dir './cicd-config/jenkins/Dockerfile_TestStage'
+                    label 'my-label'
                 }
             }
             steps {
