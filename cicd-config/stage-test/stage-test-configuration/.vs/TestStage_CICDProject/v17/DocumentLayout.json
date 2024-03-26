@@ -7,16 +7,16 @@
       "RelativeMoniker": "D:0:0:{209BD886-8F2C-466E-BF19-DF44716F00AE}|LogixSDKDemoApp\\TestStage_CICDExample.csproj|solutionrelative:logixsdkdemoapp\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{62BE6386-7E32-4D9D-B48F-A4542FDF819B}|GetTagValue\\GetTagValue.csproj|c:\\users\\asyost\\source\\repos\\ra-cicd-test-old\\cicd-config\\stage-test\\stage-test-configuration\\gettagvalue\\gettagvalue.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{62BE6386-7E32-4D9D-B48F-A4542FDF819B}|GetTagValue\\GetTagValue.csproj|solutionrelative:gettagvalue\\gettagvalue.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{80BD3CD4-CB0B-43C5-A0AC-280552F45422}|SetTagValue\\SetTagValue.csproj|c:\\users\\asyost\\source\\repos\\ra-cicd-test-old\\cicd-config\\stage-test\\stage-test-configuration\\settagvalue\\settagvalue.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{80BD3CD4-CB0B-43C5-A0AC-280552F45422}|SetTagValue\\SetTagValue.csproj|solutionrelative:settagvalue\\settagvalue.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{292C8502-710B-41F4-89F0-D1E81BB5E0BE}|ReadControllerMode\\ReadControllerMode.csproj|c:\\users\\asyost\\source\\repos\\ra-cicd-test-old\\cicd-config\\stage-test\\stage-test-configuration\\readcontrollermode\\readcontrollermode.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{292C8502-710B-41F4-89F0-D1E81BB5E0BE}|ReadControllerMode\\ReadControllerMode.csproj|solutionrelative:readcontrollermode\\readcontrollermode.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{62BE6386-7E32-4D9D-B48F-A4542FDF819B}|GetTagValue\\GetTagValue.csproj|c:\\users\\asyost\\source\\repos\\ra-cicd-test-old\\cicd-config\\stage-test\\stage-test-configuration\\gettagvalue\\gettagvalue.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{62BE6386-7E32-4D9D-B48F-A4542FDF819B}|GetTagValue\\GetTagValue.csproj|solutionrelative:gettagvalue\\gettagvalue.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,44 +26,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 0,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "GetTagValue.cs",
-              "DocumentMoniker": "C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\cicd-config\\stage-test\\stage-test-configuration\\GetTagValue\\GetTagValue.cs",
-              "RelativeDocumentMoniker": "GetTagValue\\GetTagValue.cs",
-              "ToolTip": "C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\cicd-config\\stage-test\\stage-test-configuration\\GetTagValue\\GetTagValue.cs",
-              "RelativeToolTip": "GetTagValue\\GetTagValue.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABgAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-25T17:28:37.602Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "ReadControllerMode.cs",
-              "DocumentMoniker": "C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\cicd-config\\stage-test\\stage-test-configuration\\ReadControllerMode\\ReadControllerMode.cs",
-              "RelativeDocumentMoniker": "ReadControllerMode\\ReadControllerMode.cs",
-              "ToolTip": "C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\cicd-config\\stage-test\\stage-test-configuration\\ReadControllerMode\\ReadControllerMode.cs",
-              "RelativeToolTip": "ReadControllerMode\\ReadControllerMode.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAACEAAAAJAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-19T19:25:35.232Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "SetTagValue.cs",
-              "DocumentMoniker": "C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\cicd-config\\stage-test\\stage-test-configuration\\SetTagValue\\SetTagValue.cs",
-              "RelativeDocumentMoniker": "SetTagValue\\SetTagValue.cs",
-              "ToolTip": "C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\cicd-config\\stage-test\\stage-test-configuration\\SetTagValue\\SetTagValue.cs",
-              "RelativeToolTip": "SetTagValue\\SetTagValue.cs",
-              "ViewState": "AQIAAAkAAAAAAAAAAAAAABQAAAAvAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-19T19:25:06.576Z"
-            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
@@ -72,9 +36,48 @@
               "RelativeDocumentMoniker": "LogixSDKDemoApp\\Program.cs",
               "ToolTip": "C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\cicd-config\\stage-test\\stage-test-configuration\\LogixSDKDemoApp\\Program.cs",
               "RelativeToolTip": "LogixSDKDemoApp\\Program.cs",
-              "ViewState": "AQIAALIAAAAAAAAAAAAgwGMAAAANAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-19T12:48:28.052Z",
+              "WhenOpened": "2024-03-26T14:01:23.564Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "GetTagValue.cs",
+              "DocumentMoniker": "C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\cicd-config\\stage-test\\stage-test-configuration\\GetTagValue\\GetTagValue.cs",
+              "RelativeDocumentMoniker": "GetTagValue\\GetTagValue.cs",
+              "ToolTip": "C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\cicd-config\\stage-test\\stage-test-configuration\\GetTagValue\\GetTagValue.cs",
+              "RelativeToolTip": "GetTagValue\\GetTagValue.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABgAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-25T17:28:37.602Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ReadControllerMode.cs",
+              "DocumentMoniker": "C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\cicd-config\\stage-test\\stage-test-configuration\\ReadControllerMode\\ReadControllerMode.cs",
+              "RelativeDocumentMoniker": "ReadControllerMode\\ReadControllerMode.cs",
+              "ToolTip": "C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\cicd-config\\stage-test\\stage-test-configuration\\ReadControllerMode\\ReadControllerMode.cs",
+              "RelativeToolTip": "ReadControllerMode\\ReadControllerMode.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAACEAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-19T19:25:35.232Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "SetTagValue.cs",
+              "DocumentMoniker": "C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\cicd-config\\stage-test\\stage-test-configuration\\SetTagValue\\SetTagValue.cs",
+              "RelativeDocumentMoniker": "SetTagValue\\SetTagValue.cs",
+              "ToolTip": "C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\cicd-config\\stage-test\\stage-test-configuration\\SetTagValue\\SetTagValue.cs",
+              "RelativeToolTip": "SetTagValue\\SetTagValue.cs",
+              "ViewState": "AQIAAAYAAAAAAAAAAIBJwBQAAAAvAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-19T19:25:06.576Z",
               "EditorCaption": ""
             }
           ]

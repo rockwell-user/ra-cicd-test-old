@@ -1,24 +1,43 @@
 pipeline {
-    agent { 
-        node {
-            label 'docker-agent-alpine'
-            }
-      }
-    triggers {
-        pollSCM '* * * * *'
-    }
-    parameters {
-        string(name: 'NAME', description: 'Rockwell Automation')
-        text(name: 'DESC', description: 'This is an example CI/CD pipeline for Studio 5000 Logix Designer application development.')
-    }
+    agent any
+    // agent { 
+    //     node {
+    //         label 'docker-agent-alpine'
+    //         }
+    //   }
+    // triggers {
+    //     pollSCM '* * * * *'
+    // }
+    // parameters {
+    //     string(name: 'NAME', description: 'Rockwell Automation')
+    //     text(name: 'DESC', description: 'This is an example CI/CD pipeline for Studio 5000 Logix Designer application development.')
+    // }
     stages {
+        stage ('Build') {
+            steps {
+                echo "Starting Build..."
+
+                git 'https://github.com/rockwell-user/ra-cicd-test-old.git'
+
+                script {
+                    def exitCode_1 = bat(returnStatus: true, script: 'dotnet build')
+                    if (exitCode_1 == 0) {
+                        echo 'Executable ran successfully'
+                    } else {
+                        error 'Executable failed to run'
+                    }
+                }
+                
+            }
+        }
         stage('Test') {
             steps {
-                echo "Testing.."
+                echo "Starting Test.."
                 // "${env.WORKSPACE}/JenkinsScripts/myScript.groovy"
+
                 script {
-                    def exitCode = bat(returnStatus: true, script: 'cicd-config/stage-test/stage-test-configuration/LogixSDKDemoApp/bin/Debug/net6.0/TestStage_CICDExample')
-                    if (exitCode == 0) {
+                    def exitCode_2 = bat(returnStatus: true, script: 'cicd-config/stage-test/stage-test-configuration/LogixSDKDemoApp/bin/Debug/net6.0/TestStage_CICDExample.exe')
+                    if (exitCode_2 == 0) {
                         echo 'Executable ran successfully'
                     } else {
                         error 'Executable failed to run'
@@ -28,13 +47,13 @@ pipeline {
         }
         stage('Publish') {
             steps {
-                echo "Publishing.."
+                echo "Starting Publishing.."
             }
         }
 
         stage('Deliver') {
             steps {
-                echo 'Delivering....'
+                echo 'Starting Delivery....'
             }
         }
     }
