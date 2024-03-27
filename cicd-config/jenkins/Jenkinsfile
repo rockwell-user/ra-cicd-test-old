@@ -13,7 +13,7 @@
 // }
 
 pipeline {
-    agent { dockerfile true }
+    agent none
     // triggers {
     //     pollSCM '* * * * *'
     // }
@@ -23,6 +23,9 @@ pipeline {
     // }
     stages {
         stage ('Build') {
+            agent {
+                label 'windows'
+            }
             // agent { dockerfile { dir './cicd-config/jenkins/Dockerfile_TestStage' } }
             // agent {
             //     dockerfile {
@@ -46,9 +49,10 @@ pipeline {
             // }
             steps {
                 echo "Starting Build..."
-                script {
-                    sh 'ls -d */'
-                }
+                bat 'whoami'
+                // script {
+                //     sh 'ls -d */'
+                // }
                 //bat 'whoami'
                 // script {
                 //     def dockerHome = tool 'myDocker'
