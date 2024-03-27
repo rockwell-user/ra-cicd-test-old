@@ -13,7 +13,9 @@
 // }
 
 pipeline {
-    agent none
+    agent {
+        label 'docker-agent-alpine'
+    }
     // triggers {
     //     pollSCM '* * * * *'
     // }
@@ -23,9 +25,9 @@ pipeline {
     // }
     stages {
         stage ('Build') {
-            agent {
-                label 'windows'
-            }
+            // agent {
+            //     label 'windows'
+            // }
             // agent { dockerfile { dir './cicd-config/jenkins/Dockerfile_TestStage' } }
             // agent {
             //     dockerfile {
@@ -48,8 +50,8 @@ pipeline {
             //     }
             // }
             steps {
-                echo "Starting Build..."
-                bat 'whoami'
+                echo 'Starting Build...'
+                //bat 'whoami'
                 // script {
                 //     sh 'ls -d */'
                 // }
@@ -89,7 +91,7 @@ pipeline {
         }
         stage('Test') {
             steps {
-                echo "Starting Test.."
+                echo 'Starting Test..'
                 // "${env.WORKSPACE}/JenkinsScripts/myScript.groovy"
 
                 // script {
@@ -104,7 +106,7 @@ pipeline {
         }
         stage('Publish') {
             steps {
-                echo "Starting Publishing.."
+                echo 'Starting Publishing..'
             }
         }
 
