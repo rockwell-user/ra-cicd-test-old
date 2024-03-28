@@ -1,7 +1,5 @@
 FROM openjdk:8-windowsservercore
 
-MAINTAINER Rockwell Automation
-
 # Jenkins defaults (use --build-arg to override)
 ARG JENKINS_VERSION=2.46.1
 ARG JENKINS_UC=https://updates.jenkins.io
