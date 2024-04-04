@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "N6Vgpfz0jIt7kDUsgNafY1eZpcYREpO2o8nHxY07Y9myjie2xx6vrgsi18DGAPDWBaeuwoWBX9trOIl68ZQSeQ==",
+  "dgSpecHash": "/dEQIFVhwIJ4jUeC54jzU2iCvRjCv6qwm6xJPjS8knHFJiP0ha0hkpZNM5/MCH99QDmC0qy9p4R1hKuc/pZj2Q==",
   "success": true,
   "projectFilePath": "C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\cicd-config\\stage-test\\stage-test-configuration\\LoadImageFromSDCard\\LoadImageFromSDCard.csproj",
   "expectedPackageFiles": [

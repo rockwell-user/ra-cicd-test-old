@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "s9o0uEBvPSNeGCpqz0lUXnw1eTwrG218p7bpYoClixImpc1EATJDw1NgzMkxRIvIdV86JfGE/mz/soepU7AgrQ==",
+  "dgSpecHash": "KdRyNyiGR5NDdw9nIY2o2ZnIxv+syIJyuTdPrXY29ws9FCT+tixUcUxKXU2IgywtxrF4LTkO3919mbd7hAplAQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\cicd-config\\stage-test\\stage-test-configuration\\SetCommPath\\SetCommPath.csproj",
   "expectedPackageFiles": [

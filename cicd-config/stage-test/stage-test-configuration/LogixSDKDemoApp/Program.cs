@@ -1,9 +1,13 @@
-﻿using RockwellAutomation.LogixDesigner;
+﻿using RockwellAutomation.FactoryTalkLogixEcho.Api.Client;
+using RockwellAutomation.FactoryTalkLogixEcho.Api.Interfaces;
+using RockwellAutomation.LogixDesigner;
 using System;
+using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 
-namespace LogixSDKDemoApp
+namespace TestStage_CICDExample
 {
     internal class Program
     {
@@ -20,6 +24,86 @@ namespace LogixSDKDemoApp
             //string commPath = args[1];                                                                         // comment out if TESTING
             string filePath = @"C:\Users\ASYost\source\repos\ra-cicd-test-old\DEVELOPMENT-files\CICD_test.ACD";  // comment out if RUNNING
             string commPath = @"EmulateEthernet\127.0.0.1";                                                      // comment out if RUNNING
+
+
+
+
+
+
+            var serviceClient = ClientFactory.GetServiceApiClientV2("CLIENT_TestStage_CICDExample");
+
+
+            var chassisList = (await serviceClient.ListChassis()).ToList();
+            var numberOfChassis = chassisList.Count;
+            for (int i = 0; i < numberOfChassis; i++)
+            {
+                Console.WriteLine("PRINTING OUT LOOP: " + chassisList[i].Name);
+            }
+
+
+            serviceClient.Culture = new CultureInfo("en-US");                                                    // note that language can be configured (default is english)
+            // Initialize update object with desired Data
+            var chassisUpdate = new ChassisUpdate
+            {
+                Name = "CICDtest_chassis",
+                Description = "Test chassis for CI/CD demonstration."
+            };
+            // Create new chassis using the update object
+
+            ChassisData chassis_CICD;
+            try
+            {
+                chassis_CICD = await serviceClient.CreateChassis(chassisUpdate);
+                using (var fileHandle = await serviceClient.SendFile(filePath))
+                {
+                    var controllerUpdate = await serviceClient.GetControllerInfoFromAcd(fileHandle);
+                    controllerUpdate.ChassisGuid = chassis_CICD.ChassisGuid;
+                    var controllerData = await serviceClient.CreateController(controllerUpdate);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            // Select the firmware package to use to create the controller
+            //var firmwareGuid = (await serviceClient.ListFirmwarePackages()).First().Uuid;
+            //var firmwareGuid1 = (await serviceClient.ListFirmwarePackages());
+            //Console.WriteLine(firmwareGuid1);
+
+            // In case safety firmware is used, there is the option to add a partner controller
+            //var hasPartner = false;
+            // Determine what slots are available in the chassis taking into account if the new controller will have a partner or not.
+            //var availableSlotsInChassisCICD = await serviceClient.ListAvailableSlotNumbers(chassis_CICD.ChassisGuid, null, hasPartner);
+            //var firstAvailableSlotInChassisCICD = availableSlotsInChassisCICD.First();
+            // Initialize update object with the desired data
+            //var updateForControllerCreation = new ControllerUpdate
+            //{
+            //    FirmwarePackageGuid = firmwareGuid,
+            //    Name = "CICD_test",
+            //    Description = "The CI/CD test controller.",
+            //    ChassisGuid = chassis_CICD.ChassisGuid,
+            //    Slot = Convert.ToUInt32(firstAvailableSlotInChassisCICD),
+            //    IPConfigurationData = new IP4ConfigurationData
+            //    {
+            //        Address = IPAddress.Parse("127.0.0.1"),
+            //        Netmask = IPAddress.Parse("255.255.255.0")
+            //    },
+            //    KeySwitchPosition = KeySwitchPosition.Remote,
+            //    IsEnabled = true,
+            //    IsSdCardAttached = false,
+            //    ProjectPath = filePath,
+            //    HasPartner = hasPartner
+            //};
+
+            // Create the controller using the update object
+            //var controllerData = await serviceClient.CreateController(updateForControllerCreation);
+
+
+
+
+
+
+
 
             // Create new report name. Check if file name already exists and if yes, delete it. Then create the new report text file.
             string textFileReportName = Path.Combine(@"C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\test-reports\",
@@ -192,6 +276,11 @@ namespace LogixSDKDemoApp
         //        METHODS
         // ======================
 
+        private static bool CheckCurrentChassis(string chassis_name, ClientFactory input)
+        {
+            return 0;
+        }
+
         // Get Tag Value Method
         // return_array[0] = $"{tagValue_online}";
         // return_array[1] = $"{tag_name} online value";
@@ -199,7 +288,7 @@ namespace LogixSDKDemoApp
         // return_array[3] = $"{tagValue_offline}";
         // return_array[4] = $"{tag_name} offline value";
         // return_array[5] = $"{tag_name} offline value: {tagValue_offline}";
-        static async Task<string[]> GetTagValueAsync(string tag_name, string data_type, LogixProject project)
+        private static async Task<string[]> GetTagValueAsync(string tag_name, string data_type, LogixProject project)
         {
             var tagPath = $"Controller/Tags/Tag[@Name='{tag_name}']";
             // $"Controller/Tags/AOI_TAG_VAL/Tag[@Name='{tag_name}']"
@@ -268,7 +357,7 @@ namespace LogixSDKDemoApp
         }
 
         // Get Tag Value Wait On Result Method
-        public static string[] CallGetTagValueAsyncAndWaitOnResult(string tag_name, string data_type, LogixProject project)
+        private static string[] CallGetTagValueAsyncAndWaitOnResult(string tag_name, string data_type, LogixProject project)
         {
             var task = GetTagValueAsync(tag_name, data_type, project);
             task.Wait();
@@ -277,7 +366,7 @@ namespace LogixSDKDemoApp
         }
 
         // Set Tag Value Method
-        static async Task SetTagValueAsync(string tag_name, int tag_value_in, string online_or_offline, string data_type, LogixProject project)
+        private static async Task SetTagValueAsync(string tag_name, int tag_value_in, string online_or_offline, string data_type, LogixProject project)
         {
             var tagPath = $"Controller/Tags/Tag[@Name='{tag_name}']";
             try
@@ -345,14 +434,14 @@ namespace LogixSDKDemoApp
         }
 
         // Set Tag Value Wait On Result Method
-        public static void CallSetTagValueAsyncAndWaitOnResult(string tag_name, int tag_value_in, string online_or_offline, string data_type, LogixProject project)
+        private static void CallSetTagValueAsyncAndWaitOnResult(string tag_name, int tag_value_in, string online_or_offline, string data_type, LogixProject project)
         {
             var task = SetTagValueAsync(tag_name, tag_value_in, online_or_offline, data_type, project);
             task.Wait();
         }
 
         // Download Project Method
-        static async Task DownloadProjectAsync(string comm_path, LogixProject project)
+        private static async Task DownloadProjectAsync(string comm_path, LogixProject project)
         {
             try
             {
@@ -404,7 +493,7 @@ namespace LogixSDKDemoApp
         }
 
         // Change Controller Mode Method
-        static async Task ChangeControllerModeAsync(string comm_path, int mode_in, LogixProject project)
+        private static async Task ChangeControllerModeAsync(string comm_path, int mode_in, LogixProject project)
         {
             uint mode = Convert.ToUInt32(mode_in);
 
@@ -458,7 +547,7 @@ namespace LogixSDKDemoApp
         }
 
         // Read Controller Mode Method
-        static async Task<string> ReadControllerModeAsync(string comm_path, LogixProject project)
+        private static async Task<string> ReadControllerModeAsync(string comm_path, LogixProject project)
         {
             try
             {

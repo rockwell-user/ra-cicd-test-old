@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "JjXvBpq43pDfsRHwQhTRxmXVrbIovSj5ToMSt5dKCh2dlAxjDkXWgykLZl55a7qcO8A1llWdpG2PIYYysFd8Gg==",
+  "dgSpecHash": "z/LMwXIW66b4d/42aBrYDr7Eb2tghzX+zZ15LGWRfYSviTj3DIfJMMmxYrD/bZEqoqdCGtzhaSpBe3JR2qF6MA==",
   "success": true,
   "projectFilePath": "C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\cicd-config\\stage-test\\stage-test-configuration\\ProvisionAndValidate\\ProvisionAndValidate.csproj",
   "expectedPackageFiles": [

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "yJ5RRMtwUtuUbDU/0wcyywrDqlriVdwguI3Z1vR8OcNpxX2Mmy2urLikNmbKMKmdxvhxffE4AgxMsbFM1iKWtg==",
+  "dgSpecHash": "G0OFNyNvzeJAy6bGDWgFjyHIoX1rmDPwDIPs38J1k0n48FbL3mRLug+DLBvmXV3JF+XGWb/CQuQTg3bv3rMOeg==",
   "success": true,
   "projectFilePath": "C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\cicd-config\\stage-test\\stage-test-configuration\\DownloadProject\\DownloadProject.csproj",
   "expectedPackageFiles": [

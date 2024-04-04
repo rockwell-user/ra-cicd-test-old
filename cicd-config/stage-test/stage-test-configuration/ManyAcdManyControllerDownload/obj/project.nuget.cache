@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "zXbt/6JgXv+ZWJaGD9vGKWqydhN2JEiRLJdmP1ja8gGSQ9M8b6b4Q1XhnrH1XzQmHW/ppPk5k8mT0tvuq7FfWA==",
+  "dgSpecHash": "F3u7LdslQIzS/VOe7N25cemsAJTdThbA5UV3grSfvjOj0/wBxZuBNexp0rh8uI1xytezw1jSS8OpqpV3S+/3XQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\cicd-config\\stage-test\\stage-test-configuration\\ManyAcdManyControllerDownload\\ManyAcdManyControllerDownload.csproj",
   "expectedPackageFiles": [
