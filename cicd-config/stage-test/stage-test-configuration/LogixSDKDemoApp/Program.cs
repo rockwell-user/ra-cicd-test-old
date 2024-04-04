@@ -1,4 +1,18 @@
-﻿using RockwellAutomation.FactoryTalkLogixEcho.Api.Client;
+﻿// ---------------------------------------------------------------------------------------------------------------------------------------------------------------
+//
+// FileName: Program.cs
+// FileType: Visual C# Source file
+// Size : 31,224
+// Author : Rockwell Automation
+// Created : 2024
+// Last Modified : 04/XX/2024
+// Copy Rights : Rockwell Automation
+// Description : Program to provide an example test in a CI/CD pipeline utilizing Studio 5000 Logix Designer SDK and FactoryTalk Logix Echo SDk.
+//
+// ---------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+#region INCLUDED PROJECT LIBRARIES ---------------------------------------------------------------------------------------------------------------------------------------
+using RockwellAutomation.FactoryTalkLogixEcho.Api.Client;
 using RockwellAutomation.FactoryTalkLogixEcho.Api.Interfaces;
 using RockwellAutomation.LogixDesigner;
 using System;
@@ -6,6 +20,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+#endregion
 
 namespace TestStage_CICDExample
 {
@@ -13,30 +28,31 @@ namespace TestStage_CICDExample
     {
         static async Task Main(string[] args)
         {
+            #region TESTING VARIABLES TO BE COMMENTED OUT OR REMOVED IN ACTUAL IMPLEMENTATION ----------------------------------------------------------------------------
+            string filePath = @"C:\Users\ASYost\source\repos\ra-cicd-test-old\DEVELOPMENT-files\CICD_test.ACD";
+            #endregion
+
+            #region PARSING INCOMING VARIABLES WHEN RUNNING PROJECT EXECUTABLE -----------------------------------------------------------------------------------------
             // MODIFY THE TWO STRINGS BELOW BASED ON PROJECT APPLICATION
-            if (args.Length != 2)
-            {
-                Console.WriteLine(@"Correct Command: .\TestStage_CICDExample github_RepositoryDirectory acd_filename");
-                Console.WriteLine(@"Example Format:  .\TestStage_CICDExample C:\Users\TestUser\Desktop\example-github-repo\ acd_filename.ACD");
-            }
+            //if (args.Length != 2)
+            //{
+            //    Console.WriteLine(@"Correct Command: .\TestStage_CICDExample github_RepositoryDirectory acd_filename");
+            //    Console.WriteLine(@"Example Format:  .\TestStage_CICDExample C:\Users\TestUser\Desktop\example-github-repo\ acd_filename.ACD");
+            //}
             //string github_directory = args[0];
             //string controllerFile = args[1];
             //string filePath = github_directory + "\\DEVELOPMENT-files\\" + controllerFile;     // comment out if TESTING
-            string filePath = @"C:\Users\ASYost\source\repos\ra-cicd-test-old\DEVELOPMENT-files\CICD_test.ACD";
-
+            #endregion
 
             // Set up emulated controller (based on the specified ACD file path) if one does not yet exist. If not, continue.
             var serviceClient = ClientFactory.GetServiceApiClientV2("CLIENT_TestStage_CICDExample");
             serviceClient.Culture = new CultureInfo("en-US");
 
 
-            string[] testControllerInfo = await GetControllerInfo("CICDtest_chassis", "CICD_test", serviceClient); /////////////////////////////////////////////////////////////
-            Console.WriteLine("TEST COMMPATH: " + testControllerInfo[0]);
-            Console.WriteLine("TEST COMMPATH: " + testControllerInfo[1]);
-            Console.WriteLine("TEST COMMPATH: " + testControllerInfo[2]);
-
+            string[] testControllerInfo = await GetControllerInfo("CICDtest_chassis", "CICD_test", serviceClient);
             string commPath = @"EmulateEthernet\" + testControllerInfo[1];
 
+            #region TEST FILE CREATION -------------------------------------------------------------------------------------------------------------------------------
             // Create new report name. Check if file name already exists and if yes, delete it. Then create the new report text file.
             //string textFileReportName = Path.Combine(github_directory + @"cicd-config\stage-test\test-reports\", DateTime.Now.ToString("yyyyMMddHHmmss") + "_testfile.txt");
             string textFileReportName = Path.Combine(@"C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\test-reports\",
@@ -220,11 +236,9 @@ namespace TestStage_CICDExample
             Console.SetOut(oldOut);
             writer.Close();
             ostrm.Close();
+            #endregion
         }
-        // ======================
-        //        METHODS
-        // ======================
-
+        #region METHODS --------------------------------------------------------------------------------------------------------------------------------------------------
         // Get Controller Info Method
         // return_array[0] = controller name
         // return_array[1] = controller IP address
@@ -603,5 +617,6 @@ namespace TestStage_CICDExample
                 return 0;
             }
         }
+        #endregion
     }
 }
