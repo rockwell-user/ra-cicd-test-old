@@ -16,29 +16,29 @@ namespace TestStage_CICDExample
             // MODIFY THE TWO STRINGS BELOW BASED ON PROJECT APPLICATION
             if (args.Length != 2)
             {
-                Console.WriteLine("Correct Command Example: .\\TestStage_CICDExample filePath commPath");
+                Console.WriteLine(@"Correct Command: .\TestStage_CICDExample github_RepositoryDirectory acd_filename");
+                Console.WriteLine(@"Example Format:  .\TestStage_CICDExample C:\Users\TestUser\Desktop\example-github-repo\ acd_filename.ACD");
             }
-            //string filePath = args[0];                                                                         // comment out if TESTING
-            //string commPath = args[1];                                                                         // comment out if TESTING
-            string filePath = @"C:\Users\ASYost\source\repos\ra-cicd-test-old\DEVELOPMENT-files\CICD_test.ACD";  // comment out if RUNNING
-            string commPath = @"EmulateEthernet\127.0.0.1";                                                      // comment out if RUNNING
+            //string github_directory = args[0];
+            //string controllerFile = args[1];
+            //string filePath = github_directory + "\\DEVELOPMENT-files\\" + controllerFile;     // comment out if TESTING
+            string filePath = @"C:\Users\ASYost\source\repos\ra-cicd-test-old\DEVELOPMENT-files\CICD_test.ACD";
 
-            // 
+
+            // Set up emulated controller (based on the specified ACD file path) if one does not yet exist. If not, continue.
             var serviceClient = ClientFactory.GetServiceApiClientV2("CLIENT_TestStage_CICDExample");
-            serviceClient.Culture = new CultureInfo("en-US");                                                    // note that language can be configured (default is english)
-            var chassisUpdate = new ChassisUpdate { Name = "CICDtest_chassis", Description = "Test chassis for CI/CD demonstration." };
-            if (CallCheckCurrentChassisAndWaitOnResult("CICDtest_chassis", serviceClient) == false)
-            {
-                ChassisData chassis_CICD = await serviceClient.CreateChassis(chassisUpdate);
-                using (var fileHandle = await serviceClient.SendFile(filePath))
-                {
-                    var controllerUpdate = await serviceClient.GetControllerInfoFromAcd(fileHandle);
-                    controllerUpdate.ChassisGuid = chassis_CICD.ChassisGuid;
-                    var controllerData = await serviceClient.CreateController(controllerUpdate);
-                }
-            }
+            serviceClient.Culture = new CultureInfo("en-US");
+
+
+            string[] testControllerInfo = await GetControllerInfo("CICDtest_chassis", "CICD_test", serviceClient); /////////////////////////////////////////////////////////////
+            Console.WriteLine("TEST COMMPATH: " + testControllerInfo[0]);
+            Console.WriteLine("TEST COMMPATH: " + testControllerInfo[1]);
+            Console.WriteLine("TEST COMMPATH: " + testControllerInfo[2]);
+
+            string commPath = @"EmulateEthernet\" + testControllerInfo[1];
 
             // Create new report name. Check if file name already exists and if yes, delete it. Then create the new report text file.
+            //string textFileReportName = Path.Combine(github_directory + @"cicd-config\stage-test\test-reports\", DateTime.Now.ToString("yyyyMMddHHmmss") + "_testfile.txt");
             string textFileReportName = Path.Combine(@"C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\test-reports\",
                 DateTime.Now.ToString("yyyyMMddHHmmss") + "_testfile.txt");
             if (File.Exists(textFileReportName))
@@ -81,6 +81,25 @@ namespace TestStage_CICDExample
 
             // Staging Test Banner
             Console.WriteLine("----------------------------------------STAGING TEST-----------------------------------------");
+
+            // PUT STUFF BACK HERE
+
+
+            if (CallCheckCurrentChassisAsyncAndWaitOnResult("CICDtest_chassis", "CICD_test", serviceClient) == false)
+            {
+                var chassisUpdate = new ChassisUpdate
+                {
+                    Name = "CICDtest_chassis",
+                    Description = "Test chassis for CI/CD demonstration."
+                };
+                ChassisData chassis_CICD = await serviceClient.CreateChassis(chassisUpdate);
+                using (var fileHandle = await serviceClient.SendFile(filePath))
+                {
+                    var controllerUpdate = await serviceClient.GetControllerInfoFromAcd(fileHandle);
+                    controllerUpdate.ChassisGuid = chassis_CICD.ChassisGuid;
+                    var controllerData = await serviceClient.CreateController(controllerUpdate);
+                }
+            }
 
             // Open the ACD project file and store the reference as myProject.
             Console.WriteLine($"[{DateTime.Now.ToString("T")}] START opening ACD file...");
@@ -131,9 +150,6 @@ namespace TestStage_CICDExample
             Console.WriteLine($"[{DateTime.Now.ToString("T")}] START getting initial project start-up tag values...");
             test_DINT_1 = CallGetTagValueAsyncAndWaitOnResult("test_DINT_1", "DINT", myProject);
             TOGGLE_WetBulbTempCalc = CallGetTagValueAsyncAndWaitOnResult("TOGGLE_WetBulbTempCalc", "BOOL", myProject);
-            //AOI_WetBulbTemp_isFahrenheit = CallGetTagValueAsyncAndWaitOnResult("AOI_WetBulbTemp/isFahrenheit", "BOOL", myProject);
-            //AOI_WetBulbTemp_RelativeHumidity = CallGetTagValueAsyncAndWaitOnResult("AOI_WetBulbTemp.RelativeHumidity", "REAL", myProject);
-            //AOI_WetBulbTemp_Temperature = CallGetTagValueAsyncAndWaitOnResult("AOI_WetBulbTemp\\Temperature", "REAL", myProject);
             TEST_AOI_WetBulbTemp_isFahrenheit = CallGetTagValueAsyncAndWaitOnResult("TEST_AOI_WetBulbTemp_isFahrenheit", "BOOL", myProject);
             TEST_AOI_WetBulbTemp_RelativeHumidity = CallGetTagValueAsyncAndWaitOnResult("TEST_AOI_WetBulbTemp_RelativeHumidity", "REAL", myProject);
             TEST_AOI_WetBulbTemp_Temperature = CallGetTagValueAsyncAndWaitOnResult("TEST_AOI_WetBulbTemp_Temperature", "REAL", myProject);
@@ -209,21 +225,60 @@ namespace TestStage_CICDExample
         //        METHODS
         // ======================
 
+        // Get Controller Info Method
+        // return_array[0] = controller name
+        // return_array[1] = controller IP address
+        // return_array[2] = controller project file path
+        private static async Task<string[]> GetControllerInfo(string chassis_name, string controller_name, IServiceApiClientV2 serviceClient)
+        {
+            string[] return_array = new string[3];
+            var chassisList = (await serviceClient.ListChassis()).ToList();
+            for (int i = 0; i < chassisList.Count; i++)
+            {
+                if (chassisList[i].Name == chassis_name)
+                {
+                    var chassisGuid = chassisList[i].ChassisGuid;
+                    var controllerList = (await serviceClient.ListControllers(chassisGuid)).ToList();
+                    for (int j = 0; j < controllerList.Count; j++)
+                    {
+                        if (controllerList[j].ControllerName == controller_name)
+                        {
+                            return_array[0] = controllerList[j].ControllerName;
+                            return_array[1] = controllerList[j].IPConfigurationData.Address.ToString() ?? "";
+                            return_array[2] = controllerList[j].ProjectPath;
+                        }
+                    }
+                }
+            }
+            return return_array;
+        }
+
         // Check Current Chassis For A Specific Chassis Name Method
-        private static async Task<bool> CheckCurrentChassis(string chassis_name, IServiceApiClientV2 serviceClient)
+        private static async Task<bool> CheckCurrentChassisAsync(string chassis_name, string controller_name, IServiceApiClientV2 serviceClient)
         {
             var chassisList = (await serviceClient.ListChassis()).ToList();
-            var numberOfChassis = chassisList.Count;
-            for (int i = 0; i < numberOfChassis; i++)
+            for (int i = 0; i < chassisList.Count; i++)
             {
-                if (chassisList[i].Name == chassis_name) { return true; }
+                if (chassisList[i].Name == chassis_name)
+                {
+                    var chassisGuid = chassisList[i].ChassisGuid;
+                    var controllerList = (await serviceClient.ListControllers(chassisGuid)).ToList();
+                    for (int j = 0; j < controllerList.Count; j++)
+                    {
+                        if (controllerList[j].ControllerName == controller_name)
+                        {
+                            return true;
+                        }
+                    }
+                }
             }
             return false;
         }
 
-        private static bool CallCheckCurrentChassisAndWaitOnResult(string chassis_name, IServiceApiClientV2 serviceClient)
+        // Check Current Chassis For A Specific Chassis Name Wait On Result Method
+        private static bool CallCheckCurrentChassisAsyncAndWaitOnResult(string chassis_name, string controller_name, IServiceApiClientV2 serviceClient)
         {
-            var task = CheckCurrentChassis(chassis_name, serviceClient);
+            var task = CheckCurrentChassisAsync(chassis_name, controller_name, serviceClient);
             task.Wait();
             var result = task.Result;
             return result;
