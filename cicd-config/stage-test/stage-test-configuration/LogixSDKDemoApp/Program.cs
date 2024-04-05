@@ -29,31 +29,29 @@ namespace TestStage_CICDExample
     {
         static async Task Main(string[] args)
         {
-            #region TESTING VARIABLES TO BE COMMENTED OUT OR REMOVED IN ACTUAL IMPLEMENTATION ----------------------------------------------------------------------------
-            string filePath = @"C:\Users\ASYost\source\repos\ra-cicd-test-old\DEVELOPMENT-files\CICD_test.ACD";
+            #region TESTING VARIABLES TO BE COMMENTED OUT OR REMOVED WHEN NOT TROUBLESHOOTING ----------------------------------------------------------------------------
+            //string filePath = @"C:\Users\ASYost\source\repos\ra-cicd-test-old\DEVELOPMENT-files\CICD_test.ACD";
+            //string textFileReportName = Path.Combine(@"C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\test-reports\",
+            //DateTime.Now.ToString("yyyyMMddHHmmss") + "_testfile.txt");
             #endregion
 
             #region PARSING INCOMING VARIABLES WHEN RUNNING PROJECT EXECUTABLE -------------------------------------------------------------------------------------------
-            //// Pass the incoming executable variables
-            //if (args.Length != 2)
-            //{
-            //    Console.WriteLine(@"Correct Command: .\TestStage_CICDExample github_RepositoryDirectory acd_filename");
-            //    Console.WriteLine(@"Example Format:  .\TestStage_CICDExample C:\Users\TestUser\Desktop\example-github-repo\ acd_filename.ACD");
-            //}
-            //string github_directory = args[0];
-            //string controllerFile = args[1];
-            //string filePath = github_directory + "\\DEVELOPMENT-files\\" + controllerFile;     // comment out if TESTING
-            //string textFileReportName = Path.Combine(github_directory + @"cicd-config\stage-test\test-reports\", DateTime.Now.ToString("yyyyMMddHHmmss") + "_testfile.txt");
+            // Pass the incoming executable variables
+            if (args.Length != 2)
+            {
+                Console.WriteLine(@"Correct Command: .\TestStage_CICDExample github_RepositoryDirectory acd_filename");
+                Console.WriteLine(@"Example Format:  .\TestStage_CICDExample C:\Users\TestUser\Desktop\example-github-repo\ acd_filename.ACD");
+            }
+            string github_directory = args[0];
+            string controllerFile = args[1];
+            string filePath = github_directory + @"DEVELOPMENT-files\" + controllerFile;     // comment out if TESTING
+            string textFileReportName = Path.Combine(github_directory + @"cicd-config\stage-test\test-reports\", DateTime.Now.ToString("yyyyMMddHHmmss") + "_testfile.txt");
             #endregion
 
             #region TEST FILE CREATION -----------------------------------------------------------------------------------------------------------------------------------
             // Create new report name. Check if file name already exists and if yes, delete it. Then create the new report text file.
-            string textFileReportName = Path.Combine(@"C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\test-reports\",
-                DateTime.Now.ToString("yyyyMMddHHmmss") + "_testfile.txt");
             if (File.Exists(textFileReportName))
-            {
                 File.Delete(textFileReportName);
-            }
             using (StreamWriter sw = File.CreateText(textFileReportName)) ;
 
             // Start process of sending console printouts to a text file 
@@ -121,13 +119,9 @@ namespace TestStage_CICDExample
             Console.WriteLine($"[{DateTime.Now.ToString("T")}] START changing controller to PROGRAM...");
             ChangeControllerModeAsync(commPath, 0, myProject).GetAwaiter().GetResult();
             if (ReadControllerModeAsync(commPath, myProject).GetAwaiter().GetResult() == "PROGRAM")
-            {
                 Console.WriteLine($"[{DateTime.Now.ToString("T")}] SUCCESS changing controller to PROGRAM\n---");
-            }
             else
-            {
                 Console.WriteLine($"[{DateTime.Now.ToString("T")}] FAILURE changing controller to PROGRAM\n---");
-            }
 
             // Download project
             Console.WriteLine($"[{DateTime.Now.ToString("T")}] START downloading ACD file...");
@@ -138,21 +132,17 @@ namespace TestStage_CICDExample
             Console.WriteLine($"[{DateTime.Now.ToString("T")}] START Changing controller to RUN...");
             ChangeControllerModeAsync(commPath, 1, myProject).GetAwaiter().GetResult();
             if (ReadControllerModeAsync(commPath, myProject).GetAwaiter().GetResult() == "RUN")
-            {
                 Console.WriteLine($"[{DateTime.Now.ToString("T")}] SUCCESS changing controller to RUN");
-            }
             else
-            {
                 Console.WriteLine($"[{DateTime.Now.ToString("T")}] FAILURE changing controller to RUN");
-            }
 
             // Begin Test Banner
             Console.WriteLine("-----------------------------------------BEGIN TEST---------------------------------------------------------");
 
             // Get initial project start-up tag values
             Console.WriteLine($"[{DateTime.Now.ToString("T")}] START getting initial project start-up tag values...");
-            string[] test_DINT_1 = CallGetTagValueAsyncAndWaitOnResult("test_DINT_1", "DINT", myProject);
-            string[] TOGGLE_WetBulbTempCalc = CallGetTagValueAsyncAndWaitOnResult("TOGGLE_WetBulbTempCalc", "BOOL", myProject);
+            string[] TEST_DINT_1 = CallGetTagValueAsyncAndWaitOnResult("TEST_DINT_1", "DINT", myProject);
+            string[] TEST_TOGGLE_WetBulbTempCalc = CallGetTagValueAsyncAndWaitOnResult("TEST_TOGGLE_WetBulbTempCalc", "BOOL", myProject);
             string[] TEST_AOI_WetBulbTemp_isFahrenheit = CallGetTagValueAsyncAndWaitOnResult("TEST_AOI_WetBulbTemp_isFahrenheit", "BOOL", myProject);
             string[] TEST_AOI_WetBulbTemp_RelativeHumidity = CallGetTagValueAsyncAndWaitOnResult("TEST_AOI_WetBulbTemp_RelativeHumidity", "REAL", myProject);
             string[] TEST_AOI_WetBulbTemp_Temperature = CallGetTagValueAsyncAndWaitOnResult("TEST_AOI_WetBulbTemp_Temperature", "REAL", myProject);
@@ -162,8 +152,8 @@ namespace TestStage_CICDExample
             // Verify whether offline and online values are the same
             Console.WriteLine($"[{DateTime.Now.ToString("T")}] START verifying whether offline and online values are the same...");
             int failure_condition = 0;
-            failure_condition = failure_condition + CompareOnlineOffline(test_DINT_1);
-            failure_condition = failure_condition + CompareOnlineOffline(TOGGLE_WetBulbTempCalc);
+            failure_condition = failure_condition + CompareOnlineOffline(TEST_DINT_1);
+            failure_condition = failure_condition + CompareOnlineOffline(TEST_TOGGLE_WetBulbTempCalc);
             failure_condition = failure_condition + CompareOnlineOffline(TEST_AOI_WetBulbTemp_isFahrenheit);
             failure_condition = failure_condition + CompareOnlineOffline(TEST_AOI_WetBulbTemp_RelativeHumidity);
             failure_condition = failure_condition + CompareOnlineOffline(TEST_AOI_WetBulbTemp_Temperature);
@@ -172,20 +162,18 @@ namespace TestStage_CICDExample
 
             // Set tag values
             Console.WriteLine($"[{DateTime.Now.ToString("T")}] START setting tag values...");
-            CallSetTagValueAsyncAndWaitOnResult("test_DINT_1", 111, "online", "DINT", myProject);
-            CallSetTagValueAsyncAndWaitOnResult("TOGGLE_WetBulbTempCalc", 1, "online", "BOOL", myProject);
-            CallSetTagValueAsyncAndWaitOnResult("TEST_AOI_WetBulbTemp_isFahrenheit", 1, "online", "BOOL", myProject);
-            CallSetTagValueAsyncAndWaitOnResult("TEST_AOI_WetBulbTemp_RelativeHumidity", 30, "online", "REAL", myProject);
-            CallSetTagValueAsyncAndWaitOnResult("TEST_AOI_WetBulbTemp_Temperature", 70, "online", "REAL", myProject);
+            CallSetTagValueAsyncAndWaitOnResult(TEST_DINT_1[6], 111, "online", TEST_DINT_1[7], myProject);
+            CallSetTagValueAsyncAndWaitOnResult(TEST_TOGGLE_WetBulbTempCalc[6], 1, "online", TEST_TOGGLE_WetBulbTempCalc[7], myProject);
+            CallSetTagValueAsyncAndWaitOnResult(TEST_AOI_WetBulbTemp_isFahrenheit[6], 1, "online", TEST_AOI_WetBulbTemp_isFahrenheit[7], myProject);
+            CallSetTagValueAsyncAndWaitOnResult(TEST_AOI_WetBulbTemp_RelativeHumidity[6], 30, "online", TEST_AOI_WetBulbTemp_RelativeHumidity[7], myProject);
+            CallSetTagValueAsyncAndWaitOnResult(TEST_AOI_WetBulbTemp_Temperature[6], 70, "online", TEST_AOI_WetBulbTemp_Temperature[7], myProject);
             Console.WriteLine($"[{DateTime.Now.ToString("T")}] DONE setting tag values\n---");
 
             // Verify expected output
             Console.WriteLine($"[{DateTime.Now.ToString("T")}] START verifying expected tag outputs...");
-            TEST_AOI_WetBulbTemp_WetBulbTemp = CallGetTagValueAsyncAndWaitOnResult("TEST_AOI_WetBulbTemp_WetBulbTemp", "REAL", myProject);
+            TEST_AOI_WetBulbTemp_WetBulbTemp = CallGetTagValueAsyncAndWaitOnResult(TEST_AOI_WetBulbTemp_WetBulbTemp[6], TEST_AOI_WetBulbTemp_WetBulbTemp[7], myProject);
             if (TEST_AOI_WetBulbTemp_WetBulbTemp[0] == "52.997536")
-            {
                 Console.WriteLine($"SUCCESS: tag TEST_AOI_WetBulbTemp_WetBulbTemp returned expected result {TEST_AOI_WetBulbTemp_WetBulbTemp[0]}");
-            }
             else
             {
                 Console.WriteLine($"FAILURE: : tag TEST_AOI_WetBulbTemp_WetBulbTemp returned result {TEST_AOI_WetBulbTemp_WetBulbTemp[0]} when expected 52.997536");
@@ -196,28 +184,24 @@ namespace TestStage_CICDExample
 
             // Show final tag values
             Console.WriteLine($"[{DateTime.Now.ToString("T")}] START showing final test tag values...");
-            test_DINT_1 = CallGetTagValueAsyncAndWaitOnResult("test_DINT_1", "DINT", myProject);
-            Console.WriteLine($"{test_DINT_1[2]}\n{test_DINT_1[5]}");
-            TOGGLE_WetBulbTempCalc = CallGetTagValueAsyncAndWaitOnResult("TOGGLE_WetBulbTempCalc", "BOOL", myProject);
-            Console.WriteLine($"{TOGGLE_WetBulbTempCalc[2]}\n{TOGGLE_WetBulbTempCalc[5]}");
-            TEST_AOI_WetBulbTemp_isFahrenheit = CallGetTagValueAsyncAndWaitOnResult("TEST_AOI_WetBulbTemp_isFahrenheit", "BOOL", myProject);
+            TEST_DINT_1 = CallGetTagValueAsyncAndWaitOnResult(TEST_DINT_1[6], TEST_DINT_1[7], myProject);
+            Console.WriteLine($"{TEST_DINT_1[2]}\n{TEST_DINT_1[5]}");
+            TEST_TOGGLE_WetBulbTempCalc = CallGetTagValueAsyncAndWaitOnResult(TEST_TOGGLE_WetBulbTempCalc[6], TEST_TOGGLE_WetBulbTempCalc[7], myProject);
+            Console.WriteLine($"{TEST_TOGGLE_WetBulbTempCalc[2]}\n{TEST_TOGGLE_WetBulbTempCalc[5]}");
+            TEST_AOI_WetBulbTemp_isFahrenheit = CallGetTagValueAsyncAndWaitOnResult(TEST_AOI_WetBulbTemp_isFahrenheit[6], TEST_AOI_WetBulbTemp_isFahrenheit[7], myProject);
             Console.WriteLine($"{TEST_AOI_WetBulbTemp_isFahrenheit[2]}\n{TEST_AOI_WetBulbTemp_isFahrenheit[5]}");
-            TEST_AOI_WetBulbTemp_RelativeHumidity = CallGetTagValueAsyncAndWaitOnResult("TEST_AOI_WetBulbTemp_RelativeHumidity", "REAL", myProject);
+            TEST_AOI_WetBulbTemp_RelativeHumidity = CallGetTagValueAsyncAndWaitOnResult(TEST_AOI_WetBulbTemp_RelativeHumidity[6], TEST_AOI_WetBulbTemp_RelativeHumidity[7], myProject);
             Console.WriteLine($"{TEST_AOI_WetBulbTemp_RelativeHumidity[2]}\n{TEST_AOI_WetBulbTemp_RelativeHumidity[5]}");
-            TEST_AOI_WetBulbTemp_Temperature = CallGetTagValueAsyncAndWaitOnResult("TEST_AOI_WetBulbTemp_Temperature", "REAL", myProject);
+            TEST_AOI_WetBulbTemp_Temperature = CallGetTagValueAsyncAndWaitOnResult(TEST_AOI_WetBulbTemp_Temperature[6], TEST_AOI_WetBulbTemp_Temperature[7], myProject);
             Console.WriteLine($"{TEST_AOI_WetBulbTemp_Temperature[2]}\n{TEST_AOI_WetBulbTemp_Temperature[5]}");
             Console.WriteLine($"{TEST_AOI_WetBulbTemp_WetBulbTemp[2]}\n{TEST_AOI_WetBulbTemp_WetBulbTemp[5]}");
             Console.WriteLine($"[{DateTime.Now.ToString("T")}] DONE showing final test tag values");
 
             // Final Banner
             if (failure_condition > 0)
-            {
                 Console.WriteLine("---------------------------------------TEST FAILURE---------------------------------------------------------");
-            }
             else
-            {
                 Console.WriteLine("---------------------------------------TEST SUCCESS---------------------------------------------------------");
-            }
 
             // Finish process of sending console printouts to the text file specified earlier
             Console.SetOut(oldOut);
@@ -320,12 +304,14 @@ namespace TestStage_CICDExample
         // return_array[3] = $"{tagValue_offline}";
         // return_array[4] = $"{tag_name} offline value";
         // return_array[5] = $"{tag_name} offline value: {tagValue_offline}";
+        // return_array[6] = tag_name;
+        // return_array[7] = data_type;
         private static async Task<string[]> GetTagValueAsync(string tag_name, string data_type, LogixProject project)
         {
             var tagPath = $"Controller/Tags/Tag[@Name='{tag_name}']";
             // $"Controller/Tags/AOI_TAG_VAL/Tag[@Name='{tag_name}']"
             // $"Controller/Tags/AOI_TAG_VAL/'{tag_name}']"
-            string[] return_array = new string[6];
+            string[] return_array = new string[8];
             try
             {
                 if (data_type == "DINT")
@@ -379,6 +365,8 @@ namespace TestStage_CICDExample
                     Console.WriteLine($"ERROR executing command: The tag {tag_name} of data type {data_type} cannot be handled. \n" +
                         $"Select either DINT, BOOL, or REAL.");
                 }
+                return_array[6] = tag_name;
+                return_array[7] = data_type;
             }
             catch (LogixSdkException ex)
             {
