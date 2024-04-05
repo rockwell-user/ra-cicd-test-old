@@ -19,6 +19,7 @@ using System;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 #endregion
 
@@ -32,8 +33,8 @@ namespace TestStage_CICDExample
             string filePath = @"C:\Users\ASYost\source\repos\ra-cicd-test-old\DEVELOPMENT-files\CICD_test.ACD";
             #endregion
 
-            #region PARSING INCOMING VARIABLES WHEN RUNNING PROJECT EXECUTABLE -----------------------------------------------------------------------------------------
-            // MODIFY THE TWO STRINGS BELOW BASED ON PROJECT APPLICATION
+            #region PARSING INCOMING VARIABLES WHEN RUNNING PROJECT EXECUTABLE -------------------------------------------------------------------------------------------
+            //// Pass the incoming executable variables
             //if (args.Length != 2)
             //{
             //    Console.WriteLine(@"Correct Command: .\TestStage_CICDExample github_RepositoryDirectory acd_filename");
@@ -42,19 +43,11 @@ namespace TestStage_CICDExample
             //string github_directory = args[0];
             //string controllerFile = args[1];
             //string filePath = github_directory + "\\DEVELOPMENT-files\\" + controllerFile;     // comment out if TESTING
+            //string textFileReportName = Path.Combine(github_directory + @"cicd-config\stage-test\test-reports\", DateTime.Now.ToString("yyyyMMddHHmmss") + "_testfile.txt");
             #endregion
 
-            // Set up emulated controller (based on the specified ACD file path) if one does not yet exist. If not, continue.
-            var serviceClient = ClientFactory.GetServiceApiClientV2("CLIENT_TestStage_CICDExample");
-            serviceClient.Culture = new CultureInfo("en-US");
-
-
-            string[] testControllerInfo = await GetControllerInfo("CICDtest_chassis", "CICD_test", serviceClient);
-            string commPath = @"EmulateEthernet\" + testControllerInfo[1];
-
-            #region TEST FILE CREATION -------------------------------------------------------------------------------------------------------------------------------
+            #region TEST FILE CREATION -----------------------------------------------------------------------------------------------------------------------------------
             // Create new report name. Check if file name already exists and if yes, delete it. Then create the new report text file.
-            //string textFileReportName = Path.Combine(github_directory + @"cicd-config\stage-test\test-reports\", DateTime.Now.ToString("yyyyMMddHHmmss") + "_testfile.txt");
             string textFileReportName = Path.Combine(@"C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\test-reports\",
                 DateTime.Now.ToString("yyyyMMddHHmmss") + "_testfile.txt");
             if (File.Exists(textFileReportName))
@@ -81,26 +74,24 @@ namespace TestStage_CICDExample
             Console.SetOut(writer);
 
             // Title Banner 
-            Console.WriteLine("  =========================================================================================  ");
-            Console.WriteLine("=============================================================================================\n");
-            Console.WriteLine("         CI/CD TEST STAGE | " + DateTime.Now + " " + TimeZoneInfo.Local);
-            Console.WriteLine("\n=============================================================================================");
-            Console.WriteLine("  =========================================================================================  \n\n");
+            Console.WriteLine("  ========================================================================================================  ");
+            Console.WriteLine("============================================================================================================\n");
+            Console.WriteLine("                   CI/CD TEST STAGE | " + DateTime.Now + " " + TimeZoneInfo.Local);
+            Console.WriteLine("\n============================================================================================================");
+            Console.WriteLine("  ========================================================================================================  \n\n");
 
             // Printout relevant test information
-            Console.WriteLine("Project dependencies:");
-            Console.WriteLine("---------------------------------------------------------------------------------------------");
+            Console.WriteLine("--------------------------------------TEST DEPENDENCIES-----------------------------------------------------");
             Console.WriteLine($"ACD file path specified:          {filePath}");
-            Console.WriteLine($"Communication path specified:     {commPath}");
             Console.WriteLine("Common language runtime version:  " + typeof(string).Assembly.ImageRuntimeVersion);
-            Console.WriteLine("---------------------------------------------------------------------------------------------\n\n");
 
             // Staging Test Banner
-            Console.WriteLine("----------------------------------------STAGING TEST-----------------------------------------");
+            Console.WriteLine("----------------------------------------STAGING TEST--------------------------------------------------------");
 
-            // PUT STUFF BACK HERE
-
-
+            // Set up emulated controller (based on the specified ACD file path) if one does not yet exist. If not, continue.
+            Console.WriteLine($"[{DateTime.Now.ToString("T")}] START setting up FactoryTalk Logix Echo emulated controller...");
+            var serviceClient = ClientFactory.GetServiceApiClientV2("CLIENT_TestStage_CICDExample");
+            serviceClient.Culture = new CultureInfo("en-US");
             if (CallCheckCurrentChassisAsyncAndWaitOnResult("CICDtest_chassis", "CICD_test", serviceClient) == false)
             {
                 var chassisUpdate = new ChassisUpdate
@@ -116,6 +107,10 @@ namespace TestStage_CICDExample
                     var controllerData = await serviceClient.CreateController(controllerUpdate);
                 }
             }
+            string[] testControllerInfo = await GetControllerInfo("CICDtest_chassis", "CICD_test", serviceClient);
+            string commPath = @"EmulateEthernet\" + testControllerInfo[1];
+            Console.WriteLine($"SUCCESS: project communication path specified is \"{commPath}\"");
+            Console.WriteLine($"[{DateTime.Now.ToString("T")}] DONE setting up FactoryTalk Logix Echo emulated controller\n---");
 
             // Open the ACD project file and store the reference as myProject.
             Console.WriteLine($"[{DateTime.Now.ToString("T")}] START opening ACD file...");
@@ -152,24 +147,16 @@ namespace TestStage_CICDExample
             }
 
             // Begin Test Banner
-            Console.WriteLine("-----------------------------------------BEGIN TEST------------------------------------------");
-
-            // Initialize variables to be tested
-            string[] test_DINT_1;
-            string[] TOGGLE_WetBulbTempCalc;
-            string[] TEST_AOI_WetBulbTemp_isFahrenheit;
-            string[] TEST_AOI_WetBulbTemp_RelativeHumidity;
-            string[] TEST_AOI_WetBulbTemp_Temperature;
-            string[] TEST_AOI_WetBulbTemp_WetBulbTemp;
+            Console.WriteLine("-----------------------------------------BEGIN TEST---------------------------------------------------------");
 
             // Get initial project start-up tag values
             Console.WriteLine($"[{DateTime.Now.ToString("T")}] START getting initial project start-up tag values...");
-            test_DINT_1 = CallGetTagValueAsyncAndWaitOnResult("test_DINT_1", "DINT", myProject);
-            TOGGLE_WetBulbTempCalc = CallGetTagValueAsyncAndWaitOnResult("TOGGLE_WetBulbTempCalc", "BOOL", myProject);
-            TEST_AOI_WetBulbTemp_isFahrenheit = CallGetTagValueAsyncAndWaitOnResult("TEST_AOI_WetBulbTemp_isFahrenheit", "BOOL", myProject);
-            TEST_AOI_WetBulbTemp_RelativeHumidity = CallGetTagValueAsyncAndWaitOnResult("TEST_AOI_WetBulbTemp_RelativeHumidity", "REAL", myProject);
-            TEST_AOI_WetBulbTemp_Temperature = CallGetTagValueAsyncAndWaitOnResult("TEST_AOI_WetBulbTemp_Temperature", "REAL", myProject);
-            TEST_AOI_WetBulbTemp_WetBulbTemp = CallGetTagValueAsyncAndWaitOnResult("TEST_AOI_WetBulbTemp_WetBulbTemp", "REAL", myProject);
+            string[] test_DINT_1 = CallGetTagValueAsyncAndWaitOnResult("test_DINT_1", "DINT", myProject);
+            string[] TOGGLE_WetBulbTempCalc = CallGetTagValueAsyncAndWaitOnResult("TOGGLE_WetBulbTempCalc", "BOOL", myProject);
+            string[] TEST_AOI_WetBulbTemp_isFahrenheit = CallGetTagValueAsyncAndWaitOnResult("TEST_AOI_WetBulbTemp_isFahrenheit", "BOOL", myProject);
+            string[] TEST_AOI_WetBulbTemp_RelativeHumidity = CallGetTagValueAsyncAndWaitOnResult("TEST_AOI_WetBulbTemp_RelativeHumidity", "REAL", myProject);
+            string[] TEST_AOI_WetBulbTemp_Temperature = CallGetTagValueAsyncAndWaitOnResult("TEST_AOI_WetBulbTemp_Temperature", "REAL", myProject);
+            string[] TEST_AOI_WetBulbTemp_WetBulbTemp = CallGetTagValueAsyncAndWaitOnResult("TEST_AOI_WetBulbTemp_WetBulbTemp", "REAL", myProject);
             Console.WriteLine($"[{DateTime.Now.ToString("T")}] DONE getting initial project start-up tag values\n---");
 
             // Verify whether offline and online values are the same
@@ -181,7 +168,7 @@ namespace TestStage_CICDExample
             failure_condition = failure_condition + CompareOnlineOffline(TEST_AOI_WetBulbTemp_RelativeHumidity);
             failure_condition = failure_condition + CompareOnlineOffline(TEST_AOI_WetBulbTemp_Temperature);
             failure_condition = failure_condition + CompareOnlineOffline(TEST_AOI_WetBulbTemp_WetBulbTemp);
-            Console.WriteLine($"[{DateTime.Now.ToString("T")}] DONE verifying whether offline and online values are the same\n---");
+            Console.Write($"[{DateTime.Now.ToString("T")}] DONE verifying whether offline and online values are the same\n---\n");
 
             // Set tag values
             Console.WriteLine($"[{DateTime.Now.ToString("T")}] START setting tag values...");
@@ -225,11 +212,11 @@ namespace TestStage_CICDExample
             // Final Banner
             if (failure_condition > 0)
             {
-                Console.WriteLine("---------------------------------------TEST FAILURE------------------------------------------");
+                Console.WriteLine("---------------------------------------TEST FAILURE---------------------------------------------------------");
             }
             else
             {
-                Console.WriteLine("---------------------------------------TEST SUCCESS------------------------------------------");
+                Console.WriteLine("---------------------------------------TEST SUCCESS---------------------------------------------------------");
             }
 
             // Finish process of sending console printouts to the text file specified earlier
@@ -239,6 +226,34 @@ namespace TestStage_CICDExample
             #endregion
         }
         #region METHODS --------------------------------------------------------------------------------------------------------------------------------------------------
+        // Wrap Text Method
+        private static string WrapText(string input_string)
+        {
+            int myLimit = 100;
+            string[] words = input_string.Split(' ');
+            StringBuilder newSentence = new StringBuilder();
+            string line = "";
+            int numberOfNewLines = 0;
+            foreach (string word in words)
+            {
+                if ((line + word).Length > myLimit)
+                {
+                    newSentence.AppendLine(line);
+                    line = "";
+                    numberOfNewLines++;
+                }
+                line += string.Format("{0} ", word);
+            }
+            if (line.Length > 0)
+            {
+                if (numberOfNewLines > 0)
+                    newSentence.AppendLine("         " + line);
+                else
+                    newSentence.AppendLine(line);
+            }
+            return newSentence.ToString();
+        }
+
         // Get Controller Info Method
         // return_array[0] = controller name
         // return_array[1] = controller IP address
@@ -607,13 +622,13 @@ namespace TestStage_CICDExample
         {
             if (input_string[0] != input_string[3])
             {
-                Console.WriteLine($"FAILURE: {input_string[1]} ({input_string[0]}) & {input_string[4]} ({input_string[3]}) NOT equal.");
+                Console.WriteLine(WrapText($"FAILURE: {input_string[1]} ({input_string[0]}) & {input_string[4]} ({input_string[3]}) NOT equal."));
                 return 1;
 
             }
             else
             {
-                Console.WriteLine($"SUCCESS: {input_string[1]} ({input_string[0]}) & {input_string[4]} ({input_string[3]}) are EQUAL.");
+                Console.Write(WrapText($"SUCCESS: {input_string[1]} ({input_string[0]}) & {input_string[4]} ({input_string[3]}) are EQUAL."));
                 return 0;
             }
         }
