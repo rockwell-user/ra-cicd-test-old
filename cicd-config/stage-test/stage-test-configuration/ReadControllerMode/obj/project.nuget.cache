@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "pKHVplDKTxZlMQMOCXi+LNXG25zQeEWrzvztOS021i+pXo7a63OA9NE2a8aPpMYXQ5GS3RPfV+2+6yR43iBgIw==",
+  "dgSpecHash": "PMDbpWOyVG4ivmiu6Y/1uYP1kMxWW/5T5lgldl5ijdPidqZZlVjrmV5l3eXbmqzgoM1aWnPyVOsiXOVbut/BZw==",
   "success": true,
   "projectFilePath": "C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\cicd-config\\stage-test\\stage-test-configuration\\ReadControllerMode\\ReadControllerMode.csproj",
   "expectedPackageFiles": [

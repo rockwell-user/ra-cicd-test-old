@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "M0Kl2cpVIOtugEnbKSfNLtG66KdFpz22RqMcQc0MZj4bNmMdOm+8uGlI7tCyzgvgwxjtcEwepecZYyDL2R8uCQ==",
+  "dgSpecHash": "HzHIhemjBZjSAjM3H2r4PNeCNqjFnWHy0v7Kq6sYGuQQgMq0sgjD/iajG6DkOdgWO7bbq9kKuWQlZHUfgT+yUA==",
   "success": true,
   "projectFilePath": "C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\cicd-config\\stage-test\\stage-test-configuration\\GetTagValue\\GetTagValue.csproj",
   "expectedPackageFiles": [

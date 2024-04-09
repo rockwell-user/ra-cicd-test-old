@@ -7,7 +7,7 @@
 // Created : 2024
 // Last Modified : 04/XX/2024
 // Copy Rights : Rockwell Automation
-// Description : Program to provide an example test in a CI/CD pipeline utilizing Studio 5000 Logix Designer SDK and FactoryTalk Logix Echo SDk.
+// Description : Program to provide an example test in a CI/CD pipeline utilizing Studio 5000 Logix Designer SDK and FactoryTalk Logix Echo SDK.
 //
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -52,12 +52,13 @@ namespace TestStage_CICDExample
             // Create new report name. Check if file name already exists and if yes, delete it. Then create the new report text file.
             if (File.Exists(textFileReportName))
                 File.Delete(textFileReportName);
-            using (StreamWriter sw = File.CreateText(textFileReportName)) ;
+            //using (StreamWriter sw = File.CreateText(textFileReportName)) ; 
 
             // Start process of sending console printouts to a text file 
             FileStream ostrm;
             StreamWriter writer;
             TextWriter oldOut = Console.Out;
+
             try
             {
                 ostrm = new FileStream(textFileReportName, FileMode.OpenOrCreate, FileAccess.Write);
@@ -180,7 +181,6 @@ namespace TestStage_CICDExample
                 ++failure_condition;
             }
             Console.WriteLine($"[{DateTime.Now.ToString("T")}] DONE verifying expected tag outputs\n---");
-
 
             // Show final tag values
             Console.WriteLine($"[{DateTime.Now.ToString("T")}] START showing final test tag values...");

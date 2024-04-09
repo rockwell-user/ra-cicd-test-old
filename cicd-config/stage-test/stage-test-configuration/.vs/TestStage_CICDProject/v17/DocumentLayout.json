@@ -7,16 +7,16 @@
       "RelativeMoniker": "D:0:0:{209BD886-8F2C-466E-BF19-DF44716F00AE}|LogixSDKDemoApp\\TestStage_CICDExample.csproj|solutionrelative:logixsdkdemoapp\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{292C8502-710B-41F4-89F0-D1E81BB5E0BE}|ReadControllerMode\\ReadControllerMode.csproj|c:\\users\\asyost\\source\\repos\\ra-cicd-test-old\\cicd-config\\stage-test\\stage-test-configuration\\readcontrollermode\\readcontrollermode.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{292C8502-710B-41F4-89F0-D1E81BB5E0BE}|ReadControllerMode\\ReadControllerMode.csproj|solutionrelative:readcontrollermode\\readcontrollermode.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{62BE6386-7E32-4D9D-B48F-A4542FDF819B}|GetTagValue\\GetTagValue.csproj|c:\\users\\asyost\\source\\repos\\ra-cicd-test-old\\cicd-config\\stage-test\\stage-test-configuration\\gettagvalue\\gettagvalue.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{62BE6386-7E32-4D9D-B48F-A4542FDF819B}|GetTagValue\\GetTagValue.csproj|solutionrelative:gettagvalue\\gettagvalue.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{80BD3CD4-CB0B-43C5-A0AC-280552F45422}|SetTagValue\\SetTagValue.csproj|c:\\users\\asyost\\source\\repos\\ra-cicd-test-old\\cicd-config\\stage-test\\stage-test-configuration\\settagvalue\\settagvalue.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{80BD3CD4-CB0B-43C5-A0AC-280552F45422}|SetTagValue\\SetTagValue.csproj|solutionrelative:settagvalue\\settagvalue.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{292C8502-710B-41F4-89F0-D1E81BB5E0BE}|ReadControllerMode\\ReadControllerMode.csproj|c:\\users\\asyost\\source\\repos\\ra-cicd-test-old\\cicd-config\\stage-test\\stage-test-configuration\\readcontrollermode\\readcontrollermode.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{292C8502-710B-41F4-89F0-D1E81BB5E0BE}|ReadControllerMode\\ReadControllerMode.csproj|solutionrelative:readcontrollermode\\readcontrollermode.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -36,14 +36,14 @@
               "RelativeDocumentMoniker": "LogixSDKDemoApp\\Program.cs",
               "ToolTip": "C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\cicd-config\\stage-test\\stage-test-configuration\\LogixSDKDemoApp\\Program.cs",
               "RelativeToolTip": "LogixSDKDemoApp\\Program.cs",
-              "ViewState": "AQIAAGACAAAAAAAAAADovxEAAAANAAAA",
+              "ViewState": "AQIAAB8AAAAAAAAAAAATwCgAAAANAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-03-26T14:01:23.564Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "GetTagValue.cs",
               "DocumentMoniker": "C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\cicd-config\\stage-test\\stage-test-configuration\\GetTagValue\\GetTagValue.cs",
               "RelativeDocumentMoniker": "GetTagValue\\GetTagValue.cs",
@@ -55,7 +55,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 1,
               "Title": "ReadControllerMode.cs",
               "DocumentMoniker": "C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\cicd-config\\stage-test\\stage-test-configuration\\ReadControllerMode\\ReadControllerMode.cs",
               "RelativeDocumentMoniker": "ReadControllerMode\\ReadControllerMode.cs",
@@ -67,7 +67,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "SetTagValue.cs",
               "DocumentMoniker": "C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\cicd-config\\stage-test\\stage-test-configuration\\SetTagValue\\SetTagValue.cs",
               "RelativeDocumentMoniker": "SetTagValue\\SetTagValue.cs",
