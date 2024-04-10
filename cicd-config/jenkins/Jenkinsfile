@@ -24,6 +24,11 @@ pipeline {
                 //         error 'Executable failed to run'
                 //     }
                 // }
+                bat """
+                    cd C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\cicd-config\\stage-test\\stage-test-configuration\\LogixSDKDemoApp
+                    dotnet build
+                    C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\cicd-config\\stage-test\\stage-test-configuration\\LogixSDKDemoApp\\bin\\Debug\\net6.0\\TestStage_CICDExample.exe C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\ CICD_test.ACD
+                """
             }
         }
         stage('Test') {
