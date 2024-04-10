@@ -26,7 +26,7 @@ pipeline {
                 // }
                 bat """
                     ls
-                    cd C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\stage-test-configuration\LogixSDKDemoApp
+                    cd C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\cicd-config\\stage-test\\stage-test-configuration\\LogixSDKDemoApp
                     ls
                 """
             }
