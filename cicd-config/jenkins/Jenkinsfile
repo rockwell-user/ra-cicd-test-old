@@ -24,6 +24,9 @@ pipeline {
                 //         error 'Executable failed to run'
                 //     }
                 // }
+                bat """
+                    cd C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\stage-test-configuration\LogixSDKDemoApp
+                """
             }
         }
         stage('Test') {
