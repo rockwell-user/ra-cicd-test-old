@@ -12,6 +12,7 @@
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 #region INCLUDED PROJECT LIBRARIES ---------------------------------------------------------------------------------------------------------------------------------------
+using Google.Protobuf;
 using RockwellAutomation.FactoryTalkLogixEcho.Api.Client;
 using RockwellAutomation.FactoryTalkLogixEcho.Api.Interfaces;
 using RockwellAutomation.LogixDesigner;
@@ -21,6 +22,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static RockwellAutomation.LogixDesigner.LogixProject;
 #endregion
 
 namespace TestStage_CICDExample
@@ -30,47 +32,81 @@ namespace TestStage_CICDExample
         static async Task Main(string[] args)
         {
             #region TESTING VARIABLES TO BE COMMENTED OUT OR REMOVED WHEN NOT TROUBLESHOOTING ----------------------------------------------------------------------------
-            //string filePath = @"C:\Users\ASYost\source\repos\ra-cicd-test-old\DEVELOPMENT-files\CICD_test.ACD";
-            //string textFileReportName = Path.Combine(@"C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\test-reports\",
-            //DateTime.Now.ToString("yyyyMMddHHmmss") + "_testfile.txt");
+            string filePath = @"C:\Users\ASYost\source\repos\ra-cicd-test-old\DEVELOPMENT-files\CICD_test.ACD";
+            string textFileReportName = Path.Combine(@"C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\test-reports\",
+                DateTime.Now.ToString("yyyyMMddHHmmss") + "_testfile.txt");
             #endregion
 
-            #region PARSING INCOMING VARIABLES WHEN RUNNING PROJECT EXECUTABLE -------------------------------------------------------------------------------------------
-            // Pass the incoming executable variables
-            if (args.Length != 2)
-            {
-                Console.WriteLine(@"Correct Command: .\TestStage_CICDExample github_RepositoryDirectory acd_filename");
-                Console.WriteLine(@"Example Format:  .\TestStage_CICDExample C:\Users\TestUser\Desktop\example-github-repo\ acd_filename.ACD");
-            }
-            string github_directory = args[0];
-            string controllerFile = args[1];
-            string filePath = github_directory + @"DEVELOPMENT-files\" + controllerFile;     // comment out if TESTING
-            string textFileReportName = Path.Combine(github_directory + @"cicd-config\stage-test\test-reports\", DateTime.Now.ToString("yyyyMMddHHmmss") + "_testfile.txt");
-            #endregion
+            //#region PARSING INCOMING VARIABLES WHEN RUNNING PROJECT EXECUTABLE -------------------------------------------------------------------------------------------
+            //// Pass the incoming executable variables
+            //if (args.Length != 2)
+            //{
+            //    Console.WriteLine(@"Correct Command: .\TestStage_CICDExample github_RepositoryDirectory acd_filename");
+            //    Console.WriteLine(@"Example Format:  .\TestStage_CICDExample C:\Users\TestUser\Desktop\example-github-repo\ acd_filename.ACD");
+            //}
+            //string github_directory = args[0];
+            //string controllerFile = args[1];
+            //string filePath = github_directory + @"DEVELOPMENT-files\" + controllerFile;     // comment out if TESTING
+            //string textFileReportName = Path.Combine(github_directory + @"cicd-config\stage-test\test-reports\", DateTime.Now.ToString("yyyyMMddHHmmss") + "_testfile.txt");
+            //#endregion
 
-            #region TEST FILE CREATION -----------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+            //LogixProject myProject1 = await LogixProject.OpenLogixProjectAsync(filePath);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            //#region TEST FILE CREATION -----------------------------------------------------------------------------------------------------------------------------------
             // Create new report name. Check if file name already exists and if yes, delete it. Then create the new report text file.
             if (File.Exists(textFileReportName))
                 File.Delete(textFileReportName);
-            //using (StreamWriter sw = File.CreateText(textFileReportName)) ; 
 
-            // Start process of sending console printouts to a text file 
-            FileStream ostrm;
-            StreamWriter writer;
-            TextWriter oldOut = Console.Out;
+            //// Start process of sending console printouts to a text file 
+            //FileStream ostrm;
+            //StreamWriter writer;
+            //TextWriter oldOut = Console.Out;
 
-            try
-            {
-                ostrm = new FileStream(textFileReportName, FileMode.OpenOrCreate, FileAccess.Write);
-                writer = new StreamWriter(ostrm);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("Cannot open Redirect.txt for writing");
-                Console.WriteLine(e.Message);
-                return;
-            }
-            Console.SetOut(writer);
+            //try
+            //{
+            //    ostrm = new FileStream(textFileReportName, FileMode.OpenOrCreate, FileAccess.Write);
+            //    writer = new StreamWriter(ostrm);
+            //}
+            //catch (Exception e)
+            //{
+            //    Console.WriteLine("Cannot open Redirect.txt for writing");
+            //    Console.WriteLine(e.Message);
+            //    return;
+            //}
+            //Console.SetOut(writer);
 
             // Title Banner 
             Console.WriteLine("  ========================================================================================================  ");
@@ -203,11 +239,61 @@ namespace TestStage_CICDExample
             else
                 Console.WriteLine("---------------------------------------TEST SUCCESS---------------------------------------------------------");
 
-            // Finish process of sending console printouts to the text file specified earlier
-            Console.SetOut(oldOut);
-            writer.Close();
-            ostrm.Close();
-            #endregion
+            //// Finish process of sending console printouts to the text file specified earlier
+            //Console.SetOut(oldOut);
+            //writer.Close();
+            //ostrm.Close();
+            //#endregion
+
+
+
+
+
+            Console.WriteLine("\n\n\nSTARTING TESTING:");
+            await myProject.SetTagValueAsync($"Controller/Tags/Tag[@Name='TEST_DINT_1']", TagOperationMode.Online, BitConverter.GetBytes(11111), DataType.DINT);
+            var testDINT = CallGetComplexTagValueAsyncAndWaitOnResult($"Controller/Tags/Tag[@Name='TEST_DINT_1']", TagOperationMode.Online, DataType.DINT, myProject);
+            if (testDINT != null)
+            {
+                foreach (byte b in testDINT)
+                {
+                    Console.Write(b + " ");
+                }
+            }
+            Console.WriteLine("\nhow many bytes: " + testDINT.Length);
+            Console.WriteLine("The 4 bytes:");
+            Console.WriteLine("0: " + testDINT[0]);
+            Console.WriteLine("1: " + testDINT[1]);
+            Console.WriteLine("2: " + testDINT[2]);
+            Console.WriteLine("3: " + testDINT[3]);
+            string fullDINT = Convert.ToString(Convert.ToUInt16(testDINT[1]), 2).PadLeft(8, '0') + Convert.ToString(Convert.ToUInt16(testDINT[0]), 2).PadLeft(8, '0');
+            Console.WriteLine("string dint altogether: " + fullDINT);
+            var testResultDINT = BinaryStringToInteger(fullDINT);
+            Console.WriteLine("long representation of variable: " + testResultDINT);
+
+            var testAOI = CallGetComplexTagValueAsyncAndWaitOnResult($"Controller/Tags/Tag[@Name='UDT_AllAtomicDataTypes']", TagOperationMode.Online, DataType.BYTE_ARRAY, myProject);
+            if (testAOI != null)
+            {
+                foreach (byte b in testAOI)
+                {
+                    Console.Write(b + " ");
+                }
+            }
+            Console.WriteLine("\nhow many bytes: " + testAOI.Length);
+            Console.WriteLine("The bytes:");
+            Console.WriteLine("0: " + testAOI[0]);
+            Console.WriteLine("1: " + testAOI[1]);
+            Console.WriteLine("2: " + testAOI[2]);
+
+            //Console.WriteLine("NEXT\n");
+            //var testProgAOI = await myProject.GetTagValueAsync($"Program/MainProgram/Tags/Tag[@Name='AOI_WetBulbTempTest']", TagOperationMode.Online, DataType.BYTE_ARRAY);
+            //if (testProgAOI != null)
+            //{
+            //    foreach (byte b in testProgAOI)
+            //    {
+            //        Console.Write(b + " ");
+            //    }
+            //}
+            Console.WriteLine("ENDING TESTING\n\n\n");
         }
         #region METHODS --------------------------------------------------------------------------------------------------------------------------------------------------
         // Wrap Text Method
@@ -266,6 +352,14 @@ namespace TestStage_CICDExample
             return return_array;
         }
 
+        // Get Complex Data Type Tag Value Wait On Result Method
+        private static ByteString CallGetComplexTagValueAsyncAndWaitOnResult(string tagPath, TagOperationMode mode, DataType type, LogixProject project)
+        {
+            var task = project.GetTagValueAsync(tagPath, mode, type);
+            task.Wait();
+            return task.Result;
+        }
+
         // Check Current Chassis For A Specific Chassis Name Method
         private static async Task<bool> CheckCurrentChassisAsync(string chassis_name, string controller_name, IServiceApiClientV2 serviceClient)
         {
@@ -293,8 +387,7 @@ namespace TestStage_CICDExample
         {
             var task = CheckCurrentChassisAsync(chassis_name, controller_name, serviceClient);
             task.Wait();
-            var result = task.Result;
-            return result;
+            return task.Result;
         }
 
         // Get Tag Value Method
@@ -309,8 +402,6 @@ namespace TestStage_CICDExample
         private static async Task<string[]> GetTagValueAsync(string tag_name, string data_type, LogixProject project)
         {
             var tagPath = $"Controller/Tags/Tag[@Name='{tag_name}']";
-            // $"Controller/Tags/AOI_TAG_VAL/Tag[@Name='{tag_name}']"
-            // $"Controller/Tags/AOI_TAG_VAL/'{tag_name}']"
             string[] return_array = new string[8];
             try
             {
@@ -381,8 +472,7 @@ namespace TestStage_CICDExample
         {
             var task = GetTagValueAsync(tag_name, data_type, project);
             task.Wait();
-            var result = task.Result;
-            return result;
+            return task.Result;
         }
 
         // Set Tag Value Method
@@ -619,6 +709,53 @@ namespace TestStage_CICDExample
                 Console.Write(WrapText($"SUCCESS: {input_string[1]} ({input_string[0]}) & {input_string[4]} ({input_string[3]}) are EQUAL."));
                 return 0;
             }
+        }
+
+        // Base Conversion With Specified Radix (2 to 36) Method
+        private static string DecimalToArbitrarySystem(long decimalNumber, int radix)
+        {
+            const int BitsInLong = 64;
+            const string Digits = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+            if (radix < 2 || radix > Digits.Length)
+                throw new ArgumentException("The radix must be >= 2 and <= " + Digits.Length.ToString());
+
+            if (decimalNumber == 0)
+                return "0";
+
+            int index = BitsInLong - 1;
+            long currentNumber = Math.Abs(decimalNumber);
+            char[] charArray = new char[BitsInLong];
+
+            while (currentNumber != 0)
+            {
+                int remainder = (int)(currentNumber % radix);
+                charArray[index--] = Digits[remainder];
+                currentNumber = currentNumber / radix;
+            }
+
+            string result = new String(charArray, index + 1, BitsInLong - index - 1);
+            if (decimalNumber < 0)
+            {
+                result = "-" + result;
+            }
+
+            return result;
+        }
+
+        // Convert Binary String to Output Integer Method
+        private static long BinaryStringToInteger(string binary_string)
+        {
+            long result = 0;
+            int power = 0;
+
+            for (int i = binary_string.Length - 1; i >= 0; i--)
+            {
+                if (binary_string[i] == '1')
+                    result += (long)Math.Pow(2, power);
+                power++;
+            }
+            return result;
         }
         #endregion
     }
