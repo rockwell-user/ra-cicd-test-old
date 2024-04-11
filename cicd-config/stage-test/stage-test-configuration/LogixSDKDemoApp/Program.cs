@@ -17,6 +17,7 @@ using RockwellAutomation.FactoryTalkLogixEcho.Api.Client;
 using RockwellAutomation.FactoryTalkLogixEcho.Api.Interfaces;
 using RockwellAutomation.LogixDesigner;
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -61,6 +62,7 @@ namespace TestStage_CICDExample
 
 
             //LogixProject myProject1 = await LogixProject.OpenLogixProjectAsync(filePath);
+
 
 
 
@@ -178,12 +180,14 @@ namespace TestStage_CICDExample
 
             // Get initial project start-up tag values
             Console.WriteLine($"[{DateTime.Now.ToString("T")}] START getting initial project start-up tag values...");
-            string[] TEST_DINT_1 = CallGetTagValueAsyncAndWaitOnResult("TEST_DINT_1", "DINT", myProject);
-            string[] TEST_TOGGLE_WetBulbTempCalc = CallGetTagValueAsyncAndWaitOnResult("TEST_TOGGLE_WetBulbTempCalc", "BOOL", myProject);
-            string[] TEST_AOI_WetBulbTemp_isFahrenheit = CallGetTagValueAsyncAndWaitOnResult("TEST_AOI_WetBulbTemp_isFahrenheit", "BOOL", myProject);
-            string[] TEST_AOI_WetBulbTemp_RelativeHumidity = CallGetTagValueAsyncAndWaitOnResult("TEST_AOI_WetBulbTemp_RelativeHumidity", "REAL", myProject);
-            string[] TEST_AOI_WetBulbTemp_Temperature = CallGetTagValueAsyncAndWaitOnResult("TEST_AOI_WetBulbTemp_Temperature", "REAL", myProject);
-            string[] TEST_AOI_WetBulbTemp_WetBulbTemp = CallGetTagValueAsyncAndWaitOnResult("TEST_AOI_WetBulbTemp_WetBulbTemp", "REAL", myProject);
+            string filePath_MainProgram = $"Controller/Programs/Program[@Name='MainProgram']/Tags/Tag";
+            string filePath_ControllerScope = $"Controller/Tags/Tag";
+            string[] TEST_DINT_1 = CallGetTagValueAsyncAndWaitOnResult("TEST_DINT_1", "DINT", filePath_ControllerScope, myProject);
+            string[] TEST_TOGGLE_WetBulbTempCalc = CallGetTagValueAsyncAndWaitOnResult("TEST_TOGGLE_WetBulbTempCalc", "BOOL", filePath_MainProgram, myProject);
+            string[] TEST_AOI_WetBulbTemp_isFahrenheit = CallGetTagValueAsyncAndWaitOnResult("TEST_AOI_WetBulbTemp_isFahrenheit", "BOOL", filePath_MainProgram, myProject);
+            string[] TEST_AOI_WetBulbTemp_RelativeHumidity = CallGetTagValueAsyncAndWaitOnResult("TEST_AOI_WetBulbTemp_RelativeHumidity", "REAL", filePath_MainProgram, myProject);
+            string[] TEST_AOI_WetBulbTemp_Temperature = CallGetTagValueAsyncAndWaitOnResult("TEST_AOI_WetBulbTemp_Temperature", "REAL", filePath_MainProgram, myProject);
+            string[] TEST_AOI_WetBulbTemp_WetBulbTemp = CallGetTagValueAsyncAndWaitOnResult("TEST_AOI_WetBulbTemp_WetBulbTemp", "REAL", filePath_MainProgram, myProject);
             Console.WriteLine($"[{DateTime.Now.ToString("T")}] DONE getting initial project start-up tag values\n---");
 
             // Verify whether offline and online values are the same
@@ -199,16 +203,16 @@ namespace TestStage_CICDExample
 
             // Set tag values
             Console.WriteLine($"[{DateTime.Now.ToString("T")}] START setting tag values...");
-            CallSetTagValueAsyncAndWaitOnResult(TEST_DINT_1[6], 111, "online", TEST_DINT_1[7], myProject);
-            CallSetTagValueAsyncAndWaitOnResult(TEST_TOGGLE_WetBulbTempCalc[6], 1, "online", TEST_TOGGLE_WetBulbTempCalc[7], myProject);
-            CallSetTagValueAsyncAndWaitOnResult(TEST_AOI_WetBulbTemp_isFahrenheit[6], 1, "online", TEST_AOI_WetBulbTemp_isFahrenheit[7], myProject);
-            CallSetTagValueAsyncAndWaitOnResult(TEST_AOI_WetBulbTemp_RelativeHumidity[6], 30, "online", TEST_AOI_WetBulbTemp_RelativeHumidity[7], myProject);
-            CallSetTagValueAsyncAndWaitOnResult(TEST_AOI_WetBulbTemp_Temperature[6], 70, "online", TEST_AOI_WetBulbTemp_Temperature[7], myProject);
+            CallSetTagValueAsyncAndWaitOnResult(TEST_DINT_1[6], 111, "online", TEST_DINT_1[7], filePath_ControllerScope, myProject);
+            CallSetTagValueAsyncAndWaitOnResult(TEST_TOGGLE_WetBulbTempCalc[6], 1, "online", TEST_TOGGLE_WetBulbTempCalc[7], filePath_MainProgram, myProject);
+            CallSetTagValueAsyncAndWaitOnResult(TEST_AOI_WetBulbTemp_isFahrenheit[6], 1, "online", TEST_AOI_WetBulbTemp_isFahrenheit[7], filePath_MainProgram, myProject);
+            CallSetTagValueAsyncAndWaitOnResult(TEST_AOI_WetBulbTemp_RelativeHumidity[6], 30, "online", TEST_AOI_WetBulbTemp_RelativeHumidity[7], filePath_MainProgram, myProject);
+            CallSetTagValueAsyncAndWaitOnResult(TEST_AOI_WetBulbTemp_Temperature[6], 70, "online", TEST_AOI_WetBulbTemp_Temperature[7], filePath_MainProgram, myProject);
             Console.WriteLine($"[{DateTime.Now.ToString("T")}] DONE setting tag values\n---");
 
             // Verify expected output
             Console.WriteLine($"[{DateTime.Now.ToString("T")}] START verifying expected tag outputs...");
-            TEST_AOI_WetBulbTemp_WetBulbTemp = CallGetTagValueAsyncAndWaitOnResult(TEST_AOI_WetBulbTemp_WetBulbTemp[6], TEST_AOI_WetBulbTemp_WetBulbTemp[7], myProject);
+            TEST_AOI_WetBulbTemp_WetBulbTemp = CallGetTagValueAsyncAndWaitOnResult(TEST_AOI_WetBulbTemp_WetBulbTemp[6], TEST_AOI_WetBulbTemp_WetBulbTemp[7], filePath_MainProgram, myProject);
             if (TEST_AOI_WetBulbTemp_WetBulbTemp[0] == "52.997536")
                 Console.WriteLine($"SUCCESS: tag TEST_AOI_WetBulbTemp_WetBulbTemp returned expected result {TEST_AOI_WetBulbTemp_WetBulbTemp[0]}");
             else
@@ -220,15 +224,15 @@ namespace TestStage_CICDExample
 
             // Show final tag values
             Console.WriteLine($"[{DateTime.Now.ToString("T")}] START showing final test tag values...");
-            TEST_DINT_1 = CallGetTagValueAsyncAndWaitOnResult(TEST_DINT_1[6], TEST_DINT_1[7], myProject);
+            TEST_DINT_1 = CallGetTagValueAsyncAndWaitOnResult(TEST_DINT_1[6], TEST_DINT_1[7], filePath_ControllerScope, myProject);
             Console.WriteLine($"{TEST_DINT_1[2]}\n{TEST_DINT_1[5]}");
-            TEST_TOGGLE_WetBulbTempCalc = CallGetTagValueAsyncAndWaitOnResult(TEST_TOGGLE_WetBulbTempCalc[6], TEST_TOGGLE_WetBulbTempCalc[7], myProject);
+            TEST_TOGGLE_WetBulbTempCalc = CallGetTagValueAsyncAndWaitOnResult(TEST_TOGGLE_WetBulbTempCalc[6], TEST_TOGGLE_WetBulbTempCalc[7], filePath_MainProgram, myProject);
             Console.WriteLine($"{TEST_TOGGLE_WetBulbTempCalc[2]}\n{TEST_TOGGLE_WetBulbTempCalc[5]}");
-            TEST_AOI_WetBulbTemp_isFahrenheit = CallGetTagValueAsyncAndWaitOnResult(TEST_AOI_WetBulbTemp_isFahrenheit[6], TEST_AOI_WetBulbTemp_isFahrenheit[7], myProject);
+            TEST_AOI_WetBulbTemp_isFahrenheit = CallGetTagValueAsyncAndWaitOnResult(TEST_AOI_WetBulbTemp_isFahrenheit[6], TEST_AOI_WetBulbTemp_isFahrenheit[7], filePath_MainProgram, myProject);
             Console.WriteLine($"{TEST_AOI_WetBulbTemp_isFahrenheit[2]}\n{TEST_AOI_WetBulbTemp_isFahrenheit[5]}");
-            TEST_AOI_WetBulbTemp_RelativeHumidity = CallGetTagValueAsyncAndWaitOnResult(TEST_AOI_WetBulbTemp_RelativeHumidity[6], TEST_AOI_WetBulbTemp_RelativeHumidity[7], myProject);
+            TEST_AOI_WetBulbTemp_RelativeHumidity = CallGetTagValueAsyncAndWaitOnResult(TEST_AOI_WetBulbTemp_RelativeHumidity[6], TEST_AOI_WetBulbTemp_RelativeHumidity[7], filePath_MainProgram, myProject);
             Console.WriteLine($"{TEST_AOI_WetBulbTemp_RelativeHumidity[2]}\n{TEST_AOI_WetBulbTemp_RelativeHumidity[5]}");
-            TEST_AOI_WetBulbTemp_Temperature = CallGetTagValueAsyncAndWaitOnResult(TEST_AOI_WetBulbTemp_Temperature[6], TEST_AOI_WetBulbTemp_Temperature[7], myProject);
+            TEST_AOI_WetBulbTemp_Temperature = CallGetTagValueAsyncAndWaitOnResult(TEST_AOI_WetBulbTemp_Temperature[6], TEST_AOI_WetBulbTemp_Temperature[7], filePath_MainProgram, myProject);
             Console.WriteLine($"{TEST_AOI_WetBulbTemp_Temperature[2]}\n{TEST_AOI_WetBulbTemp_Temperature[5]}");
             Console.WriteLine($"{TEST_AOI_WetBulbTemp_WetBulbTemp[2]}\n{TEST_AOI_WetBulbTemp_WetBulbTemp[5]}");
             Console.WriteLine($"[{DateTime.Now.ToString("T")}] DONE showing final test tag values");
@@ -250,52 +254,65 @@ namespace TestStage_CICDExample
 
 
             Console.WriteLine("\n\n\nSTARTING TESTING:");
-            await myProject.SetTagValueAsync($"Controller/Tags/Tag[@Name='TEST_DINT_1']", TagOperationMode.Online, BitConverter.GetBytes(11111), DataType.DINT);
-            var testDINT = CallGetComplexTagValueAsyncAndWaitOnResult($"Controller/Tags/Tag[@Name='TEST_DINT_1']", TagOperationMode.Online, DataType.DINT, myProject);
-            if (testDINT != null)
-            {
-                foreach (byte b in testDINT)
-                {
-                    Console.Write(b + " ");
-                }
-            }
-            Console.WriteLine("\nhow many bytes: " + testDINT.Length);
-            Console.WriteLine("The 4 bytes:");
-            Console.WriteLine("0: " + testDINT[0]);
-            Console.WriteLine("1: " + testDINT[1]);
-            Console.WriteLine("2: " + testDINT[2]);
-            Console.WriteLine("3: " + testDINT[3]);
-            string fullDINT = Convert.ToString(Convert.ToUInt16(testDINT[1]), 2).PadLeft(8, '0') + Convert.ToString(Convert.ToUInt16(testDINT[0]), 2).PadLeft(8, '0');
-            Console.WriteLine("string dint altogether: " + fullDINT);
-            var testResultDINT = BinaryStringToInteger(fullDINT);
-            Console.WriteLine("long representation of variable: " + testResultDINT);
-
-            var testAOI = CallGetComplexTagValueAsyncAndWaitOnResult($"Controller/Tags/Tag[@Name='UDT_AllAtomicDataTypes']", TagOperationMode.Online, DataType.BYTE_ARRAY, myProject);
-            if (testAOI != null)
-            {
-                foreach (byte b in testAOI)
-                {
-                    Console.Write(b + " ");
-                }
-            }
-            Console.WriteLine("\nhow many bytes: " + testAOI.Length);
-            Console.WriteLine("The bytes:");
-            Console.WriteLine("0: " + testAOI[0]);
-            Console.WriteLine("1: " + testAOI[1]);
-            Console.WriteLine("2: " + testAOI[2]);
-
-            //Console.WriteLine("NEXT\n");
-            //var testProgAOI = await myProject.GetTagValueAsync($"Program/MainProgram/Tags/Tag[@Name='AOI_WetBulbTempTest']", TagOperationMode.Online, DataType.BYTE_ARRAY);
-            //if (testProgAOI != null)
+            //CallSetComplexTagValueAsyncAndWaitOnResult($"Controller/Tags/Tag[@Name='TEST_DINT_1']", TagOperationMode.Online, BitConverter.GetBytes(11111), DataType.DINT, myProject);
+            //var testDINT = CallGetComplexTagValueAsyncAndWaitOnResult($"Controller/Tags/Tag[@Name='TEST_DINT_1']", TagOperationMode.Online, DataType.DINT, myProject);
+            //if (testDINT != null)
             //{
-            //    foreach (byte b in testProgAOI)
+            //    foreach (byte b in testDINT)
             //    {
             //        Console.Write(b + " ");
             //    }
             //}
-            Console.WriteLine("ENDING TESTING\n\n\n");
+            //Console.WriteLine("\nhow many bytes: " + testDINT.Length);
+            //Console.WriteLine("The 4 bytes:");
+            //Console.WriteLine("0: " + testDINT[0]);
+            //Console.WriteLine("1: " + testDINT[1]);
+            //Console.WriteLine("2: " + testDINT[2]);
+            //Console.WriteLine("3: " + testDINT[3]);
+            ////string fullDINT = CreateBinaryString(testDINT);
+            ////Console.WriteLine("string dint altogether: " + fullDINT);
+            //Console.WriteLine("TEST NEGATIVE encoding: " + Convert.ToInt64("1111111000011001", 2));
+            //Console.WriteLine("TEST NEGATIVE encoding: " + Convert.ToInt32("1111111000011001", 2));
+            //Console.WriteLine("TEST NEGATIVE encoding: " + Convert.ToInt16("1111111000011001", 2));
+            //var data = GetBytesFromBinaryString("0101010001100101011100110111010000100000001100010011001000110011");
+            //var text = Encoding.ASCII.GetString(data);
+            //Console.WriteLine("TEST ENCODING PT II: " + text);
+            ////var testResultDINT = BinaryStringToInteger(fullDINT);
+            ////Console.WriteLine("long representation of variable: " + testResultDINT);
+
+            var testAOI = CallGetComplexTagValueAsyncAndWaitOnResult($"Controller/Tags/Tag[@Name='UDT_AllAtomicDataTypes']", TagOperationMode.Online, DataType.BYTE_ARRAY, myProject);
+            string[] testAOI_Values = GetUDT_AllAtomicDataTypes(testAOI);
+            bool ex_BOOL1 = GetBool(testAOI_Values[0]);
+            bool ex_BOOL2 = GetBool(testAOI_Values[1]);
+            bool ex_BOOL3 = GetBool(testAOI_Values[2]);
+            bool ex_BOOL4 = GetBool(testAOI_Values[3]);
+            bool ex_BOOL5 = GetBool(testAOI_Values[4]);
+            bool ex_BOOL6 = GetBool(testAOI_Values[5]);
+            bool ex_BOOL7 = GetBool(testAOI_Values[6]);
+            bool ex_BOOL8 = GetBool(testAOI_Values[7]);
+            byte ex_SINT = byte.Parse(testAOI_Values[8]);
+            int ex_INT = int.Parse(testAOI_Values[9]);
+            double ex_DINT = double.Parse(testAOI_Values[10]);
+            long ex_LINT = long.Parse(testAOI_Values[11]);
+            float ex_REAL = float.Parse(testAOI_Values[12]);
+            string ex_STRING = testAOI_Values[13];
+            for (int i = 0; i < testAOI_Values.Length; i++)
+                Console.WriteLine(testAOI_Values[i]);
+
+            Console.WriteLine("\nENDING TESTING\n\n\n");
+
+
+
         }
-        #region METHODS --------------------------------------------------------------------------------------------------------------------------------------------------
+        #region METHODS --------------------------------------------------------------------------------------------------------------------------------------------------d
+
+        private static bool GetBool(string input_string)
+        {
+            if (input_string == "1")
+                return true;
+            return false;
+        }
+
         // Wrap Text Method
         private static string WrapText(string input_string)
         {
@@ -360,6 +377,110 @@ namespace TestStage_CICDExample
             return task.Result;
         }
 
+        // Set Complex Data Type Tag value Wait On Result Method
+        private static void CallSetComplexTagValueAsyncAndWaitOnResult(string tagPath, TagOperationMode mode, byte[] tagValue, DataType type, LogixProject project)
+        {
+            var task = project.SetTagValueAsync(tagPath, mode, tagValue, type);
+            task.Wait();
+        }
+
+        // Summary:
+        //     Returns a double-precision floating point number converted from eight bytes at
+        //     a specified position in a byte array.
+        //
+        // Parameters:
+        //   value:
+        //     An array of bytes that includes the eight bytes to convert.
+        //
+        //   startIndex:
+        //     The starting position within value.
+        //
+        // Returns:
+        //     A double-precision floating point number formed by eight bytes beginning at startIndex.
+        //
+        //
+        // Exceptions:
+        //   T:System.ArgumentException:
+        //     startIndex is greater than or equal to the length of value minus 7, and is less
+        //     than or equal to the length of value minus 1.
+        //
+        //   T:System.ArgumentNullException:
+        //     value is null.
+        //
+        //   T:System.ArgumentOutOfRangeException:
+        //     startIndex is less than zero or greater than the length of value minus 1.
+        // Get AllAtomicDataTypes UDT values
+        private static string[] GetUDT_AllAtomicDataTypes(ByteString byte_string)
+        {
+            string[] return_string = new string[14];
+            byte[] UDT_ByteArray = new byte[byte_string.Length];
+            for (int i = 0; i < UDT_ByteArray.Length; i++)
+                UDT_ByteArray[i] = (byte)byte_string[i];
+
+            // ex_BOOL1 - ex_BOOL2
+            byte[] ex_BOOLs = new byte[1];
+            Array.ConstrainedCopy(UDT_ByteArray, 0, ex_BOOLs, 0, 1);
+            for (int i = 0; i < 8; i++)
+                return_string[i] = Convert.ToString(CreateBinaryString(ex_BOOLs, "backward")[7 - i]);
+
+            // ex_SINT
+            byte[] ex_SINT = new byte[1];
+            Array.ConstrainedCopy(UDT_ByteArray, 1, ex_SINT, 0, 1);
+            return_string[8] = Convert.ToString(byte.Parse(CreateBinaryString(ex_SINT, "forward")));
+
+            // ex_INT
+            byte[] ex_INT = new byte[2];
+            Array.ConstrainedCopy(UDT_ByteArray, 2, ex_INT, 0, 2);
+            return_string[9] = Convert.ToString(BitConverter.ToInt16(ex_INT));
+
+            // ex_DINT
+            byte[] ex_DINT = new byte[4];
+            Array.ConstrainedCopy(UDT_ByteArray, 4, ex_DINT, 0, 4);
+            return_string[10] = Convert.ToString(BitConverter.ToInt32(ex_DINT));
+
+            // ex_LINT
+            byte[] ex_LINT = new byte[8];
+            Array.ConstrainedCopy(UDT_ByteArray, 8, ex_LINT, 0, 8);
+            return_string[11] = Convert.ToString(BitConverter.ToInt64(ex_LINT));
+
+            // ex_REAL
+            byte[] ex_REAL = new byte[4];
+            Array.ConstrainedCopy(UDT_ByteArray, 16, ex_REAL, 0, 4);
+            return_string[12] = ConvertIEEE754ToFloatString(ex_REAL);
+
+            // ex_STRING
+            byte[] ex_STRING = new byte[UDT_ByteArray.Length - 24];
+            Array.ConstrainedCopy(UDT_ByteArray, 24, ex_STRING, 0, UDT_ByteArray.Length - 24);
+            return_string[13] = Encoding.ASCII.GetString(ex_STRING);
+
+            return return_string;
+        }
+
+        // Helper method to Convert IEEE 754
+        private static string ConvertIEEE754ToFloatString(byte[] inputArray)
+        {
+            if (inputArray.Length != 4)
+            {
+                throw new ArgumentException("Byte array must be 4 bytes long.");
+            }
+
+            byte[] flippedArray = new byte[4];
+            for (int i = 0; i < 4; i++)
+                flippedArray[i] = inputArray[3 - i];
+
+            // Interpret the bytes as per IEEE 754 single-precision format
+            int sign = (flippedArray[0] & 0x80) >> 7;
+            int exponent = ((flippedArray[0] & 0x7F) << 1) | ((flippedArray[1] & 0x80) >> 7);
+            uint mantissa = ((uint)(flippedArray[1] & 0x7F) << 16) | ((uint)flippedArray[2] << 8) | flippedArray[3];
+
+            // Calculate the value represented by the bits
+            double value = Math.Pow(-1, sign) * (1 + mantissa / Math.Pow(2, 23)) * Math.Pow(2, exponent - 127);
+
+            // Convert the value to a string
+            return value.ToString();
+        }
+
+
         // Check Current Chassis For A Specific Chassis Name Method
         private static async Task<bool> CheckCurrentChassisAsync(string chassis_name, string controller_name, IServiceApiClientV2 serviceClient)
         {
@@ -399,10 +520,10 @@ namespace TestStage_CICDExample
         // return_array[5] = $"{tag_name} offline value: {tagValue_offline}";
         // return_array[6] = tag_name;
         // return_array[7] = data_type;
-        private static async Task<string[]> GetTagValueAsync(string tag_name, string data_type, LogixProject project)
+        private static async Task<string[]> GetTagValueAsync(string tag_name, string data_type, string tagPath, LogixProject project)
         {
-            var tagPath = $"Controller/Tags/Tag[@Name='{tag_name}']";
             string[] return_array = new string[8];
+            tagPath = tagPath + $"[@Name='{tag_name}']";
             try
             {
                 if (data_type == "DINT")
@@ -468,17 +589,17 @@ namespace TestStage_CICDExample
         }
 
         // Get Tag Value Wait On Result Method
-        private static string[] CallGetTagValueAsyncAndWaitOnResult(string tag_name, string data_type, LogixProject project)
+        private static string[] CallGetTagValueAsyncAndWaitOnResult(string tag_name, string data_type, string tagPath, LogixProject project)
         {
-            var task = GetTagValueAsync(tag_name, data_type, project);
+            var task = GetTagValueAsync(tag_name, data_type, tagPath, project);
             task.Wait();
             return task.Result;
         }
 
         // Set Tag Value Method
-        private static async Task SetTagValueAsync(string tag_name, int tag_value_in, string online_or_offline, string data_type, LogixProject project)
+        private static async Task SetTagValueAsync(string tag_name, int tag_value_in, string online_or_offline, string data_type, string tagPath, LogixProject project)
         {
-            var tagPath = $"Controller/Tags/Tag[@Name='{tag_name}']";
+            tagPath = tagPath + $"[@Name='{tag_name}']";
             try
             {
                 if (online_or_offline == "online")
@@ -544,9 +665,9 @@ namespace TestStage_CICDExample
         }
 
         // Set Tag Value Wait On Result Method
-        private static void CallSetTagValueAsyncAndWaitOnResult(string tag_name, int tag_value_in, string online_or_offline, string data_type, LogixProject project)
+        private static void CallSetTagValueAsyncAndWaitOnResult(string tag_name, int tag_value_in, string online_or_offline, string data_type, string tagPath, LogixProject project)
         {
-            var task = SetTagValueAsync(tag_name, tag_value_in, online_or_offline, data_type, project);
+            var task = SetTagValueAsync(tag_name, tag_value_in, online_or_offline, data_type, tagPath, project);
             task.Wait();
         }
 
@@ -702,7 +823,6 @@ namespace TestStage_CICDExample
             {
                 Console.WriteLine(WrapText($"FAILURE: {input_string[1]} ({input_string[0]}) & {input_string[4]} ({input_string[3]}) NOT equal."));
                 return 1;
-
             }
             else
             {
@@ -719,7 +839,6 @@ namespace TestStage_CICDExample
 
             if (radix < 2 || radix > Digits.Length)
                 throw new ArgumentException("The radix must be >= 2 and <= " + Digits.Length.ToString());
-
             if (decimalNumber == 0)
                 return "0";
 
@@ -733,13 +852,11 @@ namespace TestStage_CICDExample
                 charArray[index--] = Digits[remainder];
                 currentNumber = currentNumber / radix;
             }
-
             string result = new String(charArray, index + 1, BitsInLong - index - 1);
             if (decimalNumber < 0)
             {
                 result = "-" + result;
             }
-
             return result;
         }
 
@@ -748,7 +865,6 @@ namespace TestStage_CICDExample
         {
             long result = 0;
             int power = 0;
-
             for (int i = binary_string.Length - 1; i >= 0; i--)
             {
                 if (binary_string[i] == '1')
@@ -756,6 +872,31 @@ namespace TestStage_CICDExample
                 power++;
             }
             return result;
+        }
+
+        // Get Bytes From Binary String Method
+        private static Byte[] GetBytesFromBinaryString(String binary)
+        {
+            var list = new List<Byte>();
+            for (int i = 0; i < binary.Length; i += 8)
+            {
+                String t = binary.Substring(i, 8);
+                list.Add(Convert.ToByte(t, 2));
+            }
+            return list.ToArray();
+        }
+
+        // Create Binary String From ByteString Method
+        private static string CreateBinaryString(byte[] byteString, string forward_backward)
+        {
+            string returnstring = "";
+            if (forward_backward == "backward")
+                for (int i = byteString.Length - 1; i >= 0; --i)
+                    returnstring = returnstring + Convert.ToString(byteString[i], 2).PadLeft(8, '0');
+            else if (forward_backward == "forward")
+                for (int i = 0; i < byteString.Length; ++i)
+                    returnstring = returnstring + Convert.ToString(byteString[i], 2).PadLeft(8, '0');
+            return returnstring;
         }
         #endregion
     }
