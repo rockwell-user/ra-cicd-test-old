@@ -188,6 +188,23 @@ namespace TestStage_CICDExample
             string[] TEST_AOI_WetBulbTemp_RelativeHumidity = CallGetTagValueAsyncAndWaitOnResult("TEST_AOI_WetBulbTemp_RelativeHumidity", "REAL", filePath_MainProgram, myProject);
             string[] TEST_AOI_WetBulbTemp_Temperature = CallGetTagValueAsyncAndWaitOnResult("TEST_AOI_WetBulbTemp_Temperature", "REAL", filePath_MainProgram, myProject);
             string[] TEST_AOI_WetBulbTemp_WetBulbTemp = CallGetTagValueAsyncAndWaitOnResult("TEST_AOI_WetBulbTemp_WetBulbTemp", "REAL", filePath_MainProgram, myProject);
+            string[] testAOI_Values = await GetUDT_AllAtomicDataTypes("UDT_AllAtomicDataTypes", TagOperationMode.Online, DataType.BYTE_ARRAY, filePath_ControllerScope, myProject);
+            for (int i = 0; i < testAOI_Values.Length; i++)
+                Console.WriteLine(testAOI_Values[i]);
+            bool ex_BOOL1 = GetBool(testAOI_Values[0]);
+            bool ex_BOOL2 = GetBool(testAOI_Values[1]);
+            bool ex_BOOL3 = GetBool(testAOI_Values[2]);
+            bool ex_BOOL4 = GetBool(testAOI_Values[3]);
+            bool ex_BOOL5 = GetBool(testAOI_Values[4]);
+            bool ex_BOOL6 = GetBool(testAOI_Values[5]);
+            bool ex_BOOL7 = GetBool(testAOI_Values[6]);
+            bool ex_BOOL8 = GetBool(testAOI_Values[7]);
+            byte ex_SINT = byte.Parse(testAOI_Values[8]);
+            int ex_INT = int.Parse(testAOI_Values[9]);
+            double ex_DINT = double.Parse(testAOI_Values[10]);
+            long ex_LINT = long.Parse(testAOI_Values[11]);
+            float ex_REAL = float.Parse(testAOI_Values[12]);
+            string ex_STRING = testAOI_Values[13];
             Console.WriteLine($"[{DateTime.Now.ToString("T")}] DONE getting initial project start-up tag values\n---");
 
             // Verify whether offline and online values are the same
@@ -253,53 +270,9 @@ namespace TestStage_CICDExample
 
 
 
-            Console.WriteLine("\n\n\nSTARTING TESTING:");
-            //CallSetComplexTagValueAsyncAndWaitOnResult($"Controller/Tags/Tag[@Name='TEST_DINT_1']", TagOperationMode.Online, BitConverter.GetBytes(11111), DataType.DINT, myProject);
-            //var testDINT = CallGetComplexTagValueAsyncAndWaitOnResult($"Controller/Tags/Tag[@Name='TEST_DINT_1']", TagOperationMode.Online, DataType.DINT, myProject);
-            //if (testDINT != null)
-            //{
-            //    foreach (byte b in testDINT)
-            //    {
-            //        Console.Write(b + " ");
-            //    }
-            //}
-            //Console.WriteLine("\nhow many bytes: " + testDINT.Length);
-            //Console.WriteLine("The 4 bytes:");
-            //Console.WriteLine("0: " + testDINT[0]);
-            //Console.WriteLine("1: " + testDINT[1]);
-            //Console.WriteLine("2: " + testDINT[2]);
-            //Console.WriteLine("3: " + testDINT[3]);
-            ////string fullDINT = CreateBinaryString(testDINT);
-            ////Console.WriteLine("string dint altogether: " + fullDINT);
-            //Console.WriteLine("TEST NEGATIVE encoding: " + Convert.ToInt64("1111111000011001", 2));
-            //Console.WriteLine("TEST NEGATIVE encoding: " + Convert.ToInt32("1111111000011001", 2));
-            //Console.WriteLine("TEST NEGATIVE encoding: " + Convert.ToInt16("1111111000011001", 2));
-            //var data = GetBytesFromBinaryString("0101010001100101011100110111010000100000001100010011001000110011");
-            //var text = Encoding.ASCII.GetString(data);
-            //Console.WriteLine("TEST ENCODING PT II: " + text);
-            ////var testResultDINT = BinaryStringToInteger(fullDINT);
-            ////Console.WriteLine("long representation of variable: " + testResultDINT);
 
-            var testAOI = CallGetComplexTagValueAsyncAndWaitOnResult($"Controller/Tags/Tag[@Name='UDT_AllAtomicDataTypes']", TagOperationMode.Online, DataType.BYTE_ARRAY, myProject);
-            string[] testAOI_Values = GetUDT_AllAtomicDataTypes(testAOI);
-            bool ex_BOOL1 = GetBool(testAOI_Values[0]);
-            bool ex_BOOL2 = GetBool(testAOI_Values[1]);
-            bool ex_BOOL3 = GetBool(testAOI_Values[2]);
-            bool ex_BOOL4 = GetBool(testAOI_Values[3]);
-            bool ex_BOOL5 = GetBool(testAOI_Values[4]);
-            bool ex_BOOL6 = GetBool(testAOI_Values[5]);
-            bool ex_BOOL7 = GetBool(testAOI_Values[6]);
-            bool ex_BOOL8 = GetBool(testAOI_Values[7]);
-            byte ex_SINT = byte.Parse(testAOI_Values[8]);
-            int ex_INT = int.Parse(testAOI_Values[9]);
-            double ex_DINT = double.Parse(testAOI_Values[10]);
-            long ex_LINT = long.Parse(testAOI_Values[11]);
-            float ex_REAL = float.Parse(testAOI_Values[12]);
-            string ex_STRING = testAOI_Values[13];
-            for (int i = 0; i < testAOI_Values.Length; i++)
-                Console.WriteLine(testAOI_Values[i]);
 
-            Console.WriteLine("\nENDING TESTING\n\n\n");
+
 
 
 
@@ -369,13 +342,6 @@ namespace TestStage_CICDExample
             return return_array;
         }
 
-        // Get Complex Data Type Tag Value Wait On Result Method
-        private static ByteString CallGetComplexTagValueAsyncAndWaitOnResult(string tagPath, TagOperationMode mode, DataType type, LogixProject project)
-        {
-            var task = project.GetTagValueAsync(tagPath, mode, type);
-            task.Wait();
-            return task.Result;
-        }
 
         // Set Complex Data Type Tag value Wait On Result Method
         private static void CallSetComplexTagValueAsyncAndWaitOnResult(string tagPath, TagOperationMode mode, byte[] tagValue, DataType type, LogixProject project)
@@ -410,8 +376,13 @@ namespace TestStage_CICDExample
         //   T:System.ArgumentOutOfRangeException:
         //     startIndex is less than zero or greater than the length of value minus 1.
         // Get AllAtomicDataTypes UDT values
-        private static string[] GetUDT_AllAtomicDataTypes(ByteString byte_string)
+
+        //    string[] testAOI_Values = await GetUDT_AllAtomicDataTypes("UDT_AllAtomicDataTypes", TagOperationMode.Online, DataType.BYTE_ARRAY, filePath_ControllerScope, myProject);
+        // Get Complex Data Type Tag Value Method
+        private static async Task<string[]> GetUDT_AllAtomicDataTypes(string tag_name, TagOperationMode mode, DataType type, string tagPath, LogixProject project)
         {
+            tagPath = tagPath + $"[@Name='{tag_name}']";
+            ByteString byte_string = await project.GetTagValueAsync(tagPath, mode, type);
             string[] return_string = new string[14];
             byte[] UDT_ByteArray = new byte[byte_string.Length];
             for (int i = 0; i < UDT_ByteArray.Length; i++)
