@@ -153,104 +153,92 @@ namespace TestStage_CICDExample
             Console.WriteLine($"[{DateTime.Now.ToString("T")}] START getting initial project start-up tag values...");
             string filePath_MainProgram = $"Controller/Programs/Program[@Name='MainProgram']/Tags/Tag";
             string filePath_ControllerScope = $"Controller/Tags/Tag";
-            string[] TEST_DINT_1 = CallGetTagValueAsyncAndWaitOnResult("TEST_DINT_1", "DINT", filePath_ControllerScope, myProject);
-            string[] TEST_TOGGLE_WetBulbTempCalc = CallGetTagValueAsyncAndWaitOnResult("TEST_TOGGLE_WetBulbTempCalc", "BOOL", filePath_MainProgram, myProject);
-            string[] TEST_AOI_WetBulbTemp_isFahrenheit = CallGetTagValueAsyncAndWaitOnResult("TEST_AOI_WetBulbTemp_isFahrenheit", "BOOL", filePath_MainProgram, myProject);
-            string[] TEST_AOI_WetBulbTemp_RelativeHumidity = CallGetTagValueAsyncAndWaitOnResult("TEST_AOI_WetBulbTemp_RelativeHumidity", "REAL", filePath_MainProgram, myProject);
-            string[] TEST_AOI_WetBulbTemp_Temperature = CallGetTagValueAsyncAndWaitOnResult("TEST_AOI_WetBulbTemp_Temperature", "REAL", filePath_MainProgram, myProject);
-            string[] TEST_AOI_WetBulbTemp_WetBulbTemp = CallGetTagValueAsyncAndWaitOnResult("TEST_AOI_WetBulbTemp_WetBulbTemp", "REAL", filePath_MainProgram, myProject);
-            ByteString ByteString_UDT_AllAtomicDataTypes_Online = CallGetUDT_AllAtomicDataTypesAndWaitOnResult("UDT_AllAtomicDataTypes", TagOperationMode.Online, DataType.BYTE_ARRAY, filePath_ControllerScope, myProject);
-            string[] UDT_AllAtomicDataTypes_Online = FormatUDT_AllAtomicDataTypes(ByteString_UDT_AllAtomicDataTypes_Online);
-            ByteString ByteString_UDT_AllAtomicDataTypes_Offline = CallGetUDT_AllAtomicDataTypesAndWaitOnResult("UDT_AllAtomicDataTypes", TagOperationMode.Offline, DataType.BYTE_ARRAY, filePath_ControllerScope, myProject);
-            string[] UDT_AllAtomicDataTypes_Offline = FormatUDT_AllAtomicDataTypes(ByteString_UDT_AllAtomicDataTypes_Offline);
-            bool ex_BOOL1 = GetBool(UDT_AllAtomicDataTypes_Online[0]);
-            bool ex_BOOL2 = GetBool(UDT_AllAtomicDataTypes_Online[1]);
-            bool ex_BOOL3 = GetBool(UDT_AllAtomicDataTypes_Online[2]);
-            bool ex_BOOL4 = GetBool(UDT_AllAtomicDataTypes_Online[3]);
-            bool ex_BOOL5 = GetBool(UDT_AllAtomicDataTypes_Online[4]);
-            bool ex_BOOL6 = GetBool(UDT_AllAtomicDataTypes_Online[5]);
-            bool ex_BOOL7 = GetBool(UDT_AllAtomicDataTypes_Online[6]);
-            bool ex_BOOL8 = GetBool(UDT_AllAtomicDataTypes_Online[7]);
-            int ex_SINT = int.Parse(UDT_AllAtomicDataTypes_Online[8]); // c# bytes have range 0 to 255 so INT accounts for negatives (Studio 5k SINT has range -128 to 127)
-            int ex_INT = int.Parse(UDT_AllAtomicDataTypes_Online[9]);
-            double ex_DINT = double.Parse(UDT_AllAtomicDataTypes_Online[10]);
-            long ex_LINT = long.Parse(UDT_AllAtomicDataTypes_Online[11]);
-            float ex_REAL = float.Parse(UDT_AllAtomicDataTypes_Online[12]);
-            string ex_STRING = UDT_AllAtomicDataTypes_Online[13];
+            string[] TEST_DINT_1 = CallGetTagValueAsyncAndWaitOnResult("TEST_DINT_1", DataType.DINT, filePath_ControllerScope, myProject, true);
+            string[] TEST_TOGGLE_WetBulbTempCalc = CallGetTagValueAsyncAndWaitOnResult("TEST_TOGGLE_WetBulbTempCalc", DataType.BOOL, filePath_MainProgram, myProject, true);
+            string[] TEST_AOI_WetBulbTemp_isFahrenheit = CallGetTagValueAsyncAndWaitOnResult("TEST_AOI_WetBulbTemp_isFahrenheit", DataType.BOOL, filePath_MainProgram, myProject, true);
+            string[] TEST_AOI_WetBulbTemp_RelativeHumidity = CallGetTagValueAsyncAndWaitOnResult("TEST_AOI_WetBulbTemp_RelativeHumidity", DataType.REAL, filePath_MainProgram, myProject, true);
+            string[] TEST_AOI_WetBulbTemp_Temperature = CallGetTagValueAsyncAndWaitOnResult("TEST_AOI_WetBulbTemp_Temperature", DataType.REAL, filePath_MainProgram, myProject, true);
+            string[] TEST_AOI_WetBulbTemp_WetBulbTemp = CallGetTagValueAsyncAndWaitOnResult("TEST_AOI_WetBulbTemp_WetBulbTemp", DataType.REAL, filePath_MainProgram, myProject, true);
+            ByteString[] ByteString_UDT_AllAtomicDataTypes = CallGetUDT_AllAtomicDataTypesAndWaitOnResult("UDT_AllAtomicDataTypes", filePath_ControllerScope, myProject);
+            string[][] UDT_AllAtomicDataTypes = FormatUDT_AllAtomicDataTypes(ByteString_UDT_AllAtomicDataTypes, true);
+            bool ex_BOOL1 = GetBool(UDT_AllAtomicDataTypes[1][0]);
+            bool ex_BOOL2 = GetBool(UDT_AllAtomicDataTypes[1][1]);
+            bool ex_BOOL3 = GetBool(UDT_AllAtomicDataTypes[1][2]);
+            bool ex_BOOL4 = GetBool(UDT_AllAtomicDataTypes[1][3]);
+            bool ex_BOOL5 = GetBool(UDT_AllAtomicDataTypes[1][4]);
+            bool ex_BOOL6 = GetBool(UDT_AllAtomicDataTypes[1][5]);
+            bool ex_BOOL7 = GetBool(UDT_AllAtomicDataTypes[1][6]);
+            bool ex_BOOL8 = GetBool(UDT_AllAtomicDataTypes[1][7]);
+            int ex_SINT = int.Parse(UDT_AllAtomicDataTypes[1][8]); // c# bytes have range 0 to 255 so INT accounts for negatives (Studio 5k SINT has range -128 to 127)
+            int ex_INT = int.Parse(UDT_AllAtomicDataTypes[1][9]);
+            double ex_DINT = double.Parse(UDT_AllAtomicDataTypes[1][10]);
+            long ex_LINT = long.Parse(UDT_AllAtomicDataTypes[1][11]);
+            float ex_REAL = float.Parse(UDT_AllAtomicDataTypes[1][12]);
+            string ex_STRING = UDT_AllAtomicDataTypes[1][13];
             Console.WriteLine($"[{DateTime.Now.ToString("T")}] DONE getting initial project start-up tag values\n---");
 
             // Verify whether offline and online values are the same
             Console.WriteLine($"[{DateTime.Now.ToString("T")}] START verifying whether offline and online values are the same...");
             int failure_condition = 0;
-            failure_condition += CompareOnlineOffline(TEST_DINT_1[6], TEST_DINT_1[0], TEST_DINT_1[3]);
-            failure_condition += CompareOnlineOffline(TEST_TOGGLE_WetBulbTempCalc[6], TEST_TOGGLE_WetBulbTempCalc[0], TEST_TOGGLE_WetBulbTempCalc[3]);
-            failure_condition += CompareOnlineOffline(TEST_AOI_WetBulbTemp_isFahrenheit[6], TEST_AOI_WetBulbTemp_isFahrenheit[0], TEST_AOI_WetBulbTemp_isFahrenheit[3]);
-            failure_condition += CompareOnlineOffline(TEST_AOI_WetBulbTemp_RelativeHumidity[6], TEST_AOI_WetBulbTemp_RelativeHumidity[0], TEST_AOI_WetBulbTemp_RelativeHumidity[3]);
-            failure_condition += CompareOnlineOffline(TEST_AOI_WetBulbTemp_Temperature[6], TEST_AOI_WetBulbTemp_Temperature[0], TEST_AOI_WetBulbTemp_Temperature[3]);
-            failure_condition += CompareOnlineOffline(TEST_AOI_WetBulbTemp_WetBulbTemp[6], TEST_AOI_WetBulbTemp_WetBulbTemp[0], TEST_AOI_WetBulbTemp_WetBulbTemp[3]);
-            failure_condition += CompareOnlineOffline("UDT_AllAtomicDataTypes.ex_BOOL1", UDT_AllAtomicDataTypes_Online[0], UDT_AllAtomicDataTypes_Offline[0]);
-            failure_condition += CompareOnlineOffline("UDT_AllAtomicDataTypes.ex_BOOL2", UDT_AllAtomicDataTypes_Online[1], UDT_AllAtomicDataTypes_Offline[1]);
-            failure_condition += CompareOnlineOffline("UDT_AllAtomicDataTypes.ex_BOOL3", UDT_AllAtomicDataTypes_Online[2], UDT_AllAtomicDataTypes_Offline[2]);
-            failure_condition += CompareOnlineOffline("UDT_AllAtomicDataTypes.ex_BOOL4", UDT_AllAtomicDataTypes_Online[3], UDT_AllAtomicDataTypes_Offline[3]);
-            failure_condition += CompareOnlineOffline("UDT_AllAtomicDataTypes.ex_BOOL5", UDT_AllAtomicDataTypes_Online[4], UDT_AllAtomicDataTypes_Offline[4]);
-            failure_condition += CompareOnlineOffline("UDT_AllAtomicDataTypes.ex_BOOL6", UDT_AllAtomicDataTypes_Online[5], UDT_AllAtomicDataTypes_Offline[5]);
-            failure_condition += CompareOnlineOffline("UDT_AllAtomicDataTypes.ex_BOOL7", UDT_AllAtomicDataTypes_Online[6], UDT_AllAtomicDataTypes_Offline[6]);
-            failure_condition += CompareOnlineOffline("UDT_AllAtomicDataTypes.ex_BOOL8", UDT_AllAtomicDataTypes_Online[7], UDT_AllAtomicDataTypes_Offline[7]);
-            failure_condition += CompareOnlineOffline("UDT_AllAtomicDataTypes.ex_SINT", UDT_AllAtomicDataTypes_Online[8], UDT_AllAtomicDataTypes_Offline[8]);
-            failure_condition += CompareOnlineOffline("UDT_AllAtomicDataTypes.ex_INT", UDT_AllAtomicDataTypes_Online[9], UDT_AllAtomicDataTypes_Offline[9]);
-            failure_condition += CompareOnlineOffline("UDT_AllAtomicDataTypes.ex_DINT", UDT_AllAtomicDataTypes_Online[10], UDT_AllAtomicDataTypes_Offline[10]);
-            failure_condition += CompareOnlineOffline("UDT_AllAtomicDataTypes.ex_LINT", UDT_AllAtomicDataTypes_Online[11], UDT_AllAtomicDataTypes_Offline[11]);
-            failure_condition += CompareOnlineOffline("UDT_AllAtomicDataTypes.ex_REAL", UDT_AllAtomicDataTypes_Online[12], UDT_AllAtomicDataTypes_Offline[12]);
-            failure_condition += CompareOnlineOffline("UDT_AllAtomicDataTypes.ex_STRING", UDT_AllAtomicDataTypes_Online[13], UDT_AllAtomicDataTypes_Offline[13]);
+            failure_condition += CompareOnlineOffline(TEST_DINT_1[0], TEST_DINT_1[1], TEST_DINT_1[2]);
+            failure_condition += CompareOnlineOffline(TEST_TOGGLE_WetBulbTempCalc[0], TEST_TOGGLE_WetBulbTempCalc[1], TEST_TOGGLE_WetBulbTempCalc[2]);
+            failure_condition += CompareOnlineOffline(TEST_AOI_WetBulbTemp_isFahrenheit[0], TEST_AOI_WetBulbTemp_isFahrenheit[1], TEST_AOI_WetBulbTemp_isFahrenheit[2]);
+            failure_condition += CompareOnlineOffline(TEST_AOI_WetBulbTemp_RelativeHumidity[0], TEST_AOI_WetBulbTemp_RelativeHumidity[1], TEST_AOI_WetBulbTemp_RelativeHumidity[2]);
+            failure_condition += CompareOnlineOffline(TEST_AOI_WetBulbTemp_Temperature[0], TEST_AOI_WetBulbTemp_Temperature[1], TEST_AOI_WetBulbTemp_Temperature[2]);
+            failure_condition += CompareOnlineOffline(TEST_AOI_WetBulbTemp_WetBulbTemp[0], TEST_AOI_WetBulbTemp_WetBulbTemp[1], TEST_AOI_WetBulbTemp_WetBulbTemp[2]);
+            failure_condition += CompareOnlineOffline("UDT_AllAtomicDataTypes.ex_BOOL1", UDT_AllAtomicDataTypes[1][0], UDT_AllAtomicDataTypes[2][0]);
+            failure_condition += CompareOnlineOffline("UDT_AllAtomicDataTypes.ex_BOOL2", UDT_AllAtomicDataTypes[1][1], UDT_AllAtomicDataTypes[2][1]);
+            failure_condition += CompareOnlineOffline("UDT_AllAtomicDataTypes.ex_BOOL3", UDT_AllAtomicDataTypes[1][2], UDT_AllAtomicDataTypes[2][2]);
+            failure_condition += CompareOnlineOffline("UDT_AllAtomicDataTypes.ex_BOOL4", UDT_AllAtomicDataTypes[1][3], UDT_AllAtomicDataTypes[2][3]);
+            failure_condition += CompareOnlineOffline("UDT_AllAtomicDataTypes.ex_BOOL5", UDT_AllAtomicDataTypes[1][4], UDT_AllAtomicDataTypes[2][4]);
+            failure_condition += CompareOnlineOffline("UDT_AllAtomicDataTypes.ex_BOOL6", UDT_AllAtomicDataTypes[1][5], UDT_AllAtomicDataTypes[2][5]);
+            failure_condition += CompareOnlineOffline("UDT_AllAtomicDataTypes.ex_BOOL7", UDT_AllAtomicDataTypes[1][6], UDT_AllAtomicDataTypes[2][6]);
+            failure_condition += CompareOnlineOffline("UDT_AllAtomicDataTypes.ex_BOOL8", UDT_AllAtomicDataTypes[1][7], UDT_AllAtomicDataTypes[2][7]);
+            failure_condition += CompareOnlineOffline("UDT_AllAtomicDataTypes.ex_SINT", UDT_AllAtomicDataTypes[1][8], UDT_AllAtomicDataTypes[2][8]);
+            failure_condition += CompareOnlineOffline("UDT_AllAtomicDataTypes.ex_INT", UDT_AllAtomicDataTypes[1][9], UDT_AllAtomicDataTypes[2][9]);
+            failure_condition += CompareOnlineOffline("UDT_AllAtomicDataTypes.ex_DINT", UDT_AllAtomicDataTypes[1][10], UDT_AllAtomicDataTypes[2][10]);
+            failure_condition += CompareOnlineOffline("UDT_AllAtomicDataTypes.ex_LINT", UDT_AllAtomicDataTypes[1][11], UDT_AllAtomicDataTypes[2][11]);
+            failure_condition += CompareOnlineOffline("UDT_AllAtomicDataTypes.ex_REAL", UDT_AllAtomicDataTypes[1][12], UDT_AllAtomicDataTypes[2][12]);
+            failure_condition += CompareOnlineOffline("UDT_AllAtomicDataTypes.ex_STRING", UDT_AllAtomicDataTypes[1][13], UDT_AllAtomicDataTypes[2][13]);
             Console.Write($"[{DateTime.Now.ToString("T")}] DONE verifying whether offline and online values are the same\n---\n");
 
             // Set tag values
             Console.WriteLine($"[{DateTime.Now.ToString("T")}] START setting tag values...");
-            CallSetTagValueAsyncAndWaitOnResult(TEST_DINT_1[6], 111, "online", TEST_DINT_1[7], filePath_ControllerScope, myProject);
-            CallSetTagValueAsyncAndWaitOnResult(TEST_TOGGLE_WetBulbTempCalc[6], 1, "online", TEST_TOGGLE_WetBulbTempCalc[7], filePath_MainProgram, myProject);
-            CallSetTagValueAsyncAndWaitOnResult(TEST_AOI_WetBulbTemp_isFahrenheit[6], 1, "online", TEST_AOI_WetBulbTemp_isFahrenheit[7], filePath_MainProgram, myProject);
-            CallSetTagValueAsyncAndWaitOnResult(TEST_AOI_WetBulbTemp_RelativeHumidity[6], 30, "online", TEST_AOI_WetBulbTemp_RelativeHumidity[7], filePath_MainProgram, myProject);
-            CallSetTagValueAsyncAndWaitOnResult(TEST_AOI_WetBulbTemp_Temperature[6], 70, "online", TEST_AOI_WetBulbTemp_Temperature[7], filePath_MainProgram, myProject);
-            //byte[] byteArray_UDT_AllAtomicDataTypes = new byte[int.Parse(UDT_AllAtomicDataTypes_Online[14])];
-            //byteArray_UDT_AllAtomicDataTypes[0] = Convert.ToByte("10010010", 2);   // new boolean values
-            //byteArray_UDT_AllAtomicDataTypes[1] = Convert.ToByte(Convert.ToInt16("-24"));
-            //ByteString byteString_UDT_AllAtomicDataTypes = ByteString.CopyFrom(byteArray_UDT_AllAtomicDataTypes);
-            ByteString newValues_UDT_AllAtomicDataTypes;
-            newValues_UDT_AllAtomicDataTypes = ModifyByteString_UDT_AllAtomicDataTypesValues("10010010", DataType.BOOL, ByteString_UDT_AllAtomicDataTypes_Online);
-            newValues_UDT_AllAtomicDataTypes = ModifyByteString_UDT_AllAtomicDataTypesValues("-24", DataType.SINT, newValues_UDT_AllAtomicDataTypes);
-            newValues_UDT_AllAtomicDataTypes = ModifyByteString_UDT_AllAtomicDataTypesValues("20500", DataType.INT, newValues_UDT_AllAtomicDataTypes);
-            newValues_UDT_AllAtomicDataTypes = ModifyByteString_UDT_AllAtomicDataTypesValues("-2000111000", DataType.DINT, newValues_UDT_AllAtomicDataTypes);
-            newValues_UDT_AllAtomicDataTypes = ModifyByteString_UDT_AllAtomicDataTypesValues("-9000111000111000111", DataType.LINT, newValues_UDT_AllAtomicDataTypes);
-            newValues_UDT_AllAtomicDataTypes = ModifyByteString_UDT_AllAtomicDataTypesValues("10555.888", DataType.REAL, newValues_UDT_AllAtomicDataTypes);
-            newValues_UDT_AllAtomicDataTypes = ModifyByteString_UDT_AllAtomicDataTypesValues("New Test!", DataType.STRING, newValues_UDT_AllAtomicDataTypes);
+            CallSetTagValueAsyncAndWaitOnResult(TEST_DINT_1[0], 111, "online", DataType.DINT, filePath_ControllerScope, myProject);
+            CallSetTagValueAsyncAndWaitOnResult(TEST_TOGGLE_WetBulbTempCalc[0], 1, "online", DataType.BOOL, filePath_MainProgram, myProject);
+            CallSetTagValueAsyncAndWaitOnResult(TEST_AOI_WetBulbTemp_isFahrenheit[0], 1, "online", DataType.BOOL, filePath_MainProgram, myProject);
+            CallSetTagValueAsyncAndWaitOnResult(TEST_AOI_WetBulbTemp_RelativeHumidity[0], 30, "online", DataType.REAL, filePath_MainProgram, myProject);
+            CallSetTagValueAsyncAndWaitOnResult(TEST_AOI_WetBulbTemp_Temperature[0], 70, "online", DataType.REAL, filePath_MainProgram, myProject);
+
+            ByteString[] newValues_UDT_AllAtomicDataTypes = CallGetUDT_AllAtomicDataTypesAndWaitOnResult("UDT_AllAtomicDataTypes", filePath_ControllerScope, myProject);
+            newValues_UDT_AllAtomicDataTypes[0] = ModifyByteString_UDT_AllAtomicDataTypesValues("10010010", DataType.BOOL, newValues_UDT_AllAtomicDataTypes);
+            //string[][] testString = FormatUDT_AllAtomicDataTypes(newValues_UDT_AllAtomicDataTypes, true);
+            newValues_UDT_AllAtomicDataTypes[0] = ModifyByteString_UDT_AllAtomicDataTypesValues("-24", DataType.SINT, newValues_UDT_AllAtomicDataTypes);
+            newValues_UDT_AllAtomicDataTypes[0] = ModifyByteString_UDT_AllAtomicDataTypesValues("20500", DataType.INT, newValues_UDT_AllAtomicDataTypes);
+            newValues_UDT_AllAtomicDataTypes[0] = ModifyByteString_UDT_AllAtomicDataTypesValues("-2000111000", DataType.DINT, newValues_UDT_AllAtomicDataTypes);
+            newValues_UDT_AllAtomicDataTypes[0] = ModifyByteString_UDT_AllAtomicDataTypesValues("-9000111000111000111", DataType.LINT, newValues_UDT_AllAtomicDataTypes);
+            newValues_UDT_AllAtomicDataTypes[0] = ModifyByteString_UDT_AllAtomicDataTypesValues("10555.888", DataType.REAL, newValues_UDT_AllAtomicDataTypes);
+            newValues_UDT_AllAtomicDataTypes[0] = ModifyByteString_UDT_AllAtomicDataTypesValues("New String!", DataType.STRING, newValues_UDT_AllAtomicDataTypes);
             SetUDT_AllAtomicDataTypes("UDT_AllAtomicDataTypes", newValues_UDT_AllAtomicDataTypes, TagOperationMode.Online, filePath_ControllerScope, myProject);
             Console.WriteLine($"[{DateTime.Now.ToString("T")}] DONE setting tag values\n---");
 
             // Verify expected output
             Console.WriteLine($"[{DateTime.Now.ToString("T")}] START verifying expected tag outputs...");
-            TEST_AOI_WetBulbTemp_WetBulbTemp = CallGetTagValueAsyncAndWaitOnResult(TEST_AOI_WetBulbTemp_WetBulbTemp[6], TEST_AOI_WetBulbTemp_WetBulbTemp[7], filePath_MainProgram, myProject);
-            if (TEST_AOI_WetBulbTemp_WetBulbTemp[0] == "52.997536")
-                Console.WriteLine($"SUCCESS: tag TEST_AOI_WetBulbTemp_WetBulbTemp returned expected result {TEST_AOI_WetBulbTemp_WetBulbTemp[0]}");
-            else
-            {
-                Console.WriteLine($"FAILURE: : tag TEST_AOI_WetBulbTemp_WetBulbTemp returned result {TEST_AOI_WetBulbTemp_WetBulbTemp[0]} when expected 52.997536");
-                ++failure_condition;
-            }
+            TEST_AOI_WetBulbTemp_WetBulbTemp = CallGetTagValueAsyncAndWaitOnResult(TEST_AOI_WetBulbTemp_WetBulbTemp[0], DataType.REAL, filePath_MainProgram, myProject, false);
+            failure_condition += CompareForExpectedValue("TEST_AOI_WetBulbTemp_WetBulbTemp", "52.997536", TEST_AOI_WetBulbTemp_WetBulbTemp[1]);
+            ByteString_UDT_AllAtomicDataTypes = CallGetUDT_AllAtomicDataTypesAndWaitOnResult("UDT_AllAtomicDataTypes", filePath_ControllerScope, myProject);
+            UDT_AllAtomicDataTypes = FormatUDT_AllAtomicDataTypes(ByteString_UDT_AllAtomicDataTypes, false);
+            failure_condition += CompareForExpectedValue("UDT_AllAtomicDataTypes.ex_INT", "20500", UDT_AllAtomicDataTypes[1][9]);
+            failure_condition += CompareForExpectedValue("UDT_AllAtomicDataTypes.ex_STRING", "New String!", UDT_AllAtomicDataTypes[1][13]);
             Console.WriteLine($"[{DateTime.Now.ToString("T")}] DONE verifying expected tag outputs\n---");
 
             // Show final tag values
             Console.WriteLine($"[{DateTime.Now.ToString("T")}] START showing final test tag values...");
-            TEST_DINT_1 = CallGetTagValueAsyncAndWaitOnResult(TEST_DINT_1[6], TEST_DINT_1[7], filePath_ControllerScope, myProject);
-            Console.WriteLine($"{TEST_DINT_1[2]}\n{TEST_DINT_1[5]}");
-            TEST_TOGGLE_WetBulbTempCalc = CallGetTagValueAsyncAndWaitOnResult(TEST_TOGGLE_WetBulbTempCalc[6], TEST_TOGGLE_WetBulbTempCalc[7], filePath_MainProgram, myProject);
-            Console.WriteLine($"{TEST_TOGGLE_WetBulbTempCalc[2]}\n{TEST_TOGGLE_WetBulbTempCalc[5]}");
-            TEST_AOI_WetBulbTemp_isFahrenheit = CallGetTagValueAsyncAndWaitOnResult(TEST_AOI_WetBulbTemp_isFahrenheit[6], TEST_AOI_WetBulbTemp_isFahrenheit[7], filePath_MainProgram, myProject);
-            Console.WriteLine($"{TEST_AOI_WetBulbTemp_isFahrenheit[2]}\n{TEST_AOI_WetBulbTemp_isFahrenheit[5]}");
-            TEST_AOI_WetBulbTemp_RelativeHumidity = CallGetTagValueAsyncAndWaitOnResult(TEST_AOI_WetBulbTemp_RelativeHumidity[6], TEST_AOI_WetBulbTemp_RelativeHumidity[7], filePath_MainProgram, myProject);
-            Console.WriteLine($"{TEST_AOI_WetBulbTemp_RelativeHumidity[2]}\n{TEST_AOI_WetBulbTemp_RelativeHumidity[5]}");
-            TEST_AOI_WetBulbTemp_Temperature = CallGetTagValueAsyncAndWaitOnResult(TEST_AOI_WetBulbTemp_Temperature[6], TEST_AOI_WetBulbTemp_Temperature[7], filePath_MainProgram, myProject);
-            Console.WriteLine($"{TEST_AOI_WetBulbTemp_Temperature[2]}\n{TEST_AOI_WetBulbTemp_Temperature[5]}");
-            Console.WriteLine($"{TEST_AOI_WetBulbTemp_WetBulbTemp[2]}\n{TEST_AOI_WetBulbTemp_WetBulbTemp[5]}");
+            CallGetTagValueAsyncAndWaitOnResult(TEST_DINT_1[0], DataType.DINT, filePath_ControllerScope, myProject, true);
+            CallGetTagValueAsyncAndWaitOnResult(TEST_TOGGLE_WetBulbTempCalc[0], DataType.BOOL, filePath_MainProgram, myProject, true);
+            CallGetTagValueAsyncAndWaitOnResult(TEST_AOI_WetBulbTemp_isFahrenheit[0], DataType.BOOL, filePath_MainProgram, myProject, true);
+            CallGetTagValueAsyncAndWaitOnResult(TEST_AOI_WetBulbTemp_RelativeHumidity[0], DataType.REAL, filePath_MainProgram, myProject, true);
+            CallGetTagValueAsyncAndWaitOnResult(TEST_AOI_WetBulbTemp_Temperature[0], DataType.REAL, filePath_MainProgram, myProject, true);
             Console.WriteLine($"[{DateTime.Now.ToString("T")}] DONE showing final test tag values");
 
             // Final Banner
@@ -365,96 +353,142 @@ namespace TestStage_CICDExample
 
 
         // Get Complex Data Type Tag Value Method
-        private static string[] FormatUDT_AllAtomicDataTypes(ByteString byte_string)
+        private static string[][] FormatUDT_AllAtomicDataTypes(ByteString[] byte_string, bool printout)
         {
 
-            string[] return_string = new string[15];
-            byte[] UDT_ByteArray = new byte[byte_string.Length];
-            for (int i = 0; i < UDT_ByteArray.Length; i++)
-                UDT_ByteArray[i] = (byte)byte_string[i];
+            string[][] return_string = new string[3][];
+            return_string[0] = new string[] { "UDT_AllAtomicDataTypes.ex_BOOL1", "UDT_AllAtomicDataTypes.ex_BOOL2", "UDT_AllAtomicDataTypes.ex_BOOL3",
+                "UDT_AllAtomicDataTypes.ex_BOOL4", "UDT_AllAtomicDataTypes.ex_BOOL5", "UDT_AllAtomicDataTypes.ex_BOOL6", "UDT_AllAtomicDataTypes.ex_BOOL7",
+                "UDT_AllAtomicDataTypes.ex_BOOL8", "UDT_AllAtomicDataTypes.ex_SINT", "UDT_AllAtomicDataTypes.ex_INT", "UDT_AllAtomicDataTypes.ex_DINT",
+                "UDT_AllAtomicDataTypes.ex_LINT", "UDT_AllAtomicDataTypes.ex_REAL", "UDT_AllAtomicDataTypes.ex_STRING" };
+            return_string[1] = new string[15];
+            return_string[2] = new string[15];
+
+            byte[] online_UDT_ByteArray = new byte[byte_string[0].Length];
+            for (int i = 0; i < online_UDT_ByteArray.Length; i++)
+                online_UDT_ByteArray[i] = (byte)byte_string[0][i];
+
+            byte[] offline_UDT_ByteArray = new byte[byte_string[1].Length];
+            for (int i = 0; i < offline_UDT_ByteArray.Length; i++)
+                offline_UDT_ByteArray[i] = (byte)byte_string[1][i];
 
             // ex_BOOL1 - ex_BOOL2
             byte[] ex_BOOLs = new byte[1];
-            Array.ConstrainedCopy(UDT_ByteArray, 0, ex_BOOLs, 0, 1);
-            for (int i = 0; i < 8; i++)
-                return_string[i] = Convert.ToString(CreateBinaryString(ex_BOOLs, "backward")[7 - i]);
+            Array.ConstrainedCopy(online_UDT_ByteArray, 0, ex_BOOLs, 0, 1);
+            for (int j = 0; j < 8; j++)
+                return_string[1][j] = Convert.ToString(CreateBinaryString(ex_BOOLs, "backward")[7 - j]);
+            Array.ConstrainedCopy(offline_UDT_ByteArray, 0, ex_BOOLs, 0, 1);
+            for (int j = 0; j < 8; j++)
+                return_string[2][j] = Convert.ToString(CreateBinaryString(ex_BOOLs, "backward")[7 - j]);
 
             // ex_SINT
             byte[] ex_SINT = new byte[1];
-            Array.ConstrainedCopy(UDT_ByteArray, 1, ex_SINT, 0, 1);
-            string sint_string = CreateBinaryString(ex_SINT, "forward");
-            int sign = sint_string[0] == '1' ? -1 : 1;
-            if (sign == 1)
-                return_string[8] = Convert.ToString(Convert.ToInt16(("00000000" + sint_string), 2));
-
-            else if (sign == -1)
-                return_string[8] = Convert.ToString(Convert.ToInt16(("11111111" + sint_string), 2));
+            Array.ConstrainedCopy(online_UDT_ByteArray, 1, ex_SINT, 0, 1);
+            string sint_string_online = CreateBinaryString(ex_SINT, "forward");
+            int sign_online = sint_string_online[0] == '1' ? -1 : 1;
+            if (sign_online == 1)
+                return_string[1][8] = Convert.ToString(Convert.ToInt16(("00000000" + sint_string_online), 2));
+            else if (sign_online == -1)
+                return_string[1][8] = Convert.ToString(Convert.ToInt16(("11111111" + sint_string_online), 2));
+            Array.ConstrainedCopy(offline_UDT_ByteArray, 1, ex_SINT, 0, 1);
+            string sint_string_offline = CreateBinaryString(ex_SINT, "forward");
+            int sign_offline = sint_string_offline[0] == '1' ? -1 : 1;
+            if (sign_offline == 1)
+                return_string[2][8] = Convert.ToString(Convert.ToInt16(("00000000" + sint_string_offline), 2));
+            else if (sign_offline == -1)
+                return_string[2][8] = Convert.ToString(Convert.ToInt16(("11111111" + sint_string_offline), 2));
 
             // ex_INT
             byte[] ex_INT = new byte[2];
-            Array.ConstrainedCopy(UDT_ByteArray, 2, ex_INT, 0, 2);
-            return_string[9] = Convert.ToString(BitConverter.ToInt16(ex_INT));
+            Array.ConstrainedCopy(online_UDT_ByteArray, 2, ex_INT, 0, 2);
+            return_string[1][9] = Convert.ToString(BitConverter.ToInt16(ex_INT));
+            Array.ConstrainedCopy(offline_UDT_ByteArray, 2, ex_INT, 0, 2);
+            return_string[2][9] = Convert.ToString(BitConverter.ToInt16(ex_INT));
 
             // ex_DINT
             byte[] ex_DINT = new byte[4];
-            Array.ConstrainedCopy(UDT_ByteArray, 4, ex_DINT, 0, 4);
-            return_string[10] = Convert.ToString(BitConverter.ToInt32(ex_DINT));
+            Array.ConstrainedCopy(online_UDT_ByteArray, 4, ex_DINT, 0, 4);
+            return_string[1][10] = Convert.ToString(BitConverter.ToInt32(ex_DINT));
+            Array.ConstrainedCopy(offline_UDT_ByteArray, 4, ex_DINT, 0, 4);
+            return_string[2][10] = Convert.ToString(BitConverter.ToInt32(ex_DINT));
 
             // ex_LINT
             byte[] ex_LINT = new byte[8];
-            Array.ConstrainedCopy(UDT_ByteArray, 8, ex_LINT, 0, 8);
-            return_string[11] = Convert.ToString(BitConverter.ToInt64(ex_LINT));
+            Array.ConstrainedCopy(online_UDT_ByteArray, 8, ex_LINT, 0, 8);
+            return_string[1][11] = Convert.ToString(BitConverter.ToInt64(ex_LINT));
+            Array.ConstrainedCopy(offline_UDT_ByteArray, 8, ex_LINT, 0, 8);
+            return_string[2][11] = Convert.ToString(BitConverter.ToInt64(ex_LINT));
 
             // ex_REAL
             byte[] ex_REAL = new byte[4];
-            Array.ConstrainedCopy(UDT_ByteArray, 16, ex_REAL, 0, 4);
-            return_string[12] = ConvertIEEE754ToFloatString(ex_REAL);
+            Array.ConstrainedCopy(online_UDT_ByteArray, 16, ex_REAL, 0, 4);
+            return_string[1][12] = ConvertIEEE754ToFloatString(ex_REAL);
+            Array.ConstrainedCopy(offline_UDT_ByteArray, 16, ex_REAL, 0, 4);
+            return_string[2][12] = ConvertIEEE754ToFloatString(ex_REAL);
 
             // ex_STRING
-            byte[] ex_STRING = new byte[UDT_ByteArray.Length - 24];
-            Array.ConstrainedCopy(UDT_ByteArray, 24, ex_STRING, 0, UDT_ByteArray.Length - 24);
-            return_string[13] = Encoding.ASCII.GetString(ex_STRING).Replace("\0", "");
+            byte[] ex_STRING = new byte[online_UDT_ByteArray.Length - 24];
+            Array.ConstrainedCopy(online_UDT_ByteArray, 24, ex_STRING, 0, online_UDT_ByteArray.Length - 24);
+            return_string[1][13] = Encoding.ASCII.GetString(ex_STRING).Replace("\0", "");
+            Array.ConstrainedCopy(offline_UDT_ByteArray, 24, ex_STRING, 0, offline_UDT_ByteArray.Length - 24);
+            return_string[2][13] = Encoding.ASCII.GetString(ex_STRING).Replace("\0", "");
 
-            return_string[14] = Convert.ToString(byte_string.Length);
+            // get the number of bytes for this UDT
+            return_string[1][14] = Convert.ToString(byte_string[0].Length);
+            return_string[2][14] = Convert.ToString(byte_string[1].Length);
+
+            if (printout)
+            {
+                string online_message = "";
+                string offline_message = "";
+                for (int i = 0; i < return_string[0].Length; i++)
+                {
+                    online_message = $"online value: {return_string[1][i]}";
+                    offline_message = $"offline value: {return_string[2][i]}";
+                    Console.WriteLine($"SUCCESS: " + return_string[0][i].PadRight(40, ' ') + online_message.PadRight(35, ' ') + offline_message.PadRight(35, ' '));
+                }
+            }
             return return_string;
         }
 
         // Get ByteString From UDT_AllAtomicDataTypes Tag Method
-        private static async Task<ByteString> GetUDT_AllAtomicDataTypes(string tag_name, TagOperationMode mode, DataType type, string tagPath, LogixProject project)
+        private static async Task<ByteString[]> GetUDT_AllAtomicDataTypes(string tag_name, string tagPath, LogixProject project)
         {
             tagPath = tagPath + $"[@Name='{tag_name}']";
-            ByteString byte_string = await project.GetTagValueAsync(tagPath, mode, type);
-            return byte_string;
+            ByteString[] return_byteString = new ByteString[2];
+            return_byteString[0] = await project.GetTagValueAsync(tagPath, TagOperationMode.Online, DataType.BYTE_ARRAY);
+            return_byteString[1] = await project.GetTagValueAsync(tagPath, TagOperationMode.Offline, DataType.BYTE_ARRAY);
+            return return_byteString;
         }
 
         // Get ByteString From UDT_AllAtomicDataTypes Tag Method
-        private static ByteString CallGetUDT_AllAtomicDataTypesAndWaitOnResult(string tag_name, TagOperationMode mode, DataType type, string tagPath, LogixProject project)
+        private static ByteString[] CallGetUDT_AllAtomicDataTypesAndWaitOnResult(string tag_name, string tagPath, LogixProject project)
         {
-            var task = GetUDT_AllAtomicDataTypes(tag_name, mode, type, tagPath, project);
+            var task = GetUDT_AllAtomicDataTypes(tag_name, tagPath, project);
             task.Wait();
             return task.Result;
         }
 
         // Set Complex Data Type Tag Value Method
-        private static void SetUDT_AllAtomicDataTypes(string tag_name, ByteString input_byte, TagOperationMode mode, string tagPath, LogixProject project)
+        private static void SetUDT_AllAtomicDataTypes(string tag_name, ByteString[] input_byte, TagOperationMode mode, string tagPath, LogixProject project)
         {
             tagPath = tagPath + $"[@Name='{tag_name}']";
-            string[] UDT_AllAtomicDataTypes_Online = FormatUDT_AllAtomicDataTypes(CallGetUDT_AllAtomicDataTypesAndWaitOnResult("UDT_AllAtomicDataTypes", TagOperationMode.Online, DataType.BYTE_ARRAY, tagPath, project));
-            string[] UDT_AllAtomicDataTypes_Offline = FormatUDT_AllAtomicDataTypes(CallGetUDT_AllAtomicDataTypesAndWaitOnResult("UDT_AllAtomicDataTypes", TagOperationMode.Offline, DataType.BYTE_ARRAY, tagPath, project));
-            string[] new_UDT_AllAtomicDataTypes = FormatUDT_AllAtomicDataTypes(input_byte);
-            project.SetTagValueAsync(tagPath, mode, input_byte.ToByteArray(), LogixProject.DataType.BYTE_ARRAY);
+            ByteString[] byteString_in = CallGetUDT_AllAtomicDataTypesAndWaitOnResult("UDT_AllAtomicDataTypes", tagPath, project);
+            string[][] UDT_AllAtomicDataTypes = FormatUDT_AllAtomicDataTypes(byteString_in, false);
+            string[][] new_UDT_AllAtomicDataTypes = FormatUDT_AllAtomicDataTypes(input_byte, false);
+            project.SetTagValueAsync(tagPath, mode, input_byte[0].ToByteArray(), DataType.BYTE_ARRAY);
 
             if (mode == TagOperationMode.Online)
             {
                 Console.WriteLine($"SUCCESS: {tag_name} online values: ");
-                for (int i = 0; i < UDT_AllAtomicDataTypes_Online.Length - 1; i++)
-                    Console.WriteLine("         " + UDT_AllAtomicDataTypes_Online[i] + "  -->  " + new_UDT_AllAtomicDataTypes[i]);
+                for (int i = 0; i < UDT_AllAtomicDataTypes[1].Length - 1; i++)
+                    Console.WriteLine("         " + UDT_AllAtomicDataTypes[1][i] + "  -->  " + new_UDT_AllAtomicDataTypes[1][i]);
             }
             else if (mode == TagOperationMode.Offline)
             {
                 Console.WriteLine($"SUCCESS: {tag_name} offline values: ");
-                for (int i = 0; i < UDT_AllAtomicDataTypes_Offline.Length - 1; i++)
-                    Console.WriteLine("         " + UDT_AllAtomicDataTypes_Offline[i] + "  -->  " + new_UDT_AllAtomicDataTypes[i]);
+                for (int i = 0; i < UDT_AllAtomicDataTypes[2].Length - 1; i++)
+                    Console.WriteLine("         " + UDT_AllAtomicDataTypes[2][i] + "  -->  " + new_UDT_AllAtomicDataTypes[2][i]);
             }
         }
 
@@ -514,144 +548,117 @@ namespace TestStage_CICDExample
         }
 
         // Get Tag Value Method
-        // return_array[0] = $"{tagValue_online}";
-        // return_array[1] = $"{tag_name} online value";
-        // return_array[2] = $"{tag_name} online value: {tagValue_online}";
-        // return_array[3] = $"{tagValue_offline}";
-        // return_array[4] = $"{tag_name} offline value";
-        // return_array[5] = $"{tag_name} offline value: {tagValue_offline}";
-        // return_array[6] = tag_name;
-        // return_array[7] = data_type;
-        private static async Task<string[]> GetTagValueAsync(string tag_name, string data_type, string tagPath, LogixProject project)
+        // return_array[0] = tag name
+        // return_array[1] = online tag value
+        // return_array[2] = offline tag value
+        private static async Task<string[]> GetTagValueAsync(string tag_name, DataType type, string tagPath, LogixProject project, bool printout)
         {
-            string[] return_array = new string[8];
+            string[] return_array = new string[3];
             tagPath = tagPath + $"[@Name='{tag_name}']";
+            return_array[0] = tag_name;
             try
             {
-                if (data_type == "DINT")
+                if (type == DataType.DINT)
                 {
-                    int tagValue_online = await project.GetTagValueDINTAsync(tagPath, LogixProject.TagOperationMode.Online);
-                    return_array[0] = $"{tagValue_online}";
-                    return_array[1] = $"{tag_name} online value";
-                    return_array[2] = $"{tag_name} online value: {tagValue_online}";
+                    int tagValue_online = await project.GetTagValueDINTAsync(tagPath, TagOperationMode.Online);
+                    return_array[1] = $"{tagValue_online}";
+                    int tagValue_offline = await project.GetTagValueDINTAsync(tagPath, TagOperationMode.Offline);
+                    return_array[2] = $"{tagValue_offline}";
                 }
-                else if (data_type == "BOOL")
+                else if (type == DataType.BOOL)
                 {
-                    bool tagValue_online = await project.GetTagValueBOOLAsync(tagPath, LogixProject.TagOperationMode.Online);
-                    return_array[0] = $"{tagValue_online}";
-                    return_array[1] = $"{tag_name} online value";
-                    return_array[2] = $"{tag_name} online value: {tagValue_online}";
+                    bool tagValue_online = await project.GetTagValueBOOLAsync(tagPath, TagOperationMode.Online);
+                    return_array[1] = $"{tagValue_online}";
+                    bool tagValue_offline = await project.GetTagValueBOOLAsync(tagPath, TagOperationMode.Offline);
+                    return_array[2] = $"{tagValue_offline}";
+
                 }
-                else if (data_type == "REAL")
+                else if (type == DataType.REAL)
                 {
-                    float tagValue_online = await project.GetTagValueREALAsync(tagPath, LogixProject.TagOperationMode.Online);
-                    return_array[0] = $"{tagValue_online}";
-                    return_array[1] = $"{tag_name} online value";
-                    return_array[2] = $"{tag_name} online value: {tagValue_online}";
-                }
-                else
-                {
-                    Console.WriteLine($"ERROR executing command: The data type {data_type} cannot be handled. Select either DINT, BOOL, or REAL.");
-                }
-                if (data_type == "DINT")
-                {
-                    int tagValue_offline = await project.GetTagValueDINTAsync(tagPath, LogixProject.TagOperationMode.Offline);
-                    return_array[3] = $"{tagValue_offline}";
-                    return_array[4] = $"{tag_name} offline value";
-                    return_array[5] = $"{tag_name} offline value: {tagValue_offline}";
-                }
-                else if (data_type == "BOOL")
-                {
-                    bool tagValue_offline = await project.GetTagValueBOOLAsync(tagPath, LogixProject.TagOperationMode.Offline);
-                    return_array[3] = $"{tagValue_offline}";
-                    return_array[4] = $"{tag_name} offline value";
-                    return_array[5] = $"{tag_name} offline value: {tagValue_offline}";
-                }
-                else if (data_type == "REAL")
-                {
-                    float tagValue_offline = await project.GetTagValueREALAsync(tagPath, LogixProject.TagOperationMode.Offline);
-                    return_array[3] = $"{tagValue_offline}";
-                    return_array[4] = $"{tag_name} offline value";
-                    return_array[5] = $"{tag_name} offline value: {tagValue_offline}";
+                    float tagValue_online = await project.GetTagValueREALAsync(tagPath, TagOperationMode.Online);
+                    return_array[1] = $"{tagValue_online}";
+                    float tagValue_offline = await project.GetTagValueREALAsync(tagPath, TagOperationMode.Offline);
+                    return_array[2] = $"{tagValue_offline}";
                 }
                 else
-                {
-                    Console.WriteLine($"ERROR executing command: The tag {tag_name} of data type {data_type} cannot be handled. \n" +
-                        $"Select either DINT, BOOL, or REAL.");
-                }
-                return_array[6] = tag_name;
-                return_array[7] = data_type;
+                    Console.WriteLine(WrapText($"ERROR executing command: The tag {tag_name} cannot be handled. Select either DINT, BOOL, or REAL."));
             }
             catch (LogixSdkException ex)
             {
-                Console.WriteLine($"ERROR getting tag {tag_name}.");
+                Console.WriteLine($"ERROR getting tag {tag_name}");
                 Console.WriteLine(ex.Message);
+            }
+            if (printout)
+            {
+                string online_message = $"online value: {return_array[1]}";
+                string offline_message = $"offline value: {return_array[2]}";
+                Console.WriteLine($"SUCCESS: " + tag_name.PadRight(40, ' ') + online_message.PadRight(35, ' ') + offline_message.PadRight(35, ' '));
             }
             return return_array;
         }
 
         // Get Tag Value Wait On Result Method
-        private static string[] CallGetTagValueAsyncAndWaitOnResult(string tag_name, string data_type, string tagPath, LogixProject project)
+        private static string[] CallGetTagValueAsyncAndWaitOnResult(string tag_name, DataType type, string tagPath, LogixProject project, bool printout)
         {
-            var task = GetTagValueAsync(tag_name, data_type, tagPath, project);
+            var task = GetTagValueAsync(tag_name, type, tagPath, project, printout);
             task.Wait();
             return task.Result;
         }
 
         // Set Tag Value Method
-        private static async Task SetTagValueAsync(string tag_name, int tag_value_in, string online_or_offline, string data_type, string tagPath, LogixProject project)
+        private static async Task SetTagValueAsync(string tag_name, int tag_value_in, string online_or_offline, DataType type, string tagPath, LogixProject project)
         {
             tagPath = tagPath + $"[@Name='{tag_name}']";
             try
             {
                 if (online_or_offline == "online")
                 {
-                    if (data_type == "DINT")
+                    if (type == DataType.DINT)
                     {
-                        await project.SetTagValueDINTAsync(tagPath, LogixProject.TagOperationMode.Online, tag_value_in);
+                        await project.SetTagValueDINTAsync(tagPath, TagOperationMode.Online, tag_value_in);
                         Console.WriteLine($"SUCCESS: {tag_name} {online_or_offline} new value: {tag_value_in}");
                     }
-                    else if (data_type == "BOOL")
+                    else if (type == DataType.BOOL)
                     {
-                        await project.SetTagValueBOOLAsync(tagPath, LogixProject.TagOperationMode.Online, Convert.ToBoolean(tag_value_in));
+                        await project.SetTagValueBOOLAsync(tagPath, TagOperationMode.Online, Convert.ToBoolean(tag_value_in));
                         Console.WriteLine($"SUCCESS: {tag_name} {online_or_offline} new value: {tag_value_in}");
                     }
-                    else if (data_type == "REAL")
+                    else if (type == DataType.REAL)
                     {
-                        await project.SetTagValueREALAsync(tagPath, LogixProject.TagOperationMode.Online, tag_value_in);
+                        await project.SetTagValueREALAsync(tagPath, TagOperationMode.Online, tag_value_in);
                         Console.WriteLine($"SUCCESS: {tag_name} {online_or_offline} new value: {tag_value_in}");
                     }
                     else
                     {
-                        Console.WriteLine($"ERROR executing command: The data type {data_type} cannot be handled. Select either DINT, BOOL, or REAL.");
+                        Console.WriteLine($"ERROR executing command: The data type cannot be handled. Select either DINT, BOOL, or REAL.");
                     }
                 }
                 else if (online_or_offline == "offline")
                 {
-                    if (data_type == "DINT")
+                    if (type == DataType.DINT)
                     {
-                        await project.SetTagValueDINTAsync(tagPath, LogixProject.TagOperationMode.Offline, tag_value_in);
+                        await project.SetTagValueDINTAsync(tagPath, TagOperationMode.Offline, tag_value_in);
                         Console.WriteLine($"SUCCESS: {tag_name} {online_or_offline} new value: {tag_value_in}");
                     }
-                    else if (data_type == "BOOL")
+                    else if (type == DataType.BOOL)
                     {
-                        await project.SetTagValueBOOLAsync(tagPath, LogixProject.TagOperationMode.Offline, Convert.ToBoolean(tag_value_in));
+                        await project.SetTagValueBOOLAsync(tagPath, TagOperationMode.Offline, Convert.ToBoolean(tag_value_in));
                         Console.WriteLine($"SUCCESS: {tag_name} {online_or_offline} new value: {tag_value_in}");
                     }
-                    else if (data_type == "REAL")
+                    else if (type == DataType.REAL)
                     {
-                        await project.SetTagValueREALAsync(tagPath, LogixProject.TagOperationMode.Offline, tag_value_in);
+                        await project.SetTagValueREALAsync(tagPath, TagOperationMode.Offline, tag_value_in);
                         Console.WriteLine($"SUCCESS: {tag_name} {online_or_offline} new value: {tag_value_in}");
                     }
                     else
                     {
-                        Console.WriteLine($"ERROR executing command: The data type {data_type} cannot be handled. Select either DINT, BOOL, or REAL.");
+                        Console.WriteLine($"ERROR executing command: The data type cannot be handled. Select either DINT, BOOL, or REAL.");
                     }
                 }
             }
             catch (LogixSdkException ex)
             {
-                Console.WriteLine("Unable to set tag value DINT");
+                Console.WriteLine("Unable to set tag value.");
                 Console.WriteLine(ex.Message);
             }
 
@@ -667,9 +674,9 @@ namespace TestStage_CICDExample
         }
 
         // Set Tag Value Wait On Result Method
-        private static void CallSetTagValueAsyncAndWaitOnResult(string tag_name, int tag_value_in, string online_or_offline, string data_type, string tagPath, LogixProject project)
+        private static void CallSetTagValueAsyncAndWaitOnResult(string tag_name, int tag_value_in, string online_or_offline, DataType type, string tagPath, LogixProject project)
         {
-            var task = SetTagValueAsync(tag_name, tag_value_in, online_or_offline, data_type, tagPath, project);
+            var task = SetTagValueAsync(tag_name, tag_value_in, online_or_offline, type, tagPath, project);
             task.Wait();
         }
 
@@ -828,8 +835,22 @@ namespace TestStage_CICDExample
             }
             else
             {
-                String newString = "SUCCESS: " + tag_name + "online value (" + online_value + ") & offline value (" + offline_value + ") are EQUAL.";
-                Console.Write(WrapText(newString));
+                Console.Write(WrapText($"SUCCESS: {tag_name} online value ({online_value}) & offline value ({offline_value}) are EQUAL."));
+                return 0;
+            }
+        }
+
+        // Compare Two Tags Method
+        private static int CompareForExpectedValue(string tag_name, string expected_value, string actual_value)
+        {
+            if (expected_value != actual_value)
+            {
+                Console.WriteLine(WrapText($"FAILURE: {tag_name} expected value ({expected_value}) & actual value ({actual_value}) NOT equal."));
+                return 1;
+            }
+            else
+            {
+                Console.Write(WrapText($"SUCCESS: {tag_name} expected value ({expected_value}) & actual value ({actual_value}) EQUAL."));
                 return 0;
             }
         }
@@ -904,9 +925,9 @@ namespace TestStage_CICDExample
 
 
         // Set UDT Values
-        private static ByteString ModifyByteString_UDT_AllAtomicDataTypesValues(string value_in, DataType type, ByteString byteString_UDT_AllAtomicDataTypes)
+        private static ByteString ModifyByteString_UDT_AllAtomicDataTypesValues(string value_in, DataType type, ByteString[] byteString_UDT_AllAtomicDataTypes)
         {
-            byte[] byteArray = byteString_UDT_AllAtomicDataTypes.ToByteArray();
+            byte[] byteArray = byteString_UDT_AllAtomicDataTypes[0].ToByteArray();
 
             if (type == DataType.BOOL)
                 byteArray[0] = Convert.ToByte(value_in, 2);
