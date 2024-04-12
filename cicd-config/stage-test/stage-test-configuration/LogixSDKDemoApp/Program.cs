@@ -53,50 +53,6 @@ namespace TestStage_CICDExample
             //#endregion
 
 
-            //string sint_string = Convert.ToString(value_in, 2);
-            //byteArray[1] = Convert.ToByte(sint_string.Substring(sint_string.Length - 8), 2);
-            //private static ByteString ModifyByteString_UDT_AllAtomicDataTypesValues(long value_in, DataType type, string[] string_UDT_AllAtomicDataTypes)
-            //{
-
-            //    if (type == DataType.BOOL)
-            //        byteArray[0] = Convert.ToByte($"{value_in}", 2);
-            //    else if (type == DataType.SINT)
-            //    {
-            //        string sint_string = Convert.ToString(value_in, 2);
-            //        byteArray[1] = Convert.ToByte(sint_string.Substring(Math.Max(0, sint_string.Length - 8)), 2);
-            byte[] byteArray = new byte[1];
-            long value = -24;
-            string sint_string = Convert.ToString(value, 2);
-            sint_string = sint_string.Substring(sint_string.Length - 8);
-            //Console.WriteLine(sint_string);
-            //Console.WriteLine(sint_string.Length);
-            //foreach (char c in sint_string)
-            //    Console.WriteLine((int)c + ": " + c);
-            //Console.WriteLine("NEXT");
-            byteArray[0] = Convert.ToByte(sint_string, 2);
-            string testString = CreateBinaryString(byteArray, "backward");
-            string flippedString = "";
-            for (int i = testString.Length - 1; i >= 0; i--)
-                flippedString += testString[i];
-            Console.WriteLine(testString);
-            foreach (char c in testString)
-                Console.WriteLine((int)c + ": " + c);
-            int sign = testString[0] == '1' ? -1 : 1;
-            Console.WriteLine(sign);
-            int integerValue;
-            if (sign == 1)
-            {
-                integerValue = Convert.ToInt16(("00000000" + testString), 2);
-                Console.WriteLine("RESULT1: " + integerValue);
-            }
-
-            else if (sign == -1)
-            {
-                integerValue = Convert.ToInt16(("11111111" + testString), 2);
-                Console.WriteLine("RESULT2: " + integerValue);
-            }
-            //int integerValue = Convert.ToInt16(testString.Substring(1), 2);
-            //Console.WriteLine(testString.Substring(1));
 
             //Console.WriteLine(testString);
             //Console.WriteLine(BinaryStringToInteger(CreateBinaryString(byteArray, "forward")));
@@ -203,8 +159,10 @@ namespace TestStage_CICDExample
             string[] TEST_AOI_WetBulbTemp_RelativeHumidity = CallGetTagValueAsyncAndWaitOnResult("TEST_AOI_WetBulbTemp_RelativeHumidity", "REAL", filePath_MainProgram, myProject);
             string[] TEST_AOI_WetBulbTemp_Temperature = CallGetTagValueAsyncAndWaitOnResult("TEST_AOI_WetBulbTemp_Temperature", "REAL", filePath_MainProgram, myProject);
             string[] TEST_AOI_WetBulbTemp_WetBulbTemp = CallGetTagValueAsyncAndWaitOnResult("TEST_AOI_WetBulbTemp_WetBulbTemp", "REAL", filePath_MainProgram, myProject);
-            string[] UDT_AllAtomicDataTypes_Online = FormatUDT_AllAtomicDataTypes(CallGetUDT_AllAtomicDataTypesAndWaitOnResult("UDT_AllAtomicDataTypes", TagOperationMode.Online, DataType.BYTE_ARRAY, filePath_ControllerScope, myProject));
-            string[] UDT_AllAtomicDataTypes_Offline = FormatUDT_AllAtomicDataTypes(CallGetUDT_AllAtomicDataTypesAndWaitOnResult("UDT_AllAtomicDataTypes", TagOperationMode.Offline, DataType.BYTE_ARRAY, filePath_ControllerScope, myProject));
+            ByteString ByteString_UDT_AllAtomicDataTypes_Online = CallGetUDT_AllAtomicDataTypesAndWaitOnResult("UDT_AllAtomicDataTypes", TagOperationMode.Online, DataType.BYTE_ARRAY, filePath_ControllerScope, myProject);
+            string[] UDT_AllAtomicDataTypes_Online = FormatUDT_AllAtomicDataTypes(ByteString_UDT_AllAtomicDataTypes_Online);
+            ByteString ByteString_UDT_AllAtomicDataTypes_Offline = CallGetUDT_AllAtomicDataTypesAndWaitOnResult("UDT_AllAtomicDataTypes", TagOperationMode.Offline, DataType.BYTE_ARRAY, filePath_ControllerScope, myProject);
+            string[] UDT_AllAtomicDataTypes_Offline = FormatUDT_AllAtomicDataTypes(ByteString_UDT_AllAtomicDataTypes_Offline);
             bool ex_BOOL1 = GetBool(UDT_AllAtomicDataTypes_Online[0]);
             bool ex_BOOL2 = GetBool(UDT_AllAtomicDataTypes_Online[1]);
             bool ex_BOOL3 = GetBool(UDT_AllAtomicDataTypes_Online[2]);
@@ -257,8 +215,14 @@ namespace TestStage_CICDExample
             //byteArray_UDT_AllAtomicDataTypes[0] = Convert.ToByte("10010010", 2);   // new boolean values
             //byteArray_UDT_AllAtomicDataTypes[1] = Convert.ToByte(Convert.ToInt16("-24"));
             //ByteString byteString_UDT_AllAtomicDataTypes = ByteString.CopyFrom(byteArray_UDT_AllAtomicDataTypes);
-            ByteString newValues_UDT_AllAtomicDataTypes = ModifyByteString_UDT_AllAtomicDataTypesValues(10010010, DataType.BOOL, UDT_AllAtomicDataTypes_Online);
-            newValues_UDT_AllAtomicDataTypes = ModifyByteString_UDT_AllAtomicDataTypesValues(-24, DataType.SINT, UDT_AllAtomicDataTypes_Online);
+            ByteString newValues_UDT_AllAtomicDataTypes;
+            newValues_UDT_AllAtomicDataTypes = ModifyByteString_UDT_AllAtomicDataTypesValues("10010010", DataType.BOOL, ByteString_UDT_AllAtomicDataTypes_Online);
+            newValues_UDT_AllAtomicDataTypes = ModifyByteString_UDT_AllAtomicDataTypesValues("-24", DataType.SINT, newValues_UDT_AllAtomicDataTypes);
+            newValues_UDT_AllAtomicDataTypes = ModifyByteString_UDT_AllAtomicDataTypesValues("20500", DataType.INT, newValues_UDT_AllAtomicDataTypes);
+            newValues_UDT_AllAtomicDataTypes = ModifyByteString_UDT_AllAtomicDataTypesValues("-2000111000", DataType.DINT, newValues_UDT_AllAtomicDataTypes);
+            newValues_UDT_AllAtomicDataTypes = ModifyByteString_UDT_AllAtomicDataTypesValues("-9000111000111000111", DataType.LINT, newValues_UDT_AllAtomicDataTypes);
+            newValues_UDT_AllAtomicDataTypes = ModifyByteString_UDT_AllAtomicDataTypesValues("10555.888", DataType.REAL, newValues_UDT_AllAtomicDataTypes);
+            newValues_UDT_AllAtomicDataTypes = ModifyByteString_UDT_AllAtomicDataTypesValues("New Test!", DataType.STRING, newValues_UDT_AllAtomicDataTypes);
             SetUDT_AllAtomicDataTypes("UDT_AllAtomicDataTypes", newValues_UDT_AllAtomicDataTypes, TagOperationMode.Online, filePath_ControllerScope, myProject);
             Console.WriteLine($"[{DateTime.Now.ToString("T")}] DONE setting tag values\n---");
 
@@ -480,17 +444,16 @@ namespace TestStage_CICDExample
             string[] new_UDT_AllAtomicDataTypes = FormatUDT_AllAtomicDataTypes(input_byte);
             project.SetTagValueAsync(tagPath, mode, input_byte.ToByteArray(), LogixProject.DataType.BYTE_ARRAY);
 
-
             if (mode == TagOperationMode.Online)
             {
                 Console.WriteLine($"SUCCESS: {tag_name} online values: ");
-                for (int i = 0; i < UDT_AllAtomicDataTypes_Online.Length; i++)
+                for (int i = 0; i < UDT_AllAtomicDataTypes_Online.Length - 1; i++)
                     Console.WriteLine("         " + UDT_AllAtomicDataTypes_Online[i] + "  -->  " + new_UDT_AllAtomicDataTypes[i]);
             }
             else if (mode == TagOperationMode.Offline)
             {
                 Console.WriteLine($"SUCCESS: {tag_name} offline values: ");
-                for (int i = 0; i < UDT_AllAtomicDataTypes_Offline.Length; i++)
+                for (int i = 0; i < UDT_AllAtomicDataTypes_Offline.Length - 1; i++)
                     Console.WriteLine("         " + UDT_AllAtomicDataTypes_Offline[i] + "  -->  " + new_UDT_AllAtomicDataTypes[i]);
             }
         }
@@ -941,32 +904,58 @@ namespace TestStage_CICDExample
 
 
         // Set UDT Values
-        private static ByteString ModifyByteString_UDT_AllAtomicDataTypesValues(long value_in, DataType type, string[] string_UDT_AllAtomicDataTypes)
+        private static ByteString ModifyByteString_UDT_AllAtomicDataTypesValues(string value_in, DataType type, ByteString byteString_UDT_AllAtomicDataTypes)
         {
-            byte[] byteArray = new byte[int.Parse(string_UDT_AllAtomicDataTypes[14])];
+            byte[] byteArray = byteString_UDT_AllAtomicDataTypes.ToByteArray();
+
             if (type == DataType.BOOL)
-                byteArray[0] = Convert.ToByte($"{value_in}", 2);
+                byteArray[0] = Convert.ToByte(value_in, 2);
+
             else if (type == DataType.SINT)
             {
-                string sint_string = Convert.ToString(value_in, 2);
+                string sint_string = Convert.ToString(long.Parse(value_in), 2);
                 sint_string = sint_string.Substring(sint_string.Length - 8);
                 byteArray[1] = Convert.ToByte(sint_string, 2);
-                foreach (char c in sint_string)
-                    Console.WriteLine((int)c + ": " + c);
+            }
+
+            else if (type == DataType.INT)
+            {
+                byte[] int_byteArray = BitConverter.GetBytes(long.Parse(value_in));
+                for (int i = 0; i < int_byteArray.Length; ++i)
+                    byteArray[i + 2] = int_byteArray[i];
+            }
+
+            else if (type == DataType.DINT)
+            {
+                byte[] dint_byteArray = BitConverter.GetBytes(long.Parse(value_in));
+                for (int i = 0; i < dint_byteArray.Length; ++i)
+                    byteArray[i + 4] = dint_byteArray[i];
+            }
+
+            else if (type == DataType.LINT)
+            {
+                byte[] lint_byteArray = BitConverter.GetBytes(long.Parse(value_in));
+                for (int i = 0; i < lint_byteArray.Length; ++i)
+                    byteArray[i + 8] = lint_byteArray[i];
+            }
+
+            else if (type == DataType.REAL)
+            {
+                byte[] real_byteArray = BitConverter.GetBytes(float.Parse(value_in));
+                for (int i = 0; i < real_byteArray.Length; ++i)
+                    byteArray[i + 16] = real_byteArray[i];
+            }
+
+            else if (type == DataType.STRING)
+            {
+                byte[] real_byteArray = new byte[value_in.Length];
+                for (int i = 0; i < real_byteArray.Length; ++i)
+                    byteArray[i + 24] = (byte)value_in[i];
             }
 
             ByteString returnBytes = ByteString.CopyFrom(byteArray);
             return returnBytes;
         }
-
-        //byte[] byteArray = new byte[20];
-        //long value = -24;
-        //string sint_string = Convert.ToString(value, 2);
-        //Console.WriteLine(sint_string.Substring(sint_string.Length - 8), 2);
-        //byteArray[1] = Convert.ToByte(sint_string.Substring(sint_string.Length - 8), 2);
-
-
-
         #endregion
     }
 }
