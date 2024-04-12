@@ -232,8 +232,16 @@ namespace TestStage_CICDExample
             failure_condition = failure_condition + CompareOnlineOffline("UDT_AllAtomicDataTypes.ex_DINT", UDT_AllAtomicDataTypes_Online[10], UDT_AllAtomicDataTypes_Offline[10]);
             failure_condition = failure_condition + CompareOnlineOffline("UDT_AllAtomicDataTypes.ex_LINT", UDT_AllAtomicDataTypes_Online[11], UDT_AllAtomicDataTypes_Offline[11]);
             failure_condition = failure_condition + CompareOnlineOffline("UDT_AllAtomicDataTypes.ex_REAL", UDT_AllAtomicDataTypes_Online[12], UDT_AllAtomicDataTypes_Offline[12]);
+            Console.WriteLine("======================================================" + UDT_AllAtomicDataTypes_Online[13]);
+            Console.WriteLine("======================================================" + UDT_AllAtomicDataTypes_Offline[13]);
+            string[] words = UDT_AllAtomicDataTypes_Online[13].Split(' ');
+            Console.WriteLine("======================================================" + words[1]);
+            Console.WriteLine("======================================================" + words[1].Length);
+            Console.WriteLine("======================================================" + ex_STRING);
+            Console.WriteLine("======================================================" + ex_STRING.Length);
+            foreach (char c in ex_STRING)
+                Console.WriteLine((int)c + ": " + c);
             failure_condition = failure_condition + CompareOnlineOffline("UDT_AllAtomicDataTypes.ex_STRING", UDT_AllAtomicDataTypes_Online[13], UDT_AllAtomicDataTypes_Offline[13]);
-            Console.WriteLine(WrapText("SUCCESS: UDT_AllAtomicDataTypes.ex_STRING online value (Test 123) & offline value (Test 123) are EQUAL."));
             Console.Write($"[{DateTime.Now.ToString("T")}] DONE verifying whether offline and online values are the same\n---\n");
 
             // Set tag values
@@ -331,8 +339,9 @@ namespace TestStage_CICDExample
                     line = "";
                     numberOfNewLines++;
                 }
-                line += string.Format("{0} ", word);
-                Console.WriteLine("OUTSIDE_IF_MAIN================================");
+                Console.WriteLine("OUTSIDE_IF_MAIN================================" + line);
+                line += string.Format($"{word} ");
+                Console.WriteLine("OUTSIDE_IF_MAIN================================" + line);
             }
             Console.WriteLine("OUTSIDE_FOREACH******************************");
             if (line.Length > 0)
@@ -453,7 +462,7 @@ namespace TestStage_CICDExample
             // ex_STRING
             byte[] ex_STRING = new byte[UDT_ByteArray.Length - 24];
             Array.ConstrainedCopy(UDT_ByteArray, 24, ex_STRING, 0, UDT_ByteArray.Length - 24);
-            return_string[13] = Encoding.ASCII.GetString(ex_STRING);
+            return_string[13] = Encoding.ASCII.GetString(ex_STRING).Replace("\0", "");
 
             return_string[14] = Convert.ToString(byte_string.Length);
             return return_string;
