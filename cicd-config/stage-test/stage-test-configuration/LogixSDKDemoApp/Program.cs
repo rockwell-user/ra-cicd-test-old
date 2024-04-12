@@ -212,7 +212,6 @@ namespace TestStage_CICDExample
 
             ByteString[] newValues_UDT_AllAtomicDataTypes = CallGetUDT_AllAtomicDataTypesAndWaitOnResult("UDT_AllAtomicDataTypes", filePath_ControllerScope, myProject);
             newValues_UDT_AllAtomicDataTypes[0] = ModifyByteString_UDT_AllAtomicDataTypesValues("10010010", DataType.BOOL, newValues_UDT_AllAtomicDataTypes);
-            //string[][] testString = FormatUDT_AllAtomicDataTypes(newValues_UDT_AllAtomicDataTypes, true);
             newValues_UDT_AllAtomicDataTypes[0] = ModifyByteString_UDT_AllAtomicDataTypesValues("-24", DataType.SINT, newValues_UDT_AllAtomicDataTypes);
             newValues_UDT_AllAtomicDataTypes[0] = ModifyByteString_UDT_AllAtomicDataTypesValues("20500", DataType.INT, newValues_UDT_AllAtomicDataTypes);
             newValues_UDT_AllAtomicDataTypes[0] = ModifyByteString_UDT_AllAtomicDataTypesValues("-2000111000", DataType.DINT, newValues_UDT_AllAtomicDataTypes);
@@ -364,87 +363,54 @@ namespace TestStage_CICDExample
             return_string[1] = new string[15];
             return_string[2] = new string[15];
 
-            byte[] online_UDT_ByteArray = new byte[byte_string[0].Length];
-            for (int i = 0; i < online_UDT_ByteArray.Length; i++)
-                online_UDT_ByteArray[i] = (byte)byte_string[0][i];
+            for (int i = 0; i < 2; i++)
+            {
+                var UDT_ByteArray = new byte[byte_string[0].Length];
+                for (int j = 0; j < UDT_ByteArray.Length; j++)
+                    UDT_ByteArray[j] = (byte)byte_string[i][j];
 
-            byte[] offline_UDT_ByteArray = new byte[byte_string[1].Length];
-            for (int i = 0; i < offline_UDT_ByteArray.Length; i++)
-                offline_UDT_ByteArray[i] = (byte)byte_string[1][i];
+                var ex_BOOLs = new byte[1];
+                Array.ConstrainedCopy(UDT_ByteArray, 0, ex_BOOLs, 0, 1);
+                for (int j = 0; j < 8; j++)
+                    return_string[i + 1][j] = Convert.ToString(CreateBinaryString(ex_BOOLs, "backward")[7 - j]);
 
-            // ex_BOOL1 - ex_BOOL2
-            byte[] ex_BOOLs = new byte[1];
-            Array.ConstrainedCopy(online_UDT_ByteArray, 0, ex_BOOLs, 0, 1);
-            for (int j = 0; j < 8; j++)
-                return_string[1][j] = Convert.ToString(CreateBinaryString(ex_BOOLs, "backward")[7 - j]);
-            Array.ConstrainedCopy(offline_UDT_ByteArray, 0, ex_BOOLs, 0, 1);
-            for (int j = 0; j < 8; j++)
-                return_string[2][j] = Convert.ToString(CreateBinaryString(ex_BOOLs, "backward")[7 - j]);
+                var ex_SINT = new byte[1];
+                Array.ConstrainedCopy(UDT_ByteArray, 1, ex_SINT, 0, 1);
+                var sint_string_online = CreateBinaryString(ex_SINT, "forward");
+                var sign_online = sint_string_online[0] == '1' ? -1 : 1;
+                if (sign_online == 1)
+                    return_string[i + 1][8] = Convert.ToString(Convert.ToInt16(("00000000" + sint_string_online), 2));
+                else if (sign_online == -1)
+                    return_string[i + 1][8] = Convert.ToString(Convert.ToInt16(("11111111" + sint_string_online), 2));
 
-            // ex_SINT
-            byte[] ex_SINT = new byte[1];
-            Array.ConstrainedCopy(online_UDT_ByteArray, 1, ex_SINT, 0, 1);
-            string sint_string_online = CreateBinaryString(ex_SINT, "forward");
-            int sign_online = sint_string_online[0] == '1' ? -1 : 1;
-            if (sign_online == 1)
-                return_string[1][8] = Convert.ToString(Convert.ToInt16(("00000000" + sint_string_online), 2));
-            else if (sign_online == -1)
-                return_string[1][8] = Convert.ToString(Convert.ToInt16(("11111111" + sint_string_online), 2));
-            Array.ConstrainedCopy(offline_UDT_ByteArray, 1, ex_SINT, 0, 1);
-            string sint_string_offline = CreateBinaryString(ex_SINT, "forward");
-            int sign_offline = sint_string_offline[0] == '1' ? -1 : 1;
-            if (sign_offline == 1)
-                return_string[2][8] = Convert.ToString(Convert.ToInt16(("00000000" + sint_string_offline), 2));
-            else if (sign_offline == -1)
-                return_string[2][8] = Convert.ToString(Convert.ToInt16(("11111111" + sint_string_offline), 2));
+                var ex_INT = new byte[2];
+                Array.ConstrainedCopy(UDT_ByteArray, 2, ex_INT, 0, 2);
+                return_string[i + 1][9] = Convert.ToString(BitConverter.ToInt16(ex_INT));
 
-            // ex_INT
-            byte[] ex_INT = new byte[2];
-            Array.ConstrainedCopy(online_UDT_ByteArray, 2, ex_INT, 0, 2);
-            return_string[1][9] = Convert.ToString(BitConverter.ToInt16(ex_INT));
-            Array.ConstrainedCopy(offline_UDT_ByteArray, 2, ex_INT, 0, 2);
-            return_string[2][9] = Convert.ToString(BitConverter.ToInt16(ex_INT));
+                var ex_DINT = new byte[4];
+                Array.ConstrainedCopy(UDT_ByteArray, 4, ex_DINT, 0, 4);
+                return_string[i + 1][10] = Convert.ToString(BitConverter.ToInt32(ex_DINT));
 
-            // ex_DINT
-            byte[] ex_DINT = new byte[4];
-            Array.ConstrainedCopy(online_UDT_ByteArray, 4, ex_DINT, 0, 4);
-            return_string[1][10] = Convert.ToString(BitConverter.ToInt32(ex_DINT));
-            Array.ConstrainedCopy(offline_UDT_ByteArray, 4, ex_DINT, 0, 4);
-            return_string[2][10] = Convert.ToString(BitConverter.ToInt32(ex_DINT));
+                var ex_LINT = new byte[8];
+                Array.ConstrainedCopy(UDT_ByteArray, 8, ex_LINT, 0, 8);
+                return_string[i + 1][11] = Convert.ToString(BitConverter.ToInt64(ex_LINT));
 
-            // ex_LINT
-            byte[] ex_LINT = new byte[8];
-            Array.ConstrainedCopy(online_UDT_ByteArray, 8, ex_LINT, 0, 8);
-            return_string[1][11] = Convert.ToString(BitConverter.ToInt64(ex_LINT));
-            Array.ConstrainedCopy(offline_UDT_ByteArray, 8, ex_LINT, 0, 8);
-            return_string[2][11] = Convert.ToString(BitConverter.ToInt64(ex_LINT));
+                var ex_REAL = new byte[4];
+                Array.ConstrainedCopy(UDT_ByteArray, 16, ex_REAL, 0, 4);
+                return_string[i + 1][12] = ConvertIEEE754ToFloatString(ex_REAL);
 
-            // ex_REAL
-            byte[] ex_REAL = new byte[4];
-            Array.ConstrainedCopy(online_UDT_ByteArray, 16, ex_REAL, 0, 4);
-            return_string[1][12] = ConvertIEEE754ToFloatString(ex_REAL);
-            Array.ConstrainedCopy(offline_UDT_ByteArray, 16, ex_REAL, 0, 4);
-            return_string[2][12] = ConvertIEEE754ToFloatString(ex_REAL);
+                var ex_STRING = new byte[UDT_ByteArray.Length - 24];
+                Array.ConstrainedCopy(UDT_ByteArray, 24, ex_STRING, 0, UDT_ByteArray.Length - 24);
+                return_string[i + 1][13] = Encoding.ASCII.GetString(ex_STRING).Replace("\0", "");
 
-            // ex_STRING
-            byte[] ex_STRING = new byte[online_UDT_ByteArray.Length - 24];
-            Array.ConstrainedCopy(online_UDT_ByteArray, 24, ex_STRING, 0, online_UDT_ByteArray.Length - 24);
-            return_string[1][13] = Encoding.ASCII.GetString(ex_STRING).Replace("\0", "");
-            Array.ConstrainedCopy(offline_UDT_ByteArray, 24, ex_STRING, 0, offline_UDT_ByteArray.Length - 24);
-            return_string[2][13] = Encoding.ASCII.GetString(ex_STRING).Replace("\0", "");
-
-            // get the number of bytes for this UDT
-            return_string[1][14] = Convert.ToString(byte_string[0].Length);
-            return_string[2][14] = Convert.ToString(byte_string[1].Length);
-
+                return_string[i + 1][14] = Convert.ToString(byte_string[i].Length);
+            }
             if (printout)
             {
-                string online_message = "";
-                string offline_message = "";
                 for (int i = 0; i < return_string[0].Length; i++)
                 {
-                    online_message = $"online value: {return_string[1][i]}";
-                    offline_message = $"offline value: {return_string[2][i]}";
+                    var online_message = $"online value: {return_string[1][i]}";
+                    var offline_message = $"offline value: {return_string[2][i]}";
                     Console.WriteLine($"SUCCESS: " + return_string[0][i].PadRight(40, ' ') + online_message.PadRight(35, ' ') + offline_message.PadRight(35, ' '));
                 }
             }
@@ -469,28 +435,7 @@ namespace TestStage_CICDExample
             return task.Result;
         }
 
-        // Set Complex Data Type Tag Value Method
-        private static void SetUDT_AllAtomicDataTypes(string tag_name, ByteString[] input_byte, TagOperationMode mode, string tagPath, LogixProject project)
-        {
-            tagPath = tagPath + $"[@Name='{tag_name}']";
-            ByteString[] byteString_in = CallGetUDT_AllAtomicDataTypesAndWaitOnResult("UDT_AllAtomicDataTypes", tagPath, project);
-            string[][] UDT_AllAtomicDataTypes = FormatUDT_AllAtomicDataTypes(byteString_in, false);
-            string[][] new_UDT_AllAtomicDataTypes = FormatUDT_AllAtomicDataTypes(input_byte, false);
-            project.SetTagValueAsync(tagPath, mode, input_byte[0].ToByteArray(), DataType.BYTE_ARRAY);
 
-            if (mode == TagOperationMode.Online)
-            {
-                Console.WriteLine($"SUCCESS: {tag_name} online values: ");
-                for (int i = 0; i < UDT_AllAtomicDataTypes[1].Length - 1; i++)
-                    Console.WriteLine("         " + UDT_AllAtomicDataTypes[1][i] + "  -->  " + new_UDT_AllAtomicDataTypes[1][i]);
-            }
-            else if (mode == TagOperationMode.Offline)
-            {
-                Console.WriteLine($"SUCCESS: {tag_name} offline values: ");
-                for (int i = 0; i < UDT_AllAtomicDataTypes[2].Length - 1; i++)
-                    Console.WriteLine("         " + UDT_AllAtomicDataTypes[2][i] + "  -->  " + new_UDT_AllAtomicDataTypes[2][i]);
-            }
-        }
 
         // Helper method to Convert IEEE 754
         private static string ConvertIEEE754ToFloatString(byte[] inputArray)
@@ -923,6 +868,28 @@ namespace TestStage_CICDExample
             return returnstring;
         }
 
+        // Set Complex Data Type Tag Value Method
+        private static void SetUDT_AllAtomicDataTypes(string tag_name, ByteString[] input_byte, TagOperationMode mode, string tagPath, LogixProject project)
+        {
+            tagPath = tagPath + $"[@Name='{tag_name}']";
+            ByteString[] byteString_in = CallGetUDT_AllAtomicDataTypesAndWaitOnResult("UDT_AllAtomicDataTypes", tagPath, project);
+            string[][] UDT_AllAtomicDataTypes = FormatUDT_AllAtomicDataTypes(byteString_in, false);
+            string[][] new_UDT_AllAtomicDataTypes = FormatUDT_AllAtomicDataTypes(input_byte, false);
+            project.SetTagValueAsync(tagPath, mode, input_byte[0].ToByteArray(), DataType.BYTE_ARRAY);
+
+            if (mode == TagOperationMode.Online)
+            {
+                Console.WriteLine($"SUCCESS: {tag_name} online values: ");
+                for (int i = 0; i < UDT_AllAtomicDataTypes[1].Length - 1; i++)
+                    Console.WriteLine("         " + UDT_AllAtomicDataTypes[1][i] + "  -->  " + new_UDT_AllAtomicDataTypes[1][i]);
+            }
+            else if (mode == TagOperationMode.Offline)
+            {
+                Console.WriteLine($"SUCCESS: {tag_name} offline values: ");
+                for (int i = 0; i < UDT_AllAtomicDataTypes[2].Length - 1; i++)
+                    Console.WriteLine("         " + UDT_AllAtomicDataTypes[2][i] + "  -->  " + new_UDT_AllAtomicDataTypes[2][i]);
+            }
+        }
 
         // Set UDT Values
         private static ByteString ModifyByteString_UDT_AllAtomicDataTypesValues(string value_in, DataType type, ByteString[] byteString_UDT_AllAtomicDataTypes)
