@@ -212,13 +212,13 @@ namespace TestStage_CICDExample
 
             ByteString[] newValues_UDT_AllAtomicDataTypes = CallGetUDT_AllAtomicDataTypesAndWaitOnResult("UDT_AllAtomicDataTypes", filePath_ControllerScope, myProject);
             newValues_UDT_AllAtomicDataTypes[0] = ModifyByteString_UDT_AllAtomicDataTypesValues("10010010", DataType.BOOL, newValues_UDT_AllAtomicDataTypes);
-            newValues_UDT_AllAtomicDataTypes[0] = ModifyByteString_UDT_AllAtomicDataTypesValues("-24", DataType.SINT, newValues_UDT_AllAtomicDataTypes);
-            newValues_UDT_AllAtomicDataTypes[0] = ModifyByteString_UDT_AllAtomicDataTypesValues("20500", DataType.INT, newValues_UDT_AllAtomicDataTypes);
-            newValues_UDT_AllAtomicDataTypes[0] = ModifyByteString_UDT_AllAtomicDataTypesValues("-2000111000", DataType.DINT, newValues_UDT_AllAtomicDataTypes);
-            newValues_UDT_AllAtomicDataTypes[0] = ModifyByteString_UDT_AllAtomicDataTypesValues("-9000111000111000111", DataType.LINT, newValues_UDT_AllAtomicDataTypes);
-            newValues_UDT_AllAtomicDataTypes[0] = ModifyByteString_UDT_AllAtomicDataTypesValues("10555.888", DataType.REAL, newValues_UDT_AllAtomicDataTypes);
-            newValues_UDT_AllAtomicDataTypes[0] = ModifyByteString_UDT_AllAtomicDataTypesValues("New String!", DataType.STRING, newValues_UDT_AllAtomicDataTypes);
-            SetUDT_AllAtomicDataTypes("UDT_AllAtomicDataTypes", newValues_UDT_AllAtomicDataTypes, TagOperationMode.Online, filePath_ControllerScope, myProject);
+            //newValues_UDT_AllAtomicDataTypes[0] = ModifyByteString_UDT_AllAtomicDataTypesValues("-24", DataType.SINT, newValues_UDT_AllAtomicDataTypes);
+            //newValues_UDT_AllAtomicDataTypes[0] = ModifyByteString_UDT_AllAtomicDataTypesValues("20500", DataType.INT, newValues_UDT_AllAtomicDataTypes);
+            //newValues_UDT_AllAtomicDataTypes[0] = ModifyByteString_UDT_AllAtomicDataTypesValues("-2000111000", DataType.DINT, newValues_UDT_AllAtomicDataTypes);
+            //newValues_UDT_AllAtomicDataTypes[0] = ModifyByteString_UDT_AllAtomicDataTypesValues("-9000111000111000111", DataType.LINT, newValues_UDT_AllAtomicDataTypes);
+            //newValues_UDT_AllAtomicDataTypes[0] = ModifyByteString_UDT_AllAtomicDataTypesValues("10555.888", DataType.REAL, newValues_UDT_AllAtomicDataTypes);
+            //newValues_UDT_AllAtomicDataTypes[0] = ModifyByteString_UDT_AllAtomicDataTypesValues("New String!", DataType.STRING, newValues_UDT_AllAtomicDataTypes);
+            SetUDT_AllAtomicDataTypes("10010010", DataType.BOOL, TagOperationMode.Online, myProject);
             Console.WriteLine($"[{DateTime.Now.ToString("T")}] DONE setting tag values\n---");
 
             // Verify expected output
@@ -367,7 +367,7 @@ namespace TestStage_CICDExample
             {
                 var UDT_ByteArray = new byte[byte_string[0].Length];
                 for (int j = 0; j < UDT_ByteArray.Length; j++)
-                    UDT_ByteArray[j] = (byte)byte_string[i][j];
+                    UDT_ByteArray[j] = byte_string[i][j];
 
                 var ex_BOOLs = new byte[1];
                 Array.ConstrainedCopy(UDT_ByteArray, 0, ex_BOOLs, 0, 1);
@@ -869,26 +869,85 @@ namespace TestStage_CICDExample
         }
 
         // Set Complex Data Type Tag Value Method
-        private static void SetUDT_AllAtomicDataTypes(string tag_name, ByteString[] input_byte, TagOperationMode mode, string tagPath, LogixProject project)
+        private static void SetUDT_AllAtomicDataTypes(string value_in, DataType type, TagOperationMode mode, LogixProject project)
         {
-            tagPath = tagPath + $"[@Name='{tag_name}']";
-            ByteString[] byteString_in = CallGetUDT_AllAtomicDataTypesAndWaitOnResult("UDT_AllAtomicDataTypes", tagPath, project);
-            string[][] UDT_AllAtomicDataTypes = FormatUDT_AllAtomicDataTypes(byteString_in, false);
-            string[][] new_UDT_AllAtomicDataTypes = FormatUDT_AllAtomicDataTypes(input_byte, false);
-            project.SetTagValueAsync(tagPath, mode, input_byte[0].ToByteArray(), DataType.BYTE_ARRAY);
+            string tagPath = $"Controller/Tags/Tag[@Name='UDT_AllAtomicDataTypes']";
+            ByteString[] old_byteString = CallGetUDT_AllAtomicDataTypesAndWaitOnResult("UDT_AllAtomicDataTypes", tagPath, project);
+            ByteString[] new_byteString = CallGetUDT_AllAtomicDataTypesAndWaitOnResult("UDT_AllAtomicDataTypes", tagPath, project);
+            string[][] old_UDT_AllAtomicDataTypes = FormatUDT_AllAtomicDataTypes(old_byteString, false);
+            int on_off = 0;
+            byte[] new_byteArray = new byte[new_byteString[1].Length];
+            if (mode == TagOperationMode.Online)
+                new_byteArray = new_byteString[0].ToByteArray();
+            else if (mode == TagOperationMode.Offline)
+                new_byteArray = new_byteString[1].ToByteArray();
+
+            if (type == DataType.BOOL)
+                new_byteArray[0] = Convert.ToByte(value_in, 2);
+
+            else if (type == DataType.SINT)
+            {
+                string sint_string = Convert.ToString(long.Parse(value_in), 2);
+                sint_string = sint_string.Substring(sint_string.Length - 8);
+                new_byteArray[1] = Convert.ToByte(sint_string, 2);
+            }
+
+            else if (type == DataType.INT)
+            {
+                byte[] int_byteArray = BitConverter.GetBytes(long.Parse(value_in));
+                for (int i = 0; i < int_byteArray.Length; ++i)
+                    new_byteArray[i + 2] = int_byteArray[i];
+            }
+
+            else if (type == DataType.DINT)
+            {
+                byte[] dint_byteArray = BitConverter.GetBytes(long.Parse(value_in));
+                for (int i = 0; i < dint_byteArray.Length; ++i)
+                    new_byteArray[i + 4] = dint_byteArray[i];
+            }
+
+            else if (type == DataType.LINT)
+            {
+                byte[] lint_byteArray = BitConverter.GetBytes(long.Parse(value_in));
+                for (int i = 0; i < lint_byteArray.Length; ++i)
+                    new_byteArray[i + 8] = lint_byteArray[i];
+            }
+
+            else if (type == DataType.REAL)
+            {
+                byte[] real_byteArray = BitConverter.GetBytes(float.Parse(value_in));
+                for (int i = 0; i < real_byteArray.Length; ++i)
+                    new_byteArray[i + 16] = real_byteArray[i];
+            }
+
+            else if (type == DataType.STRING)
+            {
+                byte[] real_byteArray = new byte[value_in.Length];
+                for (int i = 0; i < real_byteArray.Length; ++i)
+                    new_byteArray[i + 24] = (byte)value_in[i];
+            }
 
             if (mode == TagOperationMode.Online)
             {
-                Console.WriteLine($"SUCCESS: {tag_name} online values: ");
-                for (int i = 0; i < UDT_AllAtomicDataTypes[1].Length - 1; i++)
-                    Console.WriteLine("         " + UDT_AllAtomicDataTypes[1][i] + "  -->  " + new_UDT_AllAtomicDataTypes[1][i]);
+                new_byteString[0] = ByteString.CopyFrom(new_byteArray);
+                new_byteString[1] = old_byteString[1];
+                on_off = 1;
+
             }
             else if (mode == TagOperationMode.Offline)
             {
-                Console.WriteLine($"SUCCESS: {tag_name} offline values: ");
-                for (int i = 0; i < UDT_AllAtomicDataTypes[2].Length - 1; i++)
-                    Console.WriteLine("         " + UDT_AllAtomicDataTypes[2][i] + "  -->  " + new_UDT_AllAtomicDataTypes[2][i]);
+                new_byteString[0] = old_byteString[0];
+                new_byteString[1] = ByteString.CopyFrom(new_byteArray);
+                on_off = 2;
             }
+
+            string[][] new_UDT_AllAtomicDataTypes = FormatUDT_AllAtomicDataTypes(new_byteString, false);
+
+            project.SetTagValueAsync(tagPath, mode, new_byteString[on_off - 1].ToByteArray(), DataType.BYTE_ARRAY);
+            for (int i = 0; i < old_UDT_AllAtomicDataTypes[1].Length - 1; i++)
+                if (old_UDT_AllAtomicDataTypes[on_off][i] != new_UDT_AllAtomicDataTypes[on_off][i])
+                    Console.WriteLine("SUCCESS: " + old_UDT_AllAtomicDataTypes[0][i].PadRight(40, ' ') + old_UDT_AllAtomicDataTypes[on_off][i] + "  -->  " + new_UDT_AllAtomicDataTypes[on_off][i]);
+
         }
 
         // Set UDT Values
