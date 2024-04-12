@@ -39,8 +39,6 @@ namespace TestStage_CICDExample
                 DateTime.Now.ToString("yyyyMMddHHmmss") + "_testfile.txt");
             #endregion
 
-            Console.WriteLine(WrapText("SUCCESS: UDT_AllAtomicDataTypes.ex_STRING online value (Test 123) & offline value (Test 123) are EQUAL."));
-
             //#region PARSING INCOMING VARIABLES WHEN RUNNING PROJECT EXECUTABLE -------------------------------------------------------------------------------------------
             //// Pass the incoming executable variables
             //if (args.Length != 2)
@@ -55,41 +53,54 @@ namespace TestStage_CICDExample
             //#endregion
 
 
+            //string sint_string = Convert.ToString(value_in, 2);
+            //byteArray[1] = Convert.ToByte(sint_string.Substring(sint_string.Length - 8), 2);
+            //private static ByteString ModifyByteString_UDT_AllAtomicDataTypesValues(long value_in, DataType type, string[] string_UDT_AllAtomicDataTypes)
+            //{
 
+            //    if (type == DataType.BOOL)
+            //        byteArray[0] = Convert.ToByte($"{value_in}", 2);
+            //    else if (type == DataType.SINT)
+            //    {
+            //        string sint_string = Convert.ToString(value_in, 2);
+            //        byteArray[1] = Convert.ToByte(sint_string.Substring(Math.Max(0, sint_string.Length - 8)), 2);
+            byte[] byteArray = new byte[1];
+            long value = -24;
+            string sint_string = Convert.ToString(value, 2);
+            sint_string = sint_string.Substring(sint_string.Length - 8);
+            //Console.WriteLine(sint_string);
+            //Console.WriteLine(sint_string.Length);
+            //foreach (char c in sint_string)
+            //    Console.WriteLine((int)c + ": " + c);
+            //Console.WriteLine("NEXT");
+            byteArray[0] = Convert.ToByte(sint_string, 2);
+            string testString = CreateBinaryString(byteArray, "backward");
+            string flippedString = "";
+            for (int i = testString.Length - 1; i >= 0; i--)
+                flippedString += testString[i];
+            Console.WriteLine(testString);
+            foreach (char c in testString)
+                Console.WriteLine((int)c + ": " + c);
+            int sign = testString[0] == '1' ? -1 : 1;
+            Console.WriteLine(sign);
+            int integerValue;
+            if (sign == 1)
+            {
+                integerValue = Convert.ToInt16(("00000000" + testString), 2);
+                Console.WriteLine("RESULT1: " + integerValue);
+            }
 
+            else if (sign == -1)
+            {
+                integerValue = Convert.ToInt16(("11111111" + testString), 2);
+                Console.WriteLine("RESULT2: " + integerValue);
+            }
+            //int integerValue = Convert.ToInt16(testString.Substring(1), 2);
+            //Console.WriteLine(testString.Substring(1));
 
-
-
-
-
-
-
-            //LogixProject myProject1 = await LogixProject.OpenLogixProjectAsync(filePath);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+            //Console.WriteLine(testString);
+            //Console.WriteLine(BinaryStringToInteger(CreateBinaryString(byteArray, "forward")));
+            //BinaryStringToInteger
             //#region TEST FILE CREATION -----------------------------------------------------------------------------------------------------------------------------------
             // Create new report name. Check if file name already exists and if yes, delete it. Then create the new report text file.
             if (File.Exists(textFileReportName))
@@ -202,7 +213,7 @@ namespace TestStage_CICDExample
             bool ex_BOOL6 = GetBool(UDT_AllAtomicDataTypes_Online[5]);
             bool ex_BOOL7 = GetBool(UDT_AllAtomicDataTypes_Online[6]);
             bool ex_BOOL8 = GetBool(UDT_AllAtomicDataTypes_Online[7]);
-            byte ex_SINT = byte.Parse(UDT_AllAtomicDataTypes_Online[8]);
+            int ex_SINT = int.Parse(UDT_AllAtomicDataTypes_Online[8]); // c# bytes have range 0 to 255 so INT accounts for negatives (Studio 5k SINT has range -128 to 127)
             int ex_INT = int.Parse(UDT_AllAtomicDataTypes_Online[9]);
             double ex_DINT = double.Parse(UDT_AllAtomicDataTypes_Online[10]);
             long ex_LINT = long.Parse(UDT_AllAtomicDataTypes_Online[11]);
@@ -213,35 +224,26 @@ namespace TestStage_CICDExample
             // Verify whether offline and online values are the same
             Console.WriteLine($"[{DateTime.Now.ToString("T")}] START verifying whether offline and online values are the same...");
             int failure_condition = 0;
-            failure_condition = failure_condition + CompareOnlineOffline(TEST_DINT_1[6], TEST_DINT_1[0], TEST_DINT_1[3]);
-            failure_condition = failure_condition + CompareOnlineOffline(TEST_TOGGLE_WetBulbTempCalc[6], TEST_TOGGLE_WetBulbTempCalc[0], TEST_TOGGLE_WetBulbTempCalc[3]);
-            failure_condition = failure_condition + CompareOnlineOffline(TEST_AOI_WetBulbTemp_isFahrenheit[6], TEST_AOI_WetBulbTemp_isFahrenheit[0], TEST_AOI_WetBulbTemp_isFahrenheit[3]);
-            failure_condition = failure_condition + CompareOnlineOffline(TEST_AOI_WetBulbTemp_RelativeHumidity[6], TEST_AOI_WetBulbTemp_RelativeHumidity[0], TEST_AOI_WetBulbTemp_RelativeHumidity[3]);
-            failure_condition = failure_condition + CompareOnlineOffline(TEST_AOI_WetBulbTemp_Temperature[6], TEST_AOI_WetBulbTemp_Temperature[0], TEST_AOI_WetBulbTemp_Temperature[3]);
-            failure_condition = failure_condition + CompareOnlineOffline(TEST_AOI_WetBulbTemp_WetBulbTemp[6], TEST_AOI_WetBulbTemp_WetBulbTemp[0], TEST_AOI_WetBulbTemp_WetBulbTemp[3]);
-            failure_condition = failure_condition + CompareOnlineOffline("UDT_AllAtomicDataTypes.ex_BOOL1", UDT_AllAtomicDataTypes_Online[0], UDT_AllAtomicDataTypes_Offline[0]);
-            failure_condition = failure_condition + CompareOnlineOffline("UDT_AllAtomicDataTypes.ex_BOOL2", UDT_AllAtomicDataTypes_Online[1], UDT_AllAtomicDataTypes_Offline[1]);
-            failure_condition = failure_condition + CompareOnlineOffline("UDT_AllAtomicDataTypes.ex_BOOL3", UDT_AllAtomicDataTypes_Online[2], UDT_AllAtomicDataTypes_Offline[2]);
-            failure_condition = failure_condition + CompareOnlineOffline("UDT_AllAtomicDataTypes.ex_BOOL4", UDT_AllAtomicDataTypes_Online[3], UDT_AllAtomicDataTypes_Offline[3]);
-            failure_condition = failure_condition + CompareOnlineOffline("UDT_AllAtomicDataTypes.ex_BOOL5", UDT_AllAtomicDataTypes_Online[4], UDT_AllAtomicDataTypes_Offline[4]);
-            failure_condition = failure_condition + CompareOnlineOffline("UDT_AllAtomicDataTypes.ex_BOOL6", UDT_AllAtomicDataTypes_Online[5], UDT_AllAtomicDataTypes_Offline[5]);
-            failure_condition = failure_condition + CompareOnlineOffline("UDT_AllAtomicDataTypes.ex_BOOL7", UDT_AllAtomicDataTypes_Online[6], UDT_AllAtomicDataTypes_Offline[6]);
-            failure_condition = failure_condition + CompareOnlineOffline("UDT_AllAtomicDataTypes.ex_BOOL8", UDT_AllAtomicDataTypes_Online[7], UDT_AllAtomicDataTypes_Offline[7]);
-            failure_condition = failure_condition + CompareOnlineOffline("UDT_AllAtomicDataTypes.ex_SINT", UDT_AllAtomicDataTypes_Online[8], UDT_AllAtomicDataTypes_Offline[8]);
-            failure_condition = failure_condition + CompareOnlineOffline("UDT_AllAtomicDataTypes.ex_INT", UDT_AllAtomicDataTypes_Online[9], UDT_AllAtomicDataTypes_Offline[9]);
-            failure_condition = failure_condition + CompareOnlineOffline("UDT_AllAtomicDataTypes.ex_DINT", UDT_AllAtomicDataTypes_Online[10], UDT_AllAtomicDataTypes_Offline[10]);
-            failure_condition = failure_condition + CompareOnlineOffline("UDT_AllAtomicDataTypes.ex_LINT", UDT_AllAtomicDataTypes_Online[11], UDT_AllAtomicDataTypes_Offline[11]);
-            failure_condition = failure_condition + CompareOnlineOffline("UDT_AllAtomicDataTypes.ex_REAL", UDT_AllAtomicDataTypes_Online[12], UDT_AllAtomicDataTypes_Offline[12]);
-            Console.WriteLine("======================================================" + UDT_AllAtomicDataTypes_Online[13]);
-            Console.WriteLine("======================================================" + UDT_AllAtomicDataTypes_Offline[13]);
-            string[] words = UDT_AllAtomicDataTypes_Online[13].Split(' ');
-            Console.WriteLine("======================================================" + words[1]);
-            Console.WriteLine("======================================================" + words[1].Length);
-            Console.WriteLine("======================================================" + ex_STRING);
-            Console.WriteLine("======================================================" + ex_STRING.Length);
-            foreach (char c in ex_STRING)
-                Console.WriteLine((int)c + ": " + c);
-            failure_condition = failure_condition + CompareOnlineOffline("UDT_AllAtomicDataTypes.ex_STRING", UDT_AllAtomicDataTypes_Online[13], UDT_AllAtomicDataTypes_Offline[13]);
+            failure_condition += CompareOnlineOffline(TEST_DINT_1[6], TEST_DINT_1[0], TEST_DINT_1[3]);
+            failure_condition += CompareOnlineOffline(TEST_TOGGLE_WetBulbTempCalc[6], TEST_TOGGLE_WetBulbTempCalc[0], TEST_TOGGLE_WetBulbTempCalc[3]);
+            failure_condition += CompareOnlineOffline(TEST_AOI_WetBulbTemp_isFahrenheit[6], TEST_AOI_WetBulbTemp_isFahrenheit[0], TEST_AOI_WetBulbTemp_isFahrenheit[3]);
+            failure_condition += CompareOnlineOffline(TEST_AOI_WetBulbTemp_RelativeHumidity[6], TEST_AOI_WetBulbTemp_RelativeHumidity[0], TEST_AOI_WetBulbTemp_RelativeHumidity[3]);
+            failure_condition += CompareOnlineOffline(TEST_AOI_WetBulbTemp_Temperature[6], TEST_AOI_WetBulbTemp_Temperature[0], TEST_AOI_WetBulbTemp_Temperature[3]);
+            failure_condition += CompareOnlineOffline(TEST_AOI_WetBulbTemp_WetBulbTemp[6], TEST_AOI_WetBulbTemp_WetBulbTemp[0], TEST_AOI_WetBulbTemp_WetBulbTemp[3]);
+            failure_condition += CompareOnlineOffline("UDT_AllAtomicDataTypes.ex_BOOL1", UDT_AllAtomicDataTypes_Online[0], UDT_AllAtomicDataTypes_Offline[0]);
+            failure_condition += CompareOnlineOffline("UDT_AllAtomicDataTypes.ex_BOOL2", UDT_AllAtomicDataTypes_Online[1], UDT_AllAtomicDataTypes_Offline[1]);
+            failure_condition += CompareOnlineOffline("UDT_AllAtomicDataTypes.ex_BOOL3", UDT_AllAtomicDataTypes_Online[2], UDT_AllAtomicDataTypes_Offline[2]);
+            failure_condition += CompareOnlineOffline("UDT_AllAtomicDataTypes.ex_BOOL4", UDT_AllAtomicDataTypes_Online[3], UDT_AllAtomicDataTypes_Offline[3]);
+            failure_condition += CompareOnlineOffline("UDT_AllAtomicDataTypes.ex_BOOL5", UDT_AllAtomicDataTypes_Online[4], UDT_AllAtomicDataTypes_Offline[4]);
+            failure_condition += CompareOnlineOffline("UDT_AllAtomicDataTypes.ex_BOOL6", UDT_AllAtomicDataTypes_Online[5], UDT_AllAtomicDataTypes_Offline[5]);
+            failure_condition += CompareOnlineOffline("UDT_AllAtomicDataTypes.ex_BOOL7", UDT_AllAtomicDataTypes_Online[6], UDT_AllAtomicDataTypes_Offline[6]);
+            failure_condition += CompareOnlineOffline("UDT_AllAtomicDataTypes.ex_BOOL8", UDT_AllAtomicDataTypes_Online[7], UDT_AllAtomicDataTypes_Offline[7]);
+            failure_condition += CompareOnlineOffline("UDT_AllAtomicDataTypes.ex_SINT", UDT_AllAtomicDataTypes_Online[8], UDT_AllAtomicDataTypes_Offline[8]);
+            failure_condition += CompareOnlineOffline("UDT_AllAtomicDataTypes.ex_INT", UDT_AllAtomicDataTypes_Online[9], UDT_AllAtomicDataTypes_Offline[9]);
+            failure_condition += CompareOnlineOffline("UDT_AllAtomicDataTypes.ex_DINT", UDT_AllAtomicDataTypes_Online[10], UDT_AllAtomicDataTypes_Offline[10]);
+            failure_condition += CompareOnlineOffline("UDT_AllAtomicDataTypes.ex_LINT", UDT_AllAtomicDataTypes_Online[11], UDT_AllAtomicDataTypes_Offline[11]);
+            failure_condition += CompareOnlineOffline("UDT_AllAtomicDataTypes.ex_REAL", UDT_AllAtomicDataTypes_Online[12], UDT_AllAtomicDataTypes_Offline[12]);
+            failure_condition += CompareOnlineOffline("UDT_AllAtomicDataTypes.ex_STRING", UDT_AllAtomicDataTypes_Online[13], UDT_AllAtomicDataTypes_Offline[13]);
             Console.Write($"[{DateTime.Now.ToString("T")}] DONE verifying whether offline and online values are the same\n---\n");
 
             // Set tag values
@@ -251,10 +253,13 @@ namespace TestStage_CICDExample
             CallSetTagValueAsyncAndWaitOnResult(TEST_AOI_WetBulbTemp_isFahrenheit[6], 1, "online", TEST_AOI_WetBulbTemp_isFahrenheit[7], filePath_MainProgram, myProject);
             CallSetTagValueAsyncAndWaitOnResult(TEST_AOI_WetBulbTemp_RelativeHumidity[6], 30, "online", TEST_AOI_WetBulbTemp_RelativeHumidity[7], filePath_MainProgram, myProject);
             CallSetTagValueAsyncAndWaitOnResult(TEST_AOI_WetBulbTemp_Temperature[6], 70, "online", TEST_AOI_WetBulbTemp_Temperature[7], filePath_MainProgram, myProject);
-            byte[] byteArray_UDT_AllAtomicDataTypes = new byte[int.Parse(UDT_AllAtomicDataTypes_Online[14])];
-            byteArray_UDT_AllAtomicDataTypes[0] = Convert.ToByte("10010010", 2);   // new boolean values
-            ByteString byteString_UDT_AllAtomicDataTypes = ByteString.CopyFrom(byteArray_UDT_AllAtomicDataTypes);
-            SetUDT_AllAtomicDataTypes("UDT_AllAtomicDataTypes", byteString_UDT_AllAtomicDataTypes, TagOperationMode.Online, filePath_ControllerScope, myProject);
+            //byte[] byteArray_UDT_AllAtomicDataTypes = new byte[int.Parse(UDT_AllAtomicDataTypes_Online[14])];
+            //byteArray_UDT_AllAtomicDataTypes[0] = Convert.ToByte("10010010", 2);   // new boolean values
+            //byteArray_UDT_AllAtomicDataTypes[1] = Convert.ToByte(Convert.ToInt16("-24"));
+            //ByteString byteString_UDT_AllAtomicDataTypes = ByteString.CopyFrom(byteArray_UDT_AllAtomicDataTypes);
+            ByteString newValues_UDT_AllAtomicDataTypes = ModifyByteString_UDT_AllAtomicDataTypesValues(10010010, DataType.BOOL, UDT_AllAtomicDataTypes_Online);
+            newValues_UDT_AllAtomicDataTypes = ModifyByteString_UDT_AllAtomicDataTypesValues(-24, DataType.SINT, UDT_AllAtomicDataTypes_Online);
+            SetUDT_AllAtomicDataTypes("UDT_AllAtomicDataTypes", newValues_UDT_AllAtomicDataTypes, TagOperationMode.Online, filePath_ControllerScope, myProject);
             Console.WriteLine($"[{DateTime.Now.ToString("T")}] DONE setting tag values\n---");
 
             // Verify expected output
@@ -297,17 +302,8 @@ namespace TestStage_CICDExample
             //#endregion
 
 
-
-
-
-
-
-
-
-
-
         }
-        #region METHODS --------------------------------------------------------------------------------------------------------------------------------------------------d
+        #region METHODS --------------------------------------------------------------------------------------------------------------------------------------------------
 
         private static bool GetBool(string input_string)
         {
@@ -317,6 +313,7 @@ namespace TestStage_CICDExample
         }
 
         // Wrap Text Method
+        // https://stackoverflow.com/questions/10541124/wrap-text-to-the-next-line-when-it-exceeds-a-certain-length
         private static string WrapText(string input_string)
         {
             int myLimit = 100;
@@ -326,37 +323,21 @@ namespace TestStage_CICDExample
             int numberOfNewLines = 0;
             foreach (string word in words)
             {
-                Console.WriteLine("TOTAL LENGTH: " + (line + word).Length);
-                Console.WriteLine("word: " + word.Length);
-                Console.WriteLine("line: " + line.Length);
-                Console.WriteLine("word: " + word + "END");
                 word.Trim();
                 if ((line + word).Length > myLimit)
                 {
-                    Console.WriteLine("INSIDE_IF_MAIN-------------------------------");
-
                     newSentence.AppendLine(line);
                     line = "";
                     numberOfNewLines++;
                 }
-                Console.WriteLine("OUTSIDE_IF_MAIN================================" + line);
                 line += string.Format($"{word} ");
-                Console.WriteLine("OUTSIDE_IF_MAIN================================" + line);
             }
-            Console.WriteLine("OUTSIDE_FOREACH******************************");
             if (line.Length > 0)
             {
-                Console.WriteLine("INSIDE_IF1_LAST########################################");
                 if (numberOfNewLines > 0)
-                {
                     newSentence.AppendLine("         " + line);
-                    Console.WriteLine("INSIDE_IF2_LAST&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
-                }
                 else
-                {
                     newSentence.AppendLine(line);
-                    Console.WriteLine("INSIDE_ELSE_LAST@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
-                }
             }
             return newSentence.ToString();
         }
@@ -437,7 +418,13 @@ namespace TestStage_CICDExample
             // ex_SINT
             byte[] ex_SINT = new byte[1];
             Array.ConstrainedCopy(UDT_ByteArray, 1, ex_SINT, 0, 1);
-            return_string[8] = Convert.ToString(byte.Parse(CreateBinaryString(ex_SINT, "forward")));
+            string sint_string = CreateBinaryString(ex_SINT, "forward");
+            int sign = sint_string[0] == '1' ? -1 : 1;
+            if (sign == 1)
+                return_string[8] = Convert.ToString(Convert.ToInt16(("00000000" + sint_string), 2));
+
+            else if (sign == -1)
+                return_string[8] = Convert.ToString(Convert.ToInt16(("11111111" + sint_string), 2));
 
             // ex_INT
             byte[] ex_INT = new byte[2];
@@ -951,6 +938,35 @@ namespace TestStage_CICDExample
                     returnstring = returnstring + Convert.ToString(byteString[i], 2).PadLeft(8, '0');
             return returnstring;
         }
+
+
+        // Set UDT Values
+        private static ByteString ModifyByteString_UDT_AllAtomicDataTypesValues(long value_in, DataType type, string[] string_UDT_AllAtomicDataTypes)
+        {
+            byte[] byteArray = new byte[int.Parse(string_UDT_AllAtomicDataTypes[14])];
+            if (type == DataType.BOOL)
+                byteArray[0] = Convert.ToByte($"{value_in}", 2);
+            else if (type == DataType.SINT)
+            {
+                string sint_string = Convert.ToString(value_in, 2);
+                sint_string = sint_string.Substring(sint_string.Length - 8);
+                byteArray[1] = Convert.ToByte(sint_string, 2);
+                foreach (char c in sint_string)
+                    Console.WriteLine((int)c + ": " + c);
+            }
+
+            ByteString returnBytes = ByteString.CopyFrom(byteArray);
+            return returnBytes;
+        }
+
+        //byte[] byteArray = new byte[20];
+        //long value = -24;
+        //string sint_string = Convert.ToString(value, 2);
+        //Console.WriteLine(sint_string.Substring(sint_string.Length - 8), 2);
+        //byteArray[1] = Convert.ToByte(sint_string.Substring(sint_string.Length - 8), 2);
+
+
+
         #endregion
     }
 }
