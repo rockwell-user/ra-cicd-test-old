@@ -53,7 +53,6 @@ namespace TestStage_CICDExample
             //#endregion
 
 
-
             //Console.WriteLine(BinaryStringToInteger(CreateBinaryString(byteArray, "forward")));
             //BinaryStringToInteger
             //#region TEST FILE CREATION -----------------------------------------------------------------------------------------------------------------------------------
@@ -80,20 +79,20 @@ namespace TestStage_CICDExample
             //Console.SetOut(writer);
 
             // Title Banner 
-            Console.WriteLine("  ========================================================================================================  ");
-            Console.WriteLine("============================================================================================================\n");
+            Console.WriteLine("  ==========================================================================================================  ");
+            Console.WriteLine("==============================================================================================================\n");
             Console.WriteLine("                   CI/CD TEST STAGE | " + DateTime.Now + " " + TimeZoneInfo.Local);
-            Console.WriteLine("\n============================================================================================================");
-            Console.WriteLine("  ========================================================================================================  \n\n");
+            Console.WriteLine("\n==============================================================================================================");
+            Console.WriteLine("  ==========================================================================================================  \n\n");
 
             // Printout relevant test information
-            Console.WriteLine("--------------------------------------TEST DEPENDENCIES-----------------------------------------------------");
+            CreateBanner("TEST DEPENDENCIES");
             Console.WriteLine($"ACD file path specified:          {filePath}");
             Console.WriteLine("Common language runtime version:  " + typeof(string).Assembly.ImageRuntimeVersion);
             Console.WriteLine(".NET Framework version:           " + Environment.Version);
 
             // Staging Test Banner
-            Console.WriteLine("----------------------------------------STAGING TEST--------------------------------------------------------");
+            CreateBanner("STAGING TEST");
 
             // Set up emulated controller (based on the specified ACD file path) if one does not yet exist. If not, continue.
             Console.WriteLine($"[{DateTime.Now.ToString("T")}] START setting up FactoryTalk Logix Echo emulated controller...");
@@ -146,7 +145,7 @@ namespace TestStage_CICDExample
                 Console.WriteLine($"[{DateTime.Now.ToString("T")}] FAILURE changing controller to RUN");
 
             // Begin Test Banner
-            Console.WriteLine("-----------------------------------------BEGIN TEST---------------------------------------------------------");
+            CreateBanner("BEGIN TEST");
 
             // Get initial project start-up tag values
             Console.WriteLine($"[{DateTime.Now.ToString("T")}] START getting initial project start-up tag values...");
@@ -160,14 +159,14 @@ namespace TestStage_CICDExample
             string[] TEST_AOI_WetBulbTemp_WetBulbTemp = CallGetTagValueAsyncAndWaitOnResult("TEST_AOI_WetBulbTemp_WetBulbTemp", DataType.REAL, filePath_MainProgram, myProject, true);
             ByteString[] ByteString_UDT_AllAtomicDataTypes = CallGetUDT_AllAtomicDataTypesAndWaitOnResult("UDT_AllAtomicDataTypes", filePath_ControllerScope, myProject);
             string[][] UDT_AllAtomicDataTypes = FormatUDT_AllAtomicDataTypes(ByteString_UDT_AllAtomicDataTypes, true);
-            bool ex_BOOL1 = GetBool(UDT_AllAtomicDataTypes[1][0]);
-            bool ex_BOOL2 = GetBool(UDT_AllAtomicDataTypes[1][1]);
-            bool ex_BOOL3 = GetBool(UDT_AllAtomicDataTypes[1][2]);
-            bool ex_BOOL4 = GetBool(UDT_AllAtomicDataTypes[1][3]);
-            bool ex_BOOL5 = GetBool(UDT_AllAtomicDataTypes[1][4]);
-            bool ex_BOOL6 = GetBool(UDT_AllAtomicDataTypes[1][5]);
-            bool ex_BOOL7 = GetBool(UDT_AllAtomicDataTypes[1][6]);
-            bool ex_BOOL8 = GetBool(UDT_AllAtomicDataTypes[1][7]);
+            bool ex_BOOL1 = GetBoolFromBinaryString(UDT_AllAtomicDataTypes[1][0]);
+            bool ex_BOOL2 = GetBoolFromBinaryString(UDT_AllAtomicDataTypes[1][1]);
+            bool ex_BOOL3 = GetBoolFromBinaryString(UDT_AllAtomicDataTypes[1][2]);
+            bool ex_BOOL4 = GetBoolFromBinaryString(UDT_AllAtomicDataTypes[1][3]);
+            bool ex_BOOL5 = GetBoolFromBinaryString(UDT_AllAtomicDataTypes[1][4]);
+            bool ex_BOOL6 = GetBoolFromBinaryString(UDT_AllAtomicDataTypes[1][5]);
+            bool ex_BOOL7 = GetBoolFromBinaryString(UDT_AllAtomicDataTypes[1][6]);
+            bool ex_BOOL8 = GetBoolFromBinaryString(UDT_AllAtomicDataTypes[1][7]);
             int ex_SINT = int.Parse(UDT_AllAtomicDataTypes[1][8]); // c# bytes have range 0 to 255 so INT accounts for negatives (Studio 5k SINT has range -128 to 127)
             int ex_INT = int.Parse(UDT_AllAtomicDataTypes[1][9]);
             double ex_DINT = double.Parse(UDT_AllAtomicDataTypes[1][10]);
@@ -223,7 +222,19 @@ namespace TestStage_CICDExample
             failure_condition += CompareForExpectedValue("TEST_AOI_WetBulbTemp_WetBulbTemp", "52.997536", TEST_AOI_WetBulbTemp_WetBulbTemp[1]);
             ByteString_UDT_AllAtomicDataTypes = CallGetUDT_AllAtomicDataTypesAndWaitOnResult("UDT_AllAtomicDataTypes", filePath_ControllerScope, myProject);
             UDT_AllAtomicDataTypes = FormatUDT_AllAtomicDataTypes(ByteString_UDT_AllAtomicDataTypes, false);
+            failure_condition += CompareForExpectedValue("UDT_AllAtomicDataTypes.ex_BOOL1", "False", UDT_AllAtomicDataTypes[1][0]);
+            failure_condition += CompareForExpectedValue("UDT_AllAtomicDataTypes.ex_BOOL2", "True", UDT_AllAtomicDataTypes[1][1]);
+            failure_condition += CompareForExpectedValue("UDT_AllAtomicDataTypes.ex_BOOL3", "False", UDT_AllAtomicDataTypes[1][2]);
+            failure_condition += CompareForExpectedValue("UDT_AllAtomicDataTypes.ex_BOOL4", "False", UDT_AllAtomicDataTypes[1][3]);
+            failure_condition += CompareForExpectedValue("UDT_AllAtomicDataTypes.ex_BOOL5", "True", UDT_AllAtomicDataTypes[1][4]);
+            failure_condition += CompareForExpectedValue("UDT_AllAtomicDataTypes.ex_BOOL6", "False", UDT_AllAtomicDataTypes[1][5]);
+            failure_condition += CompareForExpectedValue("UDT_AllAtomicDataTypes.ex_BOOL7", "False", UDT_AllAtomicDataTypes[1][6]);
+            failure_condition += CompareForExpectedValue("UDT_AllAtomicDataTypes.ex_BOOL8", "True", UDT_AllAtomicDataTypes[1][7]);
+            failure_condition += CompareForExpectedValue("UDT_AllAtomicDataTypes.ex_SINT", "-24", UDT_AllAtomicDataTypes[1][8]);
             failure_condition += CompareForExpectedValue("UDT_AllAtomicDataTypes.ex_INT", "20500", UDT_AllAtomicDataTypes[1][9]);
+            failure_condition += CompareForExpectedValue("UDT_AllAtomicDataTypes.ex_DINT", "-2000111000", UDT_AllAtomicDataTypes[1][10]);
+            failure_condition += CompareForExpectedValue("UDT_AllAtomicDataTypes.ex_LINT", "-9000111000111000111", UDT_AllAtomicDataTypes[1][11]);
+            failure_condition += CompareForExpectedValue("UDT_AllAtomicDataTypes.ex_REAL", "10555.8876953125", UDT_AllAtomicDataTypes[1][12]);
             failure_condition += CompareForExpectedValue("UDT_AllAtomicDataTypes.ex_STRING", "New String!", UDT_AllAtomicDataTypes[1][13]);
             Console.WriteLine($"[{DateTime.Now.ToString("T")}] DONE verifying expected tag outputs\n---");
 
@@ -234,13 +245,14 @@ namespace TestStage_CICDExample
             CallGetTagValueAsyncAndWaitOnResult(TEST_AOI_WetBulbTemp_isFahrenheit[0], DataType.BOOL, filePath_MainProgram, myProject, true);
             CallGetTagValueAsyncAndWaitOnResult(TEST_AOI_WetBulbTemp_RelativeHumidity[0], DataType.REAL, filePath_MainProgram, myProject, true);
             CallGetTagValueAsyncAndWaitOnResult(TEST_AOI_WetBulbTemp_Temperature[0], DataType.REAL, filePath_MainProgram, myProject, true);
+            FormatUDT_AllAtomicDataTypes(CallGetUDT_AllAtomicDataTypesAndWaitOnResult("UDT_AllAtomicDataTypes", filePath_ControllerScope, myProject), true);
             Console.WriteLine($"[{DateTime.Now.ToString("T")}] DONE showing final test tag values");
 
             // Final Banner
             if (failure_condition > 0)
-                Console.WriteLine("---------------------------------------TEST FAILURE---------------------------------------------------------");
+                CreateBanner("TEST FAILURE");
             else
-                Console.WriteLine("---------------------------------------TEST SUCCESS---------------------------------------------------------");
+                CreateBanner("TEST SUCCESS!");
 
             //// Finish process of sending console printouts to the text file specified earlier
             //Console.SetOut(oldOut);
@@ -252,18 +264,16 @@ namespace TestStage_CICDExample
         }
         #region METHODS --------------------------------------------------------------------------------------------------------------------------------------------------
 
-        private static bool GetBool(string input_string)
+        private static bool GetBoolFromBinaryString(string input_string)
         {
-            if (input_string == "1")
-                return true;
-            return false;
+            return (input_string == "1") ? true : false;
         }
 
         // Wrap Text Method
         // https://stackoverflow.com/questions/10541124/wrap-text-to-the-next-line-when-it-exceeds-a-certain-length
         private static string WrapText(string input_string)
         {
-            int myLimit = 100;
+            int myLimit = 105;
             string[] words = input_string.Split(' ');
             StringBuilder newSentence = new StringBuilder();
             string line = "";
@@ -968,6 +978,13 @@ namespace TestStage_CICDExample
         //    return task.Result;
         //}
 
+
+        private static void CreateBanner(string input_label)
+        {
+            string final_banner = "-=[" + input_label + "]=---";
+            final_banner = final_banner.PadLeft(110, '-');
+            Console.WriteLine(final_banner);
+        }
         #endregion
     }
 }
