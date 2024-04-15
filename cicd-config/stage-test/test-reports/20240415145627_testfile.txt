@@ -1,0 +1,141 @@
+  =========================================================================================================================  
+=============================================================================================================================
+                   CI/CD TEST STAGE | 4/15/2024 2:56:27 PM (UTC-05:00) Eastern Time (US & Canada)
+=============================================================================================================================
+  =========================================================================================================================  
+
+
+-----------------------------------------------------------------------------------------------------=[TEST DEPENDENCIES]=---
+ACD file path specified:          C:\Users\ASYost\source\repos\ra-cicd-test-old\DEVELOPMENT-files\CICD_test.ACD
+Common language runtime version:  v4.0.30319
+.NET Framework version:           6.0.28
+----------------------------------------------------------------------------------------------------------=[STAGING TEST]=---
+[2:56:27 PM] START checking test-reports folder...
+CHECKING: are there more than 50 test files?
+SUCCESS: deleted C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\test-reports\20240404181433_testfile.txt
+[2:56:27 PM] DONE checking test-reports folder...
+---
+[2:56:27 PM] START setting up FactoryTalk Logix Echo emulated controller...
+SUCCESS: project communication path specified is "EmulateEthernet\127.0.0.1"
+[2:56:27 PM] DONE setting up FactoryTalk Logix Echo emulated controller
+---
+[2:56:27 PM] START opening ACD file...
+[2:56:54 PM] SUCCESS opening ACD file
+---
+[2:56:54 PM] START changing controller to PROGRAM...
+[2:56:55 PM] SUCCESS changing controller to PROGRAM
+---
+[2:56:55 PM] START downloading ACD file...
+[2:57:03 PM] SUCCESS downloading ACD file
+---
+[2:57:03 PM] START Changing controller to RUN...
+[2:57:04 PM] SUCCESS changing controller to RUN
+------------------------------------------------------------------------------------------------------------=[BEGIN TEST]=---
+[2:57:04 PM] START getting initial project start-up tag values...
+SUCCESS: TEST_DINT_1                             online value: 0                    offline value: 0                   
+SUCCESS: TEST_TOGGLE_WetBulbTempCalc             online value: False                offline value: False               
+SUCCESS: TEST_AOI_WetBulbTemp_isFahrenheit       online value: False                offline value: False               
+SUCCESS: TEST_AOI_WetBulbTemp_RelativeHumidity   online value: 0                    offline value: 0                   
+SUCCESS: TEST_AOI_WetBulbTemp_Temperature        online value: 0                    offline value: 0                   
+SUCCESS: TEST_AOI_WetBulbTemp_WetBulbTemp        online value: 0                    offline value: 0                   
+SUCCESS: UDT_AllAtomicDataTypes.ex_BOOL1         online value: True                 offline value: True                
+SUCCESS: UDT_AllAtomicDataTypes.ex_BOOL2         online value: False                offline value: False               
+SUCCESS: UDT_AllAtomicDataTypes.ex_BOOL3         online value: True                 offline value: True                
+SUCCESS: UDT_AllAtomicDataTypes.ex_BOOL4         online value: True                 offline value: True                
+SUCCESS: UDT_AllAtomicDataTypes.ex_BOOL5         online value: False                offline value: False               
+SUCCESS: UDT_AllAtomicDataTypes.ex_BOOL6         online value: True                 offline value: True                
+SUCCESS: UDT_AllAtomicDataTypes.ex_BOOL7         online value: True                 offline value: True                
+SUCCESS: UDT_AllAtomicDataTypes.ex_BOOL8         online value: False                offline value: False               
+SUCCESS: UDT_AllAtomicDataTypes.ex_SINT          online value: 2                    offline value: 2                   
+SUCCESS: UDT_AllAtomicDataTypes.ex_INT           online value: -487                 offline value: -487                
+SUCCESS: UDT_AllAtomicDataTypes.ex_DINT          online value: 11111                offline value: 11111               
+SUCCESS: UDT_AllAtomicDataTypes.ex_LINT          online value: 777111777111777      offline value: 777111777111777     
+SUCCESS: UDT_AllAtomicDataTypes.ex_REAL          online value: -1.589460015296936   offline value: -1.589460015296936  
+SUCCESS: UDT_AllAtomicDataTypes.ex_STRING        online value: Test 123             offline value: Test 123            
+[2:57:08 PM] DONE getting initial project start-up tag values
+---
+[2:57:08 PM] START verifying whether offline and online values are the same...
+SUCCESS: TEST_DINT_1 online value (0) & offline value (0) are EQUAL. 
+SUCCESS: TEST_TOGGLE_WetBulbTempCalc online value (False) & offline value (False) are EQUAL. 
+SUCCESS: TEST_AOI_WetBulbTemp_isFahrenheit online value (False) & offline value (False) are EQUAL. 
+SUCCESS: TEST_AOI_WetBulbTemp_RelativeHumidity online value (0) & offline value (0) are EQUAL. 
+SUCCESS: TEST_AOI_WetBulbTemp_Temperature online value (0) & offline value (0) are EQUAL. 
+SUCCESS: TEST_AOI_WetBulbTemp_WetBulbTemp online value (0) & offline value (0) are EQUAL. 
+SUCCESS: UDT_AllAtomicDataTypes.ex_BOOL1 online value (True) & offline value (True) are EQUAL. 
+SUCCESS: UDT_AllAtomicDataTypes.ex_BOOL2 online value (False) & offline value (False) are EQUAL. 
+SUCCESS: UDT_AllAtomicDataTypes.ex_BOOL3 online value (True) & offline value (True) are EQUAL. 
+SUCCESS: UDT_AllAtomicDataTypes.ex_BOOL4 online value (True) & offline value (True) are EQUAL. 
+SUCCESS: UDT_AllAtomicDataTypes.ex_BOOL5 online value (False) & offline value (False) are EQUAL. 
+SUCCESS: UDT_AllAtomicDataTypes.ex_BOOL6 online value (True) & offline value (True) are EQUAL. 
+SUCCESS: UDT_AllAtomicDataTypes.ex_BOOL7 online value (True) & offline value (True) are EQUAL. 
+SUCCESS: UDT_AllAtomicDataTypes.ex_BOOL8 online value (False) & offline value (False) are EQUAL. 
+SUCCESS: UDT_AllAtomicDataTypes.ex_SINT online value (2) & offline value (2) are EQUAL. 
+SUCCESS: UDT_AllAtomicDataTypes.ex_INT online value (-487) & offline value (-487) are EQUAL. 
+SUCCESS: UDT_AllAtomicDataTypes.ex_DINT online value (11111) & offline value (11111) are EQUAL. 
+SUCCESS: UDT_AllAtomicDataTypes.ex_LINT online value (777111777111777) & offline value (777111777111777) are EQUAL. 
+SUCCESS: UDT_AllAtomicDataTypes.ex_REAL online value (-1.589460015296936) & offline value (-1.589460015296936) are EQUAL. 
+SUCCESS: UDT_AllAtomicDataTypes.ex_STRING online value (Test 123) & offline value (Test 123) are EQUAL. 
+[2:57:08 PM] DONE verifying whether offline and online values are the same
+---
+[2:57:08 PM] START setting tag values...
+SUCCESS: Online TEST_DINT_1                                                0  -->  111
+SUCCESS: Online TEST_TOGGLE_WetBulbTempCalc                            False  -->  True
+SUCCESS: Online TEST_AOI_WetBulbTemp_isFahrenheit                      False  -->  True
+SUCCESS: Online TEST_AOI_WetBulbTemp_RelativeHumidity                      0  -->  30
+SUCCESS: Online TEST_AOI_WetBulbTemp_Temperature                           0  -->  70
+SUCCESS: Online UDT_AllAtomicDataTypes.ex_BOOL1                         True  -->  False
+SUCCESS: Online UDT_AllAtomicDataTypes.ex_BOOL2                        False  -->  True
+SUCCESS: Online UDT_AllAtomicDataTypes.ex_BOOL3                         True  -->  False
+SUCCESS: Online UDT_AllAtomicDataTypes.ex_BOOL4                         True  -->  False
+SUCCESS: Online UDT_AllAtomicDataTypes.ex_BOOL5                        False  -->  True
+SUCCESS: Online UDT_AllAtomicDataTypes.ex_BOOL6                         True  -->  False
+SUCCESS: Online UDT_AllAtomicDataTypes.ex_BOOL7                         True  -->  False
+SUCCESS: Online UDT_AllAtomicDataTypes.ex_BOOL8                        False  -->  True
+SUCCESS: Online UDT_AllAtomicDataTypes.ex_SINT                             2  -->  -24
+SUCCESS: Online UDT_AllAtomicDataTypes.ex_INT                           -487  -->  20500
+SUCCESS: Online UDT_AllAtomicDataTypes.ex_DINT                         11111  -->  -2000111000
+SUCCESS: Online UDT_AllAtomicDataTypes.ex_LINT               777111777111777  -->  -9000111000111000111
+SUCCESS: Online UDT_AllAtomicDataTypes.ex_REAL            -1.589460015296936  -->  10555.8876953125
+SUCCESS: Online UDT_AllAtomicDataTypes.ex_STRING                    Test 123  -->  New String!
+[2:57:24 PM] DONE setting tag values
+---
+[2:57:24 PM] START verifying expected tag outputs...
+SUCCESS: TEST_AOI_WetBulbTemp_WetBulbTemp expected value (52.997536) & actual value (52.997536) EQUAL. 
+SUCCESS: UDT_AllAtomicDataTypes.ex_BOOL1 expected value (False) & actual value (False) EQUAL. 
+SUCCESS: UDT_AllAtomicDataTypes.ex_BOOL2 expected value (True) & actual value (True) EQUAL. 
+SUCCESS: UDT_AllAtomicDataTypes.ex_BOOL3 expected value (False) & actual value (False) EQUAL. 
+SUCCESS: UDT_AllAtomicDataTypes.ex_BOOL4 expected value (False) & actual value (False) EQUAL. 
+SUCCESS: UDT_AllAtomicDataTypes.ex_BOOL5 expected value (True) & actual value (True) EQUAL. 
+SUCCESS: UDT_AllAtomicDataTypes.ex_BOOL6 expected value (False) & actual value (False) EQUAL. 
+SUCCESS: UDT_AllAtomicDataTypes.ex_BOOL7 expected value (False) & actual value (False) EQUAL. 
+SUCCESS: UDT_AllAtomicDataTypes.ex_BOOL8 expected value (True) & actual value (True) EQUAL. 
+SUCCESS: UDT_AllAtomicDataTypes.ex_SINT expected value (-24) & actual value (-24) EQUAL. 
+SUCCESS: UDT_AllAtomicDataTypes.ex_INT expected value (20500) & actual value (20500) EQUAL. 
+SUCCESS: UDT_AllAtomicDataTypes.ex_DINT expected value (-2000111000) & actual value (-2000111000) EQUAL. 
+SUCCESS: UDT_AllAtomicDataTypes.ex_LINT expected value (-9000111000111000111) & actual value (-9000111000111000111) EQUAL. 
+SUCCESS: UDT_AllAtomicDataTypes.ex_REAL expected value (10555.8876953125) & actual value (10555.8876953125) EQUAL. 
+SUCCESS: UDT_AllAtomicDataTypes.ex_STRING expected value (New String!) & actual value (New String!) EQUAL. 
+[2:57:25 PM] DONE verifying expected tag outputs
+---
+[2:57:25 PM] START showing final test tag values...
+SUCCESS: TEST_DINT_1                             online value: 111                  offline value: 0                   
+SUCCESS: TEST_TOGGLE_WetBulbTempCalc             online value: True                 offline value: False               
+SUCCESS: TEST_AOI_WetBulbTemp_isFahrenheit       online value: True                 offline value: False               
+SUCCESS: TEST_AOI_WetBulbTemp_RelativeHumidity   online value: 30                   offline value: 0                   
+SUCCESS: TEST_AOI_WetBulbTemp_Temperature        online value: 70                   offline value: 0                   
+SUCCESS: UDT_AllAtomicDataTypes.ex_BOOL1         online value: False                offline value: True                
+SUCCESS: UDT_AllAtomicDataTypes.ex_BOOL2         online value: True                 offline value: False               
+SUCCESS: UDT_AllAtomicDataTypes.ex_BOOL3         online value: False                offline value: True                
+SUCCESS: UDT_AllAtomicDataTypes.ex_BOOL4         online value: False                offline value: True                
+SUCCESS: UDT_AllAtomicDataTypes.ex_BOOL5         online value: True                 offline value: False               
+SUCCESS: UDT_AllAtomicDataTypes.ex_BOOL6         online value: False                offline value: True                
+SUCCESS: UDT_AllAtomicDataTypes.ex_BOOL7         online value: False                offline value: True                
+SUCCESS: UDT_AllAtomicDataTypes.ex_BOOL8         online value: True                 offline value: False               
+SUCCESS: UDT_AllAtomicDataTypes.ex_SINT          online value: -24                  offline value: 2                   
+SUCCESS: UDT_AllAtomicDataTypes.ex_INT           online value: 20500                offline value: -487                
+SUCCESS: UDT_AllAtomicDataTypes.ex_DINT          online value: -2000111000          offline value: 11111               
+SUCCESS: UDT_AllAtomicDataTypes.ex_LINT          online value: -9000111000111000111 offline value: 777111777111777     
+SUCCESS: UDT_AllAtomicDataTypes.ex_REAL          online value: 10555.8876953125     offline value: -1.589460015296936  
+SUCCESS: UDT_AllAtomicDataTypes.ex_STRING        online value: New String!          offline value: Test 123            
+[2:57:28 PM] DONE showing final test tag values
+---------------------------------------------------------------------------------------------------------=[TEST SUCCESS!]=---
