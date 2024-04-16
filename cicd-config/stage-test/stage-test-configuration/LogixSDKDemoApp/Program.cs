@@ -164,44 +164,44 @@ namespace TestStage_CICDExample
             bool ex_BOOL6 = (UDT_AllAtomicDataTypes[1][5] == "1") ? true : false;
             bool ex_BOOL7 = (UDT_AllAtomicDataTypes[1][6] == "1") ? true : false;
             bool ex_BOOL8 = (UDT_AllAtomicDataTypes[1][7] == "1") ? true : false;
-            int ex_SINT = int.Parse(UDT_AllAtomicDataTypes[1][8]); // c# bytes have range 0 to 255 so INT accounts for negatives (Studio 5k SINT has range -128 to 127)
+            sbyte ex_SINT = sbyte.Parse(UDT_AllAtomicDataTypes[1][8]);
             int ex_INT = int.Parse(UDT_AllAtomicDataTypes[1][9]);
             double ex_DINT = double.Parse(UDT_AllAtomicDataTypes[1][10]);
             long ex_LINT = long.Parse(UDT_AllAtomicDataTypes[1][11]);
-            float ex_REAL = float.Parse(UDT_AllAtomicDataTypes[1][12]);
+            decimal ex_REAL = decimal.Parse(UDT_AllAtomicDataTypes[1][12]);
             string ex_STRING = UDT_AllAtomicDataTypes[1][13];
             Console.WriteLine($"[{DateTime.Now.ToString("T")}] DONE getting initial project start-up tag values\n---");
 
             // Verify whether offline and online values are the same.
             // Each test returns a value of 0 for a success or 1 for a failure. The integer failure conditions tracks this tests progress.
             Console.WriteLine($"[{DateTime.Now.ToString("T")}] START verifying whether offline and online values are the same...");
-            int failure_condition = 0;
-            failure_condition += TEST_CompareOnlineOffline(TEST_BOOL[0], TEST_BOOL[1], TEST_BOOL[2]);
-            failure_condition += TEST_CompareOnlineOffline(TEST_SINT[0], TEST_SINT[1], TEST_SINT[2]);
-            failure_condition += TEST_CompareOnlineOffline(TEST_INT[0], TEST_INT[1], TEST_INT[2]);
-            failure_condition += TEST_CompareOnlineOffline(TEST_DINT[0], TEST_DINT[1], TEST_DINT[2]);
-            failure_condition += TEST_CompareOnlineOffline(TEST_LINT[0], TEST_LINT[1], TEST_LINT[2]);
-            failure_condition += TEST_CompareOnlineOffline(TEST_REAL[0], TEST_REAL[1], TEST_REAL[2]);
-            failure_condition += TEST_CompareOnlineOffline(TEST_STRING[0], TEST_STRING[1], TEST_STRING[2]);
-            failure_condition += TEST_CompareOnlineOffline(TEST_TOGGLE_WetBulbTempCalc[0], TEST_TOGGLE_WetBulbTempCalc[1], TEST_TOGGLE_WetBulbTempCalc[2]);
-            failure_condition += TEST_CompareOnlineOffline(TEST_AOI_WetBulbTemp_isFahrenheit[0], TEST_AOI_WetBulbTemp_isFahrenheit[1], TEST_AOI_WetBulbTemp_isFahrenheit[2]);
-            failure_condition += TEST_CompareOnlineOffline(TEST_AOI_WetBulbTemp_RelativeHumidity[0], TEST_AOI_WetBulbTemp_RelativeHumidity[1], TEST_AOI_WetBulbTemp_RelativeHumidity[2]);
-            failure_condition += TEST_CompareOnlineOffline(TEST_AOI_WetBulbTemp_Temperature[0], TEST_AOI_WetBulbTemp_Temperature[1], TEST_AOI_WetBulbTemp_Temperature[2]);
-            failure_condition += TEST_CompareOnlineOffline(TEST_AOI_WetBulbTemp_WetBulbTemp[0], TEST_AOI_WetBulbTemp_WetBulbTemp[1], TEST_AOI_WetBulbTemp_WetBulbTemp[2]);
-            failure_condition += TEST_CompareOnlineOffline("UDT_AllAtomicDataTypes.ex_BOOL1", UDT_AllAtomicDataTypes[1][0], UDT_AllAtomicDataTypes[2][0]);
-            failure_condition += TEST_CompareOnlineOffline("UDT_AllAtomicDataTypes.ex_BOOL2", UDT_AllAtomicDataTypes[1][1], UDT_AllAtomicDataTypes[2][1]);
-            failure_condition += TEST_CompareOnlineOffline("UDT_AllAtomicDataTypes.ex_BOOL3", UDT_AllAtomicDataTypes[1][2], UDT_AllAtomicDataTypes[2][2]);
-            failure_condition += TEST_CompareOnlineOffline("UDT_AllAtomicDataTypes.ex_BOOL4", UDT_AllAtomicDataTypes[1][3], UDT_AllAtomicDataTypes[2][3]);
-            failure_condition += TEST_CompareOnlineOffline("UDT_AllAtomicDataTypes.ex_BOOL5", UDT_AllAtomicDataTypes[1][4], UDT_AllAtomicDataTypes[2][4]);
-            failure_condition += TEST_CompareOnlineOffline("UDT_AllAtomicDataTypes.ex_BOOL6", UDT_AllAtomicDataTypes[1][5], UDT_AllAtomicDataTypes[2][5]);
-            failure_condition += TEST_CompareOnlineOffline("UDT_AllAtomicDataTypes.ex_BOOL7", UDT_AllAtomicDataTypes[1][6], UDT_AllAtomicDataTypes[2][6]);
-            failure_condition += TEST_CompareOnlineOffline("UDT_AllAtomicDataTypes.ex_BOOL8", UDT_AllAtomicDataTypes[1][7], UDT_AllAtomicDataTypes[2][7]);
-            failure_condition += TEST_CompareOnlineOffline("UDT_AllAtomicDataTypes.ex_SINT", UDT_AllAtomicDataTypes[1][8], UDT_AllAtomicDataTypes[2][8]);
-            failure_condition += TEST_CompareOnlineOffline("UDT_AllAtomicDataTypes.ex_INT", UDT_AllAtomicDataTypes[1][9], UDT_AllAtomicDataTypes[2][9]);
-            failure_condition += TEST_CompareOnlineOffline("UDT_AllAtomicDataTypes.ex_DINT", UDT_AllAtomicDataTypes[1][10], UDT_AllAtomicDataTypes[2][10]);
-            failure_condition += TEST_CompareOnlineOffline("UDT_AllAtomicDataTypes.ex_LINT", UDT_AllAtomicDataTypes[1][11], UDT_AllAtomicDataTypes[2][11]);
-            failure_condition += TEST_CompareOnlineOffline("UDT_AllAtomicDataTypes.ex_REAL", UDT_AllAtomicDataTypes[1][12], UDT_AllAtomicDataTypes[2][12]);
-            failure_condition += TEST_CompareOnlineOffline("UDT_AllAtomicDataTypes.ex_STRING", UDT_AllAtomicDataTypes[1][13], UDT_AllAtomicDataTypes[2][13]);
+            int failureCondition = 0;
+            failureCondition += TEST_CompareOnlineOffline(TEST_BOOL[0], TEST_BOOL[1], TEST_BOOL[2]);
+            failureCondition += TEST_CompareOnlineOffline(TEST_SINT[0], TEST_SINT[1], TEST_SINT[2]);
+            failureCondition += TEST_CompareOnlineOffline(TEST_INT[0], TEST_INT[1], TEST_INT[2]);
+            failureCondition += TEST_CompareOnlineOffline(TEST_DINT[0], TEST_DINT[1], TEST_DINT[2]);
+            failureCondition += TEST_CompareOnlineOffline(TEST_LINT[0], TEST_LINT[1], TEST_LINT[2]);
+            failureCondition += TEST_CompareOnlineOffline(TEST_REAL[0], TEST_REAL[1], TEST_REAL[2]);
+            failureCondition += TEST_CompareOnlineOffline(TEST_STRING[0], TEST_STRING[1], TEST_STRING[2]);
+            failureCondition += TEST_CompareOnlineOffline(TEST_TOGGLE_WetBulbTempCalc[0], TEST_TOGGLE_WetBulbTempCalc[1], TEST_TOGGLE_WetBulbTempCalc[2]);
+            failureCondition += TEST_CompareOnlineOffline(TEST_AOI_WetBulbTemp_isFahrenheit[0], TEST_AOI_WetBulbTemp_isFahrenheit[1], TEST_AOI_WetBulbTemp_isFahrenheit[2]);
+            failureCondition += TEST_CompareOnlineOffline(TEST_AOI_WetBulbTemp_RelativeHumidity[0], TEST_AOI_WetBulbTemp_RelativeHumidity[1], TEST_AOI_WetBulbTemp_RelativeHumidity[2]);
+            failureCondition += TEST_CompareOnlineOffline(TEST_AOI_WetBulbTemp_Temperature[0], TEST_AOI_WetBulbTemp_Temperature[1], TEST_AOI_WetBulbTemp_Temperature[2]);
+            failureCondition += TEST_CompareOnlineOffline(TEST_AOI_WetBulbTemp_WetBulbTemp[0], TEST_AOI_WetBulbTemp_WetBulbTemp[1], TEST_AOI_WetBulbTemp_WetBulbTemp[2]);
+            failureCondition += TEST_CompareOnlineOffline("UDT_AllAtomicDataTypes.ex_BOOL1", UDT_AllAtomicDataTypes[1][0], UDT_AllAtomicDataTypes[2][0]);
+            failureCondition += TEST_CompareOnlineOffline("UDT_AllAtomicDataTypes.ex_BOOL2", UDT_AllAtomicDataTypes[1][1], UDT_AllAtomicDataTypes[2][1]);
+            failureCondition += TEST_CompareOnlineOffline("UDT_AllAtomicDataTypes.ex_BOOL3", UDT_AllAtomicDataTypes[1][2], UDT_AllAtomicDataTypes[2][2]);
+            failureCondition += TEST_CompareOnlineOffline("UDT_AllAtomicDataTypes.ex_BOOL4", UDT_AllAtomicDataTypes[1][3], UDT_AllAtomicDataTypes[2][3]);
+            failureCondition += TEST_CompareOnlineOffline("UDT_AllAtomicDataTypes.ex_BOOL5", UDT_AllAtomicDataTypes[1][4], UDT_AllAtomicDataTypes[2][4]);
+            failureCondition += TEST_CompareOnlineOffline("UDT_AllAtomicDataTypes.ex_BOOL6", UDT_AllAtomicDataTypes[1][5], UDT_AllAtomicDataTypes[2][5]);
+            failureCondition += TEST_CompareOnlineOffline("UDT_AllAtomicDataTypes.ex_BOOL7", UDT_AllAtomicDataTypes[1][6], UDT_AllAtomicDataTypes[2][6]);
+            failureCondition += TEST_CompareOnlineOffline("UDT_AllAtomicDataTypes.ex_BOOL8", UDT_AllAtomicDataTypes[1][7], UDT_AllAtomicDataTypes[2][7]);
+            failureCondition += TEST_CompareOnlineOffline("UDT_AllAtomicDataTypes.ex_SINT", UDT_AllAtomicDataTypes[1][8], UDT_AllAtomicDataTypes[2][8]);
+            failureCondition += TEST_CompareOnlineOffline("UDT_AllAtomicDataTypes.ex_INT", UDT_AllAtomicDataTypes[1][9], UDT_AllAtomicDataTypes[2][9]);
+            failureCondition += TEST_CompareOnlineOffline("UDT_AllAtomicDataTypes.ex_DINT", UDT_AllAtomicDataTypes[1][10], UDT_AllAtomicDataTypes[2][10]);
+            failureCondition += TEST_CompareOnlineOffline("UDT_AllAtomicDataTypes.ex_LINT", UDT_AllAtomicDataTypes[1][11], UDT_AllAtomicDataTypes[2][11]);
+            failureCondition += TEST_CompareOnlineOffline("UDT_AllAtomicDataTypes.ex_REAL", UDT_AllAtomicDataTypes[1][12], UDT_AllAtomicDataTypes[2][12]);
+            failureCondition += TEST_CompareOnlineOffline("UDT_AllAtomicDataTypes.ex_STRING", UDT_AllAtomicDataTypes[1][13], UDT_AllAtomicDataTypes[2][13]);
             Console.Write($"[{DateTime.Now.ToString("T")}] DONE verifying whether offline and online values are the same\n---\n");
 
             // Set tag values.
@@ -231,41 +231,41 @@ namespace TestStage_CICDExample
             Console.WriteLine($"[{DateTime.Now.ToString("T")}] START verifying expected tag outputs...");
             // The tag TEST_AOI_WetBulbTemp_WetBulbTemp is an AOI output. This showcases a test command best.
             TEST_AOI_WetBulbTemp_WetBulbTemp = Get_TagValue_Sync(TEST_AOI_WetBulbTemp_WetBulbTemp[0], DataType.REAL, filePath_MainProgram, myProject, false);
-            failure_condition += TEST_CompareForExpectedValue("TEST_AOI_WetBulbTemp_WetBulbTemp", "52.997536", TEST_AOI_WetBulbTemp_WetBulbTemp[1]);
+            failureCondition += TEST_CompareForExpectedValue("TEST_AOI_WetBulbTemp_WetBulbTemp", "52.997536", TEST_AOI_WetBulbTemp_WetBulbTemp[1]);
             // The below tests are not outputs from logic created in Studio 5000 Logix Designer but are included
             // to provide an example of how each basic data type tag was successfully set.
             TEST_BOOL = Get_TagValue_Sync("TEST_BOOL", DataType.BOOL, filePath_ControllerScope, myProject, false);
-            failure_condition += TEST_CompareForExpectedValue(TEST_BOOL[0], "True", TEST_BOOL[1]);
+            failureCondition += TEST_CompareForExpectedValue(TEST_BOOL[0], "True", TEST_BOOL[1]);
             TEST_SINT = Get_TagValue_Sync("TEST_SINT", DataType.SINT, filePath_ControllerScope, myProject, false);
-            failure_condition += TEST_CompareForExpectedValue(TEST_SINT[0], "24", TEST_SINT[1]);
+            failureCondition += TEST_CompareForExpectedValue(TEST_SINT[0], "24", TEST_SINT[1]);
             TEST_INT = Get_TagValue_Sync("TEST_INT", DataType.INT, filePath_ControllerScope, myProject, false);
-            failure_condition += TEST_CompareForExpectedValue(TEST_INT[0], "-20500", TEST_INT[1]);
+            failureCondition += TEST_CompareForExpectedValue(TEST_INT[0], "-20500", TEST_INT[1]);
             TEST_DINT = Get_TagValue_Sync("TEST_DINT", DataType.DINT, filePath_ControllerScope, myProject, false);
-            failure_condition += TEST_CompareForExpectedValue(TEST_DINT[0], "2000111000", TEST_DINT[1]);
+            failureCondition += TEST_CompareForExpectedValue(TEST_DINT[0], "2000111000", TEST_DINT[1]);
             TEST_LINT = Get_TagValue_Sync("TEST_LINT", DataType.LINT, filePath_ControllerScope, myProject, false);
-            failure_condition += TEST_CompareForExpectedValue(TEST_LINT[0], "9000111000111000111", TEST_LINT[1]);
+            failureCondition += TEST_CompareForExpectedValue(TEST_LINT[0], "9000111000111000111", TEST_LINT[1]);
             TEST_REAL = Get_TagValue_Sync("TEST_REAL", DataType.REAL, filePath_ControllerScope, myProject, false);
-            failure_condition += TEST_CompareForExpectedValue(TEST_REAL[0], "-10555.888", TEST_REAL[1]);
+            failureCondition += TEST_CompareForExpectedValue(TEST_REAL[0], "-10555.888", TEST_REAL[1]);
             TEST_STRING = Get_TagValue_Sync("TEST_STRING", DataType.STRING, filePath_ControllerScope, myProject, false);
-            failure_condition += TEST_CompareForExpectedValue(TEST_STRING[0], "1st New String!", TEST_STRING[1]);
+            failureCondition += TEST_CompareForExpectedValue(TEST_STRING[0], "1st New String!", TEST_STRING[1]);
             // The below tests are not outputs from logic created in Studio 5000 Logix Designer but are included
             // to provide an example of how each basic data type in a complex tag was successfully set.
             ByteString_UDT_AllAtomicDataTypes = Get_UDTAllAtomicDataTypes_Sync(filePath_ControllerScope, myProject);
             UDT_AllAtomicDataTypes = Format_UDTAllAtomicDataTypes(ByteString_UDT_AllAtomicDataTypes, false);
-            failure_condition += TEST_CompareForExpectedValue("UDT_AllAtomicDataTypes.ex_BOOL1", "False", UDT_AllAtomicDataTypes[1][0]);
-            failure_condition += TEST_CompareForExpectedValue("UDT_AllAtomicDataTypes.ex_BOOL2", "True", UDT_AllAtomicDataTypes[1][1]);
-            failure_condition += TEST_CompareForExpectedValue("UDT_AllAtomicDataTypes.ex_BOOL3", "False", UDT_AllAtomicDataTypes[1][2]);
-            failure_condition += TEST_CompareForExpectedValue("UDT_AllAtomicDataTypes.ex_BOOL4", "False", UDT_AllAtomicDataTypes[1][3]);
-            failure_condition += TEST_CompareForExpectedValue("UDT_AllAtomicDataTypes.ex_BOOL5", "True", UDT_AllAtomicDataTypes[1][4]);
-            failure_condition += TEST_CompareForExpectedValue("UDT_AllAtomicDataTypes.ex_BOOL6", "False", UDT_AllAtomicDataTypes[1][5]);
-            failure_condition += TEST_CompareForExpectedValue("UDT_AllAtomicDataTypes.ex_BOOL7", "False", UDT_AllAtomicDataTypes[1][6]);
-            failure_condition += TEST_CompareForExpectedValue("UDT_AllAtomicDataTypes.ex_BOOL8", "True", UDT_AllAtomicDataTypes[1][7]);
-            failure_condition += TEST_CompareForExpectedValue("UDT_AllAtomicDataTypes.ex_SINT", "-24", UDT_AllAtomicDataTypes[1][8]);
-            failure_condition += TEST_CompareForExpectedValue("UDT_AllAtomicDataTypes.ex_INT", "20500", UDT_AllAtomicDataTypes[1][9]);
-            failure_condition += TEST_CompareForExpectedValue("UDT_AllAtomicDataTypes.ex_DINT", "-2000111000", UDT_AllAtomicDataTypes[1][10]);
-            failure_condition += TEST_CompareForExpectedValue("UDT_AllAtomicDataTypes.ex_LINT", "-9000111000111000111", UDT_AllAtomicDataTypes[1][11]);
-            failure_condition += TEST_CompareForExpectedValue("UDT_AllAtomicDataTypes.ex_REAL", "10555.8876953125", UDT_AllAtomicDataTypes[1][12]);
-            failure_condition += TEST_CompareForExpectedValue("UDT_AllAtomicDataTypes.ex_STRING", "2nd New String!", UDT_AllAtomicDataTypes[1][13]);
+            failureCondition += TEST_CompareForExpectedValue("UDT_AllAtomicDataTypes.ex_BOOL1", "False", UDT_AllAtomicDataTypes[1][0]);
+            failureCondition += TEST_CompareForExpectedValue("UDT_AllAtomicDataTypes.ex_BOOL2", "True", UDT_AllAtomicDataTypes[1][1]);
+            failureCondition += TEST_CompareForExpectedValue("UDT_AllAtomicDataTypes.ex_BOOL3", "False", UDT_AllAtomicDataTypes[1][2]);
+            failureCondition += TEST_CompareForExpectedValue("UDT_AllAtomicDataTypes.ex_BOOL4", "False", UDT_AllAtomicDataTypes[1][3]);
+            failureCondition += TEST_CompareForExpectedValue("UDT_AllAtomicDataTypes.ex_BOOL5", "True", UDT_AllAtomicDataTypes[1][4]);
+            failureCondition += TEST_CompareForExpectedValue("UDT_AllAtomicDataTypes.ex_BOOL6", "False", UDT_AllAtomicDataTypes[1][5]);
+            failureCondition += TEST_CompareForExpectedValue("UDT_AllAtomicDataTypes.ex_BOOL7", "False", UDT_AllAtomicDataTypes[1][6]);
+            failureCondition += TEST_CompareForExpectedValue("UDT_AllAtomicDataTypes.ex_BOOL8", "True", UDT_AllAtomicDataTypes[1][7]);
+            failureCondition += TEST_CompareForExpectedValue("UDT_AllAtomicDataTypes.ex_SINT", "-24", UDT_AllAtomicDataTypes[1][8]);
+            failureCondition += TEST_CompareForExpectedValue("UDT_AllAtomicDataTypes.ex_INT", "20500", UDT_AllAtomicDataTypes[1][9]);
+            failureCondition += TEST_CompareForExpectedValue("UDT_AllAtomicDataTypes.ex_DINT", "-2000111000", UDT_AllAtomicDataTypes[1][10]);
+            failureCondition += TEST_CompareForExpectedValue("UDT_AllAtomicDataTypes.ex_LINT", "-9000111000111000111", UDT_AllAtomicDataTypes[1][11]);
+            failureCondition += TEST_CompareForExpectedValue("UDT_AllAtomicDataTypes.ex_REAL", "10555.888", UDT_AllAtomicDataTypes[1][12]);
+            failureCondition += TEST_CompareForExpectedValue("UDT_AllAtomicDataTypes.ex_STRING", "2nd New String!", UDT_AllAtomicDataTypes[1][13]);
             Console.WriteLine($"[{DateTime.Now.ToString("T")}] DONE verifying expected tag outputs\n---");
 
             // Show final tag values.
@@ -286,7 +286,7 @@ namespace TestStage_CICDExample
             Console.WriteLine($"[{DateTime.Now.ToString("T")}] DONE showing final test tag values");
 
             // Print out final banner based on test results.
-            if (failure_condition > 0)
+            if (failureCondition > 0)
                 CreateBanner("TEST FAILURE");
             else
                 CreateBanner("TEST SUCCESS!");
@@ -839,16 +839,16 @@ namespace TestStage_CICDExample
         /// <param name="project">An instance of the LogixProject class.</param>
         /// <returns>
         /// A Task that results in a ByteString array containing UDT_AllAtomicDataTypes information:
-        /// return_byteString[0] = online tag values
-        /// return_byteString[1] = offline tag values
+        /// returnByteStringArray[0] = online tag values
+        /// returnByteStringArray[1] = offline tag values
         /// </returns>
         private static async Task<ByteString[]> Get_UDTAllAtomicDataTypes_Async(string tagPath, LogixProject project)
         {
             tagPath = tagPath + $"[@Name='UDT_AllAtomicDataTypes']";
-            ByteString[] return_byteString = new ByteString[2];
-            return_byteString[0] = await project.GetTagValueAsync(tagPath, TagOperationMode.Online, DataType.BYTE_ARRAY);
-            return_byteString[1] = await project.GetTagValueAsync(tagPath, TagOperationMode.Offline, DataType.BYTE_ARRAY);
-            return return_byteString;
+            ByteString[] returnByteStringArray = new ByteString[2];
+            returnByteStringArray[0] = await project.GetTagValueAsync(tagPath, TagOperationMode.Online, DataType.BYTE_ARRAY);
+            returnByteStringArray[1] = await project.GetTagValueAsync(tagPath, TagOperationMode.Offline, DataType.BYTE_ARRAY);
+            return returnByteStringArray;
         }
 
         /// <summary>
@@ -861,8 +861,8 @@ namespace TestStage_CICDExample
         /// <param name="project">An instance of the LogixProject class.</param>
         /// <returns>
         /// A ByteString array containing UDT_AllAtomicDataTypes information:
-        /// return_byteString[0] = online tag values
-        /// return_byteString[1] = offline tag values
+        /// returnByteStringArray[0] = online tag values
+        /// returnByteStringArray[1] = offline tag values
         /// </returns>
         private static ByteString[] Get_UDTAllAtomicDataTypes_Sync(string tagPath, LogixProject project)
         {
@@ -979,136 +979,183 @@ namespace TestStage_CICDExample
             task.Wait();
         }
 
-        // Get Complex Data Type Tag Value Method
-
-        private static string[][] Format_UDTAllAtomicDataTypes(ByteString[] byte_string, bool printout)
+        /// <summary>
+        /// Format the complex data type tag UDT_AllAtomicDataTypes from a ByteString to a nested string array.
+        /// </summary>
+        /// <param name="byteStringArray">
+        /// This input parameter is the Get_UDTAllAtomicDataTypes_Async method output or the Get_UDTAllAtomicDataTypes_Sync method output.
+        /// The ByteString array has the following format:
+        /// byteStringArray[0] = ByteString for online complex data type tag values
+        /// byteStringArray[1] = ByteString for offline complex data type tag values
+        /// </param>
+        /// <param name="printout">A boolean that, if True, prints the "before" and "after" values of the UDT_AllAtomicDataTypes tag member to the console.</param>
+        /// <returns>
+        /// A nested string array with the following format:
+        /// returnString[0][] = the names of the 14 members of the UDT_AllAtomicDataTypes complex data type tag in the order they were made in Studio 5000 Logix Designer
+        /// returnString[1][] = the online values of the 14 members of the UDT_AllAtomicDataTypes complex data type tag in the order they were made in Studio 5000 Logix Designer
+        /// returnString[2][] = the offline values of the 14 members of the UDT_AllAtomicDataTypes complex data type tag in the order they were made in Studio 5000 Logix Designer
+        /// <para>
+        /// Every element of the nested string array:
+        /// returnString[0][0] = UDT_AllAtomicDataTypes.ex_BOOL1 name
+        /// returnString[0][1] = UDT_AllAtomicDataTypes.ex_BOOL2 name
+        /// returnString[0][2] = UDT_AllAtomicDataTypes.ex_BOOL3 name
+        /// returnString[0][3] = UDT_AllAtomicDataTypes.ex_BOOL4 name
+        /// returnString[0][4] = UDT_AllAtomicDataTypes.ex_BOOL5 name
+        /// returnString[0][5] = UDT_AllAtomicDataTypes.ex_BOOL5 name
+        /// returnString[0][6] = UDT_AllAtomicDataTypes.ex_BOOL6 name
+        /// returnString[0][7] = UDT_AllAtomicDataTypes.ex_BOOL7 name
+        /// returnString[0][8] = UDT_AllAtomicDataTypes.ex_BOOL8 name
+        /// returnString[0][9] = UDT_AllAtomicDataTypes.ex_SINT name
+        /// returnString[0][10] = UDT_AllAtomicDataTypes.ex_INT name
+        /// returnString[0][11] = UDT_AllAtomicDataTypes.ex_DINT name
+        /// returnString[0][12] = UDT_AllAtomicDataTypes.ex_LINT name
+        /// returnString[0][13] = UDT_AllAtomicDataTypes.ex_REAL name
+        /// returnString[0][14] = UDT_AllAtomicDataTypes.ex_STRING name
+        /// returnString[1][0] = UDT_AllAtomicDataTypes.ex_BOOL1 online value
+        /// returnString[1][1] = UDT_AllAtomicDataTypes.ex_BOOL2 online value
+        /// returnString[1][2] = UDT_AllAtomicDataTypes.ex_BOOL3 online value
+        /// returnString[1][3] = UDT_AllAtomicDataTypes.ex_BOOL4 online value
+        /// returnString[1][4] = UDT_AllAtomicDataTypes.ex_BOOL5 online value
+        /// returnString[1][5] = UDT_AllAtomicDataTypes.ex_BOOL5 online value
+        /// returnString[1][6] = UDT_AllAtomicDataTypes.ex_BOOL6 online value
+        /// returnString[1][7] = UDT_AllAtomicDataTypes.ex_BOOL7 online value
+        /// returnString[1][8] = UDT_AllAtomicDataTypes.ex_BOOL8 online value
+        /// returnString[1][9] = UDT_AllAtomicDataTypes.ex_SINT online value
+        /// returnString[1][10] = UDT_AllAtomicDataTypes.ex_INT online value
+        /// returnString[1][11] = UDT_AllAtomicDataTypes.ex_DINT online value
+        /// returnString[1][12] = UDT_AllAtomicDataTypes.ex_LINT online value
+        /// returnString[1][13] = UDT_AllAtomicDataTypes.ex_REAL online value
+        /// returnString[1][14] = UDT_AllAtomicDataTypes.ex_STRING online value
+        /// returnString[1][15] = the number of bytes in element 0 of the input ByteString array (online values)
+        /// returnString[2][0] = UDT_AllAtomicDataTypes.ex_BOOL1 offline value
+        /// returnString[2][1] = UDT_AllAtomicDataTypes.ex_BOOL2 offline value
+        /// returnString[2][2] = UDT_AllAtomicDataTypes.ex_BOOL3 offline value
+        /// returnString[2][3] = UDT_AllAtomicDataTypes.ex_BOOL4 offline value
+        /// returnString[2][4] = UDT_AllAtomicDataTypes.ex_BOOL5 offline value
+        /// returnString[2][5] = UDT_AllAtomicDataTypes.ex_BOOL5 offline value
+        /// returnString[2][6] = UDT_AllAtomicDataTypes.ex_BOOL6 offline value
+        /// returnString[2][7] = UDT_AllAtomicDataTypes.ex_BOOL7 offline value
+        /// returnString[2][8] = UDT_AllAtomicDataTypes.ex_BOOL8 offline value
+        /// returnString[2][9] = UDT_AllAtomicDataTypes.ex_SINT offline value
+        /// returnString[2][10] = UDT_AllAtomicDataTypes.ex_INT offline value
+        /// returnString[2][11] = UDT_AllAtomicDataTypes.ex_DINT offline value
+        /// returnString[2][12] = UDT_AllAtomicDataTypes.ex_LINT offline value
+        /// returnString[2][13] = UDT_AllAtomicDataTypes.ex_REAL offline value
+        /// returnString[2][14] = UDT_AllAtomicDataTypes.ex_STRING offline value
+        /// returnString[2][15] = the number of bytes in element 1 of the input ByteString array (offline values)
+        /// </para>
+        /// </returns>
+        private static string[][] Format_UDTAllAtomicDataTypes(ByteString[] byteStringArray, bool printout)
         {
 
-            string[][] return_string = new string[3][];
-            return_string[0] = new string[] { "UDT_AllAtomicDataTypes.ex_BOOL1", "UDT_AllAtomicDataTypes.ex_BOOL2", "UDT_AllAtomicDataTypes.ex_BOOL3",
+            string[][] returnString = new string[3][];
+            returnString[0] = new string[] { "UDT_AllAtomicDataTypes.ex_BOOL1", "UDT_AllAtomicDataTypes.ex_BOOL2", "UDT_AllAtomicDataTypes.ex_BOOL3",
                 "UDT_AllAtomicDataTypes.ex_BOOL4", "UDT_AllAtomicDataTypes.ex_BOOL5", "UDT_AllAtomicDataTypes.ex_BOOL6", "UDT_AllAtomicDataTypes.ex_BOOL7",
                 "UDT_AllAtomicDataTypes.ex_BOOL8", "UDT_AllAtomicDataTypes.ex_SINT", "UDT_AllAtomicDataTypes.ex_INT", "UDT_AllAtomicDataTypes.ex_DINT",
                 "UDT_AllAtomicDataTypes.ex_LINT", "UDT_AllAtomicDataTypes.ex_REAL", "UDT_AllAtomicDataTypes.ex_STRING" };
-            return_string[1] = new string[15];
-            return_string[2] = new string[15];
+            returnString[1] = new string[15];
+            returnString[2] = new string[15];
 
             for (int i = 0; i < 2; i++)
             {
-                var UDT_ByteArray = new byte[byte_string[0].Length];
+                var UDT_ByteArray = new byte[byteStringArray[0].Length];
                 for (int j = 0; j < UDT_ByteArray.Length; j++)
-                    UDT_ByteArray[j] = byte_string[i][j];
+                    UDT_ByteArray[j] = byteStringArray[i][j];
 
                 var ex_BOOLs = new byte[1];
                 Array.ConstrainedCopy(UDT_ByteArray, 0, ex_BOOLs, 0, 1);
+                string ex_BOOLS_binaryString = Convert.ToString(ex_BOOLs[0], 2).PadLeft(8, '0');
                 for (int j = 0; j < 8; j++)
-                    return_string[i + 1][j] = (Convert.ToString(CreateBinaryString(ex_BOOLs, "backward")[7 - j]) == "1") ? "True" : "False";
+                    returnString[i + 1][j] = (Convert.ToString(ex_BOOLS_binaryString[7 - j]) == "1") ? "True" : "False";
 
                 var ex_SINT = new byte[1];
                 Array.ConstrainedCopy(UDT_ByteArray, 1, ex_SINT, 0, 1);
-                var sint_string_online = CreateBinaryString(ex_SINT, "forward");
-                var sign_online = sint_string_online[0] == '1' ? -1 : 1;
-                if (sign_online == 1)
-                    return_string[i + 1][8] = Convert.ToString(Convert.ToInt16(("00000000" + sint_string_online), 2));
-                else if (sign_online == -1)
-                    return_string[i + 1][8] = Convert.ToString(Convert.ToInt16(("11111111" + sint_string_online), 2));
+                returnString[i + 1][8] = Convert.ToString(unchecked((sbyte)ex_SINT[0]));
 
                 var ex_INT = new byte[2];
                 Array.ConstrainedCopy(UDT_ByteArray, 2, ex_INT, 0, 2);
-                return_string[i + 1][9] = Convert.ToString(BitConverter.ToInt16(ex_INT));
+                returnString[i + 1][9] = Convert.ToString(BitConverter.ToInt16(ex_INT));
 
                 var ex_DINT = new byte[4];
                 Array.ConstrainedCopy(UDT_ByteArray, 4, ex_DINT, 0, 4);
-                return_string[i + 1][10] = Convert.ToString(BitConverter.ToInt32(ex_DINT));
+                returnString[i + 1][10] = Convert.ToString(BitConverter.ToInt32(ex_DINT));
 
                 var ex_LINT = new byte[8];
                 Array.ConstrainedCopy(UDT_ByteArray, 8, ex_LINT, 0, 8);
-                return_string[i + 1][11] = Convert.ToString(BitConverter.ToInt64(ex_LINT));
+                returnString[i + 1][11] = Convert.ToString(BitConverter.ToInt64(ex_LINT));
 
                 var ex_REAL = new byte[4];
                 Array.ConstrainedCopy(UDT_ByteArray, 16, ex_REAL, 0, 4);
-                return_string[i + 1][12] = ConvertIEEE754ToFloatString(ex_REAL);
+                returnString[i + 1][12] = Convert.ToString(BitConverter.ToSingle(ex_REAL));
 
                 var ex_STRING = new byte[UDT_ByteArray.Length - 24];
                 Array.ConstrainedCopy(UDT_ByteArray, 24, ex_STRING, 0, UDT_ByteArray.Length - 24);
-                return_string[i + 1][13] = Encoding.ASCII.GetString(ex_STRING).Replace("\0", "");
+                returnString[i + 1][13] = Encoding.ASCII.GetString(ex_STRING).Replace("\0", "");
 
-                return_string[i + 1][14] = Convert.ToString(byte_string[i].Length);
+                returnString[i + 1][14] = Convert.ToString(byteStringArray[i].Length);
             }
+
             if (printout)
             {
-                for (int i = 0; i < return_string[0].Length; i++)
+                for (int i = 0; i < returnString[0].Length; i++)
                 {
-                    var online_message = $"online value: {return_string[1][i]}";
-                    var offline_message = $"offline value: {return_string[2][i]}";
-                    Console.WriteLine($"SUCCESS: " + return_string[0][i].PadRight(40, ' ') + online_message.PadRight(35, ' ') + offline_message.PadRight(35, ' '));
+                    var online_message = $"online value: {returnString[1][i]}";
+                    var offline_message = $"offline value: {returnString[2][i]}";
+                    Console.WriteLine($"SUCCESS: " + returnString[0][i].PadRight(40, ' ') + online_message.PadRight(35, ' ') + offline_message.PadRight(35, ' '));
                 }
             }
-            return return_string;
-        }
 
-        // Helper method to Convert IEEE 754
-        private static string ConvertIEEE754ToFloatString(byte[] inputArray)
-        {
-            if (inputArray.Length != 4)
-                throw new ArgumentException("Byte array must be 4 bytes long.");
-
-            byte[] flippedArray = new byte[4];
-            for (int i = 0; i < 4; i++)
-                flippedArray[i] = inputArray[3 - i];
-
-            // Interpret the bytes as per IEEE 754 single-precision format.
-            int sign = (flippedArray[0] & 0x80) >> 7;
-            int exponent = ((flippedArray[0] & 0x7F) << 1) | ((flippedArray[1] & 0x80) >> 7);
-            uint mantissa = ((uint)(flippedArray[1] & 0x7F) << 16) | ((uint)flippedArray[2] << 8) | flippedArray[3];
-
-            // Calculate the value represented by the bits.
-            double value = Math.Pow(-1, sign) * (1 + mantissa / Math.Pow(2, 23)) * Math.Pow(2, exponent - 127);
-
-            // Convert the value to a string.
-            return value.ToString();
-        }
-
-        // Create Binary String From ByteString Method
-        private static string CreateBinaryString(byte[] byteString, string forward_backward)
-        {
-            string returnstring = "";
-            if (forward_backward == "backward")
-                for (int i = byteString.Length - 1; i >= 0; --i)
-                    returnstring = returnstring + Convert.ToString(byteString[i], 2).PadLeft(8, '0');
-            else if (forward_backward == "forward")
-                for (int i = 0; i < byteString.Length; ++i)
-                    returnstring = returnstring + Convert.ToString(byteString[i], 2).PadLeft(8, '0');
-            return returnstring;
+            return returnString;
         }
         #endregion
 
         #region METHODS: testing online & offline / testing for expected value 
-        // Compare Two Tags Method
-        private static int TEST_CompareOnlineOffline(string tag_name, string online_value, string offline_value)
+        /// <summary>
+        /// A test to compare the online and offline values of a tag.
+        /// </summary>
+        /// <param name="tagName">The name of the tag to be tested.</param>
+        /// <param name="onlineValue">The online value of the tag under test.</param>
+        /// <param name="offlineValue">The offline value of the tag under test.</param>
+        /// <returns>Return an integer value 1 for test failure and an integer value 0 for test success.</returns>
+        /// <remarks>
+        /// The integer output is added to an integer that tracks the total number of failures. 
+        /// At the end of all testing, the overall SUCCESS/FAILURE of this CI/CD test stage is determined whether its value is greater than 0.
+        /// </remarks>
+        private static int TEST_CompareOnlineOffline(string tagName, string onlineValue, string offlineValue)
         {
-            if (online_value != offline_value)
+            if (onlineValue != offlineValue)
             {
-                Console.WriteLine(WrapText($"FAILURE: {tag_name} online value ({online_value}) & offline value ({offline_value}) NOT equal."));
+                Console.WriteLine(WrapText($"FAILURE: {tagName} online value ({onlineValue}) & offline value ({offlineValue}) NOT equal."));
                 return 1;
             }
             else
             {
-                Console.Write(WrapText($"SUCCESS: {tag_name} online value ({online_value}) & offline value ({offline_value}) are EQUAL."));
+                Console.Write(WrapText($"SUCCESS: {tagName} online value ({onlineValue}) & offline value ({offlineValue}) are EQUAL."));
                 return 0;
             }
         }
 
-        // Compare Two Tags Method
-        private static int TEST_CompareForExpectedValue(string tag_name, string expected_value, string actual_value)
+        /// <summary>
+        /// A test to compare the expected and actual values of a tag.
+        /// </summary>
+        /// <param name="tagName">The name of the tag to be tested.</param>
+        /// <param name="expectedValue">The expected value of the tag under test.</param>
+        /// <param name="actualValue">The actual value of the tag under test.</param>
+        /// <returns>Return an integer value 1 for test failure and an integer value 0 for test success.</returns>
+        /// <remarks>
+        /// The integer output is added to an integer that tracks the total number of failures. 
+        /// At the end of all testing, the overall SUCCESS/FAILURE of this CI/CD test stage is determined whether its value is greater than 0.
+        /// </remarks>
+        private static int TEST_CompareForExpectedValue(string tagName, string expectedValue, string actualValue)
         {
-            if (expected_value != actual_value)
+            if (expectedValue != actualValue)
             {
-                Console.WriteLine(WrapText($"FAILURE: {tag_name} expected value ({expected_value}) & actual value ({actual_value}) NOT equal."));
+                Console.WriteLine(WrapText($"FAILURE: {tagName} expected value ({expectedValue}) & actual value ({actualValue}) NOT equal."));
                 return 1;
             }
             else
             {
-                Console.Write(WrapText($"SUCCESS: {tag_name} expected value ({expected_value}) & actual value ({actual_value}) EQUAL."));
+                Console.Write(WrapText($"SUCCESS: {tagName} expected value ({expectedValue}) & actual value ({actualValue}) EQUAL."));
                 return 0;
             }
         }
