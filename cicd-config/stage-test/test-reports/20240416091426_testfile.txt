@@ -1,0 +1,186 @@
+  =========================================================================================================================  
+=============================================================================================================================
+                   CI/CD TEST STAGE | 4/16/2024 9:14:26 AM (UTC-05:00) Eastern Time (US & Canada)
+=============================================================================================================================
+  =========================================================================================================================  
+
+
+-----------------------------------------------------------------------------------------------------=[TEST DEPENDENCIES]=---
+ACD file path specified:          C:\Users\ASYost\source\repos\ra-cicd-test-old\DEVELOPMENT-files\CICD_test.ACD
+Common Language Runtime version:  v4.0.30319
+.NET Framework version:           6.0.28
+----------------------------------------------------------------------------------------------------------=[STAGING TEST]=---
+[9:14:26 AM] START checking test-reports folder...
+STATUS:  test script set to retain 5 test files
+SUCCESS: deleted C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\test-reports\20240404184207_testfile.txt
+SUCCESS: deleted C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\test-reports\20240404184313_testfile.txt
+SUCCESS: deleted C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\test-reports\20240404194348_testfile.txt
+SUCCESS: deleted C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\test-reports\20240404194800_testfile.txt
+SUCCESS: deleted C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\test-reports\20240404195359_testfile.txt
+SUCCESS: deleted C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\test-reports\20240404195514_testfile.txt
+SUCCESS: deleted C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\test-reports\20240404195529_testfile.txt
+SUCCESS: deleted C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\test-reports\20240404195737_testfile.txt
+SUCCESS: deleted C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\test-reports\20240404200039_testfile.txt
+SUCCESS: deleted C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\test-reports\20240404200059_testfile.txt
+SUCCESS: deleted C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\test-reports\20240404200119_testfile.txt
+SUCCESS: deleted C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\test-reports\20240404200231_testfile.txt
+SUCCESS: deleted C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\test-reports\20240404200345_testfile.txt
+SUCCESS: deleted C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\test-reports\20240404200520_testfile.txt
+SUCCESS: deleted C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\test-reports\20240404201219_testfile.txt
+SUCCESS: deleted C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\test-reports\20240404201602_testfile.txt
+SUCCESS: deleted C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\test-reports\20240404202003_testfile.txt
+SUCCESS: deleted C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\test-reports\20240405091158_testfile.txt
+SUCCESS: deleted C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\test-reports\20240405091328_testfile.txt
+SUCCESS: deleted C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\test-reports\20240405091649_testfile.txt
+SUCCESS: deleted C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\test-reports\20240405151314_testfile.txt
+SUCCESS: deleted C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\test-reports\20240405151337_testfile.txt
+SUCCESS: deleted C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\test-reports\20240405151503_testfile.txt
+SUCCESS: deleted C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\test-reports\20240405151557_testfile.txt
+SUCCESS: deleted C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\test-reports\20240405151834_testfile.txt
+SUCCESS: deleted C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\test-reports\20240405153119_testfile.txt
+SUCCESS: deleted C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\test-reports\20240405153324_testfile.txt
+SUCCESS: deleted C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\test-reports\20240405153512_testfile.txt
+SUCCESS: deleted C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\test-reports\20240405153745_testfile.txt
+SUCCESS: deleted C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\test-reports\20240405154507_testfile.txt
+SUCCESS: deleted C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\test-reports\20240405160118_testfile.txt
+SUCCESS: deleted C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\test-reports\20240409102628_testfile.txt
+SUCCESS: deleted C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\test-reports\20240409135434_testfile.txt
+SUCCESS: deleted C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\test-reports\20240409135806_testfile.txt
+SUCCESS: deleted C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\test-reports\20240410095116_testfile.txt
+SUCCESS: deleted C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\test-reports\20240410103806_testfile.txt
+SUCCESS: deleted C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\test-reports\20240410111925_testfile.txt
+SUCCESS: deleted C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\test-reports\20240415132312_testfile.txt
+SUCCESS: deleted C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\test-reports\20240415140030_testfile.txt
+SUCCESS: deleted C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\test-reports\20240415140047_testfile.txt
+SUCCESS: deleted C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\test-reports\20240415140314_testfile.txt
+SUCCESS: deleted C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\test-reports\20240415140752_testfile.txt
+SUCCESS: deleted C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\test-reports\20240415141052_testfile.txt
+SUCCESS: deleted C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\test-reports\20240415141327_testfile.txt
+SUCCESS: deleted C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\test-reports\20240415145627_testfile.txt
+SUCCESS: deleted C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\test-reports\20240415154644_testfile.txt
+[9:14:26 AM] DONE checking test-reports folder...
+---
+[9:14:26 AM] START setting up Factory Talk Logix Echo emulated controller...
+SUCCESS: project communication path specified is "EmulateEthernet\127.0.0.1"
+[9:14:26 AM] DONE setting up Factory Talk Logix Echo emulated controller
+---
+[9:14:26 AM] START opening ACD file...
+[9:14:59 AM] SUCCESS opening ACD file
+---
+[9:14:59 AM] START changing controller to PROGRAM...
+[9:15:00 AM] SUCCESS changing controller to PROGRAM
+---
+[9:15:00 AM] START downloading ACD file...
+[9:15:20 AM] SUCCESS downloading ACD file
+---
+[9:15:20 AM] START Changing controller to RUN...
+[9:15:21 AM] SUCCESS changing controller to RUN
+-------------------------------------------------------------------------------------------------------=[COMMENCING TEST]=---
+[9:15:21 AM] START getting initial project start-up tag values...
+SUCCESS: TEST_DINT_1                             online value: 0                    offline value: 0                   
+SUCCESS: TEST_TOGGLE_WetBulbTempCalc             online value: False                offline value: False               
+SUCCESS: TEST_AOI_WetBulbTemp_isFahrenheit       online value: False                offline value: False               
+SUCCESS: TEST_AOI_WetBulbTemp_RelativeHumidity   online value: 0                    offline value: 0                   
+SUCCESS: TEST_AOI_WetBulbTemp_Temperature        online value: 0                    offline value: 0                   
+SUCCESS: TEST_AOI_WetBulbTemp_WetBulbTemp        online value: 0                    offline value: 0                   
+SUCCESS: UDT_AllAtomicDataTypes.ex_BOOL1         online value: True                 offline value: True                
+SUCCESS: UDT_AllAtomicDataTypes.ex_BOOL2         online value: False                offline value: False               
+SUCCESS: UDT_AllAtomicDataTypes.ex_BOOL3         online value: True                 offline value: True                
+SUCCESS: UDT_AllAtomicDataTypes.ex_BOOL4         online value: True                 offline value: True                
+SUCCESS: UDT_AllAtomicDataTypes.ex_BOOL5         online value: False                offline value: False               
+SUCCESS: UDT_AllAtomicDataTypes.ex_BOOL6         online value: True                 offline value: True                
+SUCCESS: UDT_AllAtomicDataTypes.ex_BOOL7         online value: True                 offline value: True                
+SUCCESS: UDT_AllAtomicDataTypes.ex_BOOL8         online value: False                offline value: False               
+SUCCESS: UDT_AllAtomicDataTypes.ex_SINT          online value: 2                    offline value: 2                   
+SUCCESS: UDT_AllAtomicDataTypes.ex_INT           online value: -487                 offline value: -487                
+SUCCESS: UDT_AllAtomicDataTypes.ex_DINT          online value: 11111                offline value: 11111               
+SUCCESS: UDT_AllAtomicDataTypes.ex_LINT          online value: 777111777111777      offline value: 777111777111777     
+SUCCESS: UDT_AllAtomicDataTypes.ex_REAL          online value: -1.589460015296936   offline value: -1.589460015296936  
+SUCCESS: UDT_AllAtomicDataTypes.ex_STRING        online value: Test 123             offline value: Test 123            
+[9:15:24 AM] DONE getting initial project start-up tag values
+---
+[9:15:24 AM] START verifying whether offline and online values are the same...
+SUCCESS: TEST_DINT_1 online value (0) & offline value (0) are EQUAL. 
+SUCCESS: TEST_TOGGLE_WetBulbTempCalc online value (False) & offline value (False) are EQUAL. 
+SUCCESS: TEST_AOI_WetBulbTemp_isFahrenheit online value (False) & offline value (False) are EQUAL. 
+SUCCESS: TEST_AOI_WetBulbTemp_RelativeHumidity online value (0) & offline value (0) are EQUAL. 
+SUCCESS: TEST_AOI_WetBulbTemp_Temperature online value (0) & offline value (0) are EQUAL. 
+SUCCESS: TEST_AOI_WetBulbTemp_WetBulbTemp online value (0) & offline value (0) are EQUAL. 
+SUCCESS: UDT_AllAtomicDataTypes.ex_BOOL1 online value (True) & offline value (True) are EQUAL. 
+SUCCESS: UDT_AllAtomicDataTypes.ex_BOOL2 online value (False) & offline value (False) are EQUAL. 
+SUCCESS: UDT_AllAtomicDataTypes.ex_BOOL3 online value (True) & offline value (True) are EQUAL. 
+SUCCESS: UDT_AllAtomicDataTypes.ex_BOOL4 online value (True) & offline value (True) are EQUAL. 
+SUCCESS: UDT_AllAtomicDataTypes.ex_BOOL5 online value (False) & offline value (False) are EQUAL. 
+SUCCESS: UDT_AllAtomicDataTypes.ex_BOOL6 online value (True) & offline value (True) are EQUAL. 
+SUCCESS: UDT_AllAtomicDataTypes.ex_BOOL7 online value (True) & offline value (True) are EQUAL. 
+SUCCESS: UDT_AllAtomicDataTypes.ex_BOOL8 online value (False) & offline value (False) are EQUAL. 
+SUCCESS: UDT_AllAtomicDataTypes.ex_SINT online value (2) & offline value (2) are EQUAL. 
+SUCCESS: UDT_AllAtomicDataTypes.ex_INT online value (-487) & offline value (-487) are EQUAL. 
+SUCCESS: UDT_AllAtomicDataTypes.ex_DINT online value (11111) & offline value (11111) are EQUAL. 
+SUCCESS: UDT_AllAtomicDataTypes.ex_LINT online value (777111777111777) & offline value (777111777111777) are EQUAL. 
+SUCCESS: UDT_AllAtomicDataTypes.ex_REAL online value (-1.589460015296936) & offline value (-1.589460015296936) are EQUAL. 
+SUCCESS: UDT_AllAtomicDataTypes.ex_STRING online value (Test 123) & offline value (Test 123) are EQUAL. 
+[9:15:24 AM] DONE verifying whether offline and online values are the same
+---
+[9:15:24 AM] START setting tag values...
+SUCCESS: Online TEST_DINT_1                                                0  -->  111
+SUCCESS: Online TEST_TOGGLE_WetBulbTempCalc                            False  -->  True
+SUCCESS: Online TEST_AOI_WetBulbTemp_isFahrenheit                      False  -->  True
+SUCCESS: Online TEST_AOI_WetBulbTemp_RelativeHumidity                      0  -->  30
+SUCCESS: Online TEST_AOI_WetBulbTemp_Temperature                           0  -->  70
+SUCCESS: Online UDT_AllAtomicDataTypes.ex_BOOL1                         True  -->  False
+SUCCESS: Online UDT_AllAtomicDataTypes.ex_BOOL2                        False  -->  True
+SUCCESS: Online UDT_AllAtomicDataTypes.ex_BOOL3                         True  -->  False
+SUCCESS: Online UDT_AllAtomicDataTypes.ex_BOOL4                         True  -->  False
+SUCCESS: Online UDT_AllAtomicDataTypes.ex_BOOL5                        False  -->  True
+SUCCESS: Online UDT_AllAtomicDataTypes.ex_BOOL6                         True  -->  False
+SUCCESS: Online UDT_AllAtomicDataTypes.ex_BOOL7                         True  -->  False
+SUCCESS: Online UDT_AllAtomicDataTypes.ex_BOOL8                        False  -->  True
+SUCCESS: Online UDT_AllAtomicDataTypes.ex_SINT                             2  -->  -24
+SUCCESS: Online UDT_AllAtomicDataTypes.ex_INT                           -487  -->  20500
+SUCCESS: Online UDT_AllAtomicDataTypes.ex_DINT                         11111  -->  -2000111000
+SUCCESS: Online UDT_AllAtomicDataTypes.ex_LINT               777111777111777  -->  -9000111000111000111
+SUCCESS: Online UDT_AllAtomicDataTypes.ex_REAL            -1.589460015296936  -->  10555.8876953125
+SUCCESS: Online UDT_AllAtomicDataTypes.ex_STRING                    Test 123  -->  New String!
+[9:15:41 AM] DONE setting tag values
+---
+[9:15:41 AM] START verifying expected tag outputs...
+SUCCESS: TEST_AOI_WetBulbTemp_WetBulbTemp expected value (52.997536) & actual value (52.997536) EQUAL. 
+SUCCESS: UDT_AllAtomicDataTypes.ex_BOOL1 expected value (False) & actual value (False) EQUAL. 
+SUCCESS: UDT_AllAtomicDataTypes.ex_BOOL2 expected value (True) & actual value (True) EQUAL. 
+SUCCESS: UDT_AllAtomicDataTypes.ex_BOOL3 expected value (False) & actual value (False) EQUAL. 
+SUCCESS: UDT_AllAtomicDataTypes.ex_BOOL4 expected value (False) & actual value (False) EQUAL. 
+SUCCESS: UDT_AllAtomicDataTypes.ex_BOOL5 expected value (True) & actual value (True) EQUAL. 
+SUCCESS: UDT_AllAtomicDataTypes.ex_BOOL6 expected value (False) & actual value (False) EQUAL. 
+SUCCESS: UDT_AllAtomicDataTypes.ex_BOOL7 expected value (False) & actual value (False) EQUAL. 
+SUCCESS: UDT_AllAtomicDataTypes.ex_BOOL8 expected value (True) & actual value (True) EQUAL. 
+SUCCESS: UDT_AllAtomicDataTypes.ex_SINT expected value (-24) & actual value (-24) EQUAL. 
+SUCCESS: UDT_AllAtomicDataTypes.ex_INT expected value (20500) & actual value (20500) EQUAL. 
+SUCCESS: UDT_AllAtomicDataTypes.ex_DINT expected value (-2000111000) & actual value (-2000111000) EQUAL. 
+SUCCESS: UDT_AllAtomicDataTypes.ex_LINT expected value (-9000111000111000111) & actual value (-9000111000111000111) EQUAL. 
+SUCCESS: UDT_AllAtomicDataTypes.ex_REAL expected value (10555.8876953125) & actual value (10555.8876953125) EQUAL. 
+SUCCESS: UDT_AllAtomicDataTypes.ex_STRING expected value (New String!) & actual value (New String!) EQUAL. 
+[9:15:42 AM] DONE verifying expected tag outputs
+---
+[9:15:42 AM] START showing final test tag values...
+SUCCESS: TEST_DINT_1                             online value: 111                  offline value: 0                   
+SUCCESS: TEST_TOGGLE_WetBulbTempCalc             online value: True                 offline value: False               
+SUCCESS: TEST_AOI_WetBulbTemp_isFahrenheit       online value: True                 offline value: False               
+SUCCESS: TEST_AOI_WetBulbTemp_RelativeHumidity   online value: 30                   offline value: 0                   
+SUCCESS: TEST_AOI_WetBulbTemp_Temperature        online value: 70                   offline value: 0                   
+SUCCESS: UDT_AllAtomicDataTypes.ex_BOOL1         online value: False                offline value: True                
+SUCCESS: UDT_AllAtomicDataTypes.ex_BOOL2         online value: True                 offline value: False               
+SUCCESS: UDT_AllAtomicDataTypes.ex_BOOL3         online value: False                offline value: True                
+SUCCESS: UDT_AllAtomicDataTypes.ex_BOOL4         online value: False                offline value: True                
+SUCCESS: UDT_AllAtomicDataTypes.ex_BOOL5         online value: True                 offline value: False               
+SUCCESS: UDT_AllAtomicDataTypes.ex_BOOL6         online value: False                offline value: True                
+SUCCESS: UDT_AllAtomicDataTypes.ex_BOOL7         online value: False                offline value: True                
+SUCCESS: UDT_AllAtomicDataTypes.ex_BOOL8         online value: True                 offline value: False               
+SUCCESS: UDT_AllAtomicDataTypes.ex_SINT          online value: -24                  offline value: 2                   
+SUCCESS: UDT_AllAtomicDataTypes.ex_INT           online value: 20500                offline value: -487                
+SUCCESS: UDT_AllAtomicDataTypes.ex_DINT          online value: -2000111000          offline value: 11111               
+SUCCESS: UDT_AllAtomicDataTypes.ex_LINT          online value: -9000111000111000111 offline value: 777111777111777     
+SUCCESS: UDT_AllAtomicDataTypes.ex_REAL          online value: 10555.8876953125     offline value: -1.589460015296936  
+SUCCESS: UDT_AllAtomicDataTypes.ex_STRING        online value: New String!          offline value: Test 123            
+[9:15:45 AM] DONE showing final test tag values
+---------------------------------------------------------------------------------------------------------=[TEST SUCCESS!]=---
