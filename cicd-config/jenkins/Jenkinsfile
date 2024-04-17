@@ -1,6 +1,18 @@
 pipeline {
     agent any
     
+    parameters {
+        string(
+            name: 'path_GitHub', 
+            defaultValue: 'C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\', 
+            description: 'Enter the path to your CICD GitHub repository.'
+            )
+        string(
+            name: 'acdFileName', 
+            defaultValue: '', 
+            description: 'Enter the file name of the ACD project under development')
+    }
+
     stages {
         stage ('Build') {
             steps {
@@ -10,11 +22,10 @@ pipeline {
                 //     sh 'ls -d */'
                 // }
 
-                // sh '''
-                // git --version
-                // '''
-                
-                // git 'https://github.com/rockwell-user/ra-cicd-test-old.git'
+                bat """
+                    cd C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\cicd-config\\stage-test\\stage-test-configuration\\LogixSDKDemoApp
+                    dotnet build
+                """
 
                 // script {
                 //     def exitCode_1 = bat(returnStatus: true, script: 'dotnet build')
@@ -24,18 +35,16 @@ pipeline {
                 //         error 'Executable failed to run'
                 //     }
                 // }
-                bat """
-                    cd C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\cicd-config\\stage-test\\stage-test-configuration\\LogixSDKDemoApp
-                    dotnet build
-                """
+                
             }
         }
         stage('Test') {
             steps {
                 echo 'Starting Test..'
-                bat """
-                    C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\cicd-config\\stage-test\\stage-test-configuration\\LogixSDKDemoApp\\bin\\Debug\\net6.0\\TestStage_CICDExample.exe C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\ CICD_test.ACD
-                """
+                // bat """
+                //     C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\cicd-config\\stage-test\\stage-test-configuration\\LogixSDKDemoApp\\bin\\Debug\\net6.0\\TestStage_CICDExample.exe C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\ CICD_test.ACD
+                // """
+                bat "${path_GitHub}cicd-config\\stage-test\\stage-test-configuration\\LogixSDKDemoApp\\bin\\Debug\\net6.0\\TestStage_CICDExample.exe ${path_GitHub} ${acdFileName}"
                 // "${env.WORKSPACE}/JenkinsScripts/myScript.groovy"
 
                 // script {
