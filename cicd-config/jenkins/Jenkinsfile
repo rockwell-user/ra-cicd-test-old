@@ -4,9 +4,28 @@ pipeline {
     environment {
         path_GitHub = 'C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\'
         acdFileName = 'CICD_test.ACD'
+        DOTNET_VERSION = '6.0'
     }
 
     stages {
+        stage('Check .NET SDK') {
+            steps {
+                script {
+                    def dotnetVersionInstalled = bat(
+                        script: 'dotnet --version',
+                        returnStdout: true
+                    ).trim()
+
+                    if (!dotnetVersionInstalled.startsWith(DOTNET_VERSION)) {
+                        echo "Installing .NET SDK $DOTNET_VERSION..."
+                        // Download and install .NET SDK 6.0
+                        bat 'choco install dotnet-sdk --version 6.0 -y'
+                    } else {
+                        echo ".NET SDK $DOTNET_VERSION is already installed."
+                    }
+                }
+            }
+        }
         stage ('Build') {
             steps {
                 echo 'Starting Build...'
