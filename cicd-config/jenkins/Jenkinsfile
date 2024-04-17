@@ -5,6 +5,7 @@ pipeline {
         path_GitHub = 'C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\'
         acdFileName = 'CICD_test.ACD'
         DOTNET_VERSION = '6.0'
+        DOTNET_INSTALL_DIR = 'C:\\Program Files\\dotnet'
     }
 
     stages {
@@ -19,7 +20,13 @@ pipeline {
                     if (!dotnetVersionInstalled.startsWith(DOTNET_VERSION)) {
                         echo "Installing .NET SDK $DOTNET_VERSION..."
                         // Download and install .NET SDK 6.0
-                        bat 'choco install dotnet-sdk --version 6.0 -y'
+                        bat label: 'Install .NET SDK 6.0',
+                            script: """
+                                mkdir "$DOTNET_INSTALL_DIR"
+                                cd "$DOTNET_INSTALL_DIR"
+                                Invoke-WebRequest -Uri 'https://dot.net/v1/dotnet-install.ps1' -OutFile 'dotnet-install.ps1'
+                                .\\dotnet-install.ps1 -Channel '6.0' -InstallDir '$DOTNET_INSTALL_DIR' -NoPath
+                            """
                     } else {
                         echo ".NET SDK $DOTNET_VERSION is already installed."
                     }
