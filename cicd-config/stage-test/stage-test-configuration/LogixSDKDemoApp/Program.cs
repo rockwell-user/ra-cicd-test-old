@@ -41,24 +41,24 @@ namespace TestStage_CICDExample
             string textFileReportName = Path.Combine(textFileReportDirectory, DateTime.Now.ToString("yyyyMMddHHmmss") + "_testfile.txt"); // new test report filename
             #endregion
 
-            //// Create new test report file (.txt) using the Console printout.
-            //#region FILE CREATION -----------------------------------------------------------------------------------------------------------------------------
-            //FileStream ostrm;
-            //StreamWriter writer;
-            //TextWriter oldOut = Console.Out;
-            //try
-            //{
-            //    ostrm = new FileStream(textFileReportName, FileMode.OpenOrCreate, FileAccess.Write);
-            //    writer = new StreamWriter(ostrm);
-            //}
-            //catch (Exception e)
-            //{
-            //    Console.WriteLine("Cannot open Redirect.txt for writing");
-            //    Console.WriteLine(e.Message);
-            //    return;
-            //}
-            //Console.SetOut(writer);
-            //#endregion
+            // Create new test report file (.txt) using the Console printout.
+            #region FILE CREATION -----------------------------------------------------------------------------------------------------------------------------
+            FileStream ostrm;
+            StreamWriter writer;
+            TextWriter oldOut = Console.Out;
+            try
+            {
+                ostrm = new FileStream(textFileReportName, FileMode.OpenOrCreate, FileAccess.Write);
+                writer = new StreamWriter(ostrm);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Cannot open Redirect.txt for writing");
+                Console.WriteLine(e.Message);
+                return;
+            }
+            Console.SetOut(writer);
+            #endregion
 
             // This region contain the different steps needed to set up & execute testing.
             #region TEST STEPS --------------------------------------------------------------------------------------------------------------------------------
@@ -291,10 +291,10 @@ namespace TestStage_CICDExample
             else
                 CreateBanner("TEST SUCCESS!");
 
-            //// Finish the process of sending console printouts to the test text file.
-            //Console.SetOut(oldOut);
-            //writer.Close();
-            //ostrm.Close();
+            // Finish the process of sending console printouts to the test text file.
+            Console.SetOut(oldOut);
+            writer.Close();
+            ostrm.Close();
             #endregion
             #endregion
         }
