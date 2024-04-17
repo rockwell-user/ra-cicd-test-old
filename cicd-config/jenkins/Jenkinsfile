@@ -1,16 +1,9 @@
 pipeline {
     agent any
     
-    parameters {
-        string(
-            name: 'path_GitHub', 
-            defaultValue: 'C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\', 
-            description: 'Enter the path to your CICD GitHub repository.'
-            )
-        string(
-            name: 'acdFileName', 
-            defaultValue: '', 
-            description: 'Enter the file name of the ACD project under development')
+    environment {
+        path_GitHub = 'C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\'
+        acdFileName = 'CICD_test.ACD'
     }
 
     stages {
@@ -44,7 +37,7 @@ pipeline {
                 // bat """
                 //     C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\cicd-config\\stage-test\\stage-test-configuration\\LogixSDKDemoApp\\bin\\Debug\\net6.0\\TestStage_CICDExample.exe C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\ CICD_test.ACD
                 // """
-                bat "${params.path_GitHub}cicd-config\\stage-test\\stage-test-configuration\\LogixSDKDemoApp\\bin\\Debug\\net6.0\\TestStage_CICDExample.exe ${params.path_GitHub} ${params.acdFileName}"
+                bat "%path_GitHub%cicd-config\\stage-test\\stage-test-configuration\\LogixSDKDemoApp\\bin\\Debug\\net6.0\\TestStage_CICDExample.exe %path_GitHub% %acdFileName%"
                 // "${env.WORKSPACE}/JenkinsScripts/myScript.groovy"
 
                 // script {
