@@ -44,7 +44,7 @@ pipeline {
                 // bat """
                 //     C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\cicd-config\\stage-test\\stage-test-configuration\\LogixSDKDemoApp\\bin\\Debug\\net6.0\\TestStage_CICDExample.exe C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\ CICD_test.ACD
                 // """
-                bat "${path_GitHub}cicd-config\\stage-test\\stage-test-configuration\\LogixSDKDemoApp\\bin\\Debug\\net6.0\\TestStage_CICDExample.exe ${path_GitHub} ${acdFileName}"
+                bat "${params.path_GitHub}cicd-config\\stage-test\\stage-test-configuration\\LogixSDKDemoApp\\bin\\Debug\\net6.0\\TestStage_CICDExample.exe ${params.path_GitHub} ${params.acdFileName}"
                 // "${env.WORKSPACE}/JenkinsScripts/myScript.groovy"
 
                 // script {
