@@ -1096,7 +1096,8 @@ namespace TestStage_CICDExample
 
                 var ex_STRING = new byte[UDT_ByteArray.Length - 24];
                 Array.ConstrainedCopy(UDT_ByteArray, 24, ex_STRING, 0, UDT_ByteArray.Length - 24);
-                returnString[i + 1][13] = Encoding.ASCII.GetString(ex_STRING).Replace("\0", "");
+                string string_result = Encoding.ASCII.GetString(ex_STRING).Replace("\0", "");
+                returnString[i + 1][13] = (string_result == "") ? "<empty_string>" : $"{string_result}";
 
                 returnString[i + 1][14] = Convert.ToString(byteStringArray[i].Length);
             }
