@@ -2,15 +2,6 @@
   "version": 3,
   "targets": {
     "net6.0": {
-      "BouncyCastle/1.8.9": {
-        "type": "package",
-        "compile": {
-          "lib/BouncyCastle.Crypto.dll": {}
-        },
-        "runtime": {
-          "lib/BouncyCastle.Crypto.dll": {}
-        }
-      },
       "Google.Protobuf/3.24.3": {
         "type": "package",
         "compile": {
@@ -113,18 +104,6 @@
           "lib/net6.0/Grpc.Net.Common.dll": {
             "related": ".pdb;.xml"
           }
-        }
-      },
-      "iTextSharp/5.5.13.3": {
-        "type": "package",
-        "dependencies": {
-          "BouncyCastle": "1.8.9"
-        },
-        "compile": {
-          "lib/itextsharp.dll": {}
-        },
-        "runtime": {
-          "lib/itextsharp.dll": {}
         }
       },
       "Microsoft.Extensions.Logging.Abstractions/6.0.0": {
@@ -330,19 +309,6 @@
     }
   },
   "libraries": {
-    "BouncyCastle/1.8.9": {
-      "sha512": "axnBgvdD5n+FnEG6efk/tfKuMFru7R/EoISH9zjh319yb3HD24TEHSAbNN/lTRT2ulOGRxDgOsCjkuk08iwWPg==",
-      "type": "package",
-      "path": "bouncycastle/1.8.9",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "README.md",
-        "bouncycastle.1.8.9.nupkg.sha512",
-        "bouncycastle.nuspec",
-        "lib/BouncyCastle.Crypto.dll"
-      ]
-    },
     "Google.Protobuf/3.24.3": {
       "sha512": "HX8KHRTJPUcC4KOvEobKBNlMpHGYmK+3X73xPq+OUE2M5dLYvpGhp9qQQWt2jASgTUbxI1yHaGeBqFYiECBupw==",
       "type": "package",
@@ -487,22 +453,6 @@
         "lib/netstandard2.1/Grpc.Net.Common.pdb",
         "lib/netstandard2.1/Grpc.Net.Common.xml",
         "packageIcon.png"
-      ]
-    },
-    "iTextSharp/5.5.13.3": {
-      "sha512": "vtnMhTEJdZFCkLqaQLjD8aqTBIVKHPrSFuSXnxbLEJlvE/j/l88fvG9wtsejXTmhtErMo0lA9T2LdfdfbwplYw==",
-      "type": "package",
-      "path": "itextsharp/5.5.13.3",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "LICENSE.md",
-        "gnu-agpl-v3.0.md",
-        "itextsharp.5.5.13.3.nupkg.sha512",
-        "itextsharp.nuspec",
-        "lib/iTextSharp.xml",
-        "lib/itextsharp.dll",
-        "notice.txt"
       ]
     },
     "Microsoft.Extensions.Logging.Abstractions/6.0.0": {
@@ -814,12 +764,11 @@
   "projectFileDependencyGroups": {
     "net6.0": [
       "RockwellAutomation.FactoryTalkLogixEcho.Api.Client >= 3.0.1130",
-      "RockwellAutomation.LogixDesigner.CSClient >= 1.1.*",
-      "iTextSharp >= 5.5.13.3"
+      "RockwellAutomation.LogixDesigner.CSClient >= 1.1.*"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\ASYost\\.nuget\\packages\\": {}
+    "C:\\Users\\Jenkins\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.1.0",
@@ -827,12 +776,12 @@
       "projectUniqueName": "C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\cicd-config\\stage-test\\stage-test-configuration\\LogixSDKDemoApp\\TestStage_CICDExample.csproj",
       "projectName": "RockwellAutomation.LogixDesigner.TestStage_CICDExample-Debug",
       "projectPath": "C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\cicd-config\\stage-test\\stage-test-configuration\\LogixSDKDemoApp\\TestStage_CICDExample.csproj",
-      "packagesPath": "C:\\Users\\ASYost\\.nuget\\packages\\",
+      "packagesPath": "C:\\Users\\Jenkins\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\cicd-config\\stage-test\\stage-test-configuration\\LogixSDKDemoApp\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\cicd-config\\stage-test\\stage-test-configuration\\NuGet.Config",
-        "C:\\Users\\ASYost\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Jenkins\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -840,7 +789,6 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Users\\ASYost\\Desktop\\GitHub-Repositories\\ra-cicd-test\\cicd-config\\NUPKG_Files": {},
         "C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\cicd-config\\stage-test\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
@@ -872,10 +820,6 @@
           "RockwellAutomation.LogixDesigner.CSClient": {
             "target": "Package",
             "version": "[1.1.*, )"
-          },
-          "iTextSharp": {
-            "target": "Package",
-            "version": "[5.5.13.3, )"
           }
         },
         "imports": [
@@ -897,27 +841,5 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202\\RuntimeIdentifierGraph.json"
       }
     }
-  },
-  "logs": [
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'BouncyCastle 1.8.9' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net6.0'. This package may not be fully compatible with your project.",
-      "libraryId": "BouncyCastle",
-      "targetGraphs": [
-        "net6.0"
-      ]
-    },
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'iTextSharp 5.5.13.3' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net6.0'. This package may not be fully compatible with your project.",
-      "libraryId": "iTextSharp",
-      "targetGraphs": [
-        "net6.0"
-      ]
-    }
-  ]
+  }
 }

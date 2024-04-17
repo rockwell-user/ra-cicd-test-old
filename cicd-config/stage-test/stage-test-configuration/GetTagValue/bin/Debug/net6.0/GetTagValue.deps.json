@@ -16,14 +16,6 @@
           "GetTagValue.dll": {}
         }
       },
-      "BouncyCastle/1.8.9": {
-        "runtime": {
-          "lib/BouncyCastle.Crypto.dll": {
-            "assemblyVersion": "1.8.9.0",
-            "fileVersion": "1.8.20343.1"
-          }
-        }
-      },
       "Google.Protobuf/3.24.3": {
         "runtime": {
           "lib/net5.0/Google.Protobuf.dll": {
@@ -104,17 +96,6 @@
           "lib/net6.0/Grpc.Net.Common.dll": {
             "assemblyVersion": "2.0.0.0",
             "fileVersion": "2.57.0.0"
-          }
-        }
-      },
-      "iTextSharp/5.5.13.3": {
-        "dependencies": {
-          "BouncyCastle": "1.8.9"
-        },
-        "runtime": {
-          "lib/itextsharp.dll": {
-            "assemblyVersion": "5.5.13.3",
-            "fileVersion": "5.5.13.3"
           }
         }
       },
@@ -213,8 +194,7 @@
       "RockwellAutomation.LogixDesigner.TestStage_CICDExample-Debug/1.1.0": {
         "dependencies": {
           "RockwellAutomation.FactoryTalkLogixEcho.Api.Client": "3.0.1130",
-          "RockwellAutomation.LogixDesigner.CSClient": "1.1.599",
-          "iTextSharp": "5.5.13.3"
+          "RockwellAutomation.LogixDesigner.CSClient": "1.1.599"
         },
         "runtime": {
           "TestStage_CICDExample.dll": {}
@@ -235,13 +215,6 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
-    },
-    "BouncyCastle/1.8.9": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-axnBgvdD5n+FnEG6efk/tfKuMFru7R/EoISH9zjh319yb3HD24TEHSAbNN/lTRT2ulOGRxDgOsCjkuk08iwWPg==",
-      "path": "bouncycastle/1.8.9",
-      "hashPath": "bouncycastle.1.8.9.nupkg.sha512"
     },
     "Google.Protobuf/3.24.3": {
       "type": "package",
@@ -284,13 +257,6 @@
       "sha512": "sha512-babJpsAwVH3lPjg8cvWGqW+Fos1RN+cqudfkW2EyB2DK2v5yjD2axZ1Uay6kR6ec2/p9ljodktrfoJ2lJ/pwnQ==",
       "path": "grpc.net.common/2.57.0",
       "hashPath": "grpc.net.common.2.57.0.nupkg.sha512"
-    },
-    "iTextSharp/5.5.13.3": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-vtnMhTEJdZFCkLqaQLjD8aqTBIVKHPrSFuSXnxbLEJlvE/j/l88fvG9wtsejXTmhtErMo0lA9T2LdfdfbwplYw==",
-      "path": "itextsharp/5.5.13.3",
-      "hashPath": "itextsharp.5.5.13.3.nupkg.sha512"
     },
     "Microsoft.Extensions.Logging.Abstractions/6.0.0": {
       "type": "package",
