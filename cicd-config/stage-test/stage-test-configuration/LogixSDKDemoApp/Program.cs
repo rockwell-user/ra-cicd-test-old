@@ -295,6 +295,12 @@ namespace TestStage_CICDExample
             Console.SetOut(oldOut);
             writer.Close();
             ostrm.Close();
+
+            // Print out final banner based on test results.
+            if (failureCondition > 0)
+                Console.WriteLine("FAILURE");
+            else
+                Console.WriteLine("SUCCESS");
             #endregion
             #endregion
         }
