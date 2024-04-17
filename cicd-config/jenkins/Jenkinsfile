@@ -19,13 +19,13 @@ pipeline {
 
                     if (!dotnetVersionInstalled.startsWith(DOTNET_VERSION)) {
                         echo "Installing .NET SDK $DOTNET_VERSION..."
-                        // Download and install .NET SDK 6.0
+                        // Download and install .NET SDK 6.0 using curl
                         bat label: 'Install .NET SDK 6.0',
                             script: """
                                 mkdir "$DOTNET_INSTALL_DIR"
                                 cd "$DOTNET_INSTALL_DIR"
-                                Invoke-WebRequest -Uri 'https://dot.net/v1/dotnet-install.ps1' -OutFile 'dotnet-install.ps1'
-                                .\\dotnet-install.ps1 -Channel '6.0' -InstallDir '$DOTNET_INSTALL_DIR' -NoPath
+                                curl -o dotnet-install.ps1 -L https://dot.net/v1/dotnet-install.ps1
+                                powershell -ExecutionPolicy Bypass -File dotnet-install.ps1 -Channel '6.0' -InstallDir '$DOTNET_INSTALL_DIR' -NoPath
                             """
                     } else {
                         echo ".NET SDK $DOTNET_VERSION is already installed."
