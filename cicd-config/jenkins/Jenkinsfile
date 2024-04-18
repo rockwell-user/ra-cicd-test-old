@@ -48,11 +48,12 @@ pipeline {
             steps {
                 echo 'Starting Test..'
 
-                TEST_RESULT = sh (
-                    script: '%path_GitHub%cicd-config\\stage-test\\stage-test-configuration\\LogixSDKDemoApp\\bin\\Debug\\net6.0\\TestStage_CICDExample.exe %path_GitHub% %acdFileName%',
-                    returnStdout: true
-                ).trim()
-                bat "echo ${TEST_RESULT}"
+                // TEST_RESULT = sh (
+                //     script: '%path_GitHub%cicd-config\\stage-test\\stage-test-configuration\\LogixSDKDemoApp\\bin\\Debug\\net6.0\\TestStage_CICDExample.exe %path_GitHub% %acdFileName%',
+                //     returnStdout: true
+                // ).trim()
+                TEST_RESULT = bat(script: "@%path_GitHub%cicd-config\\stage-test\\stage-test-configuration\\LogixSDKDemoApp\\bin\\Debug\\net6.0\\TestStage_CICDExample.exe %path_GitHub% %acdFileName%", returnStdout: true).trim()
+                echo TEST_RESULT
                 // script {
                 //     def testResult = sh(returnStdout: true, script: '%path_GitHub%cicd-config\\stage-test\\stage-test-configuration\\LogixSDKDemoApp\\bin\\Debug\\net6.0\\TestStage_CICDExample.exe %path_GitHub% %acdFileName%')
                 //     echo "Output: ${testResult}"
