@@ -57,12 +57,12 @@ pipeline {
                     echo TEST_RESULT
                     if (TEST_RESULT == "SUCCESS") {
                     script {
-                        echo I_DID_IT
+                        echo "Test success!"
                         }
                     }
                     else {
                         script {
-                            echo OH_NO
+                            echo "Test failed."
                         }
                     }
                 }
@@ -89,6 +89,29 @@ pipeline {
             steps {
                 echo 'Starting Deployment....'
             }
+        }
+    }
+    post {
+        always {
+            echo 'One way or another, I have finished'
+            deleteDir() /* clean up our workspace */
+        }
+        success {
+            echo 'I succeeded!'
+        }
+        unstable {
+            echo 'I am unstable :/'
+        }
+        failure {
+            echo 'I failed :('
+            failure {
+                mail to: 'andre.yost@rockwellautomation.com',
+                subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
+                body: "Something is wrong with ${env.BUILD_URL}"
+            }
+        }
+        changed {
+            echo 'Things were different before...'
         }
     }
 }
