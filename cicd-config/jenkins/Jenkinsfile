@@ -98,6 +98,11 @@ pipeline {
         }
         success {
             echo 'I succeeded!'
+            success {
+                mail to: 'Andre.Yost@rockwellautomation.com',
+                subject: "Successful Pipeline: ${currentBuild.fullDisplayName}",
+                body: "Everything worked with ${env.BUILD_URL}"
+            }
         }
         unstable {
             echo 'I am unstable :/'
@@ -105,7 +110,7 @@ pipeline {
         failure {
             echo 'I failed :('
             failure {
-                mail to: 'andre.yost@rockwellautomation.com',
+                mail to: 'Andre.Yost@rockwellautomation.com',
                 subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
                 body: "Something is wrong with ${env.BUILD_URL}"
             }
