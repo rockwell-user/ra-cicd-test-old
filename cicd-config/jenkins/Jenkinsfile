@@ -56,6 +56,16 @@ pipeline {
                     TEST_RESULT = bat(script: "@%path_GitHub%cicd-config\\stage-test\\stage-test-configuration\\LogixSDKDemoApp\\bin\\Debug\\net6.0\\TestStage_CICDExample.exe %path_GitHub% %acdFileName%", returnStdout: true).trim()
                     echo TEST_RESULT
                 }
+                if (TEST_RESULT == "SUCCESS") {
+                    script {
+                        echo I_DID_IT!
+                    }
+                }
+                else {
+                    script {
+                        echo OH_NO!
+                    }
+                }
                 // script {
                 //     def testResult = sh(returnStdout: true, script: '%path_GitHub%cicd-config\\stage-test\\stage-test-configuration\\LogixSDKDemoApp\\bin\\Debug\\net6.0\\TestStage_CICDExample.exe %path_GitHub% %acdFileName%')
                 //     echo "Output: ${testResult}"
