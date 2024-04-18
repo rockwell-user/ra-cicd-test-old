@@ -48,22 +48,19 @@ pipeline {
             steps {
                 echo 'Starting Test..'
 
-                // TEST_RESULT = sh (
+                // testResult = sh (
                 //     script: '%path_GitHub%cicd-config\\stage-test\\stage-test-configuration\\LogixSDKDemoApp\\bin\\Debug\\net6.0\\TestStage_CICDExample.exe %path_GitHub% %acdFileName%',
                 //     returnStdout: true
                 // ).trim()
                 script {
-                    TEST_RESULT = bat(script: "@%path_GitHub%cicd-config\\stage-test\\stage-test-configuration\\LogixSDKDemoApp\\bin\\Debug\\net6.0\\TestStage_CICDExample.exe %path_GitHub% %acdFileName%", returnStdout: true).trim()
-                    echo TEST_RESULT
-                    if (TEST_RESULT == "SUCCESS") {
-                    script {
-                        echo "Test success!"
-                        }
-                    }
-                    else {
-                        script {
-                            echo "Test failed."
-                        }
+                    testResult = bat(script: "@%path_GitHub%cicd-config\\stage-test\\stage-test-configuration\\LogixSDKDemoApp\\bin\\Debug\\net6.0\\TestStage_CICDExample.exe %path_GitHub% %acdFileName%", returnStdout: true).trim()
+                    echo testResult
+                    if (testResult == 'SUCCESS') {
+                        sendEmail('SUCCESS')
+                    } else if (testResult == 'FAILURE') {
+                        sendEmail('FAILURE')
+                    } else {
+                        echo "Unkwon output: $testResult"
                     }
                 }
                 
@@ -98,25 +95,33 @@ pipeline {
         }
         success {
             echo 'I succeeded!'
-            success {
-                mail to: 'Andre.Yost@rockwellautomation.com',
-                subject: "Successful Pipeline: ${currentBuild.fullDisplayName}",
-                body: "Everything worked with ${env.BUILD_URL}"
-            }
+            // success {
+            //     mail to: 'Andre.Yost@rockwellautomation.com',
+            //     subject: "Successful Pipeline: ${currentBuild.fullDisplayName}",
+            //     body: "Everything worked with ${env.BUILD_URL}"
+            // }
         }
         unstable {
             echo 'I am unstable :/'
         }
         failure {
             echo 'I failed :('
-            failure {
-                mail to: 'Andre.Yost@rockwellautomation.com',
-                subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
-                body: "Something is wrong with ${env.BUILD_URL}"
-            }
+            // failure {
+            //     mail to: 'Andre.Yost@rockwellautomation.com',
+            //     subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
+            //     body: "Something is wrong with ${env.BUILD_URL}"
+            // }
         }
         changed {
             echo 'Things were different before...'
         }
     }
+}
+
+def sendEmail(status) {
+    emailext(
+        to: 'Andre.Yost@rockwellautomation.com',
+        subject: "CI/CD Test Stage Result: ${status}",
+        body: "The C# script for the CI/CD test stage was a ${status}."
+        )
 }
