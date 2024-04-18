@@ -58,12 +58,12 @@ pipeline {
                 }
                 if (TEST_RESULT == "SUCCESS") {
                     script {
-                        echo I_DID_IT!
+                        echo I_DID_IT
                     }
                 }
                 else {
                     script {
-                        echo OH_NO!
+                        echo OH_NO
                     }
                 }
                 // script {
