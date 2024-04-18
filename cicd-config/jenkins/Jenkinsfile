@@ -6,6 +6,7 @@ pipeline {
         acdFileName = 'CICD_test.ACD'
         DOTNET_VERSION = '6.0'
         DOTNET_INSTALL_DIR = 'C:\\Program Files\\dotnet'
+        TEST_RESULT = ''
     }
 
     stages {
@@ -55,19 +56,16 @@ pipeline {
                 script {
                     testResult = bat(script: "@%path_GitHub%cicd-config\\stage-test\\stage-test-configuration\\LogixSDKDemoApp\\bin\\Debug\\net6.0\\TestStage_CICDExample.exe %path_GitHub% %acdFileName%", returnStdout: true).trim()
                     echo testResult
+                    TEST_RESULT = testResult
                     if (testResult == 'SUCCESS') {
                         sendEmail('SUCCESS')
+                        displayContentsOfMostRecentTextFile("@%path_GitHub%cicd-config\\stage-test\\test-reports")
                     } else if (testResult == 'FAILURE') {
                         sendEmail('FAILURE')
                     } else {
                         echo "Unkwon output: $testResult"
                     }
                 }
-                
-                // script {
-                //     def testResult = sh(returnStdout: true, script: '%path_GitHub%cicd-config\\stage-test\\stage-test-configuration\\LogixSDKDemoApp\\bin\\Debug\\net6.0\\TestStage_CICDExample.exe %path_GitHub% %acdFileName%')
-                //     echo "Output: ${testResult}"
-                // }
             }
         }
         stage('Publish') {
@@ -78,10 +76,8 @@ pipeline {
                     cd %path_GitHub%
                     git --version
                 """
-                
             }
         }
-
         stage('Deployment') {
             steps {
                 echo 'Starting Deployment....'
@@ -90,30 +86,14 @@ pipeline {
     }
     post {
         always {
-            echo 'One way or another, I have finished'
+            echo 'Cleaing up workspace...'
             deleteDir() /* clean up our workspace */
         }
         success {
-            echo 'I succeeded!'
-            // success {
-            //     mail to: 'Andre.Yost@rockwellautomation.com',
-            //     subject: "Successful Pipeline: ${currentBuild.fullDisplayName}",
-            //     body: "Everything worked with ${env.BUILD_URL}"
-            // }
-        }
-        unstable {
-            echo 'I am unstable :/'
+            echo 'This CI/CD pipeline executed successfully!'
         }
         failure {
-            echo 'I failed :('
-            // failure {
-            //     mail to: 'Andre.Yost@rockwellautomation.com',
-            //     subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
-            //     body: "Something is wrong with ${env.BUILD_URL}"
-            // }
-        }
-        changed {
-            echo 'Things were different before...'
+            echo 'This CI/CD pipeline failed with errors.'
         }
     }
 }
@@ -124,4 +104,18 @@ def sendEmail(status) {
         subject: "CI/CD Test Stage Result: ${status}",
         body: "The C# script for the CI/CD test stage was a ${status}."
         )
+}
+
+def displayContentsOfMostRecentTextFile(folderPath) {
+    def fileList = sh(script: "ls -t ${folderPath}/*.txt", returnStdout: true).trim().split('\n')
+
+    if (fileList.size() > 0) {
+        def mostRecentFile = fileList[0]
+
+        def fileContents = sh(script: "cat ${mostRecentFile}", returnStdout: true).trim()
+        echo "The contents of the most recent test file (${mostRecentFile}):"
+        echo "${fileContents}"
+    } else {
+        echo "No text files found in the folder: ${folderPath}"
+    }
 }
