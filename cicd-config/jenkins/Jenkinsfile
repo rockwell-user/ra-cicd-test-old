@@ -36,55 +36,37 @@ pipeline {
         stage ('Build') {
             steps {
                 echo 'Starting Build...'
-                //bat 'whoami'
-                // script {
-                //     sh 'ls -d */'
-                // }
 
                 bat """
                     cd %path_GitHub%cicd-config\\stage-test\\stage-test-configuration\\LogixSDKDemoApp
                     dotnet build
                 """
-
-                // script {
-                //     def exitCode_1 = bat(returnStatus: true, script: 'dotnet build')
-                //     if (exitCode_1 == 0) {
-                //         echo 'Executable ran successfully'
-                //     } else {
-                //         error 'Executable failed to run'
-                //     }
-                // }
                 
             }
         }
         stage('Test') {
             steps {
                 echo 'Starting Test..'
-                // bat """
-                //     C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\cicd-config\\stage-test\\stage-test-configuration\\LogixSDKDemoApp\\bin\\Debug\\net6.0\\TestStage_CICDExample.exe C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\ CICD_test.ACD
-                // """
-                bat "%path_GitHub%cicd-config\\stage-test\\stage-test-configuration\\LogixSDKDemoApp\\bin\\Debug\\net6.0\\TestStage_CICDExample.exe %path_GitHub% %acdFileName%"
-                // "${env.WORKSPACE}/JenkinsScripts/myScript.groovy"
 
-                // script {
-                //     def exitCode_2 = bat(returnStatus: true, script: 'cicd-config/stage-test/stage-test-configuration/LogixSDKDemoApp/bin/Debug/net6.0/TestStage_CICDExample.exe')
-                //     if (exitCode_2 == 0) {
-                //         echo 'Executable ran successfully'
-                //     } else {
-                //         error 'Executable failed to run'
-                //     }
-                // }
+                bat "%path_GitHub%cicd-config\\stage-test\\stage-test-configuration\\LogixSDKDemoApp\\bin\\Debug\\net6.0\\TestStage_CICDExample.exe %path_GitHub% %acdFileName%"
+
             }
         }
         stage('Publish') {
             steps {
                 echo 'Starting Publishing..'
+
+                bat """
+                    cd %path_GitHub%
+                    git --version
+                """
+                
             }
         }
 
-        stage('Deliver') {
+        stage('Deployment') {
             steps {
-                echo 'Starting Delivery....'
+                echo 'Starting Deployment....'
             }
         }
     }
