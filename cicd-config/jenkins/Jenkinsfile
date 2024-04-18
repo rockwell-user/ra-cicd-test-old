@@ -39,7 +39,7 @@ pipeline {
                 echo 'Starting Build...'
 
                 bat """
-                    cd %path_GitHub%cicd-config\\stage-test\\stage-test-configuration\\LogixSDKDemoApp
+                    cd %path_GitHub%\\cicd-config\\stage-test\\stage-test-configuration\\LogixSDKDemoApp
                     dotnet build
                 """
                 
