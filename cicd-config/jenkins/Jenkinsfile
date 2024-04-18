@@ -48,7 +48,7 @@ pipeline {
         stage('Test') {
             steps {
                 echo 'Starting Test..'
-
+                displayContentsOfMostRecentTextFile("@%path_GitHub%cicd-config\\stage-test\\test-reports")
                 // testResult = sh (
                 //     script: '%path_GitHub%cicd-config\\stage-test\\stage-test-configuration\\LogixSDKDemoApp\\bin\\Debug\\net6.0\\TestStage_CICDExample.exe %path_GitHub% %acdFileName%',
                 //     returnStdout: true
@@ -59,7 +59,6 @@ pipeline {
                     TEST_RESULT = testResult
                     if (testResult == 'SUCCESS') {
                         sendEmail('SUCCESS')
-                        displayContentsOfMostRecentTextFile("@%path_GitHub%cicd-config\\stage-test\\test-reports")
                     } else if (testResult == 'FAILURE') {
                         sendEmail('FAILURE')
                     } else {
