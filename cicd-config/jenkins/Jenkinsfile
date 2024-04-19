@@ -118,7 +118,7 @@ def displayContentsOfMostRecentTextFile(folderPath) {
     if (fileList.size() > 0) {
         def mostRecentFile = fileList[1]
 
-        def fileContents = bat(script: "type C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\cicd-config\\stage-test\\test-reports\\${mostRecentFile}", returnStdout: true).trim()
+        def fileContents = bat(script: "type C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\cicd-config\\stage-test\\test-reports\\${mostRecentFile}", returnStdout: true)
         echo "The contents of the most recent test file (${mostRecentFile}):"
         echo "${fileContents}"
     } else {
