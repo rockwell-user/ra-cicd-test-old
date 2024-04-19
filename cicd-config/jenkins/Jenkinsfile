@@ -105,9 +105,9 @@ pipeline {
 
 def sendEmail(status) {
     emailext(
-        to: 'andresyost2000@gmail.com',
+        body: "The C# script for the CI/CD test stage was a ${status}.",
         subject: "CI/CD Test Stage Result: ${status}",
-        body: "The C# script for the CI/CD test stage was a ${status}."
+        to: 'andresyost2000@gmail.com'
         )
 }
 

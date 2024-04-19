@@ -1,7 +1,7 @@
 
   =========================================================================================================================  
 =============================================================================================================================
-                   CI/CD TEST STAGE | 4/19/2024 9:39:13 AM (UTC-05:00) Eastern Time (US & Canada)
+                   CI/CD TEST STAGE | 4/19/2024 2:23:41 PM (UTC-05:00) Eastern Time (US & Canada)
 =============================================================================================================================
   =========================================================================================================================  
 
@@ -11,28 +11,28 @@ ACD file path specified:          C:\Users\ASYost\source\repos\ra-cicd-test-old\
 Common Language Runtime version:  v4.0.30319
 .NET Framework version:           6.0.29
 ----------------------------------------------------------------------------------------------------------=[STAGING TEST]=---
-[9:39:13 AM] START checking test-reports folder...
+[2:23:41 PM] START checking test-reports folder...
 STATUS:  test script set to retain 5 test files
-SUCCESS: deleted C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\test-reports\20240418165344_testfile.txt
-[9:39:13 AM] DONE checking test-reports folder...
+SUCCESS: deleted C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\test-reports\20240419093913_testfile.txt
+[2:23:41 PM] DONE checking test-reports folder...
 ---
-[9:39:13 AM] START setting up Factory Talk Logix Echo emulated controller...
+[2:23:41 PM] START setting up Factory Talk Logix Echo emulated controller...
 SUCCESS: project communication path specified is "EmulateEthernet\127.0.0.1"
-[9:39:13 AM] DONE setting up Factory Talk Logix Echo emulated controller
+[2:23:42 PM] DONE setting up Factory Talk Logix Echo emulated controller
 ---
-[9:39:13 AM] START opening ACD file...
-[9:39:36 AM] SUCCESS opening ACD file
+[2:23:42 PM] START opening ACD file...
+[2:24:18 PM] SUCCESS opening ACD file
 ---
-[9:39:36 AM] START changing controller to PROGRAM...
-[9:39:37 AM] SUCCESS changing controller to PROGRAM
+[2:24:18 PM] START changing controller to PROGRAM...
+[2:24:27 PM] SUCCESS changing controller to PROGRAM
 ---
-[9:39:37 AM] START downloading ACD file...
-[9:39:46 AM] SUCCESS downloading ACD file
+[2:24:27 PM] START downloading ACD file...
+[2:24:54 PM] SUCCESS downloading ACD file
 ---
-[9:39:46 AM] START Changing controller to RUN...
-[9:39:46 AM] SUCCESS changing controller to RUN
+[2:24:54 PM] START Changing controller to RUN...
+[2:24:56 PM] SUCCESS changing controller to RUN
 -------------------------------------------------------------------------------------------------------=[COMMENCING TEST]=---
-[9:39:46 AM] START getting initial project start-up tag values...
+[2:24:56 PM] START getting initial project start-up tag values...
 SUCCESS: TEST_BOOL                               online value: False                offline value: False               
 SUCCESS: TEST_SINT                               online value: 0                    offline value: 0                   
 SUCCESS: TEST_INT                                online value: 0                    offline value: 0                   
@@ -59,9 +59,9 @@ SUCCESS: UDT_AllAtomicDataTypes.ex_DINT          online value: 0                
 SUCCESS: UDT_AllAtomicDataTypes.ex_LINT          online value: 0                    offline value: 0                   
 SUCCESS: UDT_AllAtomicDataTypes.ex_REAL          online value: 0                    offline value: 0                   
 SUCCESS: UDT_AllAtomicDataTypes.ex_STRING        online value: <empty_string>       offline value: <empty_string>      
-[9:39:53 AM] DONE getting initial project start-up tag values
+[2:25:07 PM] DONE getting initial project start-up tag values
 ---
-[9:39:53 AM] START verifying whether offline and online values are the same...
+[2:25:07 PM] START verifying whether offline and online values are the same...
 SUCCESS: TEST_BOOL online value (False) & offline value (False) are EQUAL. 
 SUCCESS: TEST_SINT online value (0) & offline value (0) are EQUAL. 
 SUCCESS: TEST_INT online value (0) & offline value (0) are EQUAL. 
@@ -88,9 +88,9 @@ SUCCESS: UDT_AllAtomicDataTypes.ex_DINT online value (0) & offline value (0) are
 SUCCESS: UDT_AllAtomicDataTypes.ex_LINT online value (0) & offline value (0) are EQUAL. 
 SUCCESS: UDT_AllAtomicDataTypes.ex_REAL online value (0) & offline value (0) are EQUAL. 
 SUCCESS: UDT_AllAtomicDataTypes.ex_STRING online value (<empty_string>) & offline value (<empty_string>) are EQUAL. 
-[9:39:53 AM] DONE verifying whether offline and online values are the same
+[2:25:07 PM] DONE verifying whether offline and online values are the same
 ---
-[9:39:53 AM] START setting tag values...
+[2:25:07 PM] START setting tag values...
 SUCCESS: Online TEST_BOOL                                              False  -->  True
 SUCCESS: Online TEST_SINT                                                  0  -->  24
 SUCCESS: Online TEST_INT                                                   0  -->  -20500
@@ -111,9 +111,9 @@ SUCCESS: Online UDT_AllAtomicDataTypes.ex_DINT                             0  --
 SUCCESS: Online UDT_AllAtomicDataTypes.ex_LINT                             0  -->  -9000111000111000111
 SUCCESS: Online UDT_AllAtomicDataTypes.ex_REAL                             0  -->  10555.888
 SUCCESS: Online UDT_AllAtomicDataTypes.ex_STRING              <empty_string>  -->  2nd New String!
-[9:40:18 AM] DONE setting tag values
+[2:25:33 PM] DONE setting tag values
 ---
-[9:40:18 AM] START verifying expected tag outputs...
+[2:25:33 PM] START verifying expected tag outputs...
 SUCCESS: TEST_AOI_WetBulbTemp_WetBulbTemp expected value (52.997536) & actual value (52.997536) EQUAL. 
 SUCCESS: TEST_BOOL expected value (True) & actual value (True) EQUAL. 
 SUCCESS: TEST_SINT expected value (24) & actual value (24) EQUAL. 
@@ -136,9 +136,9 @@ SUCCESS: UDT_AllAtomicDataTypes.ex_DINT expected value (-2000111000) & actual va
 SUCCESS: UDT_AllAtomicDataTypes.ex_LINT expected value (-9000111000111000111) & actual value (-9000111000111000111) EQUAL. 
 SUCCESS: UDT_AllAtomicDataTypes.ex_REAL expected value (10555.888) & actual value (10555.888) EQUAL. 
 SUCCESS: UDT_AllAtomicDataTypes.ex_STRING expected value (2nd New String!) & actual value (2nd New String!) EQUAL. 
-[9:40:23 AM] DONE verifying expected tag outputs
+[2:25:37 PM] DONE verifying expected tag outputs
 ---
-[9:40:23 AM] START showing final test tag values...
+[2:25:37 PM] START showing final test tag values...
 SUCCESS: TEST_BOOL                               online value: True                 offline value: False               
 SUCCESS: TEST_DINT                               online value: 2000111000           offline value: 0                   
 SUCCESS: TEST_SINT                               online value: 24                   offline value: 0                   
@@ -165,5 +165,5 @@ SUCCESS: UDT_AllAtomicDataTypes.ex_DINT          online value: -2000111000      
 SUCCESS: UDT_AllAtomicDataTypes.ex_LINT          online value: -9000111000111000111 offline value: 0                   
 SUCCESS: UDT_AllAtomicDataTypes.ex_REAL          online value: 10555.888            offline value: 0                   
 SUCCESS: UDT_AllAtomicDataTypes.ex_STRING        online value: 2nd New String!      offline value: <empty_string>      
-[9:40:30 AM] DONE showing final test tag values
+[2:25:44 PM] DONE showing final test tag values
 ---------------------------------------------------------------------------------------------------------=[TEST SUCCESS!]=---
