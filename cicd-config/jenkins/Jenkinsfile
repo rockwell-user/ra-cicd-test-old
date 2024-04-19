@@ -50,6 +50,8 @@ pipeline {
                 echo 'Starting Test..'
 
                 script {
+                    testResult = bat(script: "@%path_GitHub%cicd-config\\stage-test\\stage-test-configuration\\LogixSDKDemoApp\\bin\\Debug\\net6.0\\TestStage_CICDExample.exe %path_GitHub% %acdFileName%", returnStdout: true).trim()
+                    echo testResult
                     displayContentsOfMostRecentTextFile("${env.path_GitHub}cicd-config\\stage-test\\test-reports")
                     
                     TEST_RESULT = testResult
