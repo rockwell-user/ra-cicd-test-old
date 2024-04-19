@@ -70,10 +70,14 @@ pipeline {
             steps {
                 echo 'Starting publishing development results....'
 
-                if (TEST_RESULT == 'SUCCESS') {
-                    bat """
-                        git checkout main
-                    """
+                script {
+                    if (TEST_RESULT == 'SUCCESS') {
+                        bat """
+                            git checkout main
+                            git merge dev-branch
+                            git push origin main
+                        """
+                    }
                 }
                 
             }
