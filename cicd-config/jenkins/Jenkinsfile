@@ -2,7 +2,7 @@ pipeline {
     agent any
     
     environment {
-        path_GitHub = 'C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old'
+        path_GitHub = 'C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\'
         acdFileName = 'CICD_test.ACD'
         DOTNET_VERSION = '6.0'
         DOTNET_INSTALL_DIR = 'C:\\Program Files\\dotnet'
@@ -39,7 +39,7 @@ pipeline {
                 echo 'Starting Build...'
 
                 bat """
-                    cd %path_GitHub%\\cicd-config\\stage-test\\stage-test-configuration\\LogixSDKDemoApp
+                    cd %path_GitHub%cicd-config\\stage-test\\stage-test-configuration\\LogixSDKDemoApp
                     dotnet build
                 """
                 
@@ -49,7 +49,7 @@ pipeline {
             steps {
                 echo 'Starting Test..'
                 bat """
-                    cd %path_GitHub%\\cicd-config\\stage-test\\test-reports
+                    cd %path_GitHub%cicd-config\\stage-test\\test-reports
                 """
                 // displayContentsOfMostRecentTextFile('C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\cicd-config\\stage-test\\test-reports')
                 // testResult = sh (
