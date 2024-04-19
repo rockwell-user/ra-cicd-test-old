@@ -49,7 +49,7 @@ pipeline {
             steps {
                 echo 'Starting Test..'
                 bat """
-                    cd "@%path_GitHub%\\cicd-config\\stage-test\\test-reports"
+                    cd @%path_GitHub%\\cicd-config\\stage-test\\test-reports
                 """
                 displayContentsOfMostRecentTextFile("@%path_GitHub%\\cicd-config\\stage-test\\test-reports")
                 // testResult = sh (
