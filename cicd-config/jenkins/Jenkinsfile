@@ -115,13 +115,13 @@ def displayContentsOfMostRecentTextFile(folderPath) {
     echo "${fileList.size()}"
     echo "${fileList[0]}"
     echo "${fileList[1]}"
-    // if (fileList.size() > 0) {
-    //     def mostRecentFile = fileList[0]
+    if (fileList.size() > 0) {
+        def mostRecentFile = fileList[1]
 
-    //     def fileContents = sh(script: "type ${mostRecentFile}", returnStdout: true).trim()
-    //     echo "The contents of the most recent test file (${mostRecentFile}):"
-    //     echo "${fileContents}"
-    // } else {
-    //     echo "No text files found in the folder: ${folderPath}"
-    // }
+        def fileContents = bat(script: "type ${mostRecentFile}", returnStdout: true).trim()
+        echo "The contents of the most recent test file (${mostRecentFile}):"
+        echo "${fileContents}"
+    } else {
+        echo "No text files found in the folder: ${folderPath}"
+    }
 }
