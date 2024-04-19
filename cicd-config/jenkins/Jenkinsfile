@@ -74,7 +74,7 @@ pipeline {
                     if (TEST_RESULT == 'SUCCESS') {
                         bat """
                             git checkout main
-                            git merge dev-branch
+                            git merge origin/dev-branch
                             git push origin main
                         """
                     }
