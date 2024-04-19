@@ -51,7 +51,7 @@ pipeline {
                 bat """
                     cd %path_GitHub%\\cicd-config\\stage-test\\test-reports
                 """
-                displayContentsOfMostRecentTextFile("@%path_GitHub%\\cicd-config\\stage-test\\test-reports")
+                displayContentsOfMostRecentTextFile('C:/Users/ASYost/source/repos/ra-cicd-test-old/cicd-config/stage-test/test-reports')
                 // testResult = sh (
                 //     script: '%path_GitHub%cicd-config\\stage-test\\stage-test-configuration\\LogixSDKDemoApp\\bin\\Debug\\net6.0\\TestStage_CICDExample.exe %path_GitHub% %acdFileName%',
                 //     returnStdout: true
