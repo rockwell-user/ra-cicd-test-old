@@ -51,16 +51,12 @@ pipeline {
                 bat """
                     cd %path_GitHub%cicd-config\\stage-test\\test-reports
                 """
-                
-                // testResult = sh (
-                //     script: '%path_GitHub%cicd-config\\stage-test\\stage-test-configuration\\LogixSDKDemoApp\\bin\\Debug\\net6.0\\TestStage_CICDExample.exe %path_GitHub% %acdFileName%',
-                //     returnStdout: true
-                // ).trim()
+
                 script {
                     testResult = bat(script: "@%path_GitHub%cicd-config\\stage-test\\stage-test-configuration\\LogixSDKDemoApp\\bin\\Debug\\net6.0\\TestStage_CICDExample.exe %path_GitHub% %acdFileName%", returnStdout: true).trim()
                     echo testResult
                     
-                    displayContentsOfMostRecentTextFile("@%path_GitHub%")
+                    displayContentsOfMostRecentTextFile(env.path_GitHub)
                     
                     TEST_RESULT = testResult
                     if (testResult == 'SUCCESS') {
@@ -113,10 +109,6 @@ def sendEmail(status) {
 
 def displayContentsOfMostRecentTextFile(folderPath) {
     def fileList = bat(script: "dir /b /o:-d ${folderPath}cicd-config\\stage-test\\test-reports", returnStdout: true).trim().split('\r\n')
-    echo "${fileList}"
-    echo "${fileList.size()}"
-    echo "${fileList[0]}"
-    echo "${fileList[1]}"
     if (fileList.size() > 0) {
         def mostRecentFile = fileList[1]
 
