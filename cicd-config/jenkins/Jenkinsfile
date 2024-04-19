@@ -115,7 +115,7 @@ def displayContentsOfMostRecentTextFile(folderPath) {
     if (fileList.size() > 0) {
         def mostRecentFile = fileList[0]
 
-        def fileContents = sh(script: "cat ${mostRecentFile}", returnStdout: true).trim()
+        def fileContents = sh(script: "type ${mostRecentFile}", returnStdout: true).trim()
         echo "The contents of the most recent test file (${mostRecentFile}):"
         echo "${fileContents}"
     } else {
