@@ -12,6 +12,7 @@ pipeline {
     stages {
         stage('Check .NET SDK') {
             steps {
+                echo 'Starting .NET SDK Check....'
                 script {
                     def dotnetVersionInstalled = bat(
                         script: 'dotnet --version',
@@ -36,7 +37,7 @@ pipeline {
         }
         stage ('Build') {
             steps {
-                echo 'Starting Build...'
+                echo 'Starting Build....'
 
                 bat """
                     cd %path_GitHub%cicd-config\\stage-test\\stage-test-configuration\\LogixSDKDemoApp
@@ -47,7 +48,7 @@ pipeline {
         }
         stage('Test') {
             steps {
-                echo 'Starting Test..'
+                echo 'Starting Test....'
 
                 script {
                     testResult = bat(script: "@%path_GitHub%cicd-config\\stage-test\\stage-test-configuration\\LogixSDKDemoApp\\bin\\Debug\\net6.0\\TestStage_CICDExample.exe %path_GitHub% %acdFileName%", returnStdout: true).trim()
@@ -67,12 +68,14 @@ pipeline {
         }
         stage('Publish') {
             steps {
-                echo 'Starting Publishing..'
+                echo 'Starting publishing development results....'
 
-                bat """
-                    cd %path_GitHub%
-                    git --version
-                """
+                if (TEST_RESULT == 'SUCCESS') {
+                    bat """
+                        git checkout main
+                    """
+                }
+                
             }
         }
         stage('Deployment') {
