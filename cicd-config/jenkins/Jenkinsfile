@@ -112,13 +112,13 @@ def sendEmail(status) {
 def displayContentsOfMostRecentTextFile(folderPath) {
     def fileList = bat(script: "dir /b /o:-d C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\cicd-config\\stage-test\\test-reports", returnStdout: true).trim().split('\r\n')
 
-    // if (fileList.size() > 0) {
-    //     def mostRecentFile = fileList[0]
+    if (fileList.size() > 0) {
+        def mostRecentFile = fileList[0]
 
-    //     def fileContents = sh(script: "cat ${mostRecentFile}", returnStdout: true).trim()
-    //     echo "The contents of the most recent test file (${mostRecentFile}):"
-    //     echo "${fileContents}"
-    // } else {
-    //     echo "No text files found in the folder: ${folderPath}"
-    // }
+        def fileContents = sh(script: "cat ${mostRecentFile}", returnStdout: true).trim()
+        echo "The contents of the most recent test file (${mostRecentFile}):"
+        echo "${fileContents}"
+    } else {
+        echo "No text files found in the folder: ${folderPath}"
+    }
 }
