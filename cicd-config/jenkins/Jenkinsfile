@@ -58,16 +58,16 @@ pipeline {
                 // ).trim()
                 script {
                     displayContentsOfMostRecentTextFile('C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\cicd-config\\stage-test\\test-reports')
-                    testResult = bat(script: "@%path_GitHub%cicd-config\\stage-test\\stage-test-configuration\\LogixSDKDemoApp\\bin\\Debug\\net6.0\\TestStage_CICDExample.exe %path_GitHub% %acdFileName%", returnStdout: true).trim()
-                    echo testResult
-                    TEST_RESULT = testResult
-                    if (testResult == 'SUCCESS') {
-                        sendEmail('SUCCESS')
-                    } else if (testResult == 'FAILURE') {
-                        sendEmail('FAILURE')
-                    } else {
-                        echo "Unkwon output: $testResult"
-                    }
+                    // testResult = bat(script: "@%path_GitHub%cicd-config\\stage-test\\stage-test-configuration\\LogixSDKDemoApp\\bin\\Debug\\net6.0\\TestStage_CICDExample.exe %path_GitHub% %acdFileName%", returnStdout: true).trim()
+                    // echo testResult
+                    // TEST_RESULT = testResult
+                    // if (testResult == 'SUCCESS') {
+                    //     sendEmail('SUCCESS')
+                    // } else if (testResult == 'FAILURE') {
+                    //     sendEmail('FAILURE')
+                    // } else {
+                    //     echo "Unkwon output: $testResult"
+                    // }
                 }
             }
         }
@@ -113,6 +113,8 @@ def displayContentsOfMostRecentTextFile(folderPath) {
     def fileList = bat(script: "dir /b /o:-d C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\cicd-config\\stage-test\\test-reports", returnStdout: true).trim().split('\r\n')
     echo "${fileList}"
     echo "${fileList.size()}"
+    echo "${fileList[0]}"
+    echo "${fileList[1]}"
     // if (fileList.size() > 0) {
     //     def mostRecentFile = fileList[0]
 
