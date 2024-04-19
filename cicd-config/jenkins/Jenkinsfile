@@ -112,6 +112,7 @@ def sendEmail(status) {
 def displayContentsOfMostRecentTextFile(folderPath) {
     def fileList = bat(script: "dir /b /o:-d C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\cicd-config\\stage-test\\test-reports", returnStdout: true).trim().split('\r\n')
     echo "${fileList}"
+    echo "${fileList.size()}"
     // if (fileList.size() > 0) {
     //     def mostRecentFile = fileList[0]
 
