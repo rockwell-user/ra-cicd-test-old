@@ -73,9 +73,10 @@ pipeline {
                 script {
                     if (TEST_RESULT == 'SUCCESS') {
                         bat """
+                            git branch -a
                             git checkout main
                             git merge origin/dev-branch
-                            git push origin main
+                            git push origin origin/main
                         """
                         // git push origin main
                     }
