@@ -54,31 +54,29 @@ pipeline {
         stage('Test') {
             steps {
                 echo 'Starting Test....'
-                // script {
-                //     testResult = bat(script: "@%PATH_GITHUB%cicd-config\\stage-test\\stage-test-configuration\\LogixSDKDemoApp\\bin\\Debug\\net6.0\\TestStage_CICDExample.exe %PATH_GITHUB% %ACDFILENAME%", returnStdout: true).trim()
-                //     echo testResult
-                //     displayContentsOfMostRecentTextFile("${env.PATH_GITHUB}cicd-config\\stage-test\\test-reports")
+
+                script {
+                    testResult = bat(script: "@%PATH_GITHUB%cicd-config\\stage-test\\stage-test-configuration\\LogixSDKDemoApp\\bin\\Debug\\net6.0\\TestStage_CICDExample.exe %PATH_GITHUB% %ACDFILENAME%", returnStdout: true).trim()
+                    echo testResult
+                    displayContentsOfMostRecentTextFile("${env.PATH_GITHUB}cicd-config\\stage-test\\test-reports")
                     
-                //     TEST_RESULT = testResult
-                //     if (testResult == 'SUCCESS') {
-                //         sendEmail('SUCCESS')
-                //     } else if (testResult == 'FAILURE') {
-                //         sendEmail('FAILURE')
-                //     } else {
-                //         echo "Unkwon output: $testResult"
-                //     }
-                // }
+                    TEST_RESULT = testResult
+                    if (testResult == 'SUCCESS') {
+                        sendEmail('SUCCESS')
+                    } else if (testResult == 'FAILURE') {
+                        sendEmail('FAILURE')
+                    } else {
+                        echo "Unkwon output: $testResult"
+                    }
+                }
             }
         }
         stage('Publish') {
             steps {
                 echo 'Starting publishing development results....'
-                //echo env.GITHUB_ACCESTOKEN.replaceAll("\\?", "")
                 
-                //def cleaned_token = credentialsID(env.GITHUB_ACCESTOKEN.replaceAll("\\?", ""))
-                //git credentialsID: cleaned_token, url: 'https://github.com/rockwell-user/ra-cicd-test-old.git'
                 script {
-                    //if (TEST_RESULT == 'SUCCESS') {
+                    if (TEST_RESULT == 'SUCCESS') {
                         def cleaned_token = env.GITHUB_ACCESTOKEN.replaceAll("\\?", "")
                         def gitUrl = "https://${env.GITHUB_USERNAME}:${cleaned_token}@github.com/${env.GITHUB_USERNAME}/${env.GITHUB_REPO_NAME}.git"
                         bat """
@@ -89,10 +87,7 @@ pipeline {
                             git config --global credential.helper wincred
                             git push origin main
                         """
-                        // git remote set-url origin ${gitUrl}
-                        //     git config --global credential.helper wincred
-                        // git push origin main
-                    //}
+                    }
                 }
                 
             }
