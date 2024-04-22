@@ -75,7 +75,7 @@ pipeline {
                         bat """
                             git checkout main
                             git branch -a
-                            git merge dev-branch
+                            git merge origin/dev-branch
                             git push origin main
                         """
                         // git push origin main
