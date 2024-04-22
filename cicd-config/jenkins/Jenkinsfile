@@ -73,7 +73,7 @@ pipeline {
         stage('Publish') {
             steps {
                 echo 'Starting publishing development results....'
-                echo env.GITHUB_ACCESTOKEN.replaceAll("\\?", "")
+                //echo env.GITHUB_ACCESTOKEN.replaceAll("\\?", "")
                 
                 //def cleaned_token = credentialsID(env.GITHUB_ACCESTOKEN.replaceAll("\\?", ""))
                 //git credentialsID: cleaned_token, url: 'https://github.com/rockwell-user/ra-cicd-test-old.git'
@@ -85,6 +85,7 @@ pipeline {
                             git checkout main
                             git branch -a
                             git merge origin/dev-branch
+                            git remote set-url origin ${gitUrl}
                             git config --global credential.helper wincred
                             git push origin main
                         """
