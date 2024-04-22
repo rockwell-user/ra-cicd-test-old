@@ -4,8 +4,9 @@ pipeline {
     environment {
         PATH_GITHUB = 'C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\'
         ACDFILENAME = 'CICD_test.ACD'
-        GITHUB_USERNAME = ''
-        GITHUB_PASSWORD = ''
+        GITHUB_USERNAME = 'rockwell-user'
+        GITHUB_PASSWORD = 'RockwellGithub!'
+        GITHUB_REPO_NAME = 'ra-cicd-test-old'
         DOTNET_VERSION = '6.0'
         DOTNET_INSTALL_DIR = 'C:\\Program Files\\dotnet'
         TEST_RESULT = ''
@@ -74,11 +75,13 @@ pipeline {
 
                 script {
                     if (TEST_RESULT == 'SUCCESS') {
+                        def gitUrl = "https://${env.GITHUB_USERNAME}:${env.GITHUB_PASSWORD}@github.com/${env.GITHUB_USERNAME}/${env.GITHUB_REPO_NAME}.git"
                         bat """
                             git checkout main
                             git branch -a
                             git merge origin/dev-branch
-                            git push
+                            git remote set-url origin ${gitUrl}
+                            git push origin main
                         """
                         // git push origin main
                     }
