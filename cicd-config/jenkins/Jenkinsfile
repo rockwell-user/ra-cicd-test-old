@@ -6,7 +6,7 @@ pipeline {
         ACDFILENAME = 'CICD_test.ACD'
         GITHUB_USERNAME = 'rockwell-user'
         GITHUB_PASSWORD = 'RockwellGithub!'
-        GITHUB_ACCESTOKEN = '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'
+        GITHUB_ACCESTOKEN = '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'
         GITHUB_REPO_NAME = 'ra-cicd-test-old'
         DOTNET_VERSION = '6.0'
         DOTNET_INSTALL_DIR = 'C:\\Program Files\\dotnet'
@@ -82,6 +82,7 @@ pipeline {
                             git branch -a
                             git merge origin/dev-branch
                             git remote set-url origin ${gitUrl}
+                            git config --global credential.helper wincred
                             git push origin main
                         """
                         // git push origin main
