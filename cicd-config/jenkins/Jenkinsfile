@@ -6,7 +6,7 @@ pipeline {
         ACDFILENAME = 'CICD_test.ACD'
         GITHUB_USERNAME = 'rockwell-user'
         GITHUB_PASSWORD = 'RockwellGithub!'
-        GITHUB_ACCESTOKEN = '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'
+        GITHUB_ACCESTOKEN = credential('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')
         GITHUB_REPO_NAME = 'ra-cicd-test-old'
         DOTNET_VERSION = '6.0'
         DOTNET_INSTALL_DIR = 'C:\\Program Files\\dotnet'
@@ -53,40 +53,40 @@ pipeline {
         stage('Test') {
             steps {
                 echo 'Starting Test....'
-
-                script {
-                    testResult = bat(script: "@%PATH_GITHUB%cicd-config\\stage-test\\stage-test-configuration\\LogixSDKDemoApp\\bin\\Debug\\net6.0\\TestStage_CICDExample.exe %PATH_GITHUB% %ACDFILENAME%", returnStdout: true).trim()
-                    echo testResult
-                    displayContentsOfMostRecentTextFile("${env.PATH_GITHUB}cicd-config\\stage-test\\test-reports")
+                // script {
+                //     testResult = bat(script: "@%PATH_GITHUB%cicd-config\\stage-test\\stage-test-configuration\\LogixSDKDemoApp\\bin\\Debug\\net6.0\\TestStage_CICDExample.exe %PATH_GITHUB% %ACDFILENAME%", returnStdout: true).trim()
+                //     echo testResult
+                //     displayContentsOfMostRecentTextFile("${env.PATH_GITHUB}cicd-config\\stage-test\\test-reports")
                     
-                    TEST_RESULT = testResult
-                    if (testResult == 'SUCCESS') {
-                        sendEmail('SUCCESS')
-                    } else if (testResult == 'FAILURE') {
-                        sendEmail('FAILURE')
-                    } else {
-                        echo "Unkwon output: $testResult"
-                    }
-                }
+                //     TEST_RESULT = testResult
+                //     if (testResult == 'SUCCESS') {
+                //         sendEmail('SUCCESS')
+                //     } else if (testResult == 'FAILURE') {
+                //         sendEmail('FAILURE')
+                //     } else {
+                //         echo "Unkwon output: $testResult"
+                //     }
+                // }
             }
         }
         stage('Publish') {
             steps {
                 echo 'Starting publishing development results....'
-
+                git credentialsID: env.GITHUB_ACCESTOKEN, url: 'https://github.com/rockwell-user/ra-cicd-test-old.git'
                 script {
-                    if (TEST_RESULT == 'SUCCESS') {
-                        def gitUrl = "https://${env.GITHUB_ACCESTOKEN}@github.com/${env.GITHUB_USERNAME}/${env.GITHUB_REPO_NAME}.git"
+                    //if (TEST_RESULT == 'SUCCESS') {
+                        //def gitUrl = "https://${env.GITHUB_ACCESTOKEN}@github.com/${env.GITHUB_USERNAME}/${env.GITHUB_REPO_NAME}.git"
                         bat """
                             git checkout main
                             git branch -a
                             git merge origin/dev-branch
-                            git remote set-url origin ${gitUrl}
-                            git config --global credential.helper wincred
+                            
                             git push origin main
                         """
+                        // git remote set-url origin ${gitUrl}
+                        //     git config --global credential.helper wincred
                         // git push origin main
-                    }
+                    //}
                 }
                 
             }
