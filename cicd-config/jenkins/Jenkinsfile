@@ -85,7 +85,7 @@ pipeline {
                             git checkout main
                             git branch -a
                             git merge origin/dev-branch
-                            
+                            git config --global credential.helper wincred
                             git push origin main
                         """
                         // git remote set-url origin ${gitUrl}
