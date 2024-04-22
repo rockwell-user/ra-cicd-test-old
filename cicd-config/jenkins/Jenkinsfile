@@ -74,11 +74,12 @@ pipeline {
             steps {
                 echo 'Starting publishing development results....'
                 echo env.GITHUB_ACCESTOKEN.replaceAll("\\?", "")
+                def cleaned_token = env.GITHUB_ACCESTOKEN.replaceAll("\\?", "")
                 //def cleaned_token = credentialsID(env.GITHUB_ACCESTOKEN.replaceAll("\\?", ""))
                 //git credentialsID: cleaned_token, url: 'https://github.com/rockwell-user/ra-cicd-test-old.git'
                 script {
                     //if (TEST_RESULT == 'SUCCESS') {
-                        //def gitUrl = "https://${env.GITHUB_ACCESTOKEN}@github.com/${env.GITHUB_USERNAME}/${env.GITHUB_REPO_NAME}.git"
+                        def gitUrl = "https://${cleaned_token}@github.com/${env.GITHUB_USERNAME}/${env.GITHUB_REPO_NAME}.git"
                         bat """
                             git checkout main
                             git branch -a
