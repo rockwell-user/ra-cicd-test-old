@@ -2,8 +2,10 @@ pipeline {
     agent any
     
     environment {
-        path_GitHub = 'C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\'
-        acdFileName = 'CICD_test.ACD'
+        PATH_GITHUB = 'C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\'
+        ACDFILENAME = 'CICD_test.ACD'
+        GITHUB_USERNAME = ''
+        GITHUB_PASSWORD = ''
         DOTNET_VERSION = '6.0'
         DOTNET_INSTALL_DIR = 'C:\\Program Files\\dotnet'
         TEST_RESULT = ''
@@ -40,7 +42,7 @@ pipeline {
                 echo 'Starting Build....'
 
                 bat """
-                    cd %path_GitHub%cicd-config\\stage-test\\stage-test-configuration\\LogixSDKDemoApp
+                    cd %PATH_GITHUB%cicd-config\\stage-test\\stage-test-configuration\\LogixSDKDemoApp
                     dotnet build
                 """
                 
@@ -51,9 +53,9 @@ pipeline {
                 echo 'Starting Test....'
 
                 script {
-                    testResult = bat(script: "@%path_GitHub%cicd-config\\stage-test\\stage-test-configuration\\LogixSDKDemoApp\\bin\\Debug\\net6.0\\TestStage_CICDExample.exe %path_GitHub% %acdFileName%", returnStdout: true).trim()
+                    testResult = bat(script: "@%PATH_GITHUB%cicd-config\\stage-test\\stage-test-configuration\\LogixSDKDemoApp\\bin\\Debug\\net6.0\\TestStage_CICDExample.exe %PATH_GITHUB% %ACDFILENAME%", returnStdout: true).trim()
                     echo testResult
-                    displayContentsOfMostRecentTextFile("${env.path_GitHub}cicd-config\\stage-test\\test-reports")
+                    displayContentsOfMostRecentTextFile("${env.PATH_GITHUB}cicd-config\\stage-test\\test-reports")
                     
                     TEST_RESULT = testResult
                     if (testResult == 'SUCCESS') {
@@ -76,7 +78,7 @@ pipeline {
                             git checkout main
                             git branch -a
                             git merge origin/dev-branch
-                            git push origin main
+                            git push
                         """
                         // git push origin main
                     }
