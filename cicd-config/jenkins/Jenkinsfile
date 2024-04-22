@@ -5,7 +5,7 @@ pipeline {
         PATH_GITHUB = 'C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\'
         ACDFILENAME = 'CICD_test.ACD'
         GITHUB_USERNAME = 'rockwell-user'
-        GITHUB_PASSWORD = 'RockwellGithub!'
+        GITHUB_ACCESTOKEN = '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'
         GITHUB_REPO_NAME = 'ra-cicd-test-old'
         DOTNET_VERSION = '6.0'
         DOTNET_INSTALL_DIR = 'C:\\Program Files\\dotnet'
@@ -75,7 +75,7 @@ pipeline {
 
                 script {
                     if (TEST_RESULT == 'SUCCESS') {
-                        def gitUrl = "https://${env.GITHUB_USERNAME}:${env.GITHUB_PASSWORD}@github.com/${env.GITHUB_USERNAME}/${env.GITHUB_REPO_NAME}.git"
+                        def gitUrl = "https://${env.GITHUB_ACCESTOKEN}@github.com/${env.GITHUB_USERNAME}/${env.GITHUB_REPO_NAME}.git"
                         bat """
                             git checkout main
                             git branch -a
