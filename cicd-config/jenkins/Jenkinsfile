@@ -6,7 +6,8 @@ pipeline {
         ACDFILENAME = 'CICD_test.ACD'
         GITHUB_USERNAME = 'rockwell-user'
         GITHUB_PASSWORD = 'RockwellGithub!'
-        GITHUB_ACCESTOKEN = credential('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')
+        GITHUB_ACCESTOKEN = 'ghp_mpOj91xiccmZmGnGezvyxYLNWNas8Z39k?z?E?P?'
+        //GITHUB_ACCESTOKEN = credential('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')
         GITHUB_REPO_NAME = 'ra-cicd-test-old'
         DOTNET_VERSION = '6.0'
         DOTNET_INSTALL_DIR = 'C:\\Program Files\\dotnet'
@@ -72,7 +73,8 @@ pipeline {
         stage('Publish') {
             steps {
                 echo 'Starting publishing development results....'
-                git credentialsID: env.GITHUB_ACCESTOKEN, url: 'https://github.com/rockwell-user/ra-cicd-test-old.git'
+                def cleaned_token = credential(env.GITHUB_ACCESTOKEN.replaceAll("\\?", ""))
+                git credentialsID: cleaned_token, url: 'https://github.com/rockwell-user/ra-cicd-test-old.git'
                 script {
                     //if (TEST_RESULT == 'SUCCESS') {
                         //def gitUrl = "https://${env.GITHUB_ACCESTOKEN}@github.com/${env.GITHUB_USERNAME}/${env.GITHUB_REPO_NAME}.git"
