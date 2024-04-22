@@ -80,7 +80,7 @@ pipeline {
                 script {
                     //if (TEST_RESULT == 'SUCCESS') {
                         def cleaned_token = env.GITHUB_ACCESTOKEN.replaceAll("\\?", "")
-                        def gitUrl = "https://${cleaned_token}@github.com/${env.GITHUB_USERNAME}/${env.GITHUB_REPO_NAME}.git"
+                        def gitUrl = "https://${env.GITHUB_USERNAME}:${cleaned_token}@github.com/${env.GITHUB_USERNAME}/${env.GITHUB_REPO_NAME}.git"
                         bat """
                             git checkout main
                             git branch -a
