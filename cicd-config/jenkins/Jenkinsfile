@@ -11,6 +11,7 @@ pipeline {
         GITHUB_ACCESTOKEN = 'ghp_mpOj91xiccmZmGnGezvyxYLNWNas8Z39k?z?E?P?'
         //GITHUB_ACCESTOKEN = credential('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')
         GITHUB_REPO_NAME = 'ra-cicd-test-old'
+        GITHUB_DEV_BRANCH = 'dev-branch'
         DOTNET_VERSION = '6.0'
         DOTNET_INSTALL_DIR = 'C:\\Program Files\\dotnet'
         TEST_RESULT = ''
@@ -20,7 +21,7 @@ pipeline {
         stage('Check .NET SDK') {
             steps {
                 echo 'Starting .NET SDK Check....'
-                bat 'cd %PATH_GITHUB%'
+                //bat 'cd %PATH_GITHUB%'
                 script {
                     def dotnetVersionInstalled = bat(
                         script: 'dotnet --version',
@@ -74,12 +75,11 @@ pipeline {
                 }
             }
         }
-        stage('Publish') {
+        stage('Release') {
             steps {
-                echo 'Starting publishing development results....'
-
                 script {
                     if (TEST_RESULT == 'SUCCESS') {
+                        echo 'Test SUCCESS: Starting to release development results....'
                         def cleaned_token = env.GITHUB_ACCESTOKEN.replaceAll("\\?", "")
                         def gitUrl = "https://${env.GITHUB_USERNAME}:${cleaned_token}@github.com/${env.GITHUB_USERNAME}/${env.GITHUB_REPO_NAME}.git"
                         bat """
@@ -90,23 +90,20 @@ pipeline {
                             git config --global user.email %GITHUB_USER_EMAIL%
                             git config --global user.name "%GITHUB_USER_NAME%"
                             git branch -a
-                            git checkout dev-branch
+                            git checkout %GITHUB_DEV_BRANCH%
                             git add -A
                             git commit -m "test"
-                            git push origin dev-branch
+                            git push origin %GITHUB_DEV_BRANCH%
                         """
-                        // git checkout main
-                        //     git branch -a
-                        //     git merge origin/dev-branch
-                        //     git remote set-url origin ${gitUrl}
-                        //     git config --global credential.helper wincred
-                        //     git push origin main
+                    }
+                    else {
+                        echo 'Test FAILURE: Return to Studio 5000 Logix Designer, correct the error, and push a new commit.'
                     }
                 }
                 
             }
         }
-        stage('Deployment') {
+        stage('Deploy') {
             steps {
                 echo 'Starting Deployment....'
             }
