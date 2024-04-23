@@ -81,7 +81,7 @@ pipeline {
                         def gitUrl = "https://${env.GITHUB_USERNAME}:${cleaned_token}@github.com/${env.GITHUB_USERNAME}/${env.GITHUB_REPO_NAME}.git"
                         bat """
                             cd %PATH_GITHUB%
-                            git config --global --add safe.directory %PATH_GITHUB%
+                            git config --global --add safe.directory '*'
                             git branch -a
                             git checkout dev-branch
                             git remote set-url origin ${gitUrl}
