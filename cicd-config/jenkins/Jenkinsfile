@@ -20,6 +20,7 @@ pipeline {
         stage('Check .NET SDK') {
             steps {
                 echo 'Starting .NET SDK Check....'
+                bat 'cd %PATH_GITHUB%'
                 script {
                     def dotnetVersionInstalled = bat(
                         script: 'dotnet --version',
