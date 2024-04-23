@@ -82,9 +82,10 @@ pipeline {
                         bat """
                             cd %PATH_GITHUB%
                             git config --global --add safe.directory "*"
+                            git config --global core.autocrlf false
+                            git remote set-url origin ${gitUrl}
                             git branch -a
                             git checkout dev-branch
-                            git remote set-url origin ${gitUrl}
                             git add -A
                             git commit -m "test"
                             git push origin dev-branch
