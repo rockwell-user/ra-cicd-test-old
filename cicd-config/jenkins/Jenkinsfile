@@ -61,13 +61,13 @@ pipeline {
                     displayContentsOfMostRecentTextFile("${env.PATH_GITHUB}cicd-config\\stage-test\\test-reports")
                     
                     TEST_RESULT = testResult
-                    if (testResult == 'SUCCESS') {
-                        sendEmail('SUCCESS')
-                    } else if (testResult == 'FAILURE') {
-                        sendEmail('FAILURE')
-                    } else {
-                        echo "Unknown output: $testResult"
-                    }
+                    // if (testResult == 'SUCCESS') {
+                    //     sendEmail('SUCCESS')
+                    // } else if (testResult == 'FAILURE') {
+                    //     sendEmail('FAILURE')
+                    // } else {
+                    //     echo "Unknown output: $testResult"
+                    // }
                 }
             }
         }
@@ -80,9 +80,9 @@ pipeline {
                         def cleaned_token = env.GITHUB_ACCESTOKEN.replaceAll("\\?", "")
                         def gitUrl = "https://${env.GITHUB_USERNAME}:${cleaned_token}@github.com/${env.GITHUB_USERNAME}/${env.GITHUB_REPO_NAME}.git"
                         bat """
-                            git config --global --add safe.directory '*'
+                            git config --global --add safe.directory "*"
                             cd %PATH_GITHUB%
-                            git config --global --add safe.directory '*'
+                            git config --global --add safe.directory "*"
                             git branch -a
                             git checkout dev-branch
                             git remote set-url origin ${gitUrl}
