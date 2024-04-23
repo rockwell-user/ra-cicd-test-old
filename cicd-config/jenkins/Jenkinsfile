@@ -4,6 +4,8 @@ pipeline {
     environment {
         PATH_GITHUB = 'C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\'
         ACDFILENAME = 'CICD_test.ACD'
+        GITHUB_USER_EMAIL = 'andresyost2000@gmail.com'
+        GITHUB_USER_NAME = 'Andre Sandor Yost'
         GITHUB_USERNAME = 'rockwell-user'
         GITHUB_PASSWORD = 'RockwellGithub!'
         GITHUB_ACCESTOKEN = 'ghp_mpOj91xiccmZmGnGezvyxYLNWNas8Z39k?z?E?P?'
@@ -84,6 +86,8 @@ pipeline {
                             git config --global --add safe.directory "*"
                             git config --global core.autocrlf false
                             git remote set-url origin ${gitUrl}
+                            git config --global user.email %GITHUB_USER_EMAIL%
+                            git config --global user.name %GITHUB_USER_NAME%
                             git branch -a
                             git checkout dev-branch
                             git add -A
