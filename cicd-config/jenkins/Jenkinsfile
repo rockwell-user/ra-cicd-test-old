@@ -23,7 +23,7 @@ pipeline {
                         script: 'dotnet --version',
                         returnStdout: true
                     ).trim()
-                    echo "${dotnetVersionInstalled}"
+                    //echo "${dotnetVersionInstalled}"
                     if (!dotnetVersionInstalled.startsWith(DOTNET_VERSION)) {
                         echo "Installing .NET SDK $DOTNET_VERSION..."
                         // Download and install .NET SDK 6.0 using curl
@@ -66,7 +66,7 @@ pipeline {
                     } else if (testResult == 'FAILURE') {
                         sendEmail('FAILURE')
                     } else {
-                        echo "Unkwon output: $testResult"
+                        echo "Unknown output: $testResult"
                     }
                 }
             }
@@ -74,7 +74,7 @@ pipeline {
         stage('Publish') {
             steps {
                 echo 'Starting publishing development results....'
-                
+
                 script {
                     if (TEST_RESULT == 'SUCCESS') {
                         def cleaned_token = env.GITHUB_ACCESTOKEN.replaceAll("\\?", "")
@@ -100,7 +100,7 @@ pipeline {
     }
     post {
         always {
-            echo 'Cleaing up workspace...'
+            echo 'Cleaning up workspace...'
             deleteDir() /* clean up our workspace */
         }
         success {

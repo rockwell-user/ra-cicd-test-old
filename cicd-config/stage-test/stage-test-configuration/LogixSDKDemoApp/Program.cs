@@ -304,6 +304,7 @@ namespace TestStage_CICDExample
             #endregion
             #endregion
         }
+
         #region METHODS: formatting text file
         /// <summary>
         /// Modify the input string to wrap the text to the next line after a certain length. 
