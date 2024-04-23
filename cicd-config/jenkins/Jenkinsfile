@@ -80,13 +80,17 @@ pipeline {
                         def cleaned_token = env.GITHUB_ACCESTOKEN.replaceAll("\\?", "")
                         def gitUrl = "https://${env.GITHUB_USERNAME}:${cleaned_token}@github.com/${env.GITHUB_USERNAME}/${env.GITHUB_REPO_NAME}.git"
                         bat """
-                            git checkout main
                             git branch -a
-                            git merge origin/dev-branch
+                            git checkout dev-branch
                             git remote set-url origin ${gitUrl}
-                            git config --global credential.helper wincred
-                            git push origin main
+                            git push origin dev-branch
                         """
+                        // git checkout main
+                        //     git branch -a
+                        //     git merge origin/dev-branch
+                        //     git remote set-url origin ${gitUrl}
+                        //     git config --global credential.helper wincred
+                        //     git push origin main
                     }
                 }
                 
