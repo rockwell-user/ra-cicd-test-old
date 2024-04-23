@@ -85,6 +85,8 @@ pipeline {
                             git branch -a
                             git checkout dev-branch
                             git remote set-url origin ${gitUrl}
+                            git add -A
+                            git commit -m "test"
                             git push origin dev-branch
                         """
                         // git checkout main
