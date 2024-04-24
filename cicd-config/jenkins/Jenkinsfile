@@ -20,7 +20,6 @@ pipeline {
     stages {
         stage('Check .NET SDK') {
             steps {
-                echo 'Starting .NET SDK Check....'
                 createBanner('STAGE: Starting .NET SDK Check')
                 //bat 'cd %PATH_GITHUB%'
                 script {
@@ -130,7 +129,7 @@ pipeline {
 def createBanner(bannerName) {
     script {
         def finalBanner = '-=[' + bannerName + ']=-'
-        echo finalBanner.padRight(100, '-')
+        echo finalBanner.padRight(200, '-')
     }
 }
 
