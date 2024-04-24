@@ -21,6 +21,7 @@ pipeline {
         stage('Check .NET SDK') {
             steps {
                 echo 'Starting .NET SDK Check....'
+                createBanner('STAGE: Starting .NET SDK Check')
                 //bat 'cd %PATH_GITHUB%'
                 script {
                     def dotnetVersionInstalledCMD = bat(
@@ -126,6 +127,12 @@ pipeline {
     }
 }
 
+def createBanner(bannerName) {
+    script {
+        def finalBanner = '-=[' + bannerName + ']=-'
+        echo finalBanner.padRight(100, '-')
+    }
+}
 
 def sendEmail(status) {
     emailext(
