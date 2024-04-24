@@ -29,8 +29,8 @@ pipeline {
                     ).trim()
                     def dotnetVersionInstalled_values = dotnetVersionInstalledCMD.split(' ')
                     def dotnetVersionInstalled = dotnetVersionInstalled_values[2].trim()
-                    echo "${!dotnetVersionInstalled.startsWith(env.DOTNET_VERSION)}"
-                    if (!dotnetVersionInstalled.startsWith(env.DOTNET_VERSION)) {
+
+                    if (dotnetVersionInstalled.startsWith(env.DOTNET_VERSION)) {
                         echo "Installing .NET SDK $DOTNET_VERSION..."
 
                         bat label: 'Install .NET SDK %DOTNET_VERSION%',
