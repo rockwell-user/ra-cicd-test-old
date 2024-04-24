@@ -38,7 +38,8 @@ pipeline {
                     echo "${dotnetVersionInstalled.substring(0,4)}"
                     echo "${dotnetVersionInstalled.substring(0,74)}"
                     echo "${dotnetVersionInstalled.substring(0,1) == '8'}"
-                    if (!dotnetVersionInstalled.startsWith(env.DOTNET_VERSION)) {
+                    echo "${!dotnetVersionInstalled_values[2].startsWith(env.DOTNET_VERSION)}"
+                    if (!dotnetVersionInstalled_values[2].startsWith(env.DOTNET_VERSION)) {
                         echo "Installing .NET SDK $DOTNET_VERSION..."
                         // Download and install .NET SDK 6.0 using curl
                         bat label: 'Install .NET SDK 8.0',
