@@ -30,7 +30,6 @@ pipeline {
 
                     if (!dotnetVersionInstalled.startsWith(env.DOTNET_VERSION)) {
                         echo "Installing .NET SDK $DOTNET_VERSION..."
-
                         bat label: 'Install .NET SDK %DOTNET_VERSION%',
                             script: """
                                 mkdir "$DOTNET_INSTALL_DIR"
@@ -47,6 +46,7 @@ pipeline {
         stage ('Build') {
             steps {
                 createBanner('STAGE: Build')
+                echo "Starting Build..."
                 bat """
                     cd %PATH_GITHUB%cicd-config\\stage-test\\stage-test-configuration\\LogixSDKDemoApp
                     dotnet build
@@ -57,19 +57,12 @@ pipeline {
         stage('Test') {
             steps {
                 createBanner('STAGE: Test')
+                echo "Starting Test..."
                 script {
                     testResult = bat(script: "@%PATH_GITHUB%cicd-config\\stage-test\\stage-test-configuration\\LogixSDKDemoApp\\bin\\Debug\\net6.0\\TestStage_CICDExample.exe %PATH_GITHUB% %ACDFILENAME%", returnStdout: true).trim()
-                    echo testResult
+                    echo "Test result is: ${testResult}"
                     displayContentsOfMostRecentTextFile("${env.PATH_GITHUB}cicd-config\\stage-test\\test-reports")
-                    
                     TEST_RESULT = testResult
-                    // if (testResult == 'SUCCESS') {
-                    //     sendEmail('SUCCESS')
-                    // } else if (testResult == 'FAILURE') {
-                    //     sendEmail('FAILURE')
-                    // } else {
-                    //     echo "Unknown output: $testResult"
-                    // }
                 }
             }
         }
@@ -78,7 +71,7 @@ pipeline {
                 createBanner('STAGE: Release')
                 script {
                     if (TEST_RESULT == 'SUCCESS') {
-                        echo 'Test SUCCESS: Starting to release development results....'
+                        echo 'Test SUCCESS: Start releasing development results...'
                         def cleaned_token = env.GITHUB_ACCESTOKEN.replaceAll("\\?", "")
                         def gitUrl = "https://${env.GITHUB_USERNAME}:${cleaned_token}@github.com/${env.GITHUB_USERNAME}/${env.GITHUB_REPO_NAME}.git"
                         bat """
@@ -93,11 +86,12 @@ pipeline {
                             git commit -m "test"
                             git push origin %GITHUB_DEV_BRANCH%
                         """
-                        //                             git remote set-url origin ${gitUrl}
-
+                        // git remote set-url origin ${gitUrl}
+                        sendEmail('SUCCESS')
                     }
                     else {
                         echo 'Test FAILURE: Return to Studio 5000 Logix Designer, correct the error, and push a new commit.'
+                        sendEmail('FAILURE')
                     }
                 }
                 
