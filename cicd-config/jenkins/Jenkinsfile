@@ -12,7 +12,7 @@ pipeline {
         //GITHUB_ACCESTOKEN = credential('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')
         GITHUB_REPO_NAME = 'ra-cicd-test-old'
         GITHUB_DEV_BRANCH = 'dev-branch'
-        DOTNET_VERSION = '6.0'
+        DOTNET_VERSION = '8.0'
         DOTNET_INSTALL_DIR = 'C:\\Program Files\\dotnet'
         TEST_RESULT = ''
     }
@@ -31,12 +31,12 @@ pipeline {
                     if (!dotnetVersionInstalled.startsWith(DOTNET_VERSION)) {
                         echo "Installing .NET SDK $DOTNET_VERSION..."
                         // Download and install .NET SDK 6.0 using curl
-                        bat label: 'Install .NET SDK 6.0',
+                        bat label: 'Install .NET SDK 8.0',
                             script: """
                                 mkdir "$DOTNET_INSTALL_DIR"
                                 cd "$DOTNET_INSTALL_DIR"
                                 curl -o dotnet-install.ps1 -L https://dot.net/v1/dotnet-install.ps1
-                                powershell -ExecutionPolicy Bypass -File .\\dotnet-install.ps1 -Channel 6.0 -InstallDir \"$DOTNET_INSTALL_DIR\" -NoPath
+                                powershell -ExecutionPolicy Bypass -File .\\dotnet-install.ps1 -Channel 8.0 -InstallDir \"$DOTNET_INSTALL_DIR\" -NoPath
                             """
                     } else {
                         echo ".NET SDK $DOTNET_VERSION is already installed."
