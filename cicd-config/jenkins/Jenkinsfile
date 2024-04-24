@@ -23,23 +23,19 @@ pipeline {
                 echo 'Starting .NET SDK Check....'
                 //bat 'cd %PATH_GITHUB%'
                 script {
-                    def dotnetVersionInstalled = bat(
+                    def dotnetVersionInstalledCMD = bat(
                         script: 'dotnet --version',
                         returnStdout: true
                     ).trim()
-                    //echo "${dotnetVersionInstalled}"
+                    //echo "${dotnetVersionInstalledCMD}"
                     //echo "${env.DOTNET_VERSION}"
-                    def dotnetVersionInstalled_values = dotnetVersionInstalled.split(' ')
-                    echo "${dotnetVersionInstalled_values[2]}"
-                    echo "${dotnetVersionInstalled.startsWith(env.DOTNET_VERSION)}"
-                    echo "${dotnetVersionInstalled.substring(0,1)}"
-                    echo "${dotnetVersionInstalled.substring(0,2)}"
-                    echo "${dotnetVersionInstalled.substring(0,3)}"
-                    echo "${dotnetVersionInstalled.substring(0,4)}"
-                    echo "${dotnetVersionInstalled.substring(0,74)}"
-                    echo "${dotnetVersionInstalled.substring(0,1) == '8'}"
-                    echo "${!dotnetVersionInstalled_values[2].startsWith(env.DOTNET_VERSION)}"
-                    if (!dotnetVersionInstalled_values[2].startsWith(env.DOTNET_VERSION)) {
+                    def dotnetVersionInstalled_values = dotnetVersionInstalledCMD.split(' ')
+                    def dotnetVersionInstalled = dotnetVersionInstalled_values[2].trim()
+                    echo "${dotnetVersionInstalled}"
+                    echo "${dotnetVersionInstalled[0]}"
+                    echo "${dotnetVersionInstalled[0] == '8'}"
+                    echo "${!dotnetVersionInstalled.startsWith(env.DOTNET_VERSION)}"
+                    if (!dotnetVersionInstalled.startsWith(env.DOTNET_VERSION)) {
                         echo "Installing .NET SDK $DOTNET_VERSION..."
                         // Download and install .NET SDK 6.0 using curl
                         bat label: 'Install .NET SDK 8.0',
