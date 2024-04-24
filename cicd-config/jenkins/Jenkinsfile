@@ -14,6 +14,7 @@ pipeline {
         DOTNET_VERSION = '8.0'
         DOTNET_INSTALL_DIR = 'C:\\Program Files\\dotnet'
         TEST_RESULT = ''
+        UNIQUE_LABEL = "${BUILD_TAG}-${GIT_COMMIT}"
     }
 
     stages {
@@ -74,6 +75,7 @@ pipeline {
                         echo 'Test SUCCESS: Start releasing development results...'
                         def cleaned_token = env.GITHUB_ACCESTOKEN.replaceAll("\\?", "")
                         def gitUrl = "https://${env.GITHUB_USERNAME}:${cleaned_token}@github.com/${env.GITHUB_USERNAME}/${env.GITHUB_REPO_NAME}.git"
+                        echo env.UNIQUE_LABEL
                         bat """
                             cd %PATH_GITHUB%
                             git config --global --add safe.directory "*"
@@ -83,8 +85,9 @@ pipeline {
                             git branch -a
                             git checkout %GITHUB_DEV_BRANCH%
                             git add -A
-                            git commit -m "test"
+                            git commit -m "%UNIQUE_LABEL% | Commiting Results for Successful Jenkins Automated Test"
                             git push origin %GITHUB_DEV_BRANCH%
+
                         """
                         // git remote set-url origin ${gitUrl}
                         sendEmail('SUCCESS')
