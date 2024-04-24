@@ -12,7 +12,7 @@ pipeline {
         //GITHUB_ACCESTOKEN = credential('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')
         GITHUB_REPO_NAME = 'ra-cicd-test-old'
         GITHUB_DEV_BRANCH = 'dev-branch'
-        DOTNET_VERSION = '8.0'
+        DOTNET_VERSION = '8'
         DOTNET_INSTALL_DIR = 'C:\\Program Files\\dotnet'
         TEST_RESULT = ''
     }
