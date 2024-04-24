@@ -31,6 +31,9 @@ pipeline {
                     echo "${env.DOTNET_VERSION}"
                     echo "${dotnetVersionInstalled.startsWith(env.DOTNET_VERSION)}"
                     echo "${params.dotnetVersionInstalled?.substring(0,1)}"
+                    echo "${params.dotnetVersionInstalled?.substring(0,2)}"
+                    echo "${params.dotnetVersionInstalled?.substring(0,3)}"
+                    echo "${params.dotnetVersionInstalled?.substring(0,4)}"
                     echo "${params.dotnetVersionInstalled?.substring(0,1) == '8'}"
                     if (!dotnetVersionInstalled.startsWith(env.DOTNET_VERSION)) {
                         echo "Installing .NET SDK $DOTNET_VERSION..."
