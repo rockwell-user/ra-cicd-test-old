@@ -27,7 +27,8 @@ pipeline {
                         script: 'dotnet --version',
                         returnStdout: true
                     ).trim()
-                    //echo "${dotnetVersionInstalled}"
+                    echo "${dotnetVersionInstalled}"
+                    echo "${!dotnetVersionInstalled.startsWith(DOTNET_VERSION)}"
                     if (!dotnetVersionInstalled.startsWith(DOTNET_VERSION)) {
                         echo "Installing .NET SDK $DOTNET_VERSION..."
                         // Download and install .NET SDK 6.0 using curl
