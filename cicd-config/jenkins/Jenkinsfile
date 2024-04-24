@@ -27,8 +27,8 @@ pipeline {
                         script: 'dotnet --version',
                         returnStdout: true
                     ).trim()
-                    echo "${dotnetVersionInstalled}"
-                    echo "${env.DOTNET_VERSION}"
+                    //echo "${dotnetVersionInstalled}"
+                    //echo "${env.DOTNET_VERSION}"
                     echo "${dotnetVersionInstalled.startsWith(env.DOTNET_VERSION)}"
                     echo "${dotnetVersionInstalled.substring(0,1)}"
                     echo "${dotnetVersionInstalled.substring(0,2)}"
