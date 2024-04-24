@@ -9,7 +9,6 @@ pipeline {
         GITHUB_USERNAME = 'rockwell-user'
         GITHUB_PASSWORD = 'RockwellGithub!'
         GITHUB_ACCESTOKEN = 'ghp_mpOj91xiccmZmGnGezvyxYLNWNas8Z39k?z?E?P?'
-        //GITHUB_ACCESTOKEN = credential('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')
         GITHUB_REPO_NAME = 'ra-cicd-test-old'
         GITHUB_DEV_BRANCH = 'dev-branch'
         DOTNET_VERSION = '8.0'
@@ -20,8 +19,7 @@ pipeline {
     stages {
         stage('Check .NET SDK') {
             steps {
-                createBanner('STAGE: Starting .NET SDK Check')
-                //bat 'cd %PATH_GITHUB%'
+                createBanner('STAGE: Check .NET SDK')
                 script {
                     def dotnetVersionInstalledCMD = bat(
                         script: 'dotnet --version',
@@ -48,8 +46,7 @@ pipeline {
         }
         stage ('Build') {
             steps {
-                echo 'Starting Build....'
-
+                createBanner('STAGE: Build')
                 bat """
                     cd %PATH_GITHUB%cicd-config\\stage-test\\stage-test-configuration\\LogixSDKDemoApp
                     dotnet build
@@ -59,8 +56,7 @@ pipeline {
         }
         stage('Test') {
             steps {
-                echo 'Starting Test....'
-
+                createBanner('STAGE: Test')
                 script {
                     testResult = bat(script: "@%PATH_GITHUB%cicd-config\\stage-test\\stage-test-configuration\\LogixSDKDemoApp\\bin\\Debug\\net6.0\\TestStage_CICDExample.exe %PATH_GITHUB% %ACDFILENAME%", returnStdout: true).trim()
                     echo testResult
@@ -79,6 +75,7 @@ pipeline {
         }
         stage('Release') {
             steps {
+                createBanner('STAGE: Release')
                 script {
                     if (TEST_RESULT == 'SUCCESS') {
                         echo 'Test SUCCESS: Starting to release development results....'
@@ -108,7 +105,7 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                echo 'Starting Deployment....'
+                createBanner('STAGE: Deploy')
             }
         }
     }
@@ -118,10 +115,10 @@ pipeline {
             deleteDir() /* clean up our workspace */
         }
         success {
-            echo 'This CI/CD pipeline executed successfully!'
+            createBanner('CI/CD pipeline executed successfully!')
         }
         failure {
-            echo 'This CI/CD pipeline failed with errors.'
+            createBanner('CI/CD pipeline failed with errors.')
         }
     }
 }
