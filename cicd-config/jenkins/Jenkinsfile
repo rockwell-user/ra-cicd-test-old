@@ -29,6 +29,8 @@ pipeline {
                     ).trim()
                     //echo "${dotnetVersionInstalled}"
                     //echo "${env.DOTNET_VERSION}"
+                    def dotnetVersionInstalled_values = dotnetVersionInstalled.split(' ')
+                    echo "${dotnetVersionInstalled_values[2]}"
                     echo "${dotnetVersionInstalled.startsWith(env.DOTNET_VERSION)}"
                     echo "${dotnetVersionInstalled.substring(0,1)}"
                     echo "${dotnetVersionInstalled.substring(0,2)}"
