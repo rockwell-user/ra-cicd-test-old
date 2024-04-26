@@ -50,6 +50,7 @@ pipeline {
                 echo "Starting Build..."
                 bat """
                     cd %PATH_GITHUB%cicd-config\\stage-test\\stage-test-configuration\\TestStage_CICD
+                    dotnet restore
                     dotnet build
                 """
                 
