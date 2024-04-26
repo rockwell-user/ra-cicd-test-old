@@ -60,7 +60,7 @@ pipeline {
                 createBanner('STAGE: Test')
                 echo "Starting Test..."
                 script {
-                    testResult = bat(script: "@%PATH_GITHUB%cicd-config\\stage-test\\stage-test-configuration\\LogixSDKDemoApp\\bin\\Debug\\net6.0\\TestStage_CICDExample.exe %PATH_GITHUB% %ACDFILENAME%", returnStdout: true).trim()
+                    testResult = bat(script: "@%PATH_GITHUB%cicd-config\\stage-test\\stage-test-configuration\\LogixSDKDemoApp\\bin\\Debug\\net%DOTNET_VERSION%\\TestStage_CICD.exe %PATH_GITHUB% %ACDFILENAME%", returnStdout: true).trim()
                     echo "Test result is: ${testResult}"
                     displayContentsOfMostRecentTextFile("${env.PATH_GITHUB}cicd-config\\stage-test\\test-reports")
                     TEST_RESULT = testResult
