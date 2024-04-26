@@ -5,6 +5,10 @@
     {
       "AbsoluteMoniker": "D:0:0:{209BD886-8F2C-466E-BF19-DF44716F00AE}|LogixSDKDemoApp\\TestStage_CICDExample.csproj|c:\\users\\asyost\\source\\repos\\ra-cicd-test-old\\cicd-config\\stage-test\\stage-test-configuration\\logixsdkdemoapp\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{209BD886-8F2C-466E-BF19-DF44716F00AE}|LogixSDKDemoApp\\TestStage_CICDExample.csproj|solutionrelative:logixsdkdemoapp\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{209BD886-8F2C-466E-BF19-DF44716F00AE}|LogixSDKDemoApp\\TestStage_CICDExample.csproj|c:\\users\\asyost\\source\\repos\\ra-cicd-test-old\\cicd-config\\stage-test\\stage-test-configuration\\logixsdkdemoapp\\teststage_cicdexample.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{209BD886-8F2C-466E-BF19-DF44716F00AE}|LogixSDKDemoApp\\TestStage_CICDExample.csproj|solutionrelative:logixsdkdemoapp\\teststage_cicdexample.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     }
   ],
   "DocumentGroupContainers": [
@@ -14,8 +18,21 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "TestStage_CICDExample",
+              "DocumentMoniker": "C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\cicd-config\\stage-test\\stage-test-configuration\\LogixSDKDemoApp\\TestStage_CICDExample.csproj",
+              "RelativeDocumentMoniker": "LogixSDKDemoApp\\TestStage_CICDExample.csproj",
+              "ToolTip": "C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\cicd-config\\stage-test\\stage-test-configuration\\LogixSDKDemoApp\\TestStage_CICDExample.csproj",
+              "RelativeToolTip": "LogixSDKDemoApp\\TestStage_CICDExample.csproj",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2024-04-26T14:46:43.59Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
@@ -24,7 +41,7 @@
               "RelativeDocumentMoniker": "LogixSDKDemoApp\\Program.cs",
               "ToolTip": "C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\cicd-config\\stage-test\\stage-test-configuration\\LogixSDKDemoApp\\Program.cs",
               "RelativeToolTip": "LogixSDKDemoApp\\Program.cs",
-              "ViewState": "AQIAAHYDAAAAAAAAAAAAADMBAAAHAAAA",
+              "ViewState": "AQIAAA4AAAAAAAAAAAAAAB0AAAAtAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-03-26T14:01:23.564Z",
               "EditorCaption": ""

@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <LangVersion>10.0</LangVersion>
     <ImplicitUsings>disable</ImplicitUsings>
     <Nullable>enable</Nullable>
@@ -21,7 +21,7 @@
 
   <ItemGroup>
     <PackageReference Include="RockwellAutomation.FactoryTalkLogixEcho.Api.Client" Version="3.0.1130" />
-    <PackageReference Include="RockwellAutomation.LogixDesigner.CSClient" version="1.1.*" />
+    <PackageReference Include="RockwellAutomation.LogixDesigner.CSClient" Version="2.0.774" />
   </ItemGroup>
 
 </Project>

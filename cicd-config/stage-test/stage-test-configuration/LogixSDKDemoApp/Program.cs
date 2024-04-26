@@ -19,6 +19,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using static RockwellAutomation.LogixDesigner.LogixProject;
+
+//using RockwellAutomation.LogixDesigner.LogixProject;
 using DataType = RockwellAutomation.LogixDesigner.LogixProject.DataType;
 
 namespace TestStage_CICDExample
@@ -206,24 +208,24 @@ namespace TestStage_CICDExample
 
             // Set tag values.
             Console.WriteLine($"[{DateTime.Now.ToString("T")}] START setting tag values...");
-            Set_TagValue_Sync(TEST_BOOL[0], "True", TagOperationMode.Online, DataType.BOOL, filePath_ControllerScope, myProject, true);
-            Set_TagValue_Sync(TEST_SINT[0], "24", TagOperationMode.Online, DataType.SINT, filePath_ControllerScope, myProject, true);
-            Set_TagValue_Sync(TEST_INT[0], "-20500", TagOperationMode.Online, DataType.INT, filePath_ControllerScope, myProject, true);
-            Set_TagValue_Sync(TEST_DINT[0], "2000111000", TagOperationMode.Online, DataType.DINT, filePath_ControllerScope, myProject, true);
-            Set_TagValue_Sync(TEST_LINT[0], "9000111000111000111", TagOperationMode.Online, DataType.LINT, filePath_ControllerScope, myProject, true);
-            Set_TagValue_Sync(TEST_REAL[0], "-10555.888", TagOperationMode.Online, DataType.REAL, filePath_ControllerScope, myProject, true);
-            Set_TagValue_Sync(TEST_STRING[0], "1st New String!", TagOperationMode.Online, DataType.STRING, filePath_ControllerScope, myProject, true);
-            Set_TagValue_Sync(TEST_TOGGLE_WetBulbTempCalc[0], "True", TagOperationMode.Online, DataType.BOOL, filePath_MainProgram, myProject, true);
-            Set_TagValue_Sync(TEST_AOI_WetBulbTemp_isFahrenheit[0], "True", TagOperationMode.Online, DataType.BOOL, filePath_MainProgram, myProject, true);
-            Set_TagValue_Sync(TEST_AOI_WetBulbTemp_RelativeHumidity[0], "30", TagOperationMode.Online, DataType.REAL, filePath_MainProgram, myProject, true);
-            Set_TagValue_Sync(TEST_AOI_WetBulbTemp_Temperature[0], "70", TagOperationMode.Online, DataType.REAL, filePath_MainProgram, myProject, true);
-            Set_UDTAllAtomicDataTypes_Sync("10010010", DataType.BOOL, TagOperationMode.Online, myProject, true);
-            Set_UDTAllAtomicDataTypes_Sync("-24", DataType.SINT, TagOperationMode.Online, myProject, true);
-            Set_UDTAllAtomicDataTypes_Sync("20500", DataType.INT, TagOperationMode.Online, myProject, true);
-            Set_UDTAllAtomicDataTypes_Sync("-2000111000", DataType.DINT, TagOperationMode.Online, myProject, true);
-            Set_UDTAllAtomicDataTypes_Sync("-9000111000111000111", DataType.LINT, TagOperationMode.Online, myProject, true);
-            Set_UDTAllAtomicDataTypes_Sync("10555.888", DataType.REAL, TagOperationMode.Online, myProject, true);
-            Set_UDTAllAtomicDataTypes_Sync("2nd New String!", DataType.STRING, TagOperationMode.Online, myProject, true);
+            Set_TagValue_Sync(TEST_BOOL[0], "True", OperationMode.Online, DataType.BOOL, filePath_ControllerScope, myProject, true);
+            Set_TagValue_Sync(TEST_SINT[0], "24", OperationMode.Online, DataType.SINT, filePath_ControllerScope, myProject, true);
+            Set_TagValue_Sync(TEST_INT[0], "-20500", OperationMode.Online, DataType.INT, filePath_ControllerScope, myProject, true);
+            Set_TagValue_Sync(TEST_DINT[0], "2000111000", OperationMode.Online, DataType.DINT, filePath_ControllerScope, myProject, true);
+            Set_TagValue_Sync(TEST_LINT[0], "9000111000111000111", OperationMode.Online, DataType.LINT, filePath_ControllerScope, myProject, true);
+            Set_TagValue_Sync(TEST_REAL[0], "-10555.888", OperationMode.Online, DataType.REAL, filePath_ControllerScope, myProject, true);
+            Set_TagValue_Sync(TEST_STRING[0], "1st New String!", OperationMode.Online, DataType.STRING, filePath_ControllerScope, myProject, true);
+            Set_TagValue_Sync(TEST_TOGGLE_WetBulbTempCalc[0], "True", OperationMode.Online, DataType.BOOL, filePath_MainProgram, myProject, true);
+            Set_TagValue_Sync(TEST_AOI_WetBulbTemp_isFahrenheit[0], "True", OperationMode.Online, DataType.BOOL, filePath_MainProgram, myProject, true);
+            Set_TagValue_Sync(TEST_AOI_WetBulbTemp_RelativeHumidity[0], "30", OperationMode.Online, DataType.REAL, filePath_MainProgram, myProject, true);
+            Set_TagValue_Sync(TEST_AOI_WetBulbTemp_Temperature[0], "70", OperationMode.Online, DataType.REAL, filePath_MainProgram, myProject, true);
+            Set_UDTAllAtomicDataTypes_Sync("10010010", DataType.BOOL, OperationMode.Online, myProject, true);
+            Set_UDTAllAtomicDataTypes_Sync("-24", DataType.SINT, OperationMode.Online, myProject, true);
+            Set_UDTAllAtomicDataTypes_Sync("20500", DataType.INT, OperationMode.Online, myProject, true);
+            Set_UDTAllAtomicDataTypes_Sync("-2000111000", DataType.DINT, OperationMode.Online, myProject, true);
+            Set_UDTAllAtomicDataTypes_Sync("-9000111000111000111", DataType.LINT, OperationMode.Online, myProject, true);
+            Set_UDTAllAtomicDataTypes_Sync("10555.888", DataType.REAL, OperationMode.Online, myProject, true);
+            Set_UDTAllAtomicDataTypes_Sync("2nd New String!", DataType.STRING, OperationMode.Online, myProject, true);
             Console.WriteLine($"[{DateTime.Now.ToString("T")}] DONE setting tag values\n---");
 
             // Verify expected tag values based on the tag values that had been set.
@@ -632,52 +634,52 @@ namespace TestStage_CICDExample
             {
                 if (type == DataType.BOOL)
                 {
-                    var tagValue_online = await project.GetTagValueBOOLAsync(tagPath, TagOperationMode.Online);
+                    var tagValue_online = await project.GetTagValueBOOLAsync(tagPath, OperationMode.Online);
                     return_array[1] = $"{tagValue_online}";
-                    var tagValue_offline = await project.GetTagValueBOOLAsync(tagPath, TagOperationMode.Offline);
+                    var tagValue_offline = await project.GetTagValueBOOLAsync(tagPath, OperationMode.Offline);
                     return_array[2] = $"{tagValue_offline}";
 
                 }
                 else if (type == DataType.SINT)
                 {
-                    var tagValue_online = await project.GetTagValueSINTAsync(tagPath, TagOperationMode.Online);
+                    var tagValue_online = await project.GetTagValueSINTAsync(tagPath, OperationMode.Online);
                     return_array[1] = $"{tagValue_online}";
-                    var tagValue_offline = await project.GetTagValueSINTAsync(tagPath, TagOperationMode.Offline);
+                    var tagValue_offline = await project.GetTagValueSINTAsync(tagPath, OperationMode.Offline);
                     return_array[2] = $"{tagValue_offline}";
                 }
                 else if (type == DataType.INT)
                 {
-                    var tagValue_online = await project.GetTagValueINTAsync(tagPath, TagOperationMode.Online);
+                    var tagValue_online = await project.GetTagValueINTAsync(tagPath, OperationMode.Online);
                     return_array[1] = $"{tagValue_online}";
-                    var tagValue_offline = await project.GetTagValueINTAsync(tagPath, TagOperationMode.Offline);
+                    var tagValue_offline = await project.GetTagValueINTAsync(tagPath, OperationMode.Offline);
                     return_array[2] = $"{tagValue_offline}";
                 }
                 else if (type == DataType.DINT)
                 {
-                    var tagValue_online = await project.GetTagValueDINTAsync(tagPath, TagOperationMode.Online);
+                    var tagValue_online = await project.GetTagValueDINTAsync(tagPath, OperationMode.Online);
                     return_array[1] = $"{tagValue_online}";
-                    var tagValue_offline = await project.GetTagValueDINTAsync(tagPath, TagOperationMode.Offline);
+                    var tagValue_offline = await project.GetTagValueDINTAsync(tagPath, OperationMode.Offline);
                     return_array[2] = $"{tagValue_offline}";
                 }
                 else if (type == DataType.LINT)
                 {
-                    var tagValue_online = await project.GetTagValueLINTAsync(tagPath, TagOperationMode.Online);
+                    var tagValue_online = await project.GetTagValueLINTAsync(tagPath, OperationMode.Online);
                     return_array[1] = $"{tagValue_online}";
-                    var tagValue_offline = await project.GetTagValueLINTAsync(tagPath, TagOperationMode.Offline);
+                    var tagValue_offline = await project.GetTagValueLINTAsync(tagPath, OperationMode.Offline);
                     return_array[2] = $"{tagValue_offline}";
                 }
                 else if (type == DataType.REAL)
                 {
-                    var tagValue_online = await project.GetTagValueREALAsync(tagPath, TagOperationMode.Online);
+                    var tagValue_online = await project.GetTagValueREALAsync(tagPath, OperationMode.Online);
                     return_array[1] = $"{tagValue_online}";
-                    var tagValue_offline = await project.GetTagValueREALAsync(tagPath, TagOperationMode.Offline);
+                    var tagValue_offline = await project.GetTagValueREALAsync(tagPath, OperationMode.Offline);
                     return_array[2] = $"{tagValue_offline}";
                 }
                 else if (type == DataType.STRING)
                 {
-                    var tagValue_online = await project.GetTagValueSTRINGAsync(tagPath, TagOperationMode.Online);
+                    var tagValue_online = await project.GetTagValueSTRINGAsync(tagPath, OperationMode.Online);
                     return_array[1] = (tagValue_online == "") ? "<empty_string>" : $"{tagValue_online}";
-                    var tagValue_offline = await project.GetTagValueSTRINGAsync(tagPath, TagOperationMode.Offline);
+                    var tagValue_offline = await project.GetTagValueSTRINGAsync(tagPath, OperationMode.Offline);
                     return_array[2] = (tagValue_offline == "") ? "<empty_string>" : $"{tagValue_offline}";
                 }
                 else
@@ -740,50 +742,50 @@ namespace TestStage_CICDExample
         /// <param name="project">An instance of the LogixProject class.</param>
         /// <param name="printout">A boolean that, if True, prints the online and offline values to the console.</param>
         /// <returns>A Task that will set the online or offline value of a basic data type tag.</returns>
-        private static async Task Set_TagValue_Async(string tagName, string newTagValue, TagOperationMode mode, DataType type, string tagPath, LogixProject project, bool printout)
+        private static async Task Set_TagValue_Async(string tagName, string newTagValue, OperationMode mode, DataType type, string tagPath, LogixProject project, bool printout)
         {
             tagPath = tagPath + $"[@Name='{tagName}']";
             string[] old_tag_values = Get_TagValue_Sync(tagName, type, tagPath, project, false);
             string old_tag_value = "";
             try
             {
-                if (mode == TagOperationMode.Online)
+                if (mode == OperationMode.Online)
                 {
 
                     if (type == DataType.BOOL)
-                        await project.SetTagValueBOOLAsync(tagPath, TagOperationMode.Online, bool.Parse(newTagValue));
+                        await project.SetTagValueBOOLAsync(tagPath, OperationMode.Online, bool.Parse(newTagValue));
                     else if (type == DataType.SINT)
-                        await project.SetTagValueSINTAsync(tagPath, TagOperationMode.Online, sbyte.Parse(newTagValue));
+                        await project.SetTagValueSINTAsync(tagPath, OperationMode.Online, sbyte.Parse(newTagValue));
                     else if (type == DataType.INT)
-                        await project.SetTagValueINTAsync(tagPath, TagOperationMode.Online, short.Parse(newTagValue));
+                        await project.SetTagValueINTAsync(tagPath, OperationMode.Online, short.Parse(newTagValue));
                     else if (type == DataType.DINT)
-                        await project.SetTagValueDINTAsync(tagPath, TagOperationMode.Online, int.Parse(newTagValue));
+                        await project.SetTagValueDINTAsync(tagPath, OperationMode.Online, int.Parse(newTagValue));
                     else if (type == DataType.LINT)
-                        await project.SetTagValueLINTAsync(tagPath, TagOperationMode.Online, long.Parse(newTagValue));
+                        await project.SetTagValueLINTAsync(tagPath, OperationMode.Online, long.Parse(newTagValue));
                     else if (type == DataType.REAL)
-                        await project.SetTagValueREALAsync(tagPath, TagOperationMode.Online, float.Parse(newTagValue));
+                        await project.SetTagValueREALAsync(tagPath, OperationMode.Online, float.Parse(newTagValue));
                     else if (type == DataType.STRING)
-                        await project.SetTagValueSTRINGAsync(tagPath, TagOperationMode.Online, newTagValue);
+                        await project.SetTagValueSTRINGAsync(tagPath, OperationMode.Online, newTagValue);
                     else
                         Console.WriteLine($"ERROR executing command: The data type cannot be handled. Select either DINT, BOOL, or REAL.");
                     old_tag_value = old_tag_values[1];
                 }
-                else if (mode == TagOperationMode.Offline)
+                else if (mode == OperationMode.Offline)
                 {
                     if (type == DataType.BOOL)
-                        await project.SetTagValueBOOLAsync(tagPath, TagOperationMode.Offline, bool.Parse(newTagValue));
+                        await project.SetTagValueBOOLAsync(tagPath, OperationMode.Offline, bool.Parse(newTagValue));
                     else if (type == DataType.SINT)
-                        await project.SetTagValueSINTAsync(tagPath, TagOperationMode.Offline, sbyte.Parse(newTagValue));
+                        await project.SetTagValueSINTAsync(tagPath, OperationMode.Offline, sbyte.Parse(newTagValue));
                     else if (type == DataType.INT)
-                        await project.SetTagValueINTAsync(tagPath, TagOperationMode.Offline, short.Parse(newTagValue));
+                        await project.SetTagValueINTAsync(tagPath, OperationMode.Offline, short.Parse(newTagValue));
                     else if (type == DataType.DINT)
-                        await project.SetTagValueDINTAsync(tagPath, TagOperationMode.Offline, int.Parse(newTagValue));
+                        await project.SetTagValueDINTAsync(tagPath, OperationMode.Offline, int.Parse(newTagValue));
                     else if (type == DataType.LINT)
-                        await project.SetTagValueLINTAsync(tagPath, TagOperationMode.Offline, long.Parse(newTagValue));
+                        await project.SetTagValueLINTAsync(tagPath, OperationMode.Offline, long.Parse(newTagValue));
                     else if (type == DataType.REAL)
-                        await project.SetTagValueREALAsync(tagPath, TagOperationMode.Offline, float.Parse(newTagValue));
+                        await project.SetTagValueREALAsync(tagPath, OperationMode.Offline, float.Parse(newTagValue));
                     else if (type == DataType.STRING)
-                        await project.SetTagValueSTRINGAsync(tagPath, TagOperationMode.Offline, newTagValue);
+                        await project.SetTagValueSTRINGAsync(tagPath, OperationMode.Offline, newTagValue);
                     else
                         Console.WriteLine($"ERROR executing command: The data type cannot be handled. Select either DINT, BOOL, or REAL.");
                     old_tag_value = old_tag_values[2];
@@ -829,7 +831,7 @@ namespace TestStage_CICDExample
         /// </param>
         /// <param name="project">An instance of the LogixProject class.</param>
         /// <param name="printout">A boolean that, if True, prints the online and offline values to the console.</param>
-        private static void Set_TagValue_Sync(string tagName, string newTagValue, TagOperationMode mode, DataType type, string tagPath, LogixProject project, bool printout)
+        private static void Set_TagValue_Sync(string tagName, string newTagValue, OperationMode mode, DataType type, string tagPath, LogixProject project, bool printout)
         {
             var task = Set_TagValue_Async(tagName, newTagValue, mode, type, tagPath, project, printout);
             task.Wait();
@@ -853,8 +855,8 @@ namespace TestStage_CICDExample
         {
             tagPath = tagPath + $"[@Name='UDT_AllAtomicDataTypes']";
             ByteString[] returnByteStringArray = new ByteString[2];
-            returnByteStringArray[0] = await project.GetTagValueAsync(tagPath, TagOperationMode.Online, DataType.BYTE_ARRAY);
-            returnByteStringArray[1] = await project.GetTagValueAsync(tagPath, TagOperationMode.Offline, DataType.BYTE_ARRAY);
+            returnByteStringArray[0] = await project.GetTagValueAsync(tagPath, OperationMode.Online, DataType.BYTE_ARRAY);
+            returnByteStringArray[1] = await project.GetTagValueAsync(tagPath, OperationMode.Offline, DataType.BYTE_ARRAY);
             return returnByteStringArray;
         }
 
@@ -888,7 +890,7 @@ namespace TestStage_CICDExample
         /// <param name="project">An instance of the LogixProject class.</param>
         /// <param name="printout">A boolean that, if True, prints the "before" and "after" values of the UDT_AllAtomicDataTypes tag member to the console.</param>
         /// <returns>A Task that will set the online or offline value of the specified UDT_AllAtomicDataTypes tag member.</returns>
-        private static async Task Set_UDTAllAtomicDataTypes_Async(string newTagValue, DataType type, TagOperationMode mode, LogixProject project, bool printout)
+        private static async Task Set_UDTAllAtomicDataTypes_Async(string newTagValue, DataType type, OperationMode mode, LogixProject project, bool printout)
         {
             string tagPath = $"Controller/Tags/Tag[@Name='UDT_AllAtomicDataTypes']";
             ByteString[] old_byteString = Get_UDTAllAtomicDataTypes_Sync(tagPath, project);
@@ -897,9 +899,9 @@ namespace TestStage_CICDExample
             int on_off = 0;
             byte[] new_byteArray = new byte[new_byteString[1].Length];
 
-            if (mode == TagOperationMode.Online)
+            if (mode == OperationMode.Online)
                 new_byteArray = new_byteString[0].ToByteArray();
-            else if (mode == TagOperationMode.Offline)
+            else if (mode == OperationMode.Offline)
                 new_byteArray = new_byteString[1].ToByteArray();
 
             if (type == DataType.BOOL)
@@ -947,13 +949,13 @@ namespace TestStage_CICDExample
                     new_byteArray[i + 24] = (byte)newTagValue[i];
             }
 
-            if (mode == TagOperationMode.Online)
+            if (mode == OperationMode.Online)
             {
                 new_byteString[0] = ByteString.CopyFrom(new_byteArray);
                 new_byteString[1] = old_byteString[1];
                 on_off = 1;
             }
-            else if (mode == TagOperationMode.Offline)
+            else if (mode == OperationMode.Offline)
             {
                 new_byteString[0] = old_byteString[0];
                 new_byteString[1] = ByteString.CopyFrom(new_byteArray);
@@ -980,7 +982,7 @@ namespace TestStage_CICDExample
         /// <param name="mode">This specifies whether the 'Online' or 'Offline' value of the UDT_AllAtomicDataTypes tag member is the one to set.</param>
         /// <param name="project">An instance of the LogixProject class.</param>
         /// <param name="printout">A boolean that, if True, prints the "before" and "after" values of the UDT_AllAtomicDataTypes tag member to the console.</param>
-        private static void Set_UDTAllAtomicDataTypes_Sync(string newTagValue, DataType type, TagOperationMode mode, LogixProject project, bool printout)
+        private static void Set_UDTAllAtomicDataTypes_Sync(string newTagValue, DataType type, OperationMode mode, LogixProject project, bool printout)
         {
             var task = Set_UDTAllAtomicDataTypes_Async(newTagValue, type, mode, project, printout);
             task.Wait();

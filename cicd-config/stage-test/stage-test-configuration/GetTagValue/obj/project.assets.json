@@ -2,6 +2,18 @@
   "version": 3,
   "targets": {
     "net6.0": {
+      "RockwellAutomation.LogixDesigner.TestStage_CICDExample-Debug/1.1.0": {
+        "type": "project",
+        "framework": "Unsupported,Version=v0.0",
+        "compile": {
+          "bin/placeholder/RockwellAutomation.LogixDesigner.TestStage_CICDExample-Debug.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/RockwellAutomation.LogixDesigner.TestStage_CICDExample-Debug.dll": {}
+        }
+      }
+    },
+    "net8.0": {
       "Google.Protobuf/3.24.3": {
         "type": "package",
         "compile": {
@@ -80,12 +92,12 @@
           "Microsoft.Extensions.Logging.Abstractions": "6.0.0"
         },
         "compile": {
-          "lib/net6.0/Grpc.Net.Client.dll": {
+          "lib/net8.0/Grpc.Net.Client.dll": {
             "related": ".pdb;.xml"
           }
         },
         "runtime": {
-          "lib/net6.0/Grpc.Net.Client.dll": {
+          "lib/net8.0/Grpc.Net.Client.dll": {
             "related": ".pdb;.xml"
           }
         }
@@ -96,12 +108,12 @@
           "Grpc.Core.Api": "2.57.0"
         },
         "compile": {
-          "lib/net6.0/Grpc.Net.Common.dll": {
+          "lib/net8.0/Grpc.Net.Common.dll": {
             "related": ".pdb;.xml"
           }
         },
         "runtime": {
-          "lib/net6.0/Grpc.Net.Common.dll": {
+          "lib/net8.0/Grpc.Net.Common.dll": {
             "related": ".pdb;.xml"
           }
         }
@@ -301,10 +313,10 @@
       },
       "RockwellAutomation.LogixDesigner.TestStage_CICDExample-Debug/1.1.0": {
         "type": "project",
-        "framework": ".NETCoreApp,Version=v6.0",
+        "framework": ".NETCoreApp,Version=v8.0",
         "dependencies": {
           "RockwellAutomation.FactoryTalkLogixEcho.Api.Client": "3.0.1130",
-          "RockwellAutomation.LogixDesigner.CSClient": "1.1.0"
+          "RockwellAutomation.LogixDesigner.CSClient": "2.0.774"
         },
         "compile": {
           "bin/placeholder/RockwellAutomation.LogixDesigner.TestStage_CICDExample-Debug.dll": {}
@@ -775,6 +787,9 @@
   },
   "projectFileDependencyGroups": {
     "net6.0": [
+      "RockwellAutomation.LogixDesigner.TestStage_CICDExample-Debug >= 1.1.0"
+    ],
+    "net8.0": [
       "RockwellAutomation.LogixDesigner.CSClient >= 1.1.*",
       "RockwellAutomation.LogixDesigner.TestStage_CICDExample-Debug >= 1.1.0"
     ]
@@ -791,23 +806,34 @@
       "packagesPath": "C:\\Users\\ASYost\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\cicd-config\\stage-test\\stage-test-configuration\\GetTagValue\\obj\\",
       "projectStyle": "PackageReference",
+      "crossTargeting": true,
       "configFilePaths": [
         "C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\cicd-config\\stage-test\\stage-test-configuration\\NuGet.Config",
         "C:\\Users\\ASYost\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
-        "net6.0"
+        "net6.0",
+        "net8.0"
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "C:\\Users\\ASYost\\Desktop\\GitHub-Repositories\\ra-cicd-test\\cicd-config\\NUPKG_Files": {},
+        "C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\cicd-config\\NUPKG_files": {},
         "C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\cicd-config\\stage-test\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
+          "projectReferences": {
+            "C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\cicd-config\\stage-test\\stage-test-configuration\\LogixSDKDemoApp\\TestStage_CICDExample.csproj": {
+              "projectPath": "C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\cicd-config\\stage-test\\stage-test-configuration\\LogixSDKDemoApp\\TestStage_CICDExample.csproj"
+            }
+          }
+        },
+        "net8.0": {
+          "targetAlias": "net8.0",
           "projectReferences": {
             "C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\cicd-config\\stage-test\\stage-test-configuration\\LogixSDKDemoApp\\TestStage_CICDExample.csproj": {
               "projectPath": "C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\cicd-config\\stage-test\\stage-test-configuration\\LogixSDKDemoApp\\TestStage_CICDExample.csproj"
@@ -829,6 +855,21 @@
     "frameworks": {
       "net6.0": {
         "targetAlias": "net6.0",
+        "imports": [
+          "net461",
+          "net462",
+          "net47",
+          "net471",
+          "net472",
+          "net48",
+          "net481"
+        ],
+        "assetTargetFallback": true,
+        "warn": true,
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204\\RuntimeIdentifierGraph.json"
+      },
+      "net8.0": {
+        "targetAlias": "net8.0",
         "dependencies": {
           "RockwellAutomation.LogixDesigner.CSClient": {
             "target": "Package",
@@ -851,8 +892,28 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204/PortableRuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "NU1605",
+      "level": "Error",
+      "message": "Warning As Error: Detected package downgrade: RockwellAutomation.LogixDesigner.CSClient from 2.0.774 to 1.1.599. Reference the package directly from the project to select a different version. \r\n GetTagValue -> RockwellAutomation.LogixDesigner.TestStage_CICDExample-Debug -> RockwellAutomation.LogixDesigner.CSClient (>= 2.0.774) \r\n GetTagValue -> RockwellAutomation.LogixDesigner.CSClient (>= 1.1.0)",
+      "libraryId": "RockwellAutomation.LogixDesigner.CSClient",
+      "targetGraphs": [
+        "net8.0"
+      ]
+    },
+    {
+      "code": "NU1201",
+      "level": "Error",
+      "message": "Project RockwellAutomation.LogixDesigner.TestStage_CICDExample-Debug is not compatible with net6.0 (.NETCoreApp,Version=v6.0). Project RockwellAutomation.LogixDesigner.TestStage_CICDExample-Debug supports: net8.0 (.NETCoreApp,Version=v8.0)",
+      "libraryId": "RockwellAutomation.LogixDesigner.TestStage_CICDExample-Debug",
+      "targetGraphs": [
+        "net6.0"
+      ]
+    }
+  ]
 }

@@ -5,12 +5,12 @@
     <RestoreTool Condition=" '$(RestoreTool)' == '' ">NuGet</RestoreTool>
     <ProjectAssetsFile Condition=" '$(ProjectAssetsFile)' == '' ">$(MSBuildThisFileDirectory)project.assets.json</ProjectAssetsFile>
     <NuGetPackageRoot Condition=" '$(NuGetPackageRoot)' == '' ">$(UserProfile)\.nuget\packages\</NuGetPackageRoot>
-    <NuGetPackageFolders Condition=" '$(NuGetPackageFolders)' == '' ">C:\Users\Jenkins\.nuget\packages\</NuGetPackageFolders>
+    <NuGetPackageFolders Condition=" '$(NuGetPackageFolders)' == '' ">C:\Users\ASYost\.nuget\packages\</NuGetPackageFolders>
     <NuGetProjectStyle Condition=" '$(NuGetProjectStyle)' == '' ">PackageReference</NuGetProjectStyle>
     <NuGetToolVersion Condition=" '$(NuGetToolVersion)' == '' ">6.9.1</NuGetToolVersion>
   </PropertyGroup>
   <ItemGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
-    <SourceRoot Include="C:\Users\Jenkins\.nuget\packages\" />
+    <SourceRoot Include="C:\Users\ASYost\.nuget\packages\" />
   </ItemGroup>
   <ItemGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
     <None Include="$(NuGetPackageRoot)rockwellautomation.factorytalklogixecho.api.client\3.0.1130\contentFiles\any\any\FtspAdapter\FactoryTalk.Security.Interop.dll" Condition="Exists('$(NuGetPackageRoot)rockwellautomation.factorytalklogixecho.api.client\3.0.1130\contentFiles\any\any\FtspAdapter\FactoryTalk.Security.Interop.dll')">
@@ -35,6 +35,6 @@
     </None>
   </ItemGroup>
   <ImportGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
-    <Import Project="$(NuGetPackageRoot)rockwellautomation.logixdesigner.csclient\1.1.599\build\RockwellAutomation.LogixDesigner.CSClient.props" Condition="Exists('$(NuGetPackageRoot)rockwellautomation.logixdesigner.csclient\1.1.599\build\RockwellAutomation.LogixDesigner.CSClient.props')" />
+    <Import Project="$(NuGetPackageRoot)rockwellautomation.logixdesigner.csclient\2.0.774\build\RockwellAutomation.LogixDesigner.CSClient.props" Condition="Exists('$(NuGetPackageRoot)rockwellautomation.logixdesigner.csclient\2.0.774\build\RockwellAutomation.LogixDesigner.CSClient.props')" />
   </ImportGroup>
 </Project>

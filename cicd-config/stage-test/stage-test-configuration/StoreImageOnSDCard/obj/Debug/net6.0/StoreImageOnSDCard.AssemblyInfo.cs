@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("StoreImageOnSDCard")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.1.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.01.0+e216514d2eed1236a7ea5a1002c021793ce841a7")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.01.0+4e064080b1f3bec5d676a06a369632455a100aa9")]
 [assembly: System.Reflection.AssemblyProductAttribute("StoreImageOnSDCard")]
 [assembly: System.Reflection.AssemblyTitleAttribute("StoreImageOnSDCard")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.1.0.0")]
