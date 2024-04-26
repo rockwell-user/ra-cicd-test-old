@@ -3,8 +3,11 @@
   "WorkspaceRootPath": "C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\cicd-config\\stage-test\\stage-test-configuration\\TestStage_CICD\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{62BAAD10-C253-4399-9924-50D23985DDDC}|TestStage_CICD.csproj|c:\\users\\asyost\\source\\repos\\ra-cicd-test-old\\cicd-config\\stage-test\\stage-test-configuration\\teststage_cicd\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{62BAAD10-C253-4399-9924-50D23985DDDC}|TestStage_CICD.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{033A4416-70C4-4688-80DD-09A821746C6C}|..\\EchoSupport\\EchoSupport.csproj|c:\\users\\asyost\\source\\repos\\ra-cicd-test-old\\cicd-config\\stage-test\\stage-test-configuration\\echosupport\\echo_program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{62BAAD10-C253-4399-9924-50D23985DDDC}|TestStage_CICD.csproj|c:\\users\\asyost\\source\\repos\\ra-cicd-test-old\\cicd-config\\stage-test\\stage-test-configuration\\teststage_cicd\\logix_program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{62BAAD10-C253-4399-9924-50D23985DDDC}|TestStage_CICD.csproj|solutionrelative:logix_program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -19,12 +22,25 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\cicd-config\\stage-test\\stage-test-configuration\\TestStage_CICD\\Program.cs",
-              "RelativeDocumentMoniker": "Program.cs",
-              "ToolTip": "C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\cicd-config\\stage-test\\stage-test-configuration\\TestStage_CICD\\Program.cs",
-              "RelativeToolTip": "Program.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Title": "Echo_Program.cs",
+              "DocumentMoniker": "C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\cicd-config\\stage-test\\stage-test-configuration\\EchoSupport\\Echo_Program.cs",
+              "RelativeDocumentMoniker": "..\\EchoSupport\\Echo_Program.cs",
+              "ToolTip": "C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\cicd-config\\stage-test\\stage-test-configuration\\EchoSupport\\Echo_Program.cs",
+              "RelativeToolTip": "..\\EchoSupport\\Echo_Program.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAAWAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-26T20:50:06.603Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Logix_Program.cs",
+              "DocumentMoniker": "C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\cicd-config\\stage-test\\stage-test-configuration\\TestStage_CICD\\Logix_Program.cs",
+              "RelativeDocumentMoniker": "Logix_Program.cs",
+              "ToolTip": "C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\cicd-config\\stage-test\\stage-test-configuration\\TestStage_CICD\\Logix_Program.cs",
+              "RelativeToolTip": "Logix_Program.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABIAAAABAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-04-26T19:28:41.363Z",
               "EditorCaption": ""
