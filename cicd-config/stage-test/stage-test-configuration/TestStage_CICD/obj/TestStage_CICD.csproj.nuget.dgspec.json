@@ -46,13 +46,13 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
-            "RockwellAutomation.FactoryTalkLogixEcho.Api.Client": {
+            "Grpc.Net.Common": {
               "target": "Package",
-              "version": "[3.0.1130, )"
+              "version": "[2.62.0, )"
             },
-            "RockwellAutomation.LogixDesigner.CSClient": {
+            "Newtonsoft.Json": {
               "target": "Package",
-              "version": "[2.0.774, )"
+              "version": "[13.0.3, )"
             }
           },
           "imports": [
