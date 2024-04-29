@@ -1,6 +1,4 @@
-C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\stage-test-configuration\TestStage_CICD\bin\Debug\net8.0\TestStage_CICD.exe
 C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\stage-test-configuration\TestStage_CICD\bin\Debug\net8.0\TestStage_CICD.deps.json
-C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\stage-test-configuration\TestStage_CICD\bin\Debug\net8.0\TestStage_CICD.runtimeconfig.json
 C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\stage-test-configuration\TestStage_CICD\bin\Debug\net8.0\TestStage_CICD.dll
 C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\stage-test-configuration\TestStage_CICD\bin\Debug\net8.0\TestStage_CICD.pdb
 C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\stage-test-configuration\TestStage_CICD\obj\Debug\net8.0\TestStage_CICD.GeneratedMSBuildEditorConfig.editorconfig
@@ -11,6 +9,10 @@ C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\stage-test-
 C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\stage-test-configuration\TestStage_CICD\obj\Debug\net8.0\TestStage_CICD.dll
 C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\stage-test-configuration\TestStage_CICD\obj\Debug\net8.0\refint\TestStage_CICD.dll
 C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\stage-test-configuration\TestStage_CICD\obj\Debug\net8.0\TestStage_CICD.pdb
-C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\stage-test-configuration\TestStage_CICD\obj\Debug\net8.0\TestStage_CICD.genruntimeconfig.cache
 C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\stage-test-configuration\TestStage_CICD\obj\Debug\net8.0\ref\TestStage_CICD.dll
 C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\stage-test-configuration\TestStage_CICD\obj\Debug\net8.0\TestStage_CICD.csproj.AssemblyReference.cache
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\stage-test-configuration\TestStage_CICD\bin\Debug\net8.0\FactoryTalk.Security.Interop.dll
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\stage-test-configuration\TestStage_CICD\bin\Debug\net8.0\FtspAdapter.exe
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\stage-test-configuration\TestStage_CICD\bin\Debug\net8.0\LogixEcho_ClassLibrary.dll
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\stage-test-configuration\TestStage_CICD\bin\Debug\net8.0\LogixEcho_ClassLibrary.pdb
+C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\stage-test-configuration\TestStage_CICD\obj\Debug\net8.0\TestStag.B1CBE3CE.Up2Date
