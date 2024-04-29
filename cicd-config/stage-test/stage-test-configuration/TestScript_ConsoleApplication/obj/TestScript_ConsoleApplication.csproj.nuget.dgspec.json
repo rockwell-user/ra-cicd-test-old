@@ -10,14 +10,14 @@
         "projectUniqueName": "C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\cicd-config\\stage-test\\stage-test-configuration\\LogixEcho_ClassLibrary\\LogixEcho_ClassLibrary.csproj",
         "projectName": "LogixEcho_ClassLibrary",
         "projectPath": "C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\cicd-config\\stage-test\\stage-test-configuration\\LogixEcho_ClassLibrary\\LogixEcho_ClassLibrary.csproj",
-        "packagesPath": "C:\\Users\\Jenkins\\.nuget\\packages\\",
+        "packagesPath": "C:\\Users\\ASYost\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\cicd-config\\stage-test\\stage-test-configuration\\LogixEcho_ClassLibrary\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Jenkins\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\ASYost\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -26,6 +26,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\cicd-config\\NUPKG_files": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -80,14 +81,14 @@
         "projectUniqueName": "C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\cicd-config\\stage-test\\stage-test-configuration\\TestScript_ConsoleApplication\\TestScript_ConsoleApplication.csproj",
         "projectName": "TestScript_ConsoleApplication",
         "projectPath": "C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\cicd-config\\stage-test\\stage-test-configuration\\TestScript_ConsoleApplication\\TestScript_ConsoleApplication.csproj",
-        "packagesPath": "C:\\Users\\Jenkins\\.nuget\\packages\\",
+        "packagesPath": "C:\\Users\\ASYost\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\cicd-config\\stage-test\\stage-test-configuration\\TestScript_ConsoleApplication\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Jenkins\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\ASYost\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -96,6 +97,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\cicd-config\\NUPKG_files": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {

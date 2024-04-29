@@ -3,10 +3,6 @@
   "WorkspaceRootPath": "C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\cicd-config\\stage-test\\stage-test-configuration\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{8610B1EC-1300-417B-A34B-91A6F002B9AB}|LogixEcho_ClassLibrary\\LogixEcho_ClassLibrary.csproj|c:\\users\\asyost\\source\\repos\\ra-cicd-test-old\\cicd-config\\stage-test\\stage-test-configuration\\logixecho_classlibrary\\logixecho_classlibrary.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|",
-      "RelativeMoniker": "D:0:0:{8610B1EC-1300-417B-A34B-91A6F002B9AB}|LogixEcho_ClassLibrary\\LogixEcho_ClassLibrary.csproj|solutionrelative:logixecho_classlibrary\\logixecho_classlibrary.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{6E080792-11E8-4DE5-B79B-77E1686B4644}|TestScript_ConsoleApplication\\TestScript_ConsoleApplication.csproj|c:\\users\\asyost\\source\\repos\\ra-cicd-test-old\\cicd-config\\stage-test\\stage-test-configuration\\testscript_consoleapplication\\logix_program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{6E080792-11E8-4DE5-B79B-77E1686B4644}|TestScript_ConsoleApplication\\TestScript_ConsoleApplication.csproj|solutionrelative:testscript_consoleapplication\\logix_program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -17,28 +13,16 @@
   ],
   "DocumentGroupContainers": [
     {
-      "Orientation": 0,
+      "Orientation": 1,
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-          "DockedWidth": 200,
+          "DockedHeight": 266,
           "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "LogixEcho_ClassLibrary",
-              "DocumentMoniker": "C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\cicd-config\\stage-test\\stage-test-configuration\\LogixEcho_ClassLibrary\\LogixEcho_ClassLibrary.csproj",
-              "RelativeDocumentMoniker": "LogixEcho_ClassLibrary\\LogixEcho_ClassLibrary.csproj",
-              "ToolTip": "C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\cicd-config\\stage-test\\stage-test-configuration\\LogixEcho_ClassLibrary\\LogixEcho_ClassLibrary.csproj",
-              "RelativeToolTip": "LogixEcho_ClassLibrary\\LogixEcho_ClassLibrary.csproj",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2024-04-29T19:15:14.223Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
               "Title": "Logix_Program.cs",
               "DocumentMoniker": "C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\cicd-config\\stage-test\\stage-test-configuration\\TestScript_ConsoleApplication\\Logix_Program.cs",
               "RelativeDocumentMoniker": "TestScript_ConsoleApplication\\Logix_Program.cs",
@@ -51,7 +35,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "Echo_Program.cs",
               "DocumentMoniker": "C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\cicd-config\\stage-test\\stage-test-configuration\\LogixEcho_ClassLibrary\\Echo_Program.cs",
               "RelativeDocumentMoniker": "LogixEcho_ClassLibrary\\Echo_Program.cs",
@@ -59,7 +43,18 @@
               "RelativeToolTip": "LogixEcho_ClassLibrary\\Echo_Program.cs",
               "ViewState": "AQIAAGcAAAAAAAAAAAAdwHsAAAASAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-29T18:04:00.674Z"
+              "WhenOpened": "2024-04-29T18:04:00.674Z",
+              "EditorCaption": ""
+            }
+          ]
+        },
+        {
+          "DockedHeight": 134,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
             }
           ]
         }

@@ -51,7 +51,7 @@ pipeline {
                 bat """
                     cd %PATH_GITHUB%cicd-config\\stage-test\\stage-test-configuration
                     dotnet clean ./TestStage_CICD.sln --configuration Release && dotnet nuget locals all --clear
-                    dotnet restore -v d
+                    dotnet restore -v diag
                     dotnet build --configuration Release
                 """
                 
