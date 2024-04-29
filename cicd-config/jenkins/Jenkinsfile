@@ -108,18 +108,18 @@ pipeline {
             }
         }
     }
-    post {
-        always {
-            echo 'Cleaning up workspace...'
-            deleteDir() /* clean up our workspace */
-        }
-        success {
-            createBanner('CI/CD pipeline executed successfully!')
-        }
-        failure {
-            createBanner('CI/CD pipeline failed with errors.')
-        }
-    }
+    // post {
+    //     always {
+    //         echo 'Cleaning up workspace...'
+    //         deleteDir() /* clean up our workspace */
+    //     }
+    //     success {
+    //         createBanner('CI/CD pipeline executed successfully!')
+    //     }
+    //     failure {
+    //         createBanner('CI/CD pipeline failed with errors.')
+    //     }
+    // }
 }
 
 def createBanner(bannerName) {
