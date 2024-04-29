@@ -49,6 +49,7 @@ pipeline {
                 createBanner('STAGE: Build')
                 echo "Starting Build..."
                 bat """
+                    whoami
                     cd %PATH_GITHUB%cicd-config\\stage-test\\stage-test-configuration
                     dotnet clean ./TestStage_CICD.sln --configuration Release && dotnet nuget locals all --clear
                     dotnet restore -v diag
