@@ -37,6 +37,7 @@ namespace LogixEcho_ClassLibrary
                 }
             }
             string[] testControllerInfo = await Get_ControllerInfo_Async("CICDtest_chassis", "CICD_test", serviceClient);
+
             string commPath = @"EmulateEthernet\" + testControllerInfo[1];
             Console.WriteLine($"SUCCESS: project communication path specified is \"{commPath}\"");
             return commPath;

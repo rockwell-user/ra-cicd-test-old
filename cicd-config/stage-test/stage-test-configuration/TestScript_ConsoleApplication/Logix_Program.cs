@@ -66,9 +66,10 @@ namespace TestStage_CICDExample
 
             // Print out relevant test information.
             CreateBanner("TEST DEPENDENCIES");
-            Console.WriteLine($"ACD file path specified:          {acdFilePath}");
-            Console.WriteLine("Common Language Runtime version:  " + typeof(string).Assembly.ImageRuntimeVersion);
-            Console.WriteLine(".NET Framework version:           " + Environment.Version);
+            Console.WriteLine("ACD file path specified: ".PadRight(40, ' ') + acdFilePath);
+            Console.WriteLine("Common Language Runtime version: ".PadRight(40, ' ') + typeof(string).Assembly.ImageRuntimeVersion);
+            Console.WriteLine("LDSDK .NET Framework version: ".PadRight(40, ' ') + "8.0");
+            Console.WriteLine("Echo SDK .NET Framework version: ".PadRight(40, ' ') + "6.0");
             #endregion
             #region STEP: Staging Test (folder cleanup -> Logix Echo emulation -> open ACD -> to program mode -> download ACD -> to run mode)
             CreateBanner("STAGING TEST");

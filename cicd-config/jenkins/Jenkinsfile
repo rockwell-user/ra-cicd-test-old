@@ -49,9 +49,9 @@ pipeline {
                 createBanner('STAGE: Build')
                 echo "Starting Build..."
                 bat """
-                    cd %PATH_GITHUB%cicd-config\\stage-test\\stage-test-configuration\\TestStage_CICD
+                    cd %PATH_GITHUB%cicd-config\\stage-test\\stage-test-configuration
                     dotnet restore
-                    dotnet build
+                    dotnet build --configuration Release
                 """
                 
             }
@@ -61,7 +61,7 @@ pipeline {
                 createBanner('STAGE: Test')
                 echo "Starting Test..."
                 script {
-                    testResult = bat(script: "@%PATH_GITHUB%cicd-config\\stage-test\\stage-test-configuration\\TestStage_CICD\\bin\\Debug\\net%DOTNET_VERSION%\\TestStage_CICD.exe %PATH_GITHUB% %ACDFILENAME%", returnStdout: true).trim()
+                    testResult = bat(script: "@%PATH_GITHUB%cicd-config\\stage-test\\stage-test-configuration\\TestScript_ConsoleApplication\\bin\\Release\\net8.0\\TestScript_ConsoleApplication.exe %PATH_GITHUB% %ACDFILENAME%", returnStdout: true).trim()
                     echo "Test result is: ${testResult}"
                     displayContentsOfMostRecentTextFile("${env.PATH_GITHUB}cicd-config\\stage-test\\test-reports")
                     TEST_RESULT = testResult
@@ -126,14 +126,6 @@ def createBanner(bannerName) {
         def finalBanner = '-=[' + bannerName + ']=-'
         echo finalBanner.padRight(200, '-')
     }
-}
-
-def sendEmail(status) {
-    emailext(
-        body: "The C# script for the CI/CD test stage was a ${status}.",
-        subject: "CI/CD Test Stage Result: ${status}",
-        to: 'andresyost2000@gmail.com'
-        )
 }
 
 def displayContentsOfMostRecentTextFile(folderPath) {
