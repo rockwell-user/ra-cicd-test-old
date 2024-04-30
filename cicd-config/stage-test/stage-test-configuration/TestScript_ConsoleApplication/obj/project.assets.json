@@ -801,7 +801,7 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\data\\jenkins_home\\workspace\\RA-CICD-Pipeline\\cicd-config\\NUPKG_files": {},
+        "C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\cicd-config\\NUPKG_files": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {

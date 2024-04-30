@@ -8,9 +8,13 @@
 //
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+using Google.Protobuf;
 using LogixEcho_ClassLibrary;
+using RockwellAutomation.LogixDesigner;
 using System.Text;
+using static RockwellAutomation.LogixDesigner.LogixProject;
 using DataType = RockwellAutomation.LogixDesigner.LogixProject.DataType;
+
 
 namespace TestStage_CICDExample
 {

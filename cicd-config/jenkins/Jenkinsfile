@@ -2,7 +2,8 @@ pipeline {
     agent any
     
     environment {
-        PATH_GITHUB = 'C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\'
+        //PATH_JENKINS_GITHUB = 'C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\'
+        PATH_JENKINS_GITHUB = 'C:\\data\\jenkins_home\\workspace\\RA-CICD-Pipeline\\'
         ACDFILENAME = 'CICD_test.ACD'
         GITHUB_USER_EMAIL = 'andresyost2000@gmail.com'
         GITHUB_USER_NAME = 'Andre Sandor Yost'
@@ -18,6 +19,12 @@ pipeline {
     }
 
     stages {
+        stage ('Clean wWrkspace') {
+            steps {
+                createBanner('STAGE: Clean Workspace')
+                cleanWs()
+            }
+        }
         stage('Check .NET SDK') {
             steps {
                 createBanner('STAGE: Check .NET SDK')
@@ -50,7 +57,7 @@ pipeline {
                 echo "Starting Build..."
                 bat """
                     whoami
-                    cd %PATH_GITHUB%cicd-config\\stage-test\\stage-test-configuration
+                    cd %PATH_JENKINS_GITHUB%cicd-config\\stage-test\\stage-test-configuration
                     dotnet clean ./TestStage_CICD.sln --configuration Release && dotnet nuget locals all --clear
                     dotnet restore -v diag
                     dotnet build --configuration Release
@@ -63,9 +70,9 @@ pipeline {
                 createBanner('STAGE: Test')
                 echo "Starting Test..."
                 script {
-                    testResult = bat(script: "@%PATH_GITHUB%cicd-config\\stage-test\\stage-test-configuration\\TestScript_ConsoleApplication\\bin\\Release\\net8.0\\TestScript_ConsoleApplication.exe %PATH_GITHUB% %ACDFILENAME%", returnStdout: true).trim()
+                    testResult = bat(script: "@%PATH_JENKINS_GITHUB%cicd-config\\stage-test\\stage-test-configuration\\TestScript_ConsoleApplication\\bin\\Release\\net8.0\\TestScript_ConsoleApplication.exe %PATH_JENKINS_GITHUB% %ACDFILENAME%", returnStdout: true).trim()
                     echo "Test result is: ${testResult}"
-                    displayContentsOfMostRecentTextFile("${env.PATH_GITHUB}cicd-config\\stage-test\\test-reports")
+                    displayContentsOfMostRecentTextFile("${env.PATH_JENKINS_GITHUB}cicd-config\\stage-test\\test-reports")
                     TEST_RESULT = testResult
                 }
             }
@@ -80,7 +87,7 @@ pipeline {
                         def gitUrl = "https://${env.GITHUB_USERNAME}:${cleaned_token}@github.com/${env.GITHUB_USERNAME}/${env.GITHUB_REPO_NAME}.git"
                         echo env.UNIQUE_LABEL
                         bat """
-                            cd %PATH_GITHUB%
+                            cd %PATH_JENKINS_GITHUB%
                             git config --global --add safe.directory "*"
                             git config --global core.autocrlf false
                             git config --global user.email %GITHUB_USER_EMAIL%
