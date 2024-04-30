@@ -50,7 +50,7 @@ pipeline {
                 createBanner('STAGE: Build')
                 echo "Starting Build..."
                 bat """
-                    cd %PATH_JENKINS_GITHUB%cicd-config\\stage-test\\stage-test-configuration
+                    cd %PATH_JENKINS_GITHUB%cicd-config\\TestStage_CICD
                     dotnet build --configuration Release
                 """
                 // dotnet clean ./TestStage_CICD.sln --configuration Release && dotnet nuget locals all --clear
@@ -61,9 +61,9 @@ pipeline {
                 createBanner('STAGE: Test')
                 echo "Starting Test..."
                 script {
-                    testResult = bat(script: "@%PATH_JENKINS_GITHUB%cicd-config\\stage-test\\stage-test-configuration\\TestScript_ConsoleApplication\\bin\\Release\\net8.0\\TestScript_ConsoleApplication.exe %PATH_JENKINS_GITHUB% %ACDFILENAME%", returnStdout: true).trim()
+                    testResult = bat(script: "@%PATH_JENKINS_GITHUB%cicd-config\\TestStage_CICD\\TestScript_ConsoleApplication\\bin\\Release\\net8.0\\TestScript_ConsoleApplication.exe %PATH_JENKINS_GITHUB% %ACDFILENAME%", returnStdout: true).trim()
                     echo "Test result is: ${testResult}"
-                    displayContentsOfMostRecentTextFile("${env.PATH_JENKINS_GITHUB}cicd-config\\stage-test\\test-reports")
+                    displayContentsOfMostRecentTextFile("${env.PATH_JENKINS_GITHUB}test-reports\\textFiles")
                     TEST_RESULT = testResult
                 }
             }
