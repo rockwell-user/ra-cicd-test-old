@@ -19,12 +19,6 @@ pipeline {
     }
 
     stages {
-        stage ('Clean wWrkspace') {
-            steps {
-                createBanner('STAGE: Clean Workspace')
-                cleanWs()
-            }
-        }
         stage('Check .NET SDK') {
             steps {
                 createBanner('STAGE: Check .NET SDK')
@@ -113,6 +107,12 @@ pipeline {
         stage('Deploy') {
             steps {
                 createBanner('STAGE: Deploy')
+            }
+        }
+        stage ('Clean Workspace') {
+            steps {
+                createBanner('STAGE: Clean Workspace')
+                cleanWs()
             }
         }
     }
