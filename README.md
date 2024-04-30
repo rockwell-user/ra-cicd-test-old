@@ -1,10 +1,5 @@
 # ra-cicd-test
-Repository for example CI/CD pipeline.
-
-## CI/CD for Logix Control Systems Application Technique
-```
-# include link here in the future
-```
+Repository for example Logix integrated CI/CD pipeline.
 
 ## Additional GitHub Help Documentation
 https://docs.github.com/en
