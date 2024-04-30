@@ -51,10 +51,9 @@ pipeline {
                 echo "Starting Build..."
                 bat """
                     cd %PATH_JENKINS_GITHUB%cicd-config\\stage-test\\stage-test-configuration
-                    dotnet clean ./TestStage_CICD.sln --configuration Release && dotnet nuget locals all --clear
                     dotnet build --configuration Release
                 """
-                
+                // dotnet clean ./TestStage_CICD.sln --configuration Release && dotnet nuget locals all --clear
             }
         }
         stage('Test') {
