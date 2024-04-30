@@ -86,8 +86,8 @@ C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\stage-test-
 C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\stage-test-configuration\TestScript_ConsoleApplication\obj\Release\net8.0\TestScript_ConsoleApplication.pdb
 C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\stage-test-configuration\TestScript_ConsoleApplication\obj\Release\net8.0\TestScript_ConsoleApplication.genruntimeconfig.cache
 C:\Users\ASYost\source\repos\ra-cicd-test-old\cicd-config\stage-test\stage-test-configuration\TestScript_ConsoleApplication\obj\Release\net8.0\ref\TestScript_ConsoleApplication.dll
-C:\data\jenkins_home\workspace\RA-CICD-Pipeline\cicd-config\stage-test\stage-test-configuration\TestScript_ConsoleApplication\bin\Release\net8.0\FactoryTalk.Security.Interop.dll
 C:\data\jenkins_home\workspace\RA-CICD-Pipeline\cicd-config\stage-test\stage-test-configuration\TestScript_ConsoleApplication\bin\Release\net8.0\FtspAdapter.exe
+C:\data\jenkins_home\workspace\RA-CICD-Pipeline\cicd-config\stage-test\stage-test-configuration\TestScript_ConsoleApplication\bin\Release\net8.0\FactoryTalk.Security.Interop.dll
 C:\data\jenkins_home\workspace\RA-CICD-Pipeline\cicd-config\stage-test\stage-test-configuration\TestScript_ConsoleApplication\bin\Release\net8.0\TestScript_ConsoleApplication.exe
 C:\data\jenkins_home\workspace\RA-CICD-Pipeline\cicd-config\stage-test\stage-test-configuration\TestScript_ConsoleApplication\bin\Release\net8.0\TestScript_ConsoleApplication.deps.json
 C:\data\jenkins_home\workspace\RA-CICD-Pipeline\cicd-config\stage-test\stage-test-configuration\TestScript_ConsoleApplication\bin\Release\net8.0\TestScript_ConsoleApplication.runtimeconfig.json
