@@ -74,6 +74,7 @@ pipeline {
                         script: "git log -1 --pretty=format:'%an'", 
                         returnStdout: true
                     ).trim()
+                    formated_name_mostRecentCommitter = "\"${name_mostRecentCommitter}\""
                     echo name_mostRecentCommitter
 
                     def email_mostRecentCommitter = powershell(
@@ -84,11 +85,14 @@ pipeline {
 
                     def executable_filePath = "${env.PATH_JENKINS_GITHUB}cicd-config\\TestStage_CICD\\TestScript_ConsoleApplication\\bin\\Release\\net8.0\\TestScript_ConsoleApplication.exe"
                     testResult = bat(
-                        script: "${executable_filePath} %PATH_JENKINS_GITHUB% %ACDFILENAME% '${name_mostRecentCommitter}' '${email_mostRecentCommitter}'", 
+                        script: "${executable_filePath} %PATH_JENKINS_GITHUB% %ACDFILENAME% ${formated_name_mostRecentCommitter} ${email_mostRecentCommitter}", 
                         returnStdout: true).trim()
-                    echo "Test result is: ${testResult}"
-                    displayContentsOfMostRecentTextFile("${env.PATH_JENKINS_GITHUB}test-reports\\textFiles")
                     TEST_RESULT = testResult
+                    echo "Test result is: \n${testResult}"
+                    
+                    if ((testResult == 'SUCCESS') || (testResult == 'FAILURE')) {
+                        displayContentsOfMostRecentTextFile("${env.PATH_JENKINS_GITHUB}test-reports\\textFiles")
+                    }
                 }
             }
         }
@@ -118,7 +122,6 @@ pipeline {
                     }
                     else {
                         echo 'Test FAILURE: Return to Studio 5000 Logix Designer, correct the error, and push a new commit.'
-                        sendEmail('FAILURE')
                     }
                 }
                 
