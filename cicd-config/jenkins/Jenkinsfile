@@ -49,11 +49,19 @@ pipeline {
             steps {
                 createBanner('STAGE: Build')
                 echo "Starting Build..."
-                bat """
-                    cd %PATH_JENKINS_GITHUB%cicd-config\\TestStage_CICD
-                    dotnet build --configuration Release
-                """
-                // dotnet clean ./TestStage_CICD.sln --configuration Release && dotnet nuget locals all --clear
+
+                script {
+                    def currentUser_NugetConfigXMLfile = 'C:\\Users\\ASYost\\AppData\\Roaming\\NuGet\\NuGet.Config'
+                    def jenkinsUser_NugetConfigXMLfile = 'C:\\Users\\Jenkins\\AppData\\Roaming\\NuGet\\NuGet.Config'
+
+                    def currentUser_NugetConfigXMLfileContents = bat(script: "type ${currentUser_NugetConfigXMLfile}", returnStdout: true).trim()
+                    bat """
+                        bat "echo ${currentUser_NugetConfigXMLfileContents} > ${jenkinsUser_NugetConfigXMLfile}"
+                        cd %PATH_JENKINS_GITHUB%cicd-config\\TestStage_CICD
+                        dotnet build --configuration Release
+                    """
+                    // dotnet clean ./TestStage_CICD.sln --configuration Release && dotnet nuget locals all --clear
+                }
             }
         }
         stage('Test') {
