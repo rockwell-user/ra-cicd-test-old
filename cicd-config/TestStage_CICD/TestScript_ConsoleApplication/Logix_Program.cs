@@ -90,6 +90,8 @@ namespace TestStage_CICDExample
             CreateBanner("TEST DEPENDENCIES");
             Console.WriteLine("Test initiated by: ".PadRight(40, ' ') + name_mostRecentCommitter);
             Console.WriteLine("Tester contact information: ".PadRight(40, ' ') + email_mostRecentCommitter);
+            Console.WriteLine("Jenkins job being executed: ".PadRight(40, ' ') + jenkinsJobName);
+            Console.WriteLine("Jenkins job build number: ".PadRight(40, ' ') + jenkinsBuildNumber);
             Console.WriteLine("ACD file path specified: ".PadRight(40, ' ') + acdFilePath);
             Console.WriteLine("Common Language Runtime version: ".PadRight(40, ' ') + typeof(string).Assembly.ImageRuntimeVersion);
             Console.WriteLine("LDSDK .NET Framework version: ".PadRight(40, ' ') + "8.0");
