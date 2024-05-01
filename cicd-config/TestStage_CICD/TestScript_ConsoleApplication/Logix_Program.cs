@@ -40,7 +40,7 @@ namespace TestStage_CICDExample
             if (args.Length != 4)
             {
                 Console.WriteLine(@"Correct Command: .\TestStage_CICDExample githubPath acdFilename name_mostRecentCommitter email_mostRecentCommitter");
-                Console.WriteLine(@"Example Format:  .\TestStage_CICDExample C:\Users\TestUser\Desktop\example-github-repo\ acd_filename.ACD 'Example Name' 'email.com'");
+                Console.WriteLine(@"Example Format:  .\TestStage_CICDExample C:\Users\TestUser\Desktop\example-github-repo\ acd_filename.ACD Example_Name email.com");
             }
             string githubPath = args[0];                                           // 1st incoming argument = GitHub folder path
             string acdFilename = args[1];                                          // 2nd incoming argument = Logix Designer ACD filename

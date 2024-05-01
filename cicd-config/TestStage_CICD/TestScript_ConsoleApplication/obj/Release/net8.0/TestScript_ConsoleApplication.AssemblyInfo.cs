@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TestScript_ConsoleApplication")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+54f3760e850f918a3511a0fa91587b71782b9e03")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+777d37286d809f561f4f433055556eb839262ac5")]
 [assembly: System.Reflection.AssemblyProductAttribute("TestScript_ConsoleApplication")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TestScript_ConsoleApplication")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
