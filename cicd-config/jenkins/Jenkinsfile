@@ -68,12 +68,12 @@ pipeline {
             steps {
                 createBanner('STAGE: Test')
                 echo "Starting Test..."
+                powershell(script: '''
+                    cd %PATH_JENKINS_GITHUB%
+                    git log -1 --pretty=format:'%an'
+                    git log -1 --pretty=format:'%ae'
+                ''')
                 script {
-                    bat """
-                        cd %PATH_JENKINS_GITHUB%
-                        git log -1 --pretty=format:'%an'
-                        git log -1 --pretty=format:'%ae'
-                    """
                     testResult = bat(script: "@%PATH_JENKINS_GITHUB%cicd-config\\TestStage_CICD\\TestScript_ConsoleApplication\\bin\\Release\\net8.0\\TestScript_ConsoleApplication.exe %PATH_JENKINS_GITHUB% %ACDFILENAME%", returnStdout: true).trim()
                     echo "Test result is: ${testResult}"
                     displayContentsOfMostRecentTextFile("${env.PATH_JENKINS_GITHUB}test-reports\\textFiles")
