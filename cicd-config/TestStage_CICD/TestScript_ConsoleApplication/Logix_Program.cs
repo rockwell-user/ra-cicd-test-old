@@ -37,16 +37,18 @@ namespace TestStage_CICDExample
         {
             // Pass the incoming executable arguments.
             #region PARSING INCOMING VARIABLES WHEN RUNNING PROJECT EXECUTABLE --------------------------------------------------------------------------------
-            if (args.Length != 2)
+            if (args.Length != 4)
             {
-                Console.WriteLine(@"Correct Command: .\TestStage_CICDExample github_RepositoryDirectory acd_filename");
-                Console.WriteLine(@"Example Format:  .\TestStage_CICDExample C:\Users\TestUser\Desktop\example-github-repo\ acd_filename.ACD");
+                Console.WriteLine(@"Correct Command: .\TestStage_CICDExample githubPath acdFilename name_mostRecentCommitter email_mostRecentCommitter");
+                Console.WriteLine(@"Example Format:  .\TestStage_CICDExample C:\Users\TestUser\Desktop\example-github-repo\ acd_filename.ACD 'Example Name' 'email.com'");
             }
-            string githubPath = args[0];                                                                                     // 1st incoming argument = GitHub folder path
-            string acdFilename = args[1];                                                                                    // 2nd incoming argument = Logix Designer ACD filename
-            string acdFilePath = githubPath + @"DEVELOPMENT-files\" + acdFilename;                                           // file path to ACD project
-            string textFileReportDirectory = Path.Combine(githubPath + @"test-reports\textFiles\");                          // folder path to text test reports
-            string excelFileReportDirectory = Path.Combine(githubPath + @"test-reports\excelFiles\");                        // folder path to excel test reports
+            string githubPath = args[0];                                           // 1st incoming argument = GitHub folder path
+            string acdFilename = args[1];                                          // 2nd incoming argument = Logix Designer ACD filename
+            string name_mostRecentCommitter = args[2];                             // 3rd incoming argument = name of person assocatied with most recent git commit
+            string email_mostRecentCommitter = args[3];                            // 4th incoming argument = email of person associated with most recent git commit
+            string acdFilePath = githubPath + @"DEVELOPMENT-files\" + acdFilename; // file path to ACD project
+            string textFileReportDirectory = Path.Combine(githubPath + @"test-reports\textFiles\");   // folder path to text test reports
+            string excelFileReportDirectory = Path.Combine(githubPath + @"test-reports\excelFiles\"); // folder path to excel test reports
             string textFileReportName = Path.Combine(textFileReportDirectory, DateTime.Now.ToString("yyyyMMddHHmmss") + "_testfile.txt");    // new test report filename
             string excelFileReportName = Path.Combine(excelFileReportDirectory, DateTime.Now.ToString("yyyyMMddHHmmss") + "_testfile.xlsx"); // new test report filename
             #endregion
@@ -82,6 +84,8 @@ namespace TestStage_CICDExample
 
             // Print out relevant test information.
             CreateBanner("TEST DEPENDENCIES");
+            Console.WriteLine("Test initiated by: ".PadRight(40, ' ') + name_mostRecentCommitter);
+            Console.WriteLine("Test engineer's email: ".PadRight(40, ' ') + email_mostRecentCommitter);
             Console.WriteLine("ACD file path specified: ".PadRight(40, ' ') + acdFilePath);
             Console.WriteLine("Common Language Runtime version: ".PadRight(40, ' ') + typeof(string).Assembly.ImageRuntimeVersion);
             Console.WriteLine("LDSDK .NET Framework version: ".PadRight(40, ' ') + "8.0");
