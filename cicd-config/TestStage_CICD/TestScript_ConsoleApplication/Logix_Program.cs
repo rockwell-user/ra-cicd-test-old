@@ -376,7 +376,6 @@ namespace TestStage_CICDExample
             {
                 for (int i = 0; i < (orderedFiles.Count - keepCount); i++)
                 {
-                    Console.WriteLine(i);
                     FileInfo deleteThisFile = orderedFiles[i];
                     deleteThisFile.Delete();
                     Console.WriteLine($"SUCCESS: deleted {deleteThisFile.FullName}");
