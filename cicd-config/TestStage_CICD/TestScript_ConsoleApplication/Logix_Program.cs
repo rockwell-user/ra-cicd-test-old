@@ -380,6 +380,9 @@ namespace TestStage_CICDExample
             }
             else
                 Console.WriteLine($"SUCCESS: no files needed to be deleted (currently {orderedFiles.Count} test files)");
+            string[] tall_files = Directory.GetFiles(folderPath);
+            var torderedFiles = all_files.Select(f => new FileInfo(f)).OrderBy(f => f.CreationTime).ToList();
+            Console.WriteLine("ENDTESTINGTESTING number of files: " + torderedFiles.Count);
         }
         #endregion
 
