@@ -82,8 +82,9 @@ pipeline {
                     ).trim()
 
                     def executable_filePath = "${env.PATH_JENKINS_GITHUB}cicd-config\\TestStage_CICD\\TestScript_ConsoleApplication\\bin\\Release\\net8.0\\TestScript_ConsoleApplication.exe"
+                    
                     testResult = bat(
-                        script: "@${executable_filePath} %PATH_JENKINS_GITHUB% %ACDFILENAME% ${formated_name_mostRecentCommitter} ${email_mostRecentCommitter}", 
+                        script: "@${executable_filePath} %PATH_JENKINS_GITHUB% %ACDFILENAME% ${formated_name_mostRecentCommitter} ${email_mostRecentCommitter} ${env.JOB_NAME} ${env.BUILD_NUMBER}", 
                         returnStdout: true
                     ).trim()
 

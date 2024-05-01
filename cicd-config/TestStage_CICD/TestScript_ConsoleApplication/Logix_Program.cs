@@ -37,15 +37,19 @@ namespace TestStage_CICDExample
         {
             // Pass the incoming executable arguments.
             #region PARSING INCOMING VARIABLES WHEN RUNNING PROJECT EXECUTABLE --------------------------------------------------------------------------------
-            if (args.Length != 4)
+            if (args.Length != 6)
             {
-                Console.WriteLine(@"Correct Command: .\TestScript_ConsoleApplication githubPath acdFilename name_mostRecentCommitter email_mostRecentCommitter");
-                Console.WriteLine(@"Example Format:  .\TestScript_ConsoleApplication C:\Users\TestUser\Desktop\example-github-repo\ acd_filename.ACD Example_Name email.com");
+                Console.WriteLine(@"Correct Command: .\TestScript_ConsoleApplication githubPath acdFilename name_mostRecentCommitter " +
+                                  "email_mostRecentCommitter Jenkins_job Jenkins_build_number");
+                Console.WriteLine(@"Example Format:  .\TestScript_ConsoleApplication C:\Users\TestUser\Desktop\example-github-repo\ " +
+                                  "acd_filename.ACD 'Allen Bradley' example@gmail.com Jenkins-CICD-Example 218");
             }
             string githubPath = args[0];                                           // 1st incoming argument = GitHub folder path
             string acdFilename = args[1];                                          // 2nd incoming argument = Logix Designer ACD filename
             string name_mostRecentCommitter = args[2];                             // 3rd incoming argument = name of person assocatied with most recent git commit
             string email_mostRecentCommitter = args[3];                            // 4th incoming argument = email of person associated with most recent git commit
+            string jenkinsJobName = args[4];                                       // 5th incoming argument = the Jenkins job name
+            string jenkinsBuildNumber = args[5];                                   // 6th incoming argument = the Jenkins job build number
             string acdFilePath = githubPath + @"DEVELOPMENT-files\" + acdFilename; // file path to ACD project
             string textFileReportDirectory = Path.Combine(githubPath + @"test-reports\textFiles\");   // folder path to text test reports
             string excelFileReportDirectory = Path.Combine(githubPath + @"test-reports\excelFiles\"); // folder path to excel test reports
@@ -96,7 +100,7 @@ namespace TestStage_CICDExample
 
             // Create an excel test report to be filled out durring testing.
             Console.WriteLine($"[{DateTime.Now.ToString("T")}] START setting up excel test report workbook...");
-            ExcelPackage excel_TestReport = CreateFormattedExcelFile(excelFileReportName);
+            ExcelPackage excel_TestReport = CreateFormattedExcelFile(excelFileReportName, name_mostRecentCommitter, email_mostRecentCommitter, jenkinsBuildNumber, jenkinsJobName);
             Console.WriteLine($"[{DateTime.Now.ToString("T")}] DONE setting up excel test report workbook...\n---");
 
             // Check the test-reports folder and if over the specified file number limit, delete the oldest test files.
@@ -366,13 +370,11 @@ namespace TestStage_CICDExample
             Console.WriteLine($"STATUS:  {folderPath} set to retain {keepCount} test files");
             string[] all_files = Directory.GetFiles(folderPath);
             var orderedFiles = all_files.Select(f => new FileInfo(f)).OrderBy(f => f.CreationTime).ToList();
-            Console.WriteLine("TESTINGTESTING number of files: " + orderedFiles.Count);
             if (orderedFiles.Count > keepCount)
             {
                 for (int i = 0; i < (orderedFiles.Count - keepCount); i++)
                 {
                     Console.WriteLine(i);
-                    Console.WriteLine("TESTINGTESTING file to be deleted: " + orderedFiles[i]);
                     FileInfo deleteThisFile = orderedFiles[i];
                     deleteThisFile.Delete();
                     Console.WriteLine($"SUCCESS: deleted {deleteThisFile.FullName}");
@@ -382,19 +384,18 @@ namespace TestStage_CICDExample
                 Console.WriteLine($"SUCCESS: no files needed to be deleted (currently {orderedFiles.Count} test files)");
             string[] tall_files = Directory.GetFiles(folderPath);
             var torderedFiles = all_files.Select(f => new FileInfo(f)).OrderBy(f => f.CreationTime).ToList();
-            Console.WriteLine("ENDTESTINGTESTING number of files: " + torderedFiles.Count);
         }
         #endregion
 
         #region METHODS: formatting excel file
-        private static ExcelPackage CreateFormattedExcelFile(string filePath_withExcelName)
+        private static ExcelPackage CreateFormattedExcelFile(string filePath, string name, string email, string buildNumber, string jobName)
         {
             ExcelPackage excelPackage = new ExcelPackage();
             var returnWorkBook = excelPackage.Workbook;
 
             var TestSummary = returnWorkBook.Worksheets.Add("TestSummary");
             TestSummary.Cells["B2"].Value = "Test Name:";
-            TestSummary.Cells["C2"].Value = "<placeholder>";
+            TestSummary.Cells["C2"].Value = "CI/CD Automated Test Results";
             TestSummary.Column(1).AutoFit();
             TestSummary.Column(1).Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Center;
             TestSummary.Column(2).AutoFit();
@@ -411,7 +412,7 @@ namespace TestStage_CICDExample
             var FinalTestTags = returnWorkBook.Worksheets.Add("FinalTestTags");
             FinalTestTags.View.FreezePanes(1, 1);
 
-            excelPackage.SaveAs(new System.IO.FileInfo(filePath_withExcelName));
+            excelPackage.SaveAs(new System.IO.FileInfo(filePath));
             return excelPackage;
         }
         #endregion
