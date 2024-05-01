@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TestScript_ConsoleApplication")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+40df1eb13441068b62b5e37e9f453346c1b157b7")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b5cc5aec16af8a6c472341d70e6c4251f82fa1d6")]
 [assembly: System.Reflection.AssemblyProductAttribute("TestScript_ConsoleApplication")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TestScript_ConsoleApplication")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
