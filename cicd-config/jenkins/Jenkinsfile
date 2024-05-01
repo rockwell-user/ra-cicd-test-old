@@ -69,17 +69,17 @@ pipeline {
                 createBanner('STAGE: Test')
                 echo "Starting Test..."
                 def name_mostRecentCommitter = powershell(
-                    script: 'git log -1 --pretty=format:'%an'', 
+                    script: "git log -1 --pretty=format:'%an'", 
                     returnStdout: true
                 ).trim()
                 echo name_mostRecentCommitter
 
                 def email_mostRecentCommitter = powershell(
-                    script: 'git log -1 --pretty=format:'%ae'', 
+                    script: "git log -1 --pretty=format:'%ae'", 
                     returnStdout: true
                 ).trim()
                 echo email_mostRecentCommitter
-                
+
                 script {
                     testResult = bat(script: "@%PATH_JENKINS_GITHUB%cicd-config\\TestStage_CICD\\TestScript_ConsoleApplication\\bin\\Release\\net8.0\\TestScript_ConsoleApplication.exe %PATH_JENKINS_GITHUB% %ACDFILENAME%", returnStdout: true).trim()
                     echo "Test result is: ${testResult}"
