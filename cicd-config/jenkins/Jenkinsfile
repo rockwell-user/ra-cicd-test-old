@@ -56,7 +56,7 @@ pipeline {
 
                     def currentUser_NugetConfigXMLfileContents = bat(script: "type ${currentUser_NugetConfigXMLfile}", returnStdout: true).trim()
                     bat """
-                        bat "echo ${currentUser_NugetConfigXMLfileContents} > ${jenkinsUser_NugetConfigXMLfile}"
+                        echo ${currentUser_NugetConfigXMLfileContents} > ${jenkinsUser_NugetConfigXMLfile}
                         cd %PATH_JENKINS_GITHUB%cicd-config\\TestStage_CICD
                         dotnet build --configuration Release
                     """
