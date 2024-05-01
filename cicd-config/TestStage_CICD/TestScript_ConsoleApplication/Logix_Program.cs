@@ -10,16 +10,29 @@
 
 using Google.Protobuf;
 using LogixEcho_ClassLibrary;
+using OfficeOpenXml;
 using RockwellAutomation.LogixDesigner;
 using System.Text;
 using static RockwellAutomation.LogixDesigner.LogixProject;
 using DataType = RockwellAutomation.LogixDesigner.LogixProject.DataType;
 
-
 namespace TestStage_CICDExample
 {
     internal class Program
     {
+        /// <summary>
+        /// Script that runs the test for the Logix integrated CI/CD pipeline.
+        /// Uses the LDSDK alongside the EchoSDK for software in the loop testing.
+        /// The test goes online with an emulated controller, verifies that the logic established in previous 
+        /// testing has not been changed, and then creates a test report in txt and excel file formats.
+        /// </summary>
+        /// <param name="args">
+        /// The input arguments needed to execute the script in string array format.
+        /// The string array should have two elements:
+        /// args[0] = The file path to the local GitHub folder (example format: C:\Users\TestUser\Desktop\example-github-repo\).
+        /// args[1] = The name of the acd file that is under development (example format: acd_filename.ACD).
+        /// </param>
+        /// <returns>A console printout of either "SUCCESS" or "FAILURE". Two test reports are also generated, one in txt format and the other in excel format.</returns>
         static async Task Main(string[] args)
         {
             // Pass the incoming executable arguments.
@@ -31,10 +44,11 @@ namespace TestStage_CICDExample
             }
             string githubPath = args[0];                                                                                     // 1st incoming argument = GitHub folder path
             string acdFilename = args[1];                                                                                    // 2nd incoming argument = Logix Designer ACD filename
-            string acdFilePath = githubPath + @"DEVELOPMENT-files\" + acdFilename;                                                        // file path to ACD project
+            string acdFilePath = githubPath + @"DEVELOPMENT-files\" + acdFilename;                                           // file path to ACD project
             string textFileReportDirectory = Path.Combine(githubPath + @"test-reports\textFiles\");                          // folder path to text test reports
-            string excelFileReportDirectory = Path.Combine(githubPath + @"test-reports\excelFiles\");                          // folder path to excel test reports
-            string textFileReportName = Path.Combine(textFileReportDirectory, DateTime.Now.ToString("yyyyMMddHHmmss") + "_testfile.txt"); // new test report filename
+            string excelFileReportDirectory = Path.Combine(githubPath + @"test-reports\excelFiles\");                        // folder path to excel test reports
+            string textFileReportName = Path.Combine(textFileReportDirectory, DateTime.Now.ToString("yyyyMMddHHmmss") + "_testfile.txt");    // new test report filename
+            string excelFileReportName = Path.Combine(excelFileReportDirectory, DateTime.Now.ToString("yyyyMMddHHmmss") + "_testfile.xlsx"); // new test report filename
             #endregion
 
             // Create new test report file (.txt) using the Console printout.
@@ -81,6 +95,11 @@ namespace TestStage_CICDExample
             CleanTestReportsFolder(textFileReportDirectory, 5);
             CleanTestReportsFolder(excelFileReportDirectory, 5);
             Console.WriteLine($"[{DateTime.Now.ToString("T")}] DONE checking test-reports folder...\n---");
+
+            // Create an excel test report to be filled out durring testing.
+            Console.WriteLine($"[{DateTime.Now.ToString("T")}] START setting up excel test report workbook...");
+            ExcelPackage excel_TestReport = CreateFormattedExcelFile(excelFileReportName);
+            Console.WriteLine($"[{DateTime.Now.ToString("T")}] DONE setting up excel test report workbook...\n---");
 
             // Set up emulated controller (based on the specified ACD file path) if one does not yet exist. If not, continue.
             Console.WriteLine($"[{DateTime.Now.ToString("T")}] START setting up Factory Talk Logix Echo emulated controller...");
@@ -354,6 +373,36 @@ namespace TestStage_CICDExample
             }
             else
                 Console.WriteLine($"SUCCESS: no files needed to be deleted (currently {orderedFiles.Count} test files)");
+        }
+        #endregion
+
+        #region METHODS: formatting excel file
+        private static ExcelPackage CreateFormattedExcelFile(string filePath_withExcelName)
+        {
+            ExcelPackage excelPackage = new ExcelPackage();
+            var returnWorkBook = excelPackage.Workbook;
+
+            var TestSummary = returnWorkBook.Worksheets.Add("TestSummary");
+            TestSummary.Cells["B2"].Value = "Test Name:";
+            TestSummary.Cells["C2"].Value = "<placeholder>";
+            TestSummary.Column(1).AutoFit();
+            TestSummary.Column(1).Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Center;
+            TestSummary.Column(2).AutoFit();
+            TestSummary.Column(2).Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Right;
+            TestSummary.Column(3).AutoFit();
+            TestSummary.Column(3).Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Left;
+
+            var InitialTestTags = returnWorkBook.Worksheets.Add("InitialTestTags");
+            InitialTestTags.View.FreezePanes(1, 1);
+
+            var TEST_AOI_WetBulbTemp = returnWorkBook.Worksheets.Add("TEST_AOI_WetBulbTemp");
+            TEST_AOI_WetBulbTemp.View.FreezePanes(1, 1);
+
+            var FinalTestTags = returnWorkBook.Worksheets.Add("FinalTestTags");
+            FinalTestTags.View.FreezePanes(1, 1);
+
+            excelPackage.SaveAs(new System.IO.FileInfo(filePath_withExcelName));
+            return excelPackage;
         }
         #endregion
 
