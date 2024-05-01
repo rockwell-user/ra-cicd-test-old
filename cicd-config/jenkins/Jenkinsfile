@@ -86,7 +86,7 @@ pipeline {
                         script: "@${executable_filePath} %PATH_JENKINS_GITHUB% %ACDFILENAME% ${formated_name_mostRecentCommitter} ${email_mostRecentCommitter}", 
                         returnStdout: true
                     ).trim()
-                    
+
                     TEST_RESULT = testResult
                     echo "Test result is: \n${testResult}"
 
@@ -105,6 +105,7 @@ pipeline {
                         def cleaned_token = env.GITHUB_ACCESTOKEN.replaceAll("\\?", "")
                         def gitUrl = "https://${env.GITHUB_USERNAME}:${cleaned_token}@github.com/${env.GITHUB_USERNAME}/${env.GITHUB_REPO_NAME}.git"
                         echo env.UNIQUE_LABEL
+                        def commit_message = "TEST SUCCESS! | Jenkins job: ${env.JOB_NAME} | Jenkins build #: ${env.BUILD_NUMBER} | Commit hash on which testing was conducted: ${env.GIT_COMMIT}"
                         bat """
                             cd %PATH_JENKINS_GITHUB%
                             git remote set-url origin ${gitUrl}
@@ -115,7 +116,7 @@ pipeline {
                             git branch -a
                             git checkout %GITHUB_DEV_BRANCH%
                             git add -A
-                            git commit -m "%UNIQUE_LABEL% | Commiting Results for Successful Jenkins Automated Test"
+                            git commit -m "${commit_message}"
                             git push origin %GITHUB_DEV_BRANCH%
 
                         """
