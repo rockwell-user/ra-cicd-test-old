@@ -16,7 +16,7 @@
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-          "DockedHeight": 219,
+          "DockedHeight": 266,
           "SelectedChildIndex": 0,
           "Children": [
             {
@@ -27,7 +27,7 @@
               "RelativeDocumentMoniker": "TestScript_ConsoleApplication\\Logix_Program.cs",
               "ToolTip": "C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\cicd-config\\TestStage_CICD\\TestScript_ConsoleApplication\\Logix_Program.cs",
               "RelativeToolTip": "TestScript_ConsoleApplication\\Logix_Program.cs",
-              "ViewState": "AQIAAEoAAAAAAAAAAAArwGcAAABYAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAdAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-01T14:35:16.21Z",
               "EditorCaption": ""
@@ -42,8 +42,7 @@
               "RelativeToolTip": "..\\..\\..\\..\\..\\.nuget\\packages\\epplus\\7.1.2\\readme.txt",
               "ViewState": "AQIAAB8AAAAAAAAAAAAhwAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
-              "WhenOpened": "2024-05-01T14:02:11.898Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-01T14:02:11.898Z"
             },
             {
               "$type": "Bookmark",
@@ -52,12 +51,22 @@
           ]
         },
         {
-          "DockedHeight": 49,
+          "DockedHeight": 219,
           "SelectedChildIndex": -1,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            }
+          ]
+        },
+        {
+          "DockedHeight": 134,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
             }
           ]
         }
