@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("LogixEcho_ClassLibrary")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d3ee99aafd9edda310b2a05889876494ccc24cb1")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a833fc0ae6cd2318d99d8792e8f597f8d1b74c94")]
 [assembly: System.Reflection.AssemblyProductAttribute("LogixEcho_ClassLibrary")]
 [assembly: System.Reflection.AssemblyTitleAttribute("LogixEcho_ClassLibrary")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
