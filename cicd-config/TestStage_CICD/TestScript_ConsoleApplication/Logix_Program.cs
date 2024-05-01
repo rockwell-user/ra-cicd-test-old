@@ -94,16 +94,16 @@ namespace TestStage_CICDExample
             #region STEP: Staging Test (folder cleanup -> Logix Echo emulation -> open ACD -> to program mode -> download ACD -> to run mode)
             CreateBanner("STAGING TEST");
 
+            // Create an excel test report to be filled out durring testing.
+            Console.WriteLine($"[{DateTime.Now.ToString("T")}] START setting up excel test report workbook...");
+            ExcelPackage excel_TestReport = CreateFormattedExcelFile(excelFileReportName);
+            Console.WriteLine($"[{DateTime.Now.ToString("T")}] DONE setting up excel test report workbook...\n---");
+
             // Check the test-reports folder and if over the specified file number limit, delete the oldest test files.
             Console.WriteLine($"[{DateTime.Now.ToString("T")}] START checking test-reports folder...");
             CleanTestReportsFolder(textFileReportDirectory, 5);
             CleanTestReportsFolder(excelFileReportDirectory, 5);
             Console.WriteLine($"[{DateTime.Now.ToString("T")}] DONE checking test-reports folder...\n---");
-
-            // Create an excel test report to be filled out durring testing.
-            Console.WriteLine($"[{DateTime.Now.ToString("T")}] START setting up excel test report workbook...");
-            ExcelPackage excel_TestReport = CreateFormattedExcelFile(excelFileReportName);
-            Console.WriteLine($"[{DateTime.Now.ToString("T")}] DONE setting up excel test report workbook...\n---");
 
             // Set up emulated controller (based on the specified ACD file path) if one does not yet exist. If not, continue.
             Console.WriteLine($"[{DateTime.Now.ToString("T")}] START setting up Factory Talk Logix Echo emulated controller...");

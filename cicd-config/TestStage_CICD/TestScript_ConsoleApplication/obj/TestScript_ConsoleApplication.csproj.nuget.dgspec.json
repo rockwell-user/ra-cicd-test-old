@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\data\\jenkins_home\\workspace\\RA-CICD-Pipeline\\cicd-config\\TestStage_CICD\\TestScript_ConsoleApplication\\TestScript_ConsoleApplication.csproj": {}
+    "C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\cicd-config\\TestStage_CICD\\TestScript_ConsoleApplication\\TestScript_ConsoleApplication.csproj": {}
   },
   "projects": {
-    "C:\\data\\jenkins_home\\workspace\\RA-CICD-Pipeline\\cicd-config\\TestStage_CICD\\LogixEcho_ClassLibrary\\LogixEcho_ClassLibrary.csproj": {
+    "C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\cicd-config\\TestStage_CICD\\LogixEcho_ClassLibrary\\LogixEcho_ClassLibrary.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\data\\jenkins_home\\workspace\\RA-CICD-Pipeline\\cicd-config\\TestStage_CICD\\LogixEcho_ClassLibrary\\LogixEcho_ClassLibrary.csproj",
+        "projectUniqueName": "C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\cicd-config\\TestStage_CICD\\LogixEcho_ClassLibrary\\LogixEcho_ClassLibrary.csproj",
         "projectName": "LogixEcho_ClassLibrary",
-        "projectPath": "C:\\data\\jenkins_home\\workspace\\RA-CICD-Pipeline\\cicd-config\\TestStage_CICD\\LogixEcho_ClassLibrary\\LogixEcho_ClassLibrary.csproj",
-        "packagesPath": "C:\\Users\\Jenkins\\.nuget\\packages\\",
-        "outputPath": "C:\\data\\jenkins_home\\workspace\\RA-CICD-Pipeline\\cicd-config\\TestStage_CICD\\LogixEcho_ClassLibrary\\obj\\",
+        "projectPath": "C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\cicd-config\\TestStage_CICD\\LogixEcho_ClassLibrary\\LogixEcho_ClassLibrary.csproj",
+        "packagesPath": "C:\\Users\\ASYost\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\cicd-config\\TestStage_CICD\\LogixEcho_ClassLibrary\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Jenkins\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\ASYost\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -75,20 +75,20 @@
         }
       }
     },
-    "C:\\data\\jenkins_home\\workspace\\RA-CICD-Pipeline\\cicd-config\\TestStage_CICD\\TestScript_ConsoleApplication\\TestScript_ConsoleApplication.csproj": {
+    "C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\cicd-config\\TestStage_CICD\\TestScript_ConsoleApplication\\TestScript_ConsoleApplication.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\data\\jenkins_home\\workspace\\RA-CICD-Pipeline\\cicd-config\\TestStage_CICD\\TestScript_ConsoleApplication\\TestScript_ConsoleApplication.csproj",
+        "projectUniqueName": "C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\cicd-config\\TestStage_CICD\\TestScript_ConsoleApplication\\TestScript_ConsoleApplication.csproj",
         "projectName": "TestScript_ConsoleApplication",
-        "projectPath": "C:\\data\\jenkins_home\\workspace\\RA-CICD-Pipeline\\cicd-config\\TestStage_CICD\\TestScript_ConsoleApplication\\TestScript_ConsoleApplication.csproj",
-        "packagesPath": "C:\\Users\\Jenkins\\.nuget\\packages\\",
-        "outputPath": "C:\\data\\jenkins_home\\workspace\\RA-CICD-Pipeline\\cicd-config\\TestStage_CICD\\TestScript_ConsoleApplication\\obj\\",
+        "projectPath": "C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\cicd-config\\TestStage_CICD\\TestScript_ConsoleApplication\\TestScript_ConsoleApplication.csproj",
+        "packagesPath": "C:\\Users\\ASYost\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\cicd-config\\TestStage_CICD\\TestScript_ConsoleApplication\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Jenkins\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\ASYost\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -104,8 +104,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\data\\jenkins_home\\workspace\\RA-CICD-Pipeline\\cicd-config\\TestStage_CICD\\LogixEcho_ClassLibrary\\LogixEcho_ClassLibrary.csproj": {
-                "projectPath": "C:\\data\\jenkins_home\\workspace\\RA-CICD-Pipeline\\cicd-config\\TestStage_CICD\\LogixEcho_ClassLibrary\\LogixEcho_ClassLibrary.csproj"
+              "C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\cicd-config\\TestStage_CICD\\LogixEcho_ClassLibrary\\LogixEcho_ClassLibrary.csproj": {
+                "projectPath": "C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\cicd-config\\TestStage_CICD\\LogixEcho_ClassLibrary\\LogixEcho_ClassLibrary.csproj"
               }
             }
           }
