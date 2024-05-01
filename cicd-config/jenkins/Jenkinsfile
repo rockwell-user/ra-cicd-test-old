@@ -54,9 +54,9 @@ pipeline {
                     def currentUser_NugetConfigXMLfile = 'C:\\Users\\ASYost\\AppData\\Roaming\\NuGet\\NuGet.Config'
                     def jenkinsUser_NugetConfigXMLfile = 'C:\\Users\\Jenkins\\AppData\\Roaming\\NuGet\\NuGet.Config'
 
-                    def currentUser_NugetConfigXMLfileContents = bat(script: "type ${currentUser_NugetConfigXMLfile}", returnStdout: true).trim()
+                    //def currentUser_NugetConfigXMLfileContents = bat(script: "type ${currentUser_NugetConfigXMLfile}", returnStdout: true).trim()
                     bat """
-                        echo ${currentUser_NugetConfigXMLfileContents} > ${jenkinsUser_NugetConfigXMLfile}
+                        type ${currentUser_NugetConfigXMLfile} > ${jenkinsUser_NugetConfigXMLfile}
                         cd %PATH_JENKINS_GITHUB%cicd-config\\TestStage_CICD
                         dotnet build --configuration Release
                     """
