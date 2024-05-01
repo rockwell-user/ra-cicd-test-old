@@ -86,7 +86,8 @@ pipeline {
                     def executable_filePath = "${env.PATH_JENKINS_GITHUB}cicd-config\\TestStage_CICD\\TestScript_ConsoleApplication\\bin\\Release\\net8.0\\TestScript_ConsoleApplication.exe"
                     testResult = bat(
                         script: "${executable_filePath} %PATH_JENKINS_GITHUB% %ACDFILENAME% ${formated_name_mostRecentCommitter} ${email_mostRecentCommitter} > NUL", 
-                        returnStdout: true).trim()
+                        returnStdout: true
+                    ).trim()
                     TEST_RESULT = testResult
                     echo "Test result is: \n${testResult}"
 
