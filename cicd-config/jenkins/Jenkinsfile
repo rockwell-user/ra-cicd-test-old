@@ -115,7 +115,7 @@ pipeline {
                             git config --global user.email %GITHUB_USER_EMAIL%
                             git config --global user.name "%GITHUB_USER_NAME%"
                             git branch -a
-                            git checkout %GITHUB_DEV_BRANCH%
+                            git checkout --quiet %GITHUB_DEV_BRANCH%
                             git add -A
                             git commit -m "${commit_message}"
                             git push origin %GITHUB_DEV_BRANCH%
