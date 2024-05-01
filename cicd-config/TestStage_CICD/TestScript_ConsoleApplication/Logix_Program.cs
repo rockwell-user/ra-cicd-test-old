@@ -366,10 +366,13 @@ namespace TestStage_CICDExample
             Console.WriteLine($"STATUS:  {folderPath} set to retain {keepCount} test files");
             string[] all_files = Directory.GetFiles(folderPath);
             var orderedFiles = all_files.Select(f => new FileInfo(f)).OrderBy(f => f.CreationTime).ToList();
+            Console.WriteLine("TESTINGTESTING number of files: " + orderedFiles.Count);
             if (orderedFiles.Count > keepCount)
             {
                 for (int i = 0; i < (orderedFiles.Count - keepCount); i++)
                 {
+                    Console.WriteLine(i);
+                    Console.WriteLine("TESTINGTESTING file to be deleted: " + orderedFiles[i]);
                     FileInfo deleteThisFile = orderedFiles[i];
                     deleteThisFile.Delete();
                     Console.WriteLine($"SUCCESS: deleted {deleteThisFile.FullName}");
