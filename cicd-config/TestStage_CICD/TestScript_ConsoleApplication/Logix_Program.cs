@@ -68,13 +68,6 @@ namespace TestStage_CICDExample
             string excelFileReportName = Path.Combine(excelFileReportDirectory, DateTime.Now.ToString("yyyyMMddHHmmss") + "_testfile.xlsx"); // new excel test report filename
             #endregion
 
-            // DELTE THIS LATER
-            string testString = "aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa" +
-                " aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa";
-            Console.WriteLine(WrapText(testString, 40, 125));
-            Console.WriteLine("Next test");
-            Console.WriteLine(WrapText(testString, 9, 125));
-
             // Create new test report file (.txt) using the Console printout.
             #region FILE CREATION -----------------------------------------------------------------------------------------------------------------------------
             FileStream ostrm;
@@ -110,7 +103,13 @@ namespace TestStage_CICDExample
             Console.WriteLine("Tester contact information: ".PadRight(40, ' ') + email_mostRecentCommit);
             Console.WriteLine("Git commit hash to be verified: ".PadRight(40, ' ') + hash_mostRecentCommit);
             Console.WriteLine("Git commit message to be verified: ".PadRight(40, ' ') + WrapText(message_mostRecentCommit, 40, 125));
-
+            Console.WriteLine("Git commit message to be verified: ".PadRight(40, ' ') + WrapText(message_mostRecentCommit, 40, 85));
+            // DELTE THIS LATER
+            string testString = "aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa" +
+                " aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa";
+            Console.WriteLine(WrapText(testString, 40, 125));
+            Console.WriteLine("Next test");
+            Console.WriteLine(WrapText(testString, 9, 125));
             // Print out relevant test information.
             CreateBanner("TEST DEPENDENCIES");
             Console.WriteLine("Jenkins job being executed: ".PadRight(40, ' ') + jenkinsJobName);
