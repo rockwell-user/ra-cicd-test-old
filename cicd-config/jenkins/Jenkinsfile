@@ -2,11 +2,8 @@ pipeline {
     agent any
     
     environment {
-        //PATH_JENKINS_GITHUB = 'C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\'
         PATH_JENKINS_GITHUB = 'C:\\data\\jenkins_home\\workspace\\RA-CICD-Pipeline\\'
         ACDFILENAME = 'CICD_test.ACD'
-        GITHUB_USER_EMAIL = 'andresyost2000@gmail.com'
-        GITHUB_USER_NAME = 'Andre Sandor Yost'
         GITHUB_USERNAME = 'rockwell-user'
         GITHUB_PASSWORD = 'RockwellGithub!'
         GITHUB_ACCESTOKEN = 'ghp_mpOj91xiccmZmGnGezvyxYLNWNas8Z39k?z?E?P?'
@@ -15,6 +12,8 @@ pipeline {
         DOTNET_VERSION = '8.0'
         DOTNET_INSTALL_DIR = 'C:\\Program Files\\dotnet'
         TEST_RESULT = ''
+        GITHUB_USER_EMAIL = ''
+        GITHUB_USER_NAME = ''
         UNIQUE_LABEL = "${BUILD_TAG}-${GIT_COMMIT}"
     }
 
@@ -75,11 +74,13 @@ pipeline {
                         script: "git log -1 --pretty=format:'%an'", 
                         returnStdout: true
                     ).trim()
-                    
+                    GITHUB_USER_NAME = "\"${name_RecentCommit}\""
+
                     def email_RecentCommit = powershell(
                         script: "git log -1 --pretty=format:'%ae'", 
                         returnStdout: true
                     ).trim()
+                    GITHUB_USER_EMAIL = email_RecentCommit
 
                     def message_RecentCommit = powershell(
                         script: "git log -1 --pretty=format:'%s'",
