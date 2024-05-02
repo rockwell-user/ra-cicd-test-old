@@ -102,13 +102,16 @@ namespace TestStage_CICDExample
             Console.WriteLine("Test initiated by: ".PadRight(40, ' ') + name_mostRecentCommit);
             Console.WriteLine("Tester contact information: ".PadRight(40, ' ') + email_mostRecentCommit);
             Console.WriteLine("Git commit hash to be verified: ".PadRight(40, ' ') + hash_mostRecentCommit);
+            foreach (char c in message_mostRecentCommit)
+                Console.WriteLine((int)c + ": " + c);
             Console.WriteLine("Git commit message to be verified: ".PadRight(40, ' ') + WrapText(message_mostRecentCommit, 40, 125));
             Console.WriteLine("Git commit message to be verified: ".PadRight(40, ' ') + WrapText(message_mostRecentCommit, 40, 85));
-            Console.WriteLine("Git commit message to be verified: ".PadRight(40, ' ') + WrapText(message_mostRecentCommit, 40, 85));
-            Console.WriteLine("Git commit message to be verified: ".PadRight(40, ' ') + WrapText(message_mostRecentCommit, 40, 85));
+            Console.WriteLine(WrapText("Git commit message to be verified: ".PadRight(40, ' ') + message_mostRecentCommit, 40, 85));
             // DELTE THIS LATER
             string testString = "aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa" +
-                " aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa";
+                " aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa" +
+                " aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa" +
+                " aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa";
             Console.WriteLine(WrapText(testString, 0, 125));
             Console.WriteLine("".PadRight(40, ' ') + WrapText(testString, 40, 125));
             Console.WriteLine("Next test");
@@ -358,6 +361,8 @@ namespace TestStage_CICDExample
             StringBuilder newSentence = new StringBuilder();
             string line = "";
             int numberOfNewLines = 0;
+            Console.WriteLine("START Line length: " + line.Length);
+            Console.WriteLine("START Number of new lines: " + numberOfNewLines);
             foreach (string word in words)
             {
                 word.Trim();
@@ -369,8 +374,8 @@ namespace TestStage_CICDExample
                 }
                 line += string.Format($"{word} ");
             }
-            Console.WriteLine("Line length: " + line.Length);
-            Console.WriteLine("Number of new lines: " + numberOfNewLines);
+            Console.WriteLine("MIDDLE Line length: " + line.Length);
+            Console.WriteLine("MIDDLE Number of new lines: " + numberOfNewLines);
             if (line.Length > 0)
             {
                 if (numberOfNewLines > 0)
@@ -378,6 +383,8 @@ namespace TestStage_CICDExample
                 else
                     newSentence.AppendLine(line);
             }
+            Console.WriteLine("END Line length: " + line.Length);
+            Console.WriteLine("END Number of new lines: " + numberOfNewLines);
             return newSentence.ToString();
         }
 
