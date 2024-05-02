@@ -102,7 +102,7 @@ namespace TestStage_CICDExample
             Console.WriteLine("Test initiated by: ".PadRight(40, ' ') + name_mostRecentCommit);
             Console.WriteLine("Tester contact information: ".PadRight(40, ' ') + email_mostRecentCommit);
             Console.WriteLine("Git commit hash to be verified: ".PadRight(40, ' ') + hash_mostRecentCommit);
-            Console.WriteLine("Git commit message to be verified: ".PadRight(40, ' ') + WrapText(message_mostRecentCommit, 40, 85));
+            Console.Write("Git commit message to be verified: ".PadRight(40, ' ') + WrapText(message_mostRecentCommit, 40, 85));
 
             // Print out relevant test information.
             CreateBanner("TEST DEPENDENCIES");
@@ -343,9 +343,9 @@ namespace TestStage_CICDExample
         /// <returns>A modified string that wraps every 125 characters.</returns>
         private static string WrapText(string inputString, int indentLength, int lineLimit)
         {
-            string indent = new string(' ', indentLength);
             string[] words = inputString.Split(' ');
-            StringBuilder newSentence = new StringBuilder();
+            string indent = new(' ', indentLength);
+            StringBuilder newSentence = new();
             string line = "";
             int numberOfNewLines = 0;
             foreach (string word in words)
