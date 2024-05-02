@@ -359,30 +359,27 @@ namespace TestStage_CICDExample
             StringBuilder newSentence = new StringBuilder();
             string line = "";
             int numberOfNewLines = 0;
-            Console.WriteLine("START Line length: " + line.Length);
-            Console.WriteLine("START Number of new lines: " + numberOfNewLines);
             foreach (string word in words)
             {
                 word.Trim();
                 if ((line + word).Length > lineLimit)
                 {
-                    newSentence.AppendLine(indent + line);
+                    if (numberOfNewLines == 0)
+                        newSentence.AppendLine(line);
+                    else
+                        newSentence.AppendLine(indent + line);
                     line = "";
                     numberOfNewLines++;
                 }
                 line += string.Format($"{word} ");
             }
-            Console.WriteLine("MIDDLE Line length: " + line.Length);
-            Console.WriteLine("MIDDLE Number of new lines: " + numberOfNewLines);
             if (line.Length > 0)
             {
                 if (numberOfNewLines > 0)
-                    newSentence.AppendLine(line);
+                    newSentence.AppendLine(indent + line);
                 else
                     newSentence.AppendLine(line);
             }
-            Console.WriteLine("END Line length: " + line.Length);
-            Console.WriteLine("END Number of new lines: " + numberOfNewLines);
             return newSentence.ToString();
         }
 
