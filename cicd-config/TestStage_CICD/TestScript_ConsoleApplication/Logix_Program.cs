@@ -102,7 +102,7 @@ namespace TestStage_CICDExample
             Console.WriteLine("Test initiated by: ".PadRight(40, ' ') + name_mostRecentCommit);
             Console.WriteLine("Tester contact information: ".PadRight(40, ' ') + email_mostRecentCommit);
             Console.WriteLine("Git commit hash to be verified: ".PadRight(40, ' ') + hash_mostRecentCommit);
-            Console.WriteLine("Git commit message to be verified: ".PadRight(40, ' ') + WrapText(message_mostRecentCommit, 40));
+            Console.WriteLine("Git commit message to be verified: ".PadRight(40, ' ') + WrapText(message_mostRecentCommit, 40, 85));
 
             // Print out relevant test information.
             CreateBanner("TEST DEPENDENCIES");
@@ -337,19 +337,18 @@ namespace TestStage_CICDExample
         /// The input string is seperated per word and then each line is incrementally added to per word.  
         /// Start a new line when the character count of a line exceeds 125.
         /// </summary>
-        /// <param name="input_string">The input string to be wrapped.</param>
+        /// <param name="inputString">The input string to be wrapped.</param>
         /// <returns>A modified string that wraps every 125 characters.</returns>
-        private static string WrapText(string input_string, int indent_value)
+        private static string WrapText(string inputString, int indentValue, int lineLimit)
         {
-            int myLimit = 125;
-            string[] words = input_string.Split(' ');
+            string[] words = inputString.Split(' ');
             StringBuilder newSentence = new StringBuilder();
             string line = "";
             int numberOfNewLines = 0;
             foreach (string word in words)
             {
                 word.Trim();
-                if ((line + word).Length > myLimit)
+                if ((line + word).Length > lineLimit)
                 {
                     newSentence.AppendLine(line);
                     line = "";
@@ -360,7 +359,7 @@ namespace TestStage_CICDExample
             if (line.Length > 0)
             {
                 if (numberOfNewLines > 0)
-                    newSentence.AppendLine("".PadRight(indent_value, ' ') + line);
+                    newSentence.AppendLine("".PadRight(indentValue, ' ') + line);
                 else
                     newSentence.AppendLine(line);
             }
@@ -664,7 +663,7 @@ namespace TestStage_CICDExample
                     return_array[2] = (tagValue_offline == "") ? "<empty_string>" : $"{tagValue_offline}";
                 }
                 else
-                    Console.WriteLine(WrapText($"ERROR executing command: The tag {tagName} cannot be handled. Select either DINT, BOOL, or REAL.", 9));
+                    Console.WriteLine(WrapText($"ERROR executing command: The tag {tagName} cannot be handled. Select either DINT, BOOL, or REAL.", 9, 125));
             }
             catch (LogixSdkException ex)
             {
@@ -1116,12 +1115,12 @@ namespace TestStage_CICDExample
         {
             if (onlineValue != offlineValue)
             {
-                Console.WriteLine(WrapText($"FAILURE: {tagName} online value ({onlineValue}) & offline value ({offlineValue}) NOT equal.", 9));
+                Console.WriteLine(WrapText($"FAILURE: {tagName} online value ({onlineValue}) & offline value ({offlineValue}) NOT equal.", 9, 125));
                 return 1;
             }
             else
             {
-                Console.Write(WrapText($"SUCCESS: {tagName} online value ({onlineValue}) & offline value ({offlineValue}) are EQUAL.", 9));
+                Console.Write(WrapText($"SUCCESS: {tagName} online value ({onlineValue}) & offline value ({offlineValue}) are EQUAL.", 9, 125));
                 return 0;
             }
         }
@@ -1141,12 +1140,12 @@ namespace TestStage_CICDExample
         {
             if (expectedValue != actualValue)
             {
-                Console.WriteLine(WrapText($"FAILURE: {tagName} expected value ({expectedValue}) & actual value ({actualValue}) NOT equal.", 9));
+                Console.WriteLine(WrapText($"FAILURE: {tagName} expected value ({expectedValue}) & actual value ({actualValue}) NOT equal.", 9, 125));
                 return 1;
             }
             else
             {
-                Console.Write(WrapText($"SUCCESS: {tagName} expected value ({expectedValue}) & actual value ({actualValue}) EQUAL.", 9));
+                Console.Write(WrapText($"SUCCESS: {tagName} expected value ({expectedValue}) & actual value ({actualValue}) EQUAL.", 9, 125));
                 return 0;
             }
         }

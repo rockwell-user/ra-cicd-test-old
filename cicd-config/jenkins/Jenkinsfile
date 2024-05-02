@@ -74,7 +74,7 @@ pipeline {
                         script: "git log -1 --pretty=format:'%an'", 
                         returnStdout: true
                     ).trim()
-                    GITHUB_USER_NAME = "\"${name_RecentCommit}\""
+                    GITHUB_USER_NAME = name_RecentCommit
 
                     def email_RecentCommit = powershell(
                         script: "git log -1 --pretty=format:'%ae'", 
