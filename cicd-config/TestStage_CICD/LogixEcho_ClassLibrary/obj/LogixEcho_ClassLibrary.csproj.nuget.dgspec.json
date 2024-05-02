@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\cicd-config\\TestStage_CICD\\LogixEcho_ClassLibrary\\LogixEcho_ClassLibrary.csproj": {}
+    "C:\\data\\jenkins_home\\workspace\\RA-CICD-Pipeline\\cicd-config\\TestStage_CICD\\LogixEcho_ClassLibrary\\LogixEcho_ClassLibrary.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\cicd-config\\TestStage_CICD\\LogixEcho_ClassLibrary\\LogixEcho_ClassLibrary.csproj": {
+    "C:\\data\\jenkins_home\\workspace\\RA-CICD-Pipeline\\cicd-config\\TestStage_CICD\\LogixEcho_ClassLibrary\\LogixEcho_ClassLibrary.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\cicd-config\\TestStage_CICD\\LogixEcho_ClassLibrary\\LogixEcho_ClassLibrary.csproj",
+        "projectUniqueName": "C:\\data\\jenkins_home\\workspace\\RA-CICD-Pipeline\\cicd-config\\TestStage_CICD\\LogixEcho_ClassLibrary\\LogixEcho_ClassLibrary.csproj",
         "projectName": "LogixEcho_ClassLibrary",
-        "projectPath": "C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\cicd-config\\TestStage_CICD\\LogixEcho_ClassLibrary\\LogixEcho_ClassLibrary.csproj",
-        "packagesPath": "C:\\Users\\ASYost\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\cicd-config\\TestStage_CICD\\LogixEcho_ClassLibrary\\obj\\",
+        "projectPath": "C:\\data\\jenkins_home\\workspace\\RA-CICD-Pipeline\\cicd-config\\TestStage_CICD\\LogixEcho_ClassLibrary\\LogixEcho_ClassLibrary.csproj",
+        "packagesPath": "C:\\Users\\Jenkins\\.nuget\\packages\\",
+        "outputPath": "C:\\data\\jenkins_home\\workspace\\RA-CICD-Pipeline\\cicd-config\\TestStage_CICD\\LogixEcho_ClassLibrary\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\ASYost\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Jenkins\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
