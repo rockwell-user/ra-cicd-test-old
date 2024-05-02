@@ -68,6 +68,13 @@ namespace TestStage_CICDExample
             string excelFileReportName = Path.Combine(excelFileReportDirectory, DateTime.Now.ToString("yyyyMMddHHmmss") + "_testfile.xlsx"); // new excel test report filename
             #endregion
 
+            // DELTE THIS LATER
+            string testString = "aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa" +
+                " aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa";
+            Console.WriteLine(WrapText(testString, 40, 125));
+            Console.WriteLine("Next test");
+            Console.WriteLine(WrapText(testString, 9, 125));
+
             // Create new test report file (.txt) using the Console printout.
             #region FILE CREATION -----------------------------------------------------------------------------------------------------------------------------
             FileStream ostrm;
@@ -102,7 +109,7 @@ namespace TestStage_CICDExample
             Console.WriteLine("Test initiated by: ".PadRight(40, ' ') + name_mostRecentCommit);
             Console.WriteLine("Tester contact information: ".PadRight(40, ' ') + email_mostRecentCommit);
             Console.WriteLine("Git commit hash to be verified: ".PadRight(40, ' ') + hash_mostRecentCommit);
-            Console.WriteLine("Git commit message to be verified: ".PadRight(40, ' ') + WrapText(message_mostRecentCommit, 40, 85));
+            Console.WriteLine("Git commit message to be verified: ".PadRight(40, ' ') + WrapText(message_mostRecentCommit, 40, 125));
 
             // Print out relevant test information.
             CreateBanner("TEST DEPENDENCIES");
@@ -338,6 +345,8 @@ namespace TestStage_CICDExample
         /// Start a new line when the character count of a line exceeds 125.
         /// </summary>
         /// <param name="inputString">The input string to be wrapped.</param>
+        /// <param name="indentValue">An integer that defines the length of the characters in the indent starting each new line.</param>
+        /// <param name="lineLimit">An integer that defines the maximum number of characters per line before a new line is created.</param>
         /// <returns>A modified string that wraps every 125 characters.</returns>
         private static string WrapText(string inputString, int indentValue, int lineLimit)
         {
