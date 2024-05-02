@@ -70,6 +70,7 @@ pipeline {
                 echo "Starting Test..."
                 
                 script {
+                    // test
                     def name_RecentCommit = powershell(
                         script: "git log -1 --pretty=format:'%an'", 
                         returnStdout: true
