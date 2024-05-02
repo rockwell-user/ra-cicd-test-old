@@ -1,6 +1,6 @@
 ﻿// ---------------------------------------------------------------------------------------------------------------------------------------------------------------
 //
-// FileName: Program.cs
+// FileName: Logix_Program.cs
 // FileType: Visual C# Source file
 // Author : Rockwell Automation
 // Created : 2024
@@ -18,7 +18,10 @@ using DataType = RockwellAutomation.LogixDesigner.LogixProject.DataType;
 
 namespace TestStage_CICDExample
 {
-    internal class Program
+    /// <summary>
+    /// Class containing the CI/CD Test Script & Studio 5000 Logix Designer SDK methods.
+    /// </summary>
+    internal class CICDTestProgram
     {
         /// <summary>
         /// Script that runs the test for the Logix integrated CI/CD pipeline.
@@ -31,13 +34,19 @@ namespace TestStage_CICDExample
         /// The string array should have two elements:
         /// args[0] = The file path to the local GitHub folder (example format: C:\Users\TestUser\Desktop\example-github-repo\).
         /// args[1] = The name of the acd file that is under development (example format: acd_filename.ACD).
+        /// args[2] = The name of the person associated with the most recent git commit (example format: "Allen Bradley").
+        /// args[3] = The email of the person associated with the most recent git commit (example format: exampleemail@rockwellautomation.com).
+        /// args[4] = The message of the most recent git commit (example format: "Added XYZ functionality to #_Valve_Program").
+        /// args[5] = The hash ID of the most recent git commit (example format: 85df4eda88c992a130484515fee4eec63d14913d).
+        /// args[6] = The name of the Jenkins job being run (example format: Jenkins-CICD-Example).
+        /// args[7] = The number of the Jenkins job being run (example format: 218).
         /// </param>
         /// <returns>A console printout of either "SUCCESS" or "FAILURE". Two test reports are also generated, one in txt format and the other in excel format.</returns>
         static async Task Main(string[] args)
         {
-            // Pass the incoming executable arguments.
+            // Pass the incoming executable arguments for TestScript_ConsoleApplication.exe
             #region PARSING INCOMING VARIABLES WHEN RUNNING PROJECT EXECUTABLE --------------------------------------------------------------------------------
-            if (args.Length != 6)
+            if (args.Length != 8)
             {
                 Console.WriteLine(@"Correct Command: .\TestScript_ConsoleApplication githubPath acdFilename name_mostRecentCommitter " +
                                   "email_mostRecentCommitter Jenkins_job Jenkins_build_number");
@@ -46,15 +55,17 @@ namespace TestStage_CICDExample
             }
             string githubPath = args[0];                                           // 1st incoming argument = GitHub folder path
             string acdFilename = args[1];                                          // 2nd incoming argument = Logix Designer ACD filename
-            string name_mostRecentCommitter = args[2];                             // 3rd incoming argument = name of person assocatied with most recent git commit
-            string email_mostRecentCommitter = args[3];                            // 4th incoming argument = email of person associated with most recent git commit
-            string jenkinsJobName = args[4];                                       // 5th incoming argument = the Jenkins job name
-            string jenkinsBuildNumber = args[5];                                   // 6th incoming argument = the Jenkins job build number
+            string name_mostRecentCommit = args[2];                                // 3rd incoming argument = name of person assocatied with most recent git commit
+            string email_mostRecentCommit = args[3];                               // 4th incoming argument = email of person associated with most recent git commit
+            string message_mostRecentCommit = args[4];                             // 5th incoming argument = message provided in the most recent git commit
+            string hash_mostRecentCommit = args[5];                                // 6th incoming argument = hash ID from most recent git commit
+            string jenkinsJobName = args[6];                                       // 7th incoming argument = the Jenkins job name
+            string jenkinsBuildNumber = args[7];                                   // 8th incoming argument = the Jenkins job build number
             string acdFilePath = githubPath + @"DEVELOPMENT-files\" + acdFilename; // file path to ACD project
             string textFileReportDirectory = Path.Combine(githubPath + @"test-reports\textFiles\");   // folder path to text test reports
             string excelFileReportDirectory = Path.Combine(githubPath + @"test-reports\excelFiles\"); // folder path to excel test reports
-            string textFileReportName = Path.Combine(textFileReportDirectory, DateTime.Now.ToString("yyyyMMddHHmmss") + "_testfile.txt");    // new test report filename
-            string excelFileReportName = Path.Combine(excelFileReportDirectory, DateTime.Now.ToString("yyyyMMddHHmmss") + "_testfile.xlsx"); // new test report filename
+            string textFileReportName = Path.Combine(textFileReportDirectory, DateTime.Now.ToString("yyyyMMddHHmmss") + "_testfile.txt");    // new text test report filename
+            string excelFileReportName = Path.Combine(excelFileReportDirectory, DateTime.Now.ToString("yyyyMMddHHmmss") + "_testfile.xlsx"); // new excel test report filename
             #endregion
 
             // Create new test report file (.txt) using the Console printout.
@@ -86,10 +97,15 @@ namespace TestStage_CICDExample
             Console.WriteLine("=============================================================================================================================");
             Console.WriteLine("  =========================================================================================================================  \n\n");
 
+            // GitHub Information
+            CreateBanner("GITHUB INFORMATION");
+            Console.WriteLine("Test initiated by: ".PadRight(40, ' ') + name_mostRecentCommit);
+            Console.WriteLine("Tester contact information: ".PadRight(40, ' ') + email_mostRecentCommit);
+            Console.WriteLine("Git commit hash to be verified: ".PadRight(40, ' ') + hash_mostRecentCommit);
+            Console.WriteLine("Git commit message to be verified: ".PadRight(40, ' ') + WrapText(message_mostRecentCommit, 40));
+
             // Print out relevant test information.
             CreateBanner("TEST DEPENDENCIES");
-            Console.WriteLine("Test initiated by: ".PadRight(40, ' ') + name_mostRecentCommitter);
-            Console.WriteLine("Tester contact information: ".PadRight(40, ' ') + email_mostRecentCommitter);
             Console.WriteLine("Jenkins job being executed: ".PadRight(40, ' ') + jenkinsJobName);
             Console.WriteLine("Jenkins job build number: ".PadRight(40, ' ') + jenkinsBuildNumber);
             Console.WriteLine("ACD file path specified: ".PadRight(40, ' ') + acdFilePath);
@@ -102,7 +118,7 @@ namespace TestStage_CICDExample
 
             // Create an excel test report to be filled out durring testing.
             Console.WriteLine($"[{DateTime.Now.ToString("T")}] START setting up excel test report workbook...");
-            ExcelPackage excel_TestReport = CreateFormattedExcelFile(excelFileReportName, name_mostRecentCommitter, email_mostRecentCommitter, jenkinsBuildNumber, jenkinsJobName);
+            ExcelPackage excel_TestReport = CreateFormattedExcelFile(excelFileReportName, name_mostRecentCommit, email_mostRecentCommit, jenkinsBuildNumber, jenkinsJobName);
             Console.WriteLine($"[{DateTime.Now.ToString("T")}] DONE setting up excel test report workbook...\n---");
 
             // Check the test-reports folder and if over the specified file number limit, delete the oldest test files.
@@ -323,7 +339,7 @@ namespace TestStage_CICDExample
         /// </summary>
         /// <param name="input_string">The input string to be wrapped.</param>
         /// <returns>A modified string that wraps every 125 characters.</returns>
-        private static string WrapText(string input_string)
+        private static string WrapText(string input_string, int indent_value)
         {
             int myLimit = 125;
             string[] words = input_string.Split(' ');
@@ -344,7 +360,7 @@ namespace TestStage_CICDExample
             if (line.Length > 0)
             {
                 if (numberOfNewLines > 0)
-                    newSentence.AppendLine("         " + line);
+                    newSentence.AppendLine("".PadRight(indent_value, ' ') + line);
                 else
                     newSentence.AppendLine(line);
             }
@@ -648,7 +664,7 @@ namespace TestStage_CICDExample
                     return_array[2] = (tagValue_offline == "") ? "<empty_string>" : $"{tagValue_offline}";
                 }
                 else
-                    Console.WriteLine(WrapText($"ERROR executing command: The tag {tagName} cannot be handled. Select either DINT, BOOL, or REAL."));
+                    Console.WriteLine(WrapText($"ERROR executing command: The tag {tagName} cannot be handled. Select either DINT, BOOL, or REAL.", 9));
             }
             catch (LogixSdkException ex)
             {
@@ -1100,12 +1116,12 @@ namespace TestStage_CICDExample
         {
             if (onlineValue != offlineValue)
             {
-                Console.WriteLine(WrapText($"FAILURE: {tagName} online value ({onlineValue}) & offline value ({offlineValue}) NOT equal."));
+                Console.WriteLine(WrapText($"FAILURE: {tagName} online value ({onlineValue}) & offline value ({offlineValue}) NOT equal.", 9));
                 return 1;
             }
             else
             {
-                Console.Write(WrapText($"SUCCESS: {tagName} online value ({onlineValue}) & offline value ({offlineValue}) are EQUAL."));
+                Console.Write(WrapText($"SUCCESS: {tagName} online value ({onlineValue}) & offline value ({offlineValue}) are EQUAL.", 9));
                 return 0;
             }
         }
@@ -1125,12 +1141,12 @@ namespace TestStage_CICDExample
         {
             if (expectedValue != actualValue)
             {
-                Console.WriteLine(WrapText($"FAILURE: {tagName} expected value ({expectedValue}) & actual value ({actualValue}) NOT equal."));
+                Console.WriteLine(WrapText($"FAILURE: {tagName} expected value ({expectedValue}) & actual value ({actualValue}) NOT equal.", 9));
                 return 1;
             }
             else
             {
-                Console.Write(WrapText($"SUCCESS: {tagName} expected value ({expectedValue}) & actual value ({actualValue}) EQUAL."));
+                Console.Write(WrapText($"SUCCESS: {tagName} expected value ({expectedValue}) & actual value ({actualValue}) EQUAL.", 9));
                 return 0;
             }
         }

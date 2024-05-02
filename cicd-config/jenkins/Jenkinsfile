@@ -70,21 +70,30 @@ pipeline {
                 echo "Starting Test..."
                 
                 script {
-                    def name_mostRecentCommitter = powershell(
+                    def name_RecentCommit = powershell(
                         script: "git log -1 --pretty=format:'%an'", 
                         returnStdout: true
                     ).trim()
-                    formated_name_mostRecentCommitter = "\"${name_mostRecentCommitter}\""
-
-                    def email_mostRecentCommitter = powershell(
+                    
+                    def email_RecentCommit = powershell(
                         script: "git log -1 --pretty=format:'%ae'", 
+                        returnStdout: true
+                    ).trim()
+
+                    def message_RecentCommit = powershell(
+                        script: "git log -1 --pretty=format:'%s'",
+                        returnStdout: true
+                    ).trim()
+
+                    def hash_RecentCommit = powershell(
+                        script: "git log -1 --pretty=format:'%H'",
                         returnStdout: true
                     ).trim()
 
                     def executable_filePath = "${env.PATH_JENKINS_GITHUB}cicd-config\\TestStage_CICD\\TestScript_ConsoleApplication\\bin\\Release\\net8.0\\TestScript_ConsoleApplication.exe"
                     
                     testResult = bat(
-                        script: "@${executable_filePath} %PATH_JENKINS_GITHUB% %ACDFILENAME% ${formated_name_mostRecentCommitter} ${email_mostRecentCommitter} ${env.JOB_NAME} ${env.BUILD_NUMBER}", 
+                        script: "@${executable_filePath} %PATH_JENKINS_GITHUB% %ACDFILENAME% \"${name_RecentCommit}\" ${email_RecentCommit} \"${message_RecentCommit}\" ${hash_RecentCommit} ${env.JOB_NAME} ${env.BUILD_NUMBER}", 
                         returnStdout: true
                     ).trim()
 

@@ -4,7 +4,7 @@
 // FileType: Visual C# Source File
 // Author : Rockwell Automation
 // Created : 2024
-// Description : This script provides an example test in a CI/CD pipeline utilizing Studio 5000 Logix Designer SDK and Factory Talk Logix Echo SDK.
+// Description : This script provides supporting methods to set up an emulated controller using the Factory Talk Logix Echo SDK.
 //
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -14,21 +14,35 @@ using System.Globalization;
 
 namespace LogixEcho_ClassLibrary
 {
+    /// <summary>
+    /// Class containing Factory Talk Logix Echo SDK methods needed for CI/CD test stage execution.
+    /// </summary>
     public class LogixEchoMethods
     {
+        /// <summary>
+        /// Script that sets up an emulated controller for CI/CD software in the loop (SIL) testing.
+        /// If no emulated controller based on the ACD file path yet exists, create one, and then return the communication path. 
+        /// If an emulated controller based on the ACD file path exists, only return the communication path.
+        /// </summary>
+        /// <param name="acdFilePath">The file path pointing to the ACD project used for testing.</param>
+        /// <returns>A string containing the communication path of the emulated controller that the ACD project file will go online with during testing.</returns>
         public static async Task<string> Main(string acdFilePath)
         {
-            // Set up emulated controller (based on the specified ACD file path) if one does not yet exist. If not, continue.
             var serviceClient = ClientFactory.GetServiceApiClientV2("CLIENT_TestStage_CICDExample");
             serviceClient.Culture = new CultureInfo("en-US");
+
+            // Check if an emulated controller CICD_test exists within an emulated chassis CICDtest_chassis. If not, run through the if statement contents to create one.
             if (CheckCurrentChassis_Sync("CICDtest_chassis", "CICD_test", serviceClient) == false)
             {
+                // Set up emulated chassis information.
                 var chassisUpdate = new ChassisUpdate
                 {
                     Name = "CICDtest_chassis",
                     Description = "Test chassis for CI/CD demonstration."
                 };
                 ChassisData chassisCICD = await serviceClient.CreateChassis(chassisUpdate);
+
+                // Set up emulated controller information.
                 using (var fileHandle = await serviceClient.SendFile(acdFilePath))
                 {
                     var controllerUpdate = await serviceClient.GetControllerInfoFromAcd(fileHandle);
@@ -36,8 +50,8 @@ namespace LogixEcho_ClassLibrary
                     var controllerData = await serviceClient.CreateController(controllerUpdate);
                 }
             }
+            // Get emulated controller information.
             string[] testControllerInfo = await Get_ControllerInfo_Async("CICDtest_chassis", "CICD_test", serviceClient);
-
             string commPath = @"EmulateEthernet\" + testControllerInfo[1];
             Console.WriteLine($"SUCCESS: project communication path specified is \"{commPath}\"");
             return commPath;
