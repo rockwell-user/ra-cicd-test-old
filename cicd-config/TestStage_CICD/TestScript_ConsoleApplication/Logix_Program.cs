@@ -377,7 +377,7 @@ namespace TestStage_CICDExample
             if (line.Length > 0)
             {
                 if (numberOfNewLines > 0)
-                    newSentence.AppendLine(indent + line);
+                    newSentence.AppendLine(line);
                 else
                     newSentence.AppendLine(line);
             }
