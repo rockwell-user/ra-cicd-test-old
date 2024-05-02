@@ -368,12 +368,14 @@ namespace TestStage_CICDExample
                 }
                 line += string.Format($"{word} ");
             }
+            Console.WriteLine("Line length: " + line.Length);
+            Console.WriteLine("Number of new lines: " + numberOfNewLines);
             if (line.Length > 0)
             {
                 if (numberOfNewLines > 0)
                     newSentence.AppendLine("".PadRight(indentValue, ' ') + line);
                 else
-                    newSentence.AppendLine("".PadRight(indentValue, ' ') + line);
+                    newSentence.AppendLine(line);
             }
             return newSentence.ToString();
         }
