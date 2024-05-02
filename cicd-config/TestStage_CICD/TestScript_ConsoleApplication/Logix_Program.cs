@@ -104,12 +104,16 @@ namespace TestStage_CICDExample
             Console.WriteLine("Git commit hash to be verified: ".PadRight(40, ' ') + hash_mostRecentCommit);
             Console.WriteLine("Git commit message to be verified: ".PadRight(40, ' ') + WrapText(message_mostRecentCommit, 40, 125));
             Console.WriteLine("Git commit message to be verified: ".PadRight(40, ' ') + WrapText(message_mostRecentCommit, 40, 85));
+            Console.WriteLine("Git commit message to be verified: ".PadRight(40, ' ') + WrapText(message_mostRecentCommit, 40, 85));
+            Console.WriteLine("Git commit message to be verified: ".PadRight(40, ' ') + WrapText(message_mostRecentCommit, 40, 85));
             // DELTE THIS LATER
             string testString = "aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa" +
                 " aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa aaa";
-            Console.WriteLine(WrapText(testString, 40, 125));
+            Console.WriteLine(WrapText(testString, 0, 125));
+            Console.WriteLine("".PadRight(40, ' ') + WrapText(testString, 40, 125));
             Console.WriteLine("Next test");
-            Console.WriteLine(WrapText(testString, 9, 125));
+            Console.WriteLine("".PadRight(9, ' ') + WrapText(testString, 9, 125));
+
             // Print out relevant test information.
             CreateBanner("TEST DEPENDENCIES");
             Console.WriteLine("Jenkins job being executed: ".PadRight(40, ' ') + jenkinsJobName);
@@ -369,7 +373,7 @@ namespace TestStage_CICDExample
                 if (numberOfNewLines > 0)
                     newSentence.AppendLine("".PadRight(indentValue, ' ') + line);
                 else
-                    newSentence.AppendLine(line);
+                    newSentence.AppendLine("".PadRight(indentValue, ' ') + line);
             }
             return newSentence.ToString();
         }
