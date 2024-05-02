@@ -348,11 +348,12 @@ namespace TestStage_CICDExample
         /// Start a new line when the character count of a line exceeds 125.
         /// </summary>
         /// <param name="inputString">The input string to be wrapped.</param>
-        /// <param name="indentValue">An integer that defines the length of the characters in the indent starting each new line.</param>
+        /// <param name="indentLength">An integer that defines the length of the characters in the indent starting each new line.</param>
         /// <param name="lineLimit">An integer that defines the maximum number of characters per line before a new line is created.</param>
         /// <returns>A modified string that wraps every 125 characters.</returns>
-        private static string WrapText(string inputString, int indentValue, int lineLimit)
+        private static string WrapText(string inputString, int indentLength, int lineLimit)
         {
+            string indent = new string(' ', indentLength);
             string[] words = inputString.Split(' ');
             StringBuilder newSentence = new StringBuilder();
             string line = "";
@@ -373,7 +374,7 @@ namespace TestStage_CICDExample
             if (line.Length > 0)
             {
                 if (numberOfNewLines > 0)
-                    newSentence.AppendLine("".PadRight(indentValue, ' ') + line);
+                    newSentence.AppendLine(indent + line);
                 else
                     newSentence.AppendLine(line);
             }

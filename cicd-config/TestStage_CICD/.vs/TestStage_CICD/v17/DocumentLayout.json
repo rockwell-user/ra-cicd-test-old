@@ -40,7 +40,7 @@
               "RelativeDocumentMoniker": "TestScript_ConsoleApplication\\Logix_Program.cs",
               "ToolTip": "C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\cicd-config\\TestStage_CICD\\TestScript_ConsoleApplication\\Logix_Program.cs",
               "RelativeToolTip": "TestScript_ConsoleApplication\\Logix_Program.cs",
-              "ViewState": "AQIAAFcBAAAAAAAAAAAqwHUBAAANAAAA",
+              "ViewState": "AQIAAE8BAAAAAAAAAAAqwHgBAAA6AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-01T14:35:16.21Z",
               "EditorCaption": ""
@@ -51,6 +51,10 @@
           "DockedHeight": 59,
           "SelectedChildIndex": -1,
           "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
