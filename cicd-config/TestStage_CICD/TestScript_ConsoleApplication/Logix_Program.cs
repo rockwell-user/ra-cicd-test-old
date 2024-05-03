@@ -24,21 +24,21 @@ namespace TestStage_CICDExample
     internal class CICDTestProgram
     {
         /// <summary>
-        /// Script that runs the test for the Logix integrated CI/CD pipeline.
-        /// Uses the LDSDK alongside the EchoSDK for software in the loop testing.
-        /// The test goes online with an emulated controller, verifies that the logic established in previous 
+        /// Script that runs the test for the Logix integrated CI/CD pipeline.<br/>
+        /// Uses the LDSDK alongside the EchoSDK for software in the loop testing.<br/>
+        /// The test goes online with an emulated controller, verifies that the logic established in previous <br/>
         /// testing has not been changed, and then creates a test report in txt and excel file formats.
         /// </summary>
         /// <param name="args">
-        /// The input arguments needed to execute the script in string array format.
-        /// The string array should have two elements:
-        /// args[0] = The file path to the local GitHub folder (example format: C:\Users\TestUser\Desktop\example-github-repo\).
-        /// args[1] = The name of the acd file that is under development (example format: acd_filename.ACD).
-        /// args[2] = The name of the person associated with the most recent git commit (example format: "Allen Bradley").
-        /// args[3] = The email of the person associated with the most recent git commit (example format: exampleemail@rockwellautomation.com).
-        /// args[4] = The message of the most recent git commit (example format: "Added XYZ functionality to #_Valve_Program").
-        /// args[5] = The hash ID of the most recent git commit (example format: 85df4eda88c992a130484515fee4eec63d14913d).
-        /// args[6] = The name of the Jenkins job being run (example format: Jenkins-CICD-Example).
+        /// The input arguments needed to execute the script in string array format.<br/>
+        /// The string array should have two elements:<br/>
+        /// args[0] = The file path to the local GitHub folder (example format: C:\Users\TestUser\Desktop\example-github-repo\).<br/>
+        /// args[1] = The name of the acd file that is under development (example format: acd_filename.ACD).<br/>
+        /// args[2] = The name of the person associated with the most recent git commit (example format: "Allen Bradley").<br/>
+        /// args[3] = The email of the person associated with the most recent git commit (example format: exampleemail@rockwellautomation.com).<br/>
+        /// args[4] = The message of the most recent git commit (example format: "Added XYZ functionality to #_Valve_Program").<br/>
+        /// args[5] = The hash ID of the most recent git commit (example format: 85df4eda88c992a130484515fee4eec63d14913d).<br/>
+        /// args[6] = The name of the Jenkins job being run (example format: Jenkins-CICD-Example).<br/>
         /// args[7] = The number of the Jenkins job being run (example format: 218).
         /// </param>
         /// <returns>A console printout of either "SUCCESS" or "FAILURE". Two test reports are also generated, one in txt format and the other in excel format.</returns>
@@ -48,19 +48,32 @@ namespace TestStage_CICDExample
             #region PARSING INCOMING VARIABLES WHEN RUNNING PROJECT EXECUTABLE --------------------------------------------------------------------------------
             if (args.Length != 8)
             {
-                Console.WriteLine(@"Correct Command: .\TestScript_ConsoleApplication githubPath acdFilename name_mostRecentCommitter " +
-                                  "email_mostRecentCommitter Jenkins_job Jenkins_build_number");
-                Console.WriteLine(@"Example Format:  .\TestScript_ConsoleApplication C:\Users\TestUser\Desktop\example-github-repo\ " +
-                                  "acd_filename.ACD 'Allen Bradley' example@gmail.com Jenkins-CICD-Example 218");
+                CreateBanner("INCORRECT NUMBER OF INPUTS");
+                Console.Write("Correct Command: ".PadRight(20, ' ') + WrapText(@".\TestScript_ConsoleApplication githubPath acdFilename name_mostRecentCommit " +
+                                  "email_mostRecentCommit message_mostRecentCommit hash_mostRecentCommit jenkinsJobName jenkinsBuildNumber", 20, 105));
+                Console.Write("Example Format: ".PadRight(20, ' ') + WrapText(@".\TestScript_ConsoleApplication C:\Users\TestUser\Desktop\example-github-repo\ " +
+                                  "acd_filename.ACD Allen Bradley' example@gmail.com 'Most recent commit message insert here' " +
+                                  "287bb2c93a2d1c99143d233fd3ed70cdb997f149 Jenkins-CICD-Example 218", 20, 105));
+                CreateBanner("END");
             }
-            string githubPath = args[0];                                           // 1st incoming argument = GitHub folder path
-            string acdFilename = args[1];                                          // 2nd incoming argument = Logix Designer ACD filename
-            string name_mostRecentCommit = args[2];                                // 3rd incoming argument = name of person assocatied with most recent git commit
-            string email_mostRecentCommit = args[3];                               // 4th incoming argument = email of person associated with most recent git commit
-            string message_mostRecentCommit = args[4];                             // 5th incoming argument = message provided in the most recent git commit
-            string hash_mostRecentCommit = args[5];                                // 6th incoming argument = hash ID from most recent git commit
-            string jenkinsJobName = args[6];                                       // 7th incoming argument = the Jenkins job name
-            string jenkinsBuildNumber = args[7];                                   // 8th incoming argument = the Jenkins job build number
+            string githubPath = "C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\";
+            string acdFilename = "CICD_test.ACD";
+            string name_mostRecentCommit = "Allen Bradley";
+            string email_mostRecentCommit = "exampleemail@rockwellautomation.com";
+            string message_mostRecentCommit = "This is a long example email. Like pretty long. This is a long example email. Like pretty long." +
+                " This is a long example email. Like pretty long. This is a long example email. Like pretty long. This is a long example email. Like pretty long." +
+                " This is a long example email. Like pretty long. This is a long example email. Like pretty long. This is a long example email. Like pretty long.";
+            string hash_mostRecentCommit = "287bb2c93a2d1c99143d233fd3ed70cdb997f149";
+            string jenkinsJobName = "Jenkins-CICD-Example";
+            string jenkinsBuildNumber = "3000";
+            //string githubPath = args[0];                                           // 1st incoming argument = GitHub folder path
+            //string acdFilename = args[1];                                          // 2nd incoming argument = Logix Designer ACD filename
+            //string name_mostRecentCommit = args[2];                                // 3rd incoming argument = name of person assocatied with most recent git commit
+            //string email_mostRecentCommit = args[3];                               // 4th incoming argument = email of person associated with most recent git commit
+            //string message_mostRecentCommit = args[4];                             // 5th incoming argument = message provided in the most recent git commit
+            //string hash_mostRecentCommit = args[5];                                // 6th incoming argument = hash ID from most recent git commit
+            //string jenkinsJobName = args[6];                                       // 7th incoming argument = the Jenkins job name
+            //string jenkinsBuildNumber = args[7];                                   // 8th incoming argument = the Jenkins job build number
             string acdFilePath = githubPath + @"DEVELOPMENT-files\" + acdFilename; // file path to ACD project
             string textFileReportDirectory = Path.Combine(githubPath + @"test-reports\textFiles\");   // folder path to text test reports
             string excelFileReportDirectory = Path.Combine(githubPath + @"test-reports\excelFiles\"); // folder path to excel test reports
@@ -68,23 +81,31 @@ namespace TestStage_CICDExample
             string excelFileReportName = Path.Combine(excelFileReportDirectory, DateTime.Now.ToString("yyyyMMddHHmmss") + "_testfile.xlsx"); // new excel test report filename
             #endregion
 
+
+            // TEST REGION //
+            //string[] test7 = GenerateBitCombinations(7);
+            //foreach (string element in test7)
+            //    Console.WriteLine(element);
+
+
+
             // Create new test report file (.txt) using the Console printout.
             #region FILE CREATION -----------------------------------------------------------------------------------------------------------------------------
-            FileStream ostrm;
-            StreamWriter writer;
-            TextWriter oldOut = Console.Out;
-            try
-            {
-                ostrm = new FileStream(textFileReportName, FileMode.OpenOrCreate, FileAccess.Write);
-                writer = new StreamWriter(ostrm);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("Cannot open Redirect.txt for writing");
-                Console.WriteLine(e.Message);
-                return;
-            }
-            Console.SetOut(writer);
+            //FileStream ostrm;
+            //StreamWriter writer;
+            //TextWriter oldOut = Console.Out;
+            //try
+            //{
+            //    ostrm = new FileStream(textFileReportName, FileMode.OpenOrCreate, FileAccess.Write);
+            //    writer = new StreamWriter(ostrm);
+            //}
+            //catch (Exception e)
+            //{
+            //    Console.WriteLine("Cannot open Redirect.txt for writing");
+            //    Console.WriteLine(e.Message);
+            //    return;
+            //}
+            //Console.SetOut(writer);
             #endregion
 
             // This region contain the different steps needed to set up & execute testing.
@@ -294,6 +315,14 @@ namespace TestStage_CICDExample
             failureCondition += TEST_CompareForExpectedValue("UDT_AllAtomicDataTypes.ex_STRING", "2nd New String!", UDT_AllAtomicDataTypes[1][13]);
             Console.WriteLine($"[{DateTime.Now.ToString("T")}] DONE verifying expected tag outputs\n---");
 
+            // Truth table test 
+            Console.WriteLine($"[{DateTime.Now.ToString("T")}] START testing boolean logic with truth table generation...");
+            string[] all5BitCombinations = GenerateBitCombinations(5);
+            //string[] results = ["False", "False", "False", "False", "False", "False", "False", "False", "False", "False", "False", "False", "False", "False", "False"];
+            string[] results = new string[all5BitCombinations.Length];
+            failureCondition += TEST_TruthTable(all5BitCombinations, results, filePath_ControllerScope, myProject);
+            Console.WriteLine($"[{DateTime.Now.ToString("T")}] DONE testing boolean logic with truth table generation...\n---");
+
             // Show final tag values.
             Console.WriteLine($"[{DateTime.Now.ToString("T")}] START showing final test tag values...");
             Get_TagValue_Sync(TEST_BOOL[0], DataType.BOOL, filePath_ControllerScope, myProject, true);
@@ -318,9 +347,9 @@ namespace TestStage_CICDExample
                 CreateBanner("TEST SUCCESS!");
 
             // Finish the process of sending console printouts to the test text file.
-            Console.SetOut(oldOut);
-            writer.Close();
-            ostrm.Close();
+            //Console.SetOut(oldOut);
+            //writer.Close();
+            //ostrm.Close();
 
             // Print out final banner based on test results.
             if (failureCondition > 0)
@@ -333,8 +362,8 @@ namespace TestStage_CICDExample
 
         #region METHODS: formatting text file
         /// <summary>
-        /// Modify the input string to wrap the text to the next line after a certain length. 
-        /// The input string is seperated per word and then each line is incrementally added to per word.  
+        /// Modify the input string to wrap the text to the next line after a certain length.<br/>
+        /// The input string is seperated per word and then each line is incrementally added to per word.<br/>
         /// Start a new line when the character count of a line exceeds 125.
         /// </summary>
         /// <param name="inputString">The input string to be wrapped.</param>
@@ -594,21 +623,21 @@ namespace TestStage_CICDExample
 
         #region METHODS: get/set basic data type tags
         /// <summary>
-        /// Asynchronously get the online and offline value of a basic data type tag.
+        /// Asynchronously get the online and offline value of a basic data type tag.<br/>
         /// (basic data types handled: boolean, single integer, integer, double integer, long integer, real, string)
         /// </summary>
         /// <param name="tagName">The name of the tag in Studio 5000 Logix Designer whose value will be returned.</param>
         /// <param name="type">The data type of the tag whose value will be returned.</param>
         /// <param name="tagPath">
-        /// The tag path specifying the tag's scope and location in the Studio 5000 Logix Designer project.
+        /// The tag path specifying the tag's scope and location in the Studio 5000 Logix Designer project.<br/>
         /// The tag path is based on the XML filetype (L5X) encapsulation of elements.
         /// </param>
         /// <param name="project">An instance of the LogixProject class.</param>
         /// <param name="printout">A boolean that, if True, prints the online and offline values to the console.</param>
         /// <returns>
-        /// A Task that results in a string array containing tag information:
-        /// return_array[0] = tag name
-        /// return_array[1] = online tag value
+        /// A Task that results in a string array containing tag information:<br/>
+        /// return_array[0] = tag name<br/>
+        /// return_array[1] = online tag value<br/>
         /// return_array[2] = offline tag value
         /// </returns>
         private static async Task<string[]> Get_TagValue_Async(string tagName, DataType type, string tagPath, LogixProject project, bool printout)
@@ -829,12 +858,12 @@ namespace TestStage_CICDExample
         /// Asynchronously get the online and offline data in ByteString form for the complex tag UDT_AllAtomicDataTypes.
         /// </summary>
         /// <param name="tagPath">
-        /// The tag path specifying the tag's scope and location in the Studio 5000 Logix Designer project.
+        /// The tag path specifying the tag's scope and location in the Studio 5000 Logix Designer project.<br/>
         /// The tag path is based on the XML filetype (L5X) encapsulation of elements.</param>
         /// <param name="project">An instance of the LogixProject class.</param>
         /// <returns>
-        /// A Task that results in a ByteString array containing UDT_AllAtomicDataTypes information:
-        /// returnByteStringArray[0] = online tag values
+        /// A Task that results in a ByteString array containing UDT_AllAtomicDataTypes information:<br/>
+        /// returnByteStringArray[0] = online tag values<br/>
         /// returnByteStringArray[1] = offline tag values
         /// </returns>
         private static async Task<ByteString[]> Get_UDTAllAtomicDataTypes_Async(string tagPath, LogixProject project)
@@ -847,16 +876,16 @@ namespace TestStage_CICDExample
         }
 
         /// <summary>
-        /// Run the GetUDT_AllAtomicDataTypesAsync Method synchronously.
+        /// Run the GetUDT_AllAtomicDataTypesAsync Method synchronously.<br/>
         /// Get the online and offline data in ByteString form for the complex tag UDT_AllAtomicDataTypes.
         /// </summary>
         /// <param name="tagPath">
-        /// The tag path specifying the tag's scope and location in the Studio 5000 Logix Designer project.
+        /// The tag path specifying the tag's scope and location in the Studio 5000 Logix Designer project.<br/>
         /// The tag path is based on the XML filetype (L5X) encapsulation of elements.</param>
         /// <param name="project">An instance of the LogixProject class.</param>
         /// <returns>
-        /// A ByteString array containing UDT_AllAtomicDataTypes information:
-        /// returnByteStringArray[0] = online tag values
+        /// A ByteString array containing UDT_AllAtomicDataTypes information:<br/>
+        /// returnByteStringArray[0] = online tag values<br/>
         /// returnByteStringArray[1] = offline tag values
         /// </returns>
         private static ByteString[] Get_UDTAllAtomicDataTypes_Sync(string tagPath, LogixProject project)
@@ -867,7 +896,7 @@ namespace TestStage_CICDExample
         }
 
         /// <summary>
-        /// Asynchronously set either the online or offline value of a member of the complex data type tag UDT_AllAtomicDataTypes. Each member is a basic data type.
+        /// Asynchronously set either the online or offline value of a member of the complex data type tag UDT_AllAtomicDataTypes. Each member is a basic data type.<br/>
         /// (basic data types handled: boolean, single integer, integer, double integer, long integer, real, string)
         /// </summary>
         /// <param name="newTagValue">The value of the UDT_AllAtomicDataTypes tag member that will be set.</param>
@@ -959,8 +988,8 @@ namespace TestStage_CICDExample
         }
 
         /// <summary>
-        /// Run the SetUDT_AllAtomicDataTypesAsync Method synchronously.
-        /// Set either the online or offline value of a member of the complex data type tag UDT_AllAtomicDataTypes. Each member is a basic data type.
+        /// Run the SetUDT_AllAtomicDataTypesAsync Method synchronously.<br/>
+        /// Set either the online or offline value of a member of the complex data type tag UDT_AllAtomicDataTypes. Each member is a basic data type.<br/>
         /// (basic data types handled: boolean, single integer, integer, double integer, long integer, real, string)
         /// </summary>
         /// <param name="newTagValue">The value of the UDT_AllAtomicDataTypes tag member that will be set.</param>
@@ -978,65 +1007,65 @@ namespace TestStage_CICDExample
         /// Format the complex data type tag UDT_AllAtomicDataTypes from a ByteString to a nested string array.
         /// </summary>
         /// <param name="byteStringArray">
-        /// This input parameter is the Get_UDTAllAtomicDataTypes_Async method output or the Get_UDTAllAtomicDataTypes_Sync method output.
-        /// The ByteString array has the following format:
-        /// byteStringArray[0] = ByteString for online complex data type tag values
+        /// This input parameter is the Get_UDTAllAtomicDataTypes_Async method output or the Get_UDTAllAtomicDataTypes_Sync method output.<br/>
+        /// The ByteString array has the following format:<br/>
+        /// byteStringArray[0] = ByteString for online complex data type tag values<br/>
         /// byteStringArray[1] = ByteString for offline complex data type tag values
         /// </param>
         /// <param name="printout">A boolean that, if True, prints the "before" and "after" values of the UDT_AllAtomicDataTypes tag member to the console.</param>
         /// <returns>
-        /// A nested string array with the following format:
-        /// returnString[0][] = the names of the 14 members of the UDT_AllAtomicDataTypes complex data type tag in the order they were made in Studio 5000 Logix Designer
-        /// returnString[1][] = the online values of the 14 members of the UDT_AllAtomicDataTypes complex data type tag in the order they were made in Studio 5000 Logix Designer
+        /// A nested string array with the following format:<br/>
+        /// returnString[0][] = the names of the 14 members of the UDT_AllAtomicDataTypes complex data type tag in the order they were made in Studio 5000 Logix Designer<br/>
+        /// returnString[1][] = the online values of the 14 members of the UDT_AllAtomicDataTypes complex data type tag in the order they were made in Studio 5000 Logix Designer<br/>
         /// returnString[2][] = the offline values of the 14 members of the UDT_AllAtomicDataTypes complex data type tag in the order they were made in Studio 5000 Logix Designer
         /// <para>
-        /// Every element of the nested string array:
-        /// returnString[0][0] = UDT_AllAtomicDataTypes.ex_BOOL1 name
-        /// returnString[0][1] = UDT_AllAtomicDataTypes.ex_BOOL2 name
-        /// returnString[0][2] = UDT_AllAtomicDataTypes.ex_BOOL3 name
-        /// returnString[0][3] = UDT_AllAtomicDataTypes.ex_BOOL4 name
-        /// returnString[0][4] = UDT_AllAtomicDataTypes.ex_BOOL5 name
-        /// returnString[0][5] = UDT_AllAtomicDataTypes.ex_BOOL5 name
-        /// returnString[0][6] = UDT_AllAtomicDataTypes.ex_BOOL6 name
-        /// returnString[0][7] = UDT_AllAtomicDataTypes.ex_BOOL7 name
-        /// returnString[0][8] = UDT_AllAtomicDataTypes.ex_BOOL8 name
-        /// returnString[0][9] = UDT_AllAtomicDataTypes.ex_SINT name
-        /// returnString[0][10] = UDT_AllAtomicDataTypes.ex_INT name
-        /// returnString[0][11] = UDT_AllAtomicDataTypes.ex_DINT name
-        /// returnString[0][12] = UDT_AllAtomicDataTypes.ex_LINT name
-        /// returnString[0][13] = UDT_AllAtomicDataTypes.ex_REAL name
-        /// returnString[0][14] = UDT_AllAtomicDataTypes.ex_STRING name
-        /// returnString[1][0] = UDT_AllAtomicDataTypes.ex_BOOL1 online value
-        /// returnString[1][1] = UDT_AllAtomicDataTypes.ex_BOOL2 online value
-        /// returnString[1][2] = UDT_AllAtomicDataTypes.ex_BOOL3 online value
-        /// returnString[1][3] = UDT_AllAtomicDataTypes.ex_BOOL4 online value
-        /// returnString[1][4] = UDT_AllAtomicDataTypes.ex_BOOL5 online value
-        /// returnString[1][5] = UDT_AllAtomicDataTypes.ex_BOOL5 online value
-        /// returnString[1][6] = UDT_AllAtomicDataTypes.ex_BOOL6 online value
-        /// returnString[1][7] = UDT_AllAtomicDataTypes.ex_BOOL7 online value
-        /// returnString[1][8] = UDT_AllAtomicDataTypes.ex_BOOL8 online value
-        /// returnString[1][9] = UDT_AllAtomicDataTypes.ex_SINT online value
-        /// returnString[1][10] = UDT_AllAtomicDataTypes.ex_INT online value
-        /// returnString[1][11] = UDT_AllAtomicDataTypes.ex_DINT online value
-        /// returnString[1][12] = UDT_AllAtomicDataTypes.ex_LINT online value
-        /// returnString[1][13] = UDT_AllAtomicDataTypes.ex_REAL online value
-        /// returnString[1][14] = UDT_AllAtomicDataTypes.ex_STRING online value
-        /// returnString[1][15] = the number of bytes in element 0 of the input ByteString array (online values)
-        /// returnString[2][0] = UDT_AllAtomicDataTypes.ex_BOOL1 offline value
-        /// returnString[2][1] = UDT_AllAtomicDataTypes.ex_BOOL2 offline value
-        /// returnString[2][2] = UDT_AllAtomicDataTypes.ex_BOOL3 offline value
-        /// returnString[2][3] = UDT_AllAtomicDataTypes.ex_BOOL4 offline value
-        /// returnString[2][4] = UDT_AllAtomicDataTypes.ex_BOOL5 offline value
-        /// returnString[2][5] = UDT_AllAtomicDataTypes.ex_BOOL5 offline value
-        /// returnString[2][6] = UDT_AllAtomicDataTypes.ex_BOOL6 offline value
-        /// returnString[2][7] = UDT_AllAtomicDataTypes.ex_BOOL7 offline value
-        /// returnString[2][8] = UDT_AllAtomicDataTypes.ex_BOOL8 offline value
-        /// returnString[2][9] = UDT_AllAtomicDataTypes.ex_SINT offline value
-        /// returnString[2][10] = UDT_AllAtomicDataTypes.ex_INT offline value
-        /// returnString[2][11] = UDT_AllAtomicDataTypes.ex_DINT offline value
-        /// returnString[2][12] = UDT_AllAtomicDataTypes.ex_LINT offline value
-        /// returnString[2][13] = UDT_AllAtomicDataTypes.ex_REAL offline value
-        /// returnString[2][14] = UDT_AllAtomicDataTypes.ex_STRING offline value
+        /// Every element of the nested string array:<br/>
+        /// returnString[0][0] = UDT_AllAtomicDataTypes.ex_BOOL1 name<br/>
+        /// returnString[0][1] = UDT_AllAtomicDataTypes.ex_BOOL2 name<br/>
+        /// returnString[0][2] = UDT_AllAtomicDataTypes.ex_BOOL3 name<br/>
+        /// returnString[0][3] = UDT_AllAtomicDataTypes.ex_BOOL4 name<br/>
+        /// returnString[0][4] = UDT_AllAtomicDataTypes.ex_BOOL5 name<br/>
+        /// returnString[0][5] = UDT_AllAtomicDataTypes.ex_BOOL5 name<br/>
+        /// returnString[0][6] = UDT_AllAtomicDataTypes.ex_BOOL6 name<br/>
+        /// returnString[0][7] = UDT_AllAtomicDataTypes.ex_BOOL7 name<br/>
+        /// returnString[0][8] = UDT_AllAtomicDataTypes.ex_BOOL8 name<br/>
+        /// returnString[0][9] = UDT_AllAtomicDataTypes.ex_SINT name<br/>
+        /// returnString[0][10] = UDT_AllAtomicDataTypes.ex_INT name<br/>
+        /// returnString[0][11] = UDT_AllAtomicDataTypes.ex_DINT name<br/>
+        /// returnString[0][12] = UDT_AllAtomicDataTypes.ex_LINT name<br/>
+        /// returnString[0][13] = UDT_AllAtomicDataTypes.ex_REAL name<br/>
+        /// returnString[0][14] = UDT_AllAtomicDataTypes.ex_STRING name<br/>
+        /// returnString[1][0] = UDT_AllAtomicDataTypes.ex_BOOL1 online value<br/>
+        /// returnString[1][1] = UDT_AllAtomicDataTypes.ex_BOOL2 online value<br/>
+        /// returnString[1][2] = UDT_AllAtomicDataTypes.ex_BOOL3 online value<br/>
+        /// returnString[1][3] = UDT_AllAtomicDataTypes.ex_BOOL4 online value<br/>
+        /// returnString[1][4] = UDT_AllAtomicDataTypes.ex_BOOL5 online value<br/>
+        /// returnString[1][5] = UDT_AllAtomicDataTypes.ex_BOOL5 online value<br/>
+        /// returnString[1][6] = UDT_AllAtomicDataTypes.ex_BOOL6 online value<br/>
+        /// returnString[1][7] = UDT_AllAtomicDataTypes.ex_BOOL7 online value<br/>
+        /// returnString[1][8] = UDT_AllAtomicDataTypes.ex_BOOL8 online value<br/>
+        /// returnString[1][9] = UDT_AllAtomicDataTypes.ex_SINT online value<br/>
+        /// returnString[1][10] = UDT_AllAtomicDataTypes.ex_INT online value<br/>
+        /// returnString[1][11] = UDT_AllAtomicDataTypes.ex_DINT online value<br/>
+        /// returnString[1][12] = UDT_AllAtomicDataTypes.ex_LINT online value<br/>
+        /// returnString[1][13] = UDT_AllAtomicDataTypes.ex_REAL online value<br/>
+        /// returnString[1][14] = UDT_AllAtomicDataTypes.ex_STRING online value<br/>
+        /// returnString[1][15] = the number of bytes in element 0 of the input ByteString array (online values)<br/>
+        /// returnString[2][0] = UDT_AllAtomicDataTypes.ex_BOOL1 offline value<br/>
+        /// returnString[2][1] = UDT_AllAtomicDataTypes.ex_BOOL2 offline value<br/>
+        /// returnString[2][2] = UDT_AllAtomicDataTypes.ex_BOOL3 offline value<br/>
+        /// returnString[2][3] = UDT_AllAtomicDataTypes.ex_BOOL4 offline value<br/>
+        /// returnString[2][4] = UDT_AllAtomicDataTypes.ex_BOOL5 offline value<br/>
+        /// returnString[2][5] = UDT_AllAtomicDataTypes.ex_BOOL5 offline value<br/>
+        /// returnString[2][6] = UDT_AllAtomicDataTypes.ex_BOOL6 offline value<br/>
+        /// returnString[2][7] = UDT_AllAtomicDataTypes.ex_BOOL7 offline value<br/>
+        /// returnString[2][8] = UDT_AllAtomicDataTypes.ex_BOOL8 offline value<br/>
+        /// returnString[2][9] = UDT_AllAtomicDataTypes.ex_SINT offline value<br/>
+        /// returnString[2][10] = UDT_AllAtomicDataTypes.ex_INT offline value<br/>
+        /// returnString[2][11] = UDT_AllAtomicDataTypes.ex_DINT offline value<br/>
+        /// returnString[2][12] = UDT_AllAtomicDataTypes.ex_LINT offline value<br/>
+        /// returnString[2][13] = UDT_AllAtomicDataTypes.ex_REAL offline value<br/>
+        /// returnString[2][14] = UDT_AllAtomicDataTypes.ex_STRING offline value<br/>
         /// returnString[2][15] = the number of bytes in element 1 of the input ByteString array (offline values)
         /// </para>
         /// </returns>
@@ -1105,7 +1134,7 @@ namespace TestStage_CICDExample
         }
         #endregion
 
-        #region METHODS: testing online & offline / testing for expected value 
+        #region METHODS: different types of testing, comparison & truth table 
         /// <summary>
         /// A test to compare the online and offline values of a tag.
         /// </summary>
@@ -1114,14 +1143,14 @@ namespace TestStage_CICDExample
         /// <param name="offlineValue">The offline value of the tag under test.</param>
         /// <returns>Return an integer value 1 for test failure and an integer value 0 for test success.</returns>
         /// <remarks>
-        /// The integer output is added to an integer that tracks the total number of failures. 
+        /// The integer output is added to an integer that tracks the total number of failures.<br/>
         /// At the end of all testing, the overall SUCCESS/FAILURE of this CI/CD test stage is determined whether its value is greater than 0.
         /// </remarks>
         private static int TEST_CompareOnlineOffline(string tagName, string onlineValue, string offlineValue)
         {
             if (onlineValue != offlineValue)
             {
-                Console.WriteLine(WrapText($"FAILURE: {tagName} online value ({onlineValue}) & offline value ({offlineValue}) NOT equal.", 9, 125));
+                Console.Write(WrapText($"FAILURE: {tagName} online value ({onlineValue}) & offline value ({offlineValue}) NOT equal.", 9, 125));
                 return 1;
             }
             else
@@ -1139,14 +1168,14 @@ namespace TestStage_CICDExample
         /// <param name="actualValue">The actual value of the tag under test.</param>
         /// <returns>Return an integer value 1 for test failure and an integer value 0 for test success.</returns>
         /// <remarks>
-        /// The integer output is added to an integer that tracks the total number of failures. 
+        /// The integer output is added to an integer that tracks the total number of failures.<br/>
         /// At the end of all testing, the overall SUCCESS/FAILURE of this CI/CD test stage is determined whether its value is greater than 0.
         /// </remarks>
         private static int TEST_CompareForExpectedValue(string tagName, string expectedValue, string actualValue)
         {
             if (expectedValue != actualValue)
             {
-                Console.WriteLine(WrapText($"FAILURE: {tagName} expected value ({expectedValue}) & actual value ({actualValue}) NOT equal.", 9, 125));
+                Console.Write(WrapText($"FAILURE: {tagName} expected value ({expectedValue}) & actual value ({actualValue}) NOT equal.", 9, 125));
                 return 1;
             }
             else
@@ -1154,6 +1183,40 @@ namespace TestStage_CICDExample
                 Console.Write(WrapText($"SUCCESS: {tagName} expected value ({expectedValue}) & actual value ({actualValue}) EQUAL.", 9, 125));
                 return 0;
             }
+        }
+
+
+        private static int TEST_TruthTable(string[] everyBinaryStringCombination, string[] truthTableResults, string tagPath, LogixProject project)
+        {
+            int testResult = 0;
+            int testsToRun = everyBinaryStringCombination.Length;
+            Console.WriteLine("Number of combinations: " + testsToRun);
+            for (int i = 0; i < testsToRun; i++)
+            {
+                string fullBinaryStringCombination = everyBinaryStringCombination[i].PadRight(8, '0'); // adds the UDT_AllAtomicDataTypes.ex_BOOL8 tag to the current combination
+                Set_UDTAllAtomicDataTypes_Sync(fullBinaryStringCombination, DataType.BOOL, OperationMode.Online, project, false);
+                ByteString[] ByteString_UDT_AllAtomicDataTypes = Get_UDTAllAtomicDataTypes_Sync(tagPath, project);
+                string[][] UDT_AllAtomicDataTypes = Format_UDTAllAtomicDataTypes(ByteString_UDT_AllAtomicDataTypes, false);
+                if (UDT_AllAtomicDataTypes[1][7] != truthTableResults[i])
+                {
+                    Console.WriteLine($"FAILURE: test {i + 1}/{testsToRun} expected value ({truthTableResults[i]}) & actual value ({UDT_AllAtomicDataTypes[1][7]}) NOT equal.");
+                    testResult++;
+                }
+                else
+                    Console.WriteLine($"SUCCESS: test {i + 1}/{testsToRun} expected value ({truthTableResults[i]}) & actual value ({UDT_AllAtomicDataTypes[1][7]}) EQUAL");
+            }
+            return testResult;
+        }
+
+        private static string[] GenerateBitCombinations(int bitNumber)
+        {
+            int numCombinations = (int)Math.Pow(2, bitNumber);
+            string[] returnCombinations = new string[numCombinations];
+
+            for (int i = 0; i < numCombinations; i++)
+                returnCombinations[i] = Convert.ToString(i, 2).PadLeft(bitNumber, '0');
+
+            return returnCombinations;
         }
         #endregion
     }

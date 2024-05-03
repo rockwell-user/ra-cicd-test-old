@@ -20,8 +20,8 @@ namespace LogixEcho_ClassLibrary
     public class LogixEchoMethods
     {
         /// <summary>
-        /// Script that sets up an emulated controller for CI/CD software in the loop (SIL) testing.
-        /// If no emulated controller based on the ACD file path yet exists, create one, and then return the communication path. 
+        /// Script that sets up an emulated controller for CI/CD software in the loop (SIL) testing.<br/>
+        /// If no emulated controller based on the ACD file path yet exists, create one, and then return the communication path.<br/>
         /// If an emulated controller based on the ACD file path exists, only return the communication path.
         /// </summary>
         /// <param name="acdFilePath">The file path pointing to the ACD project used for testing.</param>
@@ -86,7 +86,7 @@ namespace LogixEcho_ClassLibrary
         }
 
         /// <summary>
-        /// Run the CheckCurrentChassisAsync method synchronously.
+        /// Run the CheckCurrentChassisAsync method synchronously.<br/>
         /// Check to see if a specific controller exists in a specific chassis.
         /// </summary>
         /// <param name="chassisName">The name of the emulated chassis to check the emulated controler in.</param>
@@ -107,9 +107,9 @@ namespace LogixEcho_ClassLibrary
         /// <param name="controllerName">The emulated controller name.</param>
         /// <param name="serviceClient">The Factory Talk Logix Echo interface.</param>
         /// <returns>
-        /// A Task that returns a string array containing controller information:
-        /// return_array[0] = controller name
-        /// return_array[1] = controller IP address
+        /// A Task that returns a string array containing controller information:<br/>
+        /// return_array[0] = controller name<br/>
+        /// return_array[1] = controller IP address<br/>
         /// return_array[2] = controller project file path
         /// </returns>
         public static async Task<string[]> Get_ControllerInfo_Async(string chassisName, string controllerName, IServiceApiClientV2 serviceClient)
