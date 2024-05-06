@@ -83,21 +83,21 @@ namespace TestStage_CICDExample
 
             // Create new test report file (.txt) using the Console printout.
             #region FILE CREATION -----------------------------------------------------------------------------------------------------------------------------
-            //FileStream ostrm;
-            //StreamWriter writer;
-            //TextWriter oldOut = Console.Out;
-            //try
-            //{
-            //    ostrm = new FileStream(textFileReportName, FileMode.OpenOrCreate, FileAccess.Write);
-            //    writer = new StreamWriter(ostrm);
-            //}
-            //catch (Exception e)
-            //{
-            //    Console.WriteLine("Cannot open Redirect.txt for writing");
-            //    Console.WriteLine(e.Message);
-            //    return;
-            //}
-            //Console.SetOut(writer);
+            FileStream ostrm;
+            StreamWriter writer;
+            TextWriter oldOut = Console.Out;
+            try
+            {
+                ostrm = new FileStream(textFileReportName, FileMode.OpenOrCreate, FileAccess.Write);
+                writer = new StreamWriter(ostrm);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Cannot open Redirect.txt for writing");
+                Console.WriteLine(e.Message);
+                return;
+            }
+            Console.SetOut(writer);
             #endregion
 
             // This region contain the different steps needed to set up & execute testing.
@@ -328,9 +328,9 @@ namespace TestStage_CICDExample
                 CreateBanner("TEST SUCCESS!");
 
             // Finish the process of sending console printouts to the test text file.
-            //Console.SetOut(oldOut);
-            //writer.Close();
-            //ostrm.Close();
+            Console.SetOut(oldOut);
+            writer.Close();
+            ostrm.Close();
 
             // Print out final banner based on test results.
             if (failureCondition > 0)
