@@ -1,0 +1,204 @@
+
+  =========================================================================================================================  
+=============================================================================================================================
+                   CI/CD TEST STAGE | 5/6/2024 11:27:12 AM (UTC-05:00) Eastern Time (US & Canada)
+=============================================================================================================================
+  =========================================================================================================================  
+
+
+----------------------------------------------------------------------------------------------------=[GITHUB INFORMATION]=---
+Test initiated by:                      Andre Yost
+Tester contact information:             andre.yost@rockwellautomation.com
+Git commit hash to be verified:         240ead7e0404dbc3ec995160602b8194499bc6c9
+Git commit message to be verified:      excel file modification 
+-----------------------------------------------------------------------------------------------------=[TEST DEPENDENCIES]=---
+Jenkins job being executed:             RA-CICD-Pipeline
+Jenkins job build number:               269
+ACD file path specified:                C:\data\jenkins_home\workspace\RA-CICD-Pipeline\DEVELOPMENT-files\CICD_test.ACD
+Common Language Runtime version:        v4.0.30319
+LDSDK .NET Framework version:           8.0
+Echo SDK .NET Framework version:        6.0
+----------------------------------------------------------------------------------------------------------=[STAGING TEST]=---
+[11:27:12 AM] START setting up excel test report workbook...
+[11:27:12 AM] DONE setting up excel test report workbook...
+---
+[11:27:12 AM] START checking test-reports folder...
+STATUS:  C:\data\jenkins_home\workspace\RA-CICD-Pipeline\test-reports\textFiles\ set to retain 5 test files
+SUCCESS: deleted C:\data\jenkins_home\workspace\RA-CICD-Pipeline\test-reports\textFiles\20240502190829_testfile.txt
+STATUS:  C:\data\jenkins_home\workspace\RA-CICD-Pipeline\test-reports\excelFiles\ set to retain 5 test files
+SUCCESS: deleted C:\data\jenkins_home\workspace\RA-CICD-Pipeline\test-reports\excelFiles\20240503165855_testfile.xlsx
+[11:27:12 AM] DONE checking test-reports folder...
+---
+[11:27:12 AM] START setting up Factory Talk Logix Echo emulated controller...
+SUCCESS: project communication path specified is "EmulateEthernet\127.0.0.1"
+[11:27:12 AM] DONE setting up Factory Talk Logix Echo emulated controller
+---
+[11:27:12 AM] START opening ACD file...
+[11:27:32 AM] SUCCESS opening ACD file
+---
+[11:27:32 AM] START changing controller to PROGRAM...
+[11:27:33 AM] SUCCESS changing controller to PROGRAM
+---
+[11:27:33 AM] START downloading ACD file...
+[11:27:41 AM] SUCCESS downloading ACD file
+---
+[11:27:41 AM] START Changing controller to RUN...
+[11:27:42 AM] SUCCESS changing controller to RUN
+-------------------------------------------------------------------------------------------------------=[COMMENCING TEST]=---
+[11:27:42 AM] START getting initial project start-up tag values...
+SUCCESS: TEST_BOOL                               online value: False                offline value: False               
+SUCCESS: TEST_SINT                               online value: 0                    offline value: 0                   
+SUCCESS: TEST_INT                                online value: 0                    offline value: 0                   
+SUCCESS: TEST_DINT                               online value: 0                    offline value: 0                   
+SUCCESS: TEST_LINT                               online value: 0                    offline value: 0                   
+SUCCESS: TEST_REAL                               online value: 0                    offline value: 0                   
+SUCCESS: TEST_STRING                             online value: <empty_string>       offline value: <empty_string>      
+SUCCESS: TEST_TOGGLE_WetBulbTempCalc             online value: False                offline value: False               
+SUCCESS: TEST_AOI_WetBulbTemp_isFahrenheit       online value: False                offline value: False               
+SUCCESS: TEST_AOI_WetBulbTemp_RelativeHumidity   online value: 0                    offline value: 0                   
+SUCCESS: TEST_AOI_WetBulbTemp_Temperature        online value: 0                    offline value: 0                   
+SUCCESS: TEST_AOI_WetBulbTemp_WetBulbTemp        online value: 0                    offline value: 0                   
+SUCCESS: UDT_AllAtomicDataTypes.ex_BOOL1         online value: False                offline value: False               
+SUCCESS: UDT_AllAtomicDataTypes.ex_BOOL2         online value: False                offline value: False               
+SUCCESS: UDT_AllAtomicDataTypes.ex_BOOL3         online value: False                offline value: False               
+SUCCESS: UDT_AllAtomicDataTypes.ex_BOOL4         online value: False                offline value: False               
+SUCCESS: UDT_AllAtomicDataTypes.ex_BOOL5         online value: False                offline value: False               
+SUCCESS: UDT_AllAtomicDataTypes.ex_BOOL6         online value: False                offline value: False               
+SUCCESS: UDT_AllAtomicDataTypes.ex_BOOL7         online value: False                offline value: False               
+SUCCESS: UDT_AllAtomicDataTypes.ex_BOOL8         online value: False                offline value: False               
+SUCCESS: UDT_AllAtomicDataTypes.ex_SINT          online value: 0                    offline value: 0                   
+SUCCESS: UDT_AllAtomicDataTypes.ex_INT           online value: 0                    offline value: 0                   
+SUCCESS: UDT_AllAtomicDataTypes.ex_DINT          online value: 0                    offline value: 0                   
+SUCCESS: UDT_AllAtomicDataTypes.ex_LINT          online value: 0                    offline value: 0                   
+SUCCESS: UDT_AllAtomicDataTypes.ex_REAL          online value: 0                    offline value: 0                   
+SUCCESS: UDT_AllAtomicDataTypes.ex_STRING        online value: <empty_string>       offline value: <empty_string>      
+[11:27:48 AM] DONE getting initial project start-up tag values
+---
+[11:27:48 AM] START verifying whether offline and online values are the same...
+SUCCESS: TEST_BOOL online value (False) & offline value (False) are EQUAL. 
+SUCCESS: TEST_SINT online value (0) & offline value (0) are EQUAL. 
+SUCCESS: TEST_INT online value (0) & offline value (0) are EQUAL. 
+SUCCESS: TEST_DINT online value (0) & offline value (0) are EQUAL. 
+SUCCESS: TEST_LINT online value (0) & offline value (0) are EQUAL. 
+SUCCESS: TEST_REAL online value (0) & offline value (0) are EQUAL. 
+SUCCESS: TEST_STRING online value (<empty_string>) & offline value (<empty_string>) are EQUAL. 
+SUCCESS: TEST_TOGGLE_WetBulbTempCalc online value (False) & offline value (False) are EQUAL. 
+SUCCESS: TEST_AOI_WetBulbTemp_isFahrenheit online value (False) & offline value (False) are EQUAL. 
+SUCCESS: TEST_AOI_WetBulbTemp_RelativeHumidity online value (0) & offline value (0) are EQUAL. 
+SUCCESS: TEST_AOI_WetBulbTemp_Temperature online value (0) & offline value (0) are EQUAL. 
+SUCCESS: TEST_AOI_WetBulbTemp_WetBulbTemp online value (0) & offline value (0) are EQUAL. 
+SUCCESS: UDT_AllAtomicDataTypes.ex_BOOL1 online value (False) & offline value (False) are EQUAL. 
+SUCCESS: UDT_AllAtomicDataTypes.ex_BOOL2 online value (False) & offline value (False) are EQUAL. 
+SUCCESS: UDT_AllAtomicDataTypes.ex_BOOL3 online value (False) & offline value (False) are EQUAL. 
+SUCCESS: UDT_AllAtomicDataTypes.ex_BOOL4 online value (False) & offline value (False) are EQUAL. 
+SUCCESS: UDT_AllAtomicDataTypes.ex_BOOL5 online value (False) & offline value (False) are EQUAL. 
+SUCCESS: UDT_AllAtomicDataTypes.ex_BOOL6 online value (False) & offline value (False) are EQUAL. 
+SUCCESS: UDT_AllAtomicDataTypes.ex_BOOL7 online value (False) & offline value (False) are EQUAL. 
+SUCCESS: UDT_AllAtomicDataTypes.ex_BOOL8 online value (False) & offline value (False) are EQUAL. 
+SUCCESS: UDT_AllAtomicDataTypes.ex_SINT online value (0) & offline value (0) are EQUAL. 
+SUCCESS: UDT_AllAtomicDataTypes.ex_INT online value (0) & offline value (0) are EQUAL. 
+SUCCESS: UDT_AllAtomicDataTypes.ex_DINT online value (0) & offline value (0) are EQUAL. 
+SUCCESS: UDT_AllAtomicDataTypes.ex_LINT online value (0) & offline value (0) are EQUAL. 
+SUCCESS: UDT_AllAtomicDataTypes.ex_REAL online value (0) & offline value (0) are EQUAL. 
+SUCCESS: UDT_AllAtomicDataTypes.ex_STRING online value (<empty_string>) & offline value (<empty_string>) are EQUAL. 
+[11:27:48 AM] DONE verifying whether offline and online values are the same
+---
+[11:27:48 AM] START setting tag values...
+SUCCESS: Online TEST_BOOL                                              False  -->  True
+SUCCESS: Online TEST_SINT                                                  0  -->  24
+SUCCESS: Online TEST_INT                                                   0  -->  -20500
+SUCCESS: Online TEST_DINT                                                  0  -->  2000111000
+SUCCESS: Online TEST_LINT                                                  0  -->  9000111000111000111
+SUCCESS: Online TEST_REAL                                                  0  -->  -10555.888
+SUCCESS: Online TEST_STRING                                   <empty_string>  -->  1st New String!
+SUCCESS: Online TEST_TOGGLE_WetBulbTempCalc                            False  -->  True
+SUCCESS: Online TEST_AOI_WetBulbTemp_isFahrenheit                      False  -->  True
+SUCCESS: Online TEST_AOI_WetBulbTemp_RelativeHumidity                      0  -->  30
+SUCCESS: Online TEST_AOI_WetBulbTemp_Temperature                           0  -->  70
+SUCCESS: Online UDT_AllAtomicDataTypes.ex_SINT                             0  -->  -24
+SUCCESS: Online UDT_AllAtomicDataTypes.ex_INT                              0  -->  20500
+SUCCESS: Online UDT_AllAtomicDataTypes.ex_DINT                             0  -->  -2000111000
+SUCCESS: Online UDT_AllAtomicDataTypes.ex_LINT                             0  -->  -9000111000111000111
+SUCCESS: Online UDT_AllAtomicDataTypes.ex_REAL                             0  -->  10555.888
+SUCCESS: Online UDT_AllAtomicDataTypes.ex_STRING              <empty_string>  -->  2nd New String!
+[11:28:12 AM] DONE setting tag values
+---
+[11:28:12 AM] START verifying expected tag outputs...
+SUCCESS: TEST_AOI_WetBulbTemp_WetBulbTemp expected value (52.997536) & actual value (52.997536) EQUAL. 
+SUCCESS: TEST_SINT expected value (24) & actual value (24) EQUAL. 
+SUCCESS: TEST_INT expected value (-20500) & actual value (-20500) EQUAL. 
+SUCCESS: TEST_DINT expected value (2000111000) & actual value (2000111000) EQUAL. 
+SUCCESS: TEST_LINT expected value (9000111000111000111) & actual value (9000111000111000111) EQUAL. 
+SUCCESS: TEST_REAL expected value (-10555.888) & actual value (-10555.888) EQUAL. 
+SUCCESS: TEST_STRING expected value (1st New String!) & actual value (1st New String!) EQUAL. 
+SUCCESS: UDT_AllAtomicDataTypes.ex_SINT expected value (-24) & actual value (-24) EQUAL. 
+SUCCESS: UDT_AllAtomicDataTypes.ex_INT expected value (20500) & actual value (20500) EQUAL. 
+SUCCESS: UDT_AllAtomicDataTypes.ex_DINT expected value (-2000111000) & actual value (-2000111000) EQUAL. 
+SUCCESS: UDT_AllAtomicDataTypes.ex_LINT expected value (-9000111000111000111) & actual value (-9000111000111000111) EQUAL. 
+SUCCESS: UDT_AllAtomicDataTypes.ex_REAL expected value (10555.888) & actual value (10555.888) EQUAL. 
+SUCCESS: UDT_AllAtomicDataTypes.ex_STRING expected value (2nd New String!) & actual value (2nd New String!) EQUAL. 
+[11:28:16 AM] DONE verifying expected tag outputs
+---
+[11:28:16 AM] START testing boolean logic with truth table generation...
+SUCCESS: test 01/32 expected value (False) & actual value (False) EQUAL.
+SUCCESS: test 02/32 expected value (False) & actual value (False) EQUAL.
+SUCCESS: test 03/32 expected value (False) & actual value (False) EQUAL.
+SUCCESS: test 04/32 expected value (False) & actual value (False) EQUAL.
+SUCCESS: test 05/32 expected value (False) & actual value (False) EQUAL.
+SUCCESS: test 06/32 expected value (True) & actual value (True) EQUAL.
+SUCCESS: test 07/32 expected value (True) & actual value (True) EQUAL.
+SUCCESS: test 08/32 expected value (True) & actual value (True) EQUAL.
+SUCCESS: test 09/32 expected value (False) & actual value (False) EQUAL.
+SUCCESS: test 10/32 expected value (True) & actual value (True) EQUAL.
+SUCCESS: test 11/32 expected value (True) & actual value (True) EQUAL.
+SUCCESS: test 12/32 expected value (True) & actual value (True) EQUAL.
+SUCCESS: test 13/32 expected value (False) & actual value (False) EQUAL.
+SUCCESS: test 14/32 expected value (True) & actual value (True) EQUAL.
+SUCCESS: test 15/32 expected value (True) & actual value (True) EQUAL.
+SUCCESS: test 16/32 expected value (True) & actual value (True) EQUAL.
+SUCCESS: test 17/32 expected value (False) & actual value (False) EQUAL.
+SUCCESS: test 18/32 expected value (False) & actual value (False) EQUAL.
+SUCCESS: test 19/32 expected value (False) & actual value (False) EQUAL.
+SUCCESS: test 20/32 expected value (False) & actual value (False) EQUAL.
+SUCCESS: test 21/32 expected value (False) & actual value (False) EQUAL.
+SUCCESS: test 22/32 expected value (False) & actual value (False) EQUAL.
+SUCCESS: test 23/32 expected value (False) & actual value (False) EQUAL.
+SUCCESS: test 24/32 expected value (False) & actual value (False) EQUAL.
+SUCCESS: test 25/32 expected value (False) & actual value (False) EQUAL.
+SUCCESS: test 26/32 expected value (False) & actual value (False) EQUAL.
+SUCCESS: test 27/32 expected value (False) & actual value (False) EQUAL.
+SUCCESS: test 28/32 expected value (False) & actual value (False) EQUAL.
+SUCCESS: test 29/32 expected value (False) & actual value (False) EQUAL.
+SUCCESS: test 30/32 expected value (False) & actual value (False) EQUAL.
+SUCCESS: test 31/32 expected value (False) & actual value (False) EQUAL.
+SUCCESS: test 32/32 expected value (False) & actual value (False) EQUAL.
+[11:29:10 AM] DONE testing boolean logic with truth table generation...
+---
+[11:29:10 AM] START showing final test tag values...
+SUCCESS: TEST_BOOL                               online value: True                 offline value: False               
+SUCCESS: TEST_SINT                               online value: 24                   offline value: 0                   
+SUCCESS: TEST_INT                                online value: -20500               offline value: 0                   
+SUCCESS: TEST_DINT                               online value: 2000111000           offline value: 0                   
+SUCCESS: TEST_LINT                               online value: 9000111000111000111  offline value: 0                   
+SUCCESS: TEST_REAL                               online value: -10555.888           offline value: 0                   
+SUCCESS: TEST_STRING                             online value: 1st New String!      offline value: <empty_string>      
+SUCCESS: TEST_TOGGLE_WetBulbTempCalc             online value: True                 offline value: False               
+SUCCESS: TEST_AOI_WetBulbTemp_isFahrenheit       online value: True                 offline value: False               
+SUCCESS: TEST_AOI_WetBulbTemp_RelativeHumidity   online value: 30                   offline value: 0                   
+SUCCESS: TEST_AOI_WetBulbTemp_Temperature        online value: 70                   offline value: 0                   
+SUCCESS: UDT_AllAtomicDataTypes.ex_BOOL1         online value: True                 offline value: False               
+SUCCESS: UDT_AllAtomicDataTypes.ex_BOOL2         online value: True                 offline value: False               
+SUCCESS: UDT_AllAtomicDataTypes.ex_BOOL3         online value: True                 offline value: False               
+SUCCESS: UDT_AllAtomicDataTypes.ex_BOOL4         online value: True                 offline value: False               
+SUCCESS: UDT_AllAtomicDataTypes.ex_BOOL5         online value: True                 offline value: False               
+SUCCESS: UDT_AllAtomicDataTypes.ex_BOOL6         online value: False                offline value: False               
+SUCCESS: UDT_AllAtomicDataTypes.ex_BOOL7         online value: False                offline value: False               
+SUCCESS: UDT_AllAtomicDataTypes.ex_BOOL8         online value: False                offline value: False               
+SUCCESS: UDT_AllAtomicDataTypes.ex_SINT          online value: -24                  offline value: 0                   
+SUCCESS: UDT_AllAtomicDataTypes.ex_INT           online value: 20500                offline value: 0                   
+SUCCESS: UDT_AllAtomicDataTypes.ex_DINT          online value: -2000111000          offline value: 0                   
+SUCCESS: UDT_AllAtomicDataTypes.ex_LINT          online value: -9000111000111000111 offline value: 0                   
+SUCCESS: UDT_AllAtomicDataTypes.ex_REAL          online value: 10555.888            offline value: 0                   
+SUCCESS: UDT_AllAtomicDataTypes.ex_STRING        online value: 2nd New String!      offline value: <empty_string>      
+[11:29:16 AM] DONE showing final test tag values
+---------------------------------------------------------------------------------------------------------=[TEST SUCCESS!]=---
