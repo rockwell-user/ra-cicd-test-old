@@ -56,24 +56,24 @@ namespace TestStage_CICDExample
                                   "287bb2c93a2d1c99143d233fd3ed70cdb997f149 Jenkins-CICD-Example 218", 20, 105));
                 CreateBanner("END");
             }
-            string githubPath = "C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\";
-            string acdFilename = "CICD_test.ACD";
-            string name_mostRecentCommit = "Allen Bradley";
-            string email_mostRecentCommit = "exampleemail@rockwellautomation.com";
-            string message_mostRecentCommit = "This is a long example email. Like pretty long. This is a long example email. Like pretty long." +
-                " This is a long example email. Like pretty long. This is a long example email. Like pretty long. This is a long example email. Like pretty long." +
-                " This is a long example email. Like pretty long. This is a long example email. Like pretty long. This is a long example email. Like pretty long.";
-            string hash_mostRecentCommit = "287bb2c93a2d1c99143d233fd3ed70cdb997f149";
-            string jenkinsJobName = "Jenkins-CICD-Example";
-            string jenkinsBuildNumber = "3000";
-            //string githubPath = args[0];                                           // 1st incoming argument = GitHub folder path
-            //string acdFilename = args[1];                                          // 2nd incoming argument = Logix Designer ACD filename
-            //string name_mostRecentCommit = args[2];                                // 3rd incoming argument = name of person assocatied with most recent git commit
-            //string email_mostRecentCommit = args[3];                               // 4th incoming argument = email of person associated with most recent git commit
-            //string message_mostRecentCommit = args[4];                             // 5th incoming argument = message provided in the most recent git commit
-            //string hash_mostRecentCommit = args[5];                                // 6th incoming argument = hash ID from most recent git commit
-            //string jenkinsJobName = args[6];                                       // 7th incoming argument = the Jenkins job name
-            //string jenkinsBuildNumber = args[7];                                   // 8th incoming argument = the Jenkins job build number
+            //string githubPath = "C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\";
+            //string acdFilename = "CICD_test.ACD";
+            //string name_mostRecentCommit = "Allen Bradley";
+            //string email_mostRecentCommit = "exampleemail@rockwellautomation.com";
+            //string message_mostRecentCommit = "This is a long example email. Like pretty long. This is a long example email. Like pretty long." +
+            //    " This is a long example email. Like pretty long. This is a long example email. Like pretty long. This is a long example email. Like pretty long." +
+            //    " This is a long example email. Like pretty long. This is a long example email. Like pretty long. This is a long example email. Like pretty long.";
+            //string hash_mostRecentCommit = "287bb2c93a2d1c99143d233fd3ed70cdb997f149";
+            //string jenkinsJobName = "Jenkins-CICD-Example";
+            //string jenkinsBuildNumber = "3000";
+            string githubPath = args[0];                                           // 1st incoming argument = GitHub folder path
+            string acdFilename = args[1];                                          // 2nd incoming argument = Logix Designer ACD filename
+            string name_mostRecentCommit = args[2];                                // 3rd incoming argument = name of person assocatied with most recent git commit
+            string email_mostRecentCommit = args[3];                               // 4th incoming argument = email of person associated with most recent git commit
+            string message_mostRecentCommit = args[4];                             // 5th incoming argument = message provided in the most recent git commit
+            string hash_mostRecentCommit = args[5];                                // 6th incoming argument = hash ID from most recent git commit
+            string jenkinsJobName = args[6];                                       // 7th incoming argument = the Jenkins job name
+            string jenkinsBuildNumber = args[7];                                   // 8th incoming argument = the Jenkins job build number
             string acdFilePath = githubPath + @"DEVELOPMENT-files\" + acdFilename; // file path to ACD project
             string textFileReportDirectory = Path.Combine(githubPath + @"test-reports\textFiles\");   // folder path to text test reports
             string excelFileReportDirectory = Path.Combine(githubPath + @"test-reports\excelFiles\"); // folder path to excel test reports
