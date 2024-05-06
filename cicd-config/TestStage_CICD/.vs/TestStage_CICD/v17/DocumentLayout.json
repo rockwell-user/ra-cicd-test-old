@@ -28,9 +28,10 @@
               "RelativeDocumentMoniker": "LogixEcho_ClassLibrary\\Echo_Program.cs",
               "ToolTip": "C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\cicd-config\\TestStage_CICD\\LogixEcho_ClassLibrary\\Echo_Program.cs",
               "RelativeToolTip": "LogixEcho_ClassLibrary\\Echo_Program.cs",
-              "ViewState": "AQIAABIAAAAAAAAAAAAAAIkAAAACAAAA",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAABsAAACYAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-02T20:23:03.52Z"
+              "WhenOpened": "2024-05-02T20:23:03.52Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -40,7 +41,7 @@
               "RelativeDocumentMoniker": "TestScript_ConsoleApplication\\Logix_Program.cs",
               "ToolTip": "C:\\Users\\ASYost\\source\\repos\\ra-cicd-test-old\\cicd-config\\TestStage_CICD\\TestScript_ConsoleApplication\\Logix_Program.cs",
               "RelativeToolTip": "TestScript_ConsoleApplication\\Logix_Program.cs",
-              "ViewState": "AQIAAEMAAAAAAAAAAAAAAEoBAAAjAAAA",
+              "ViewState": "AQIAAIECAAAAAAAAAIAmwJoCAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-01T14:35:16.21Z",
               "EditorCaption": ""
