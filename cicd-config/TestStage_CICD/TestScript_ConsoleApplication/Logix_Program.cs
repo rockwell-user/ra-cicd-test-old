@@ -81,14 +81,6 @@ namespace TestStage_CICDExample
             string excelFileReportName = Path.Combine(excelFileReportDirectory, DateTime.Now.ToString("yyyyMMddHHmmss") + "_testfile.xlsx"); // new excel test report filename
             #endregion
 
-
-            // TEST REGION //
-            //string[] test7 = GenerateBitCombinations(7);
-            //foreach (string element in test7)
-            //    Console.WriteLine(element);
-
-
-
             // Create new test report file (.txt) using the Console printout.
             #region FILE CREATION -----------------------------------------------------------------------------------------------------------------------------
             //FileStream ostrm;
@@ -139,7 +131,7 @@ namespace TestStage_CICDExample
 
             // Create an excel test report to be filled out durring testing.
             Console.WriteLine($"[{DateTime.Now.ToString("T")}] START setting up excel test report workbook...");
-            ExcelPackage excel_TestReport = CreateFormattedExcelFile(excelFileReportName, name_mostRecentCommit, email_mostRecentCommit, jenkinsBuildNumber, jenkinsJobName);
+            ExcelPackage excel_TestReport = CreateFormattedExcelFile(excelFileReportName, acdFilePath, name_mostRecentCommit, email_mostRecentCommit, jenkinsBuildNumber, jenkinsJobName);
             Console.WriteLine($"[{DateTime.Now.ToString("T")}] DONE setting up excel test report workbook...\n---");
 
             // Check the test-reports folder and if over the specified file number limit, delete the oldest test files.
@@ -264,7 +256,6 @@ namespace TestStage_CICDExample
             Set_TagValue_Sync(TEST_AOI_WetBulbTemp_isFahrenheit[0], "True", OperationMode.Online, DataType.BOOL, filePath_MainProgram, myProject, true);
             Set_TagValue_Sync(TEST_AOI_WetBulbTemp_RelativeHumidity[0], "30", OperationMode.Online, DataType.REAL, filePath_MainProgram, myProject, true);
             Set_TagValue_Sync(TEST_AOI_WetBulbTemp_Temperature[0], "70", OperationMode.Online, DataType.REAL, filePath_MainProgram, myProject, true);
-            Set_UDTAllAtomicDataTypes_Sync("10010010", DataType.BOOL, OperationMode.Online, myProject, true);
             Set_UDTAllAtomicDataTypes_Sync("-24", DataType.SINT, OperationMode.Online, myProject, true);
             Set_UDTAllAtomicDataTypes_Sync("20500", DataType.INT, OperationMode.Online, myProject, true);
             Set_UDTAllAtomicDataTypes_Sync("-2000111000", DataType.DINT, OperationMode.Online, myProject, true);
@@ -281,8 +272,6 @@ namespace TestStage_CICDExample
             failureCondition += TEST_CompareForExpectedValue("TEST_AOI_WetBulbTemp_WetBulbTemp", "52.997536", TEST_AOI_WetBulbTemp_WetBulbTemp[1]);
             // The below tests are not outputs from logic created in Studio 5000 Logix Designer but are included
             // to provide an example of how each basic data type tag was successfully set.
-            TEST_BOOL = Get_TagValue_Sync("TEST_BOOL", DataType.BOOL, filePath_ControllerScope, myProject, false);
-            failureCondition += TEST_CompareForExpectedValue(TEST_BOOL[0], "True", TEST_BOOL[1]);
             TEST_SINT = Get_TagValue_Sync("TEST_SINT", DataType.SINT, filePath_ControllerScope, myProject, false);
             failureCondition += TEST_CompareForExpectedValue(TEST_SINT[0], "24", TEST_SINT[1]);
             TEST_INT = Get_TagValue_Sync("TEST_INT", DataType.INT, filePath_ControllerScope, myProject, false);
@@ -299,14 +288,6 @@ namespace TestStage_CICDExample
             // to provide an example of how each basic data type in a complex tag was successfully set.
             ByteString_UDT_AllAtomicDataTypes = Get_UDTAllAtomicDataTypes_Sync(filePath_ControllerScope, myProject);
             UDT_AllAtomicDataTypes = Format_UDTAllAtomicDataTypes(ByteString_UDT_AllAtomicDataTypes, false);
-            failureCondition += TEST_CompareForExpectedValue("UDT_AllAtomicDataTypes.ex_BOOL1", "False", UDT_AllAtomicDataTypes[1][0]);
-            failureCondition += TEST_CompareForExpectedValue("UDT_AllAtomicDataTypes.ex_BOOL2", "True", UDT_AllAtomicDataTypes[1][1]);
-            failureCondition += TEST_CompareForExpectedValue("UDT_AllAtomicDataTypes.ex_BOOL3", "False", UDT_AllAtomicDataTypes[1][2]);
-            failureCondition += TEST_CompareForExpectedValue("UDT_AllAtomicDataTypes.ex_BOOL4", "False", UDT_AllAtomicDataTypes[1][3]);
-            failureCondition += TEST_CompareForExpectedValue("UDT_AllAtomicDataTypes.ex_BOOL5", "True", UDT_AllAtomicDataTypes[1][4]);
-            failureCondition += TEST_CompareForExpectedValue("UDT_AllAtomicDataTypes.ex_BOOL6", "False", UDT_AllAtomicDataTypes[1][5]);
-            failureCondition += TEST_CompareForExpectedValue("UDT_AllAtomicDataTypes.ex_BOOL7", "False", UDT_AllAtomicDataTypes[1][6]);
-            failureCondition += TEST_CompareForExpectedValue("UDT_AllAtomicDataTypes.ex_BOOL8", "True", UDT_AllAtomicDataTypes[1][7]);
             failureCondition += TEST_CompareForExpectedValue("UDT_AllAtomicDataTypes.ex_SINT", "-24", UDT_AllAtomicDataTypes[1][8]);
             failureCondition += TEST_CompareForExpectedValue("UDT_AllAtomicDataTypes.ex_INT", "20500", UDT_AllAtomicDataTypes[1][9]);
             failureCondition += TEST_CompareForExpectedValue("UDT_AllAtomicDataTypes.ex_DINT", "-2000111000", UDT_AllAtomicDataTypes[1][10]);
@@ -318,15 +299,15 @@ namespace TestStage_CICDExample
             // Truth table test 
             Console.WriteLine($"[{DateTime.Now.ToString("T")}] START testing boolean logic with truth table generation...");
             string[] all5BitCombinations = GenerateBitCombinations(5);
-            //string[] results = ["False", "False", "False", "False", "False", "False", "False", "False", "False", "False", "False", "False", "False", "False", "False"];
-            string[] results = new string[all5BitCombinations.Length];
-            failureCondition += TEST_TruthTable(all5BitCombinations, results, filePath_ControllerScope, myProject);
+            string[] results = ["False", "False", "False", "False", "False", "True", "True", "True", "False", "True", "True", "True", "False", "True", "True", "True",
+                "False", "False", "False", "False", "False", "False", "False", "False", "False", "False", "False", "False", "False", "False", "False", "False"];
+            string[] truthTableResults = TEST_TruthTable(all5BitCombinations, results, filePath_ControllerScope, myProject);
+            failureCondition += Convert.ToInt16(truthTableResults[0]);
             Console.WriteLine($"[{DateTime.Now.ToString("T")}] DONE testing boolean logic with truth table generation...\n---");
 
             // Show final tag values.
             Console.WriteLine($"[{DateTime.Now.ToString("T")}] START showing final test tag values...");
             Get_TagValue_Sync(TEST_BOOL[0], DataType.BOOL, filePath_ControllerScope, myProject, true);
-            Get_TagValue_Sync(TEST_DINT[0], DataType.DINT, filePath_ControllerScope, myProject, true);
             Get_TagValue_Sync(TEST_SINT[0], DataType.SINT, filePath_ControllerScope, myProject, true);
             Get_TagValue_Sync(TEST_INT[0], DataType.INT, filePath_ControllerScope, myProject, true);
             Get_TagValue_Sync(TEST_DINT[0], DataType.DINT, filePath_ControllerScope, myProject, true);
@@ -438,8 +419,26 @@ namespace TestStage_CICDExample
         }
         #endregion
 
+
+        //// GitHub Information
+        //CreateBanner("GITHUB INFORMATION");
+        //Console.WriteLine("Test initiated by: ".PadRight(40, ' ') + name_mostRecentCommit);
+        //    Console.WriteLine("Tester contact information: ".PadRight(40, ' ') + email_mostRecentCommit);
+        //    Console.WriteLine("Git commit hash to be verified: ".PadRight(40, ' ') + hash_mostRecentCommit);
+        //    Console.Write("Git commit message to be verified: ".PadRight(40, ' ') + WrapText(message_mostRecentCommit, 40, 85));
+
+        //    // Print out relevant test information.
+        //    CreateBanner("TEST DEPENDENCIES");
+        //Console.WriteLine("Jenkins job being executed: ".PadRight(40, ' ') + jenkinsJobName);
+        //    Console.WriteLine("Jenkins job build number: ".PadRight(40, ' ') + jenkinsBuildNumber);
+        //    Console.WriteLine("ACD file path specified: ".PadRight(40, ' ') + acdFilePath);
+        //    Console.WriteLine("Common Language Runtime version: ".PadRight(40, ' ') + typeof(string).Assembly.ImageRuntimeVersion);
+        //    Console.WriteLine("LDSDK .NET Framework version: ".PadRight(40, ' ') + "8.0");
+        //    Console.WriteLine("Echo SDK .NET Framework version: ".PadRight(40, ' ') + "6.0");
+
+
         #region METHODS: formatting excel file
-        private static ExcelPackage CreateFormattedExcelFile(string filePath, string name, string email, string buildNumber, string jobName)
+        private static ExcelPackage CreateFormattedExcelFile(string excelFilePath, string acdFilePath, string name, string email, string buildNumber, string jobName)
         {
             ExcelPackage excelPackage = new ExcelPackage();
             var returnWorkBook = excelPackage.Workbook;
@@ -447,6 +446,16 @@ namespace TestStage_CICDExample
             var TestSummary = returnWorkBook.Worksheets.Add("TestSummary");
             TestSummary.Cells["B2"].Value = "Test Name:";
             TestSummary.Cells["C2"].Value = "CI/CD Automated Test Results";
+            TestSummary.Cells["B3"].Value = "Jenkins job being executed:";
+            TestSummary.Cells["C3"].Value = jobName;
+            TestSummary.Cells["B4"].Value = "Jenkins job build number:";
+            TestSummary.Cells["C4"].Value = buildNumber;
+            TestSummary.Cells["B5"].Value = "Test initiated by:";
+            TestSummary.Cells["C5"].Value = name;
+            TestSummary.Cells["B6"].Value = "Tester contact information:";
+            TestSummary.Cells["C6"].Value = email;
+            TestSummary.Cells["B7"].Value = "ACD file path specified:";
+            TestSummary.Cells["C7"].Value = acdFilePath;
             TestSummary.Column(1).AutoFit();
             TestSummary.Column(1).Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Center;
             TestSummary.Column(2).AutoFit();
@@ -463,7 +472,7 @@ namespace TestStage_CICDExample
             var FinalTestTags = returnWorkBook.Worksheets.Add("FinalTestTags");
             FinalTestTags.View.FreezePanes(1, 1);
 
-            excelPackage.SaveAs(new System.IO.FileInfo(filePath));
+            excelPackage.SaveAs(new System.IO.FileInfo(excelFilePath));
             return excelPackage;
         }
         #endregion
@@ -760,7 +769,7 @@ namespace TestStage_CICDExample
         private static async Task Set_TagValue_Async(string tagName, string newTagValue, OperationMode mode, DataType type, string tagPath, LogixProject project, bool printout)
         {
             tagPath = tagPath + $"[@Name='{tagName}']";
-            string[] old_tag_values = Get_TagValue_Sync(tagName, type, tagPath, project, false);
+            string[] old_tag_values = await Get_TagValue_Async(tagName, type, tagPath, project, false);
             string old_tag_value = "";
             try
             {
@@ -1185,36 +1194,59 @@ namespace TestStage_CICDExample
             }
         }
 
-
-        private static int TEST_TruthTable(string[] everyBinaryStringCombination, string[] truthTableResults, string tagPath, LogixProject project)
+        /// <summary>
+        /// A test to verify the boolean logic of a rung.
+        /// </summary>
+        /// <param name="everyBinaryStringCombination">A string array that contains every combination possible for a binary string of specific length.</param>
+        /// <param name="truthTableResults">A string array containing the boolean value expected for each element of the everyBinaryStringCombination array.</param>
+        /// <param name="tagPath">The tag path for the boolean values being manipulated.</param>
+        /// <param name="project">An instance of the LogixProject class.</param>
+        /// <returns>
+        /// The integer output is added to an integer that tracks the total number of failures.<br/>
+        /// At the end of all testing, the overall SUCCESS/FAILURE of this CI/CD test stage is determined whether its value is greater than 0.
+        /// </returns>
+        private static string[] TEST_TruthTable(string[] everyBinaryStringCombination, string[] truthTableResults, string tagPath, LogixProject project)
         {
             int testResult = 0;
             int testsToRun = everyBinaryStringCombination.Length;
-            Console.WriteLine("Number of combinations: " + testsToRun);
+            string[] returnString = new string[everyBinaryStringCombination.Length + 1];
             for (int i = 0; i < testsToRun; i++)
             {
-                string fullBinaryStringCombination = everyBinaryStringCombination[i].PadRight(8, '0'); // adds the UDT_AllAtomicDataTypes.ex_BOOL8 tag to the current combination
+                string fullBinaryStringCombination = everyBinaryStringCombination[i].PadLeft(8, '0');
                 Set_UDTAllAtomicDataTypes_Sync(fullBinaryStringCombination, DataType.BOOL, OperationMode.Online, project, false);
+
                 ByteString[] ByteString_UDT_AllAtomicDataTypes = Get_UDTAllAtomicDataTypes_Sync(tagPath, project);
-                string[][] UDT_AllAtomicDataTypes = Format_UDTAllAtomicDataTypes(ByteString_UDT_AllAtomicDataTypes, false);
-                if (UDT_AllAtomicDataTypes[1][7] != truthTableResults[i])
+                var BOOL_ByteArray = ByteString_UDT_AllAtomicDataTypes[0].ToByteArray();
+                string ex_BOOLS_binaryString = Convert.ToString(BOOL_ByteArray[0], 2).PadLeft(8, '0');
+                returnString[i + 1] = ex_BOOLS_binaryString;
+
+                string testIDnumber = $"{(i + 1).ToString().PadLeft(2, '0')}/{testsToRun}";
+                string UDT_AllAtomicDataTypes_ex_BOOL8 = (ex_BOOLS_binaryString[0] == '1') ? "True" : "False";
+                if (UDT_AllAtomicDataTypes_ex_BOOL8 != truthTableResults[i])
                 {
-                    Console.WriteLine($"FAILURE: test {i + 1}/{testsToRun} expected value ({truthTableResults[i]}) & actual value ({UDT_AllAtomicDataTypes[1][7]}) NOT equal.");
+                    Console.WriteLine($"FAILURE: test {testIDnumber} expected value ({truthTableResults[i]}) & actual value ({UDT_AllAtomicDataTypes_ex_BOOL8}) NOT equal.");
                     testResult++;
                 }
                 else
-                    Console.WriteLine($"SUCCESS: test {i + 1}/{testsToRun} expected value ({truthTableResults[i]}) & actual value ({UDT_AllAtomicDataTypes[1][7]}) EQUAL");
+                    Console.WriteLine($"SUCCESS: test {testIDnumber} expected value ({truthTableResults[i]}) & actual value ({UDT_AllAtomicDataTypes_ex_BOOL8}) EQUAL.");
+
             }
-            return testResult;
+            returnString[0] = testResult.ToString();
+            return returnString;
         }
 
-        private static string[] GenerateBitCombinations(int bitNumber)
+        /// <summary>
+        /// A method to generate every combination possible for a binary string of specific length.
+        /// </summary>
+        /// <param name="binaryStringLength">The desired length of the binary string.</param>
+        /// <returns>A string array containing every combination possible for a binary string of specific length.</returns>
+        private static string[] GenerateBitCombinations(int binaryStringLength)
         {
-            int numCombinations = (int)Math.Pow(2, bitNumber);
+            int numCombinations = (int)Math.Pow(2, binaryStringLength);
             string[] returnCombinations = new string[numCombinations];
 
             for (int i = 0; i < numCombinations; i++)
-                returnCombinations[i] = Convert.ToString(i, 2).PadLeft(bitNumber, '0');
+                returnCombinations[i] = Convert.ToString(i, 2).PadLeft(binaryStringLength, '0');
 
             return returnCombinations;
         }
