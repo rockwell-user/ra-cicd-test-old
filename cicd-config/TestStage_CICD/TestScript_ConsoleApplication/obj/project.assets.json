@@ -1862,11 +1862,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\data\\jenkins_home\\workspace\\RA-CICD-TEST\\cicd-config\\TestStage_CICD\\TestScript_ConsoleApplication\\TestScript_ConsoleApplication.csproj",
+      "projectUniqueName": "C:\\data\\jenkins_home\\workspace\\RA-CI-TEST\\cicd-config\\TestStage_CICD\\TestScript_ConsoleApplication\\TestScript_ConsoleApplication.csproj",
       "projectName": "TestScript_ConsoleApplication",
-      "projectPath": "C:\\data\\jenkins_home\\workspace\\RA-CICD-TEST\\cicd-config\\TestStage_CICD\\TestScript_ConsoleApplication\\TestScript_ConsoleApplication.csproj",
+      "projectPath": "C:\\data\\jenkins_home\\workspace\\RA-CI-TEST\\cicd-config\\TestStage_CICD\\TestScript_ConsoleApplication\\TestScript_ConsoleApplication.csproj",
       "packagesPath": "C:\\Users\\Jenkins\\.nuget\\packages\\",
-      "outputPath": "C:\\data\\jenkins_home\\workspace\\RA-CICD-TEST\\cicd-config\\TestStage_CICD\\TestScript_ConsoleApplication\\obj\\",
+      "outputPath": "C:\\data\\jenkins_home\\workspace\\RA-CI-TEST\\cicd-config\\TestStage_CICD\\TestScript_ConsoleApplication\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -1888,8 +1888,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\data\\jenkins_home\\workspace\\RA-CICD-TEST\\cicd-config\\TestStage_CICD\\LogixEcho_ClassLibrary\\LogixEcho_ClassLibrary.csproj": {
-              "projectPath": "C:\\data\\jenkins_home\\workspace\\RA-CICD-TEST\\cicd-config\\TestStage_CICD\\LogixEcho_ClassLibrary\\LogixEcho_ClassLibrary.csproj"
+            "C:\\data\\jenkins_home\\workspace\\RA-CI-TEST\\cicd-config\\TestStage_CICD\\LogixEcho_ClassLibrary\\LogixEcho_ClassLibrary.csproj": {
+              "projectPath": "C:\\data\\jenkins_home\\workspace\\RA-CI-TEST\\cicd-config\\TestStage_CICD\\LogixEcho_ClassLibrary\\LogixEcho_ClassLibrary.csproj"
             }
           }
         }
