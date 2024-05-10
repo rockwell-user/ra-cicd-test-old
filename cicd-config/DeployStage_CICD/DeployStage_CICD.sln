@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34701.34
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LogixEcho_ClassLibrary", "LogixEcho_ClassLibrary\LogixEcho_ClassLibrary.csproj", "{8610B1EC-1300-417B-A34B-91A6F002B9AB}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DeployScript_ConsoleApplication", "DeployScript_ConsoleApplication\DeployScript_ConsoleApplication.csproj", "{E1F59E1F-C06A-47D1-80C8-F07801DAE6C6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8610B1EC-1300-417B-A34B-91A6F002B9AB}.Debug|Any CPU.ActiveCfg = Release|Any CPU
+		{8610B1EC-1300-417B-A34B-91A6F002B9AB}.Debug|Any CPU.Build.0 = Release|Any CPU
+		{8610B1EC-1300-417B-A34B-91A6F002B9AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8610B1EC-1300-417B-A34B-91A6F002B9AB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E1F59E1F-C06A-47D1-80C8-F07801DAE6C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E1F59E1F-C06A-47D1-80C8-F07801DAE6C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E1F59E1F-C06A-47D1-80C8-F07801DAE6C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E1F59E1F-C06A-47D1-80C8-F07801DAE6C6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {539019B0-3277-442B-BC80-C316BCC96FDA}
+	EndGlobalSection
+EndGlobal

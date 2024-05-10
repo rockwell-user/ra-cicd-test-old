@@ -2,7 +2,7 @@ pipeline {
     agent any
     
     environment {
-        PATH_JENKINS_GITHUB = 'C:\\data\\jenkins_home\\workspace\\RA-CICD-Pipeline\\'
+        PATH_JENKINS_GITHUB = "C:\\data\\jenkins_home\\workspace\\${env.JOB_NAME}\\"
         ACDFILENAME = 'CICD_test.ACD'
         GITHUB_USERNAME = 'rockwell-user'
         GITHUB_PASSWORD = 'RockwellGithub!'
