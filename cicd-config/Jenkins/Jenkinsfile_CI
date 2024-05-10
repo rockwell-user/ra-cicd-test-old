@@ -54,7 +54,7 @@ pipeline {
                     def currentUser_NugetConfigXMLfile = 'C:\\Users\\ASYost\\AppData\\Roaming\\NuGet\\NuGet.Config'
                     def jenkinsUser_NugetConfigXMLfile = 'C:\\Users\\Jenkins\\AppData\\Roaming\\NuGet\\NuGet.Config'
 
-                    // delete later!!!
+                    // delete later!!!!
                     //def currentUser_NugetConfigXMLfileContents = bat(script: "type ${currentUser_NugetConfigXMLfile}", returnStdout: true).trim()
                     bat """
                         type ${currentUser_NugetConfigXMLfile} > ${jenkinsUser_NugetConfigXMLfile}
@@ -115,6 +115,9 @@ pipeline {
                             git config --global user.email ${env.GITHUB_USER_EMAIL}
                             git config --global user.name ${env.GITHUB_USER_NAME}
 
+                            git add -A
+                            git commit -m "${commit_message}"
+                            git push origin ${env.GITHUB_DEV_BRANCH}
                             git checkout -b ${env.GITHUB_RELEASE_BRANCH}
                             git add -A
                             git commit -m "${commit_message}"
