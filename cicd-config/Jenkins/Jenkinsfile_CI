@@ -6,7 +6,7 @@ pipeline {
         ACDFILENAME = 'CICD_test.ACD'
         GITHUB_USERNAME = 'rockwell-user'
         GITHUB_PASSWORD = 'RockwellGithub!'
-        GITHUB_ACCESTOKEN = 'ghp_mpOj91xiccmZmGnGezvyxYLNWNas8Z39k?z?E?P?'
+        GITHUB_ACCESTOKEN = 'ghp_dOdXB?WBDWE?MOCfwr0?U2EpQ4?MPEGCwH0UWCCL'
         GITHUB_REPO_NAME = 'ra-cicd-test-old'
         GITHUB_DEV_BRANCH = 'dev-branch'
         GITHUB_RELEASE_BRANCH = 'release-branch'
