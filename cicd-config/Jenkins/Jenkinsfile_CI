@@ -54,7 +54,7 @@ pipeline {
                     def currentUser_NugetConfigXMLfile = 'C:\\Users\\ASYost\\AppData\\Roaming\\NuGet\\NuGet.Config'
                     def jenkinsUser_NugetConfigXMLfile = 'C:\\Users\\Jenkins\\AppData\\Roaming\\NuGet\\NuGet.Config'
 
-                    // delete later!!!!
+                    // delete later!!!!!
                     //def currentUser_NugetConfigXMLfileContents = bat(script: "type ${currentUser_NugetConfigXMLfile}", returnStdout: true).trim()
                     bat """
                         type ${currentUser_NugetConfigXMLfile} > ${jenkinsUser_NugetConfigXMLfile}
